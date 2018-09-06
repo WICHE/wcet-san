@@ -1,0 +1,241 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the AdminKit sub-theme of Adminimnal.
+ */
+
+use Drupal\Component\Utility\Xss;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Template\Attribute;
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ */
+function adminkit_preprocess_html(&$variables) {
+
+  // Add adminimal class to the body.
+  $variables['attributes']['class'][] = 'adminkit';
+
+}
+
+function adminkit_preprocess_paragraph(&$variables) {
+}
+
+function adminkit_preprocess_media__svg(&$variables) {
+  $entity = $variables['elements']['#media'];
+  $svg_entity = $entity->field_svg->entity;
+
+  $variables['svg_url'] = $svg_entity ? file_Create_url($svg_entity->getFileUri()) : '';
+  $variables['svg_title'] = $svg_entity ? $svg_entity->label() : 'SVG Icon';
+}
+
+
+// @TODO: do I still want this to be here?
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+//function e3_paragraphs_field_widget_entity_reference_paragraphs_previewer_form_alter(&$element, \Drupal\Core\Form\FormStateInterface $form_state, $context) {
+//  $test = '';
+//}
+
+/**
+ * Define the new template for the theme below
+ *
+ * @param $existing
+ * @param $type
+ * @param $theme
+ * @param $path
+ * @return array
+ */
+function adminkit_theme($existing, $type, $theme, $path) {
+  return array(
+    'field_multiple_value_form_divs' => array(
+      'template' => 'field-multiple-value-form-divs',
+      'path' => 'themes/custom/adminkit/templates/field',
+      'theme path' => 'themes/custom/adminkit',
+      'render element' => 'element',
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme_suggestion_alter for field_multiple_value_form items to add the paragraphs suggestion when
+ * the library is detected.
+ * TODO: A better way to determine if this is a paragraphs field would be super
+ *
+ * @param array $suggestions
+ * @param array $variables
+ * @param $hook
+ */
+function adminkit_theme_suggestions_field_multiple_value_form_alter(array &$suggestions, array $variables, $hook) {
+  if (isset($variables['element']['#attached']['library'])) {
+    // Classic
+    if ($is_paragraphs_widget = in_array('paragraphs/drupal.paragraphs.admin', $variables['element']['#attached']['library'])) {
+      $suggestions[] = 'field_multiple_value_form_divs';
+    }
+    // Experimental
+    // @TODO: Need to look more into how the new experimental widget is working, uncommenting the following
+    // seems to make it generally work with some different styles, but will need to look into it
+//    if ($is_paragraphs_widget = in_array('paragraphs/drupal.paragraphs.widget', $variables['element']['#attached']['library'])) {
+//      $suggestions[] = 'field_multiple_value_form_divs';
+//    }
+  }
+}
+
+/**
+ * Process fields that have been determined to be paragraphs fields
+ *
+ * @param $variables
+ */
+function adminkit_preprocess_field_multiple_value_form_divs(&$variables) {
+  $element = $variables['element'];
+  $variables['multiple'] = $element['#cardinality_multiple'];
+
+  if ($variables['multiple']) {
+    $table_id = Html::getUniqueId($element['#field_name'] . '_values');
+    $order_class = $element['#field_name'] . '-delta-order';
+    $header_attributes = new Attribute(array('class' => array('label')));
+    if (!empty($element['#required'])) {
+      $header_attributes['class'][] = 'js-form-required';
+      $header_attributes['class'][] = 'form-required';
+    }
+    $header = array(
+      array(
+        '#prefix' => '<h4' . $header_attributes . '>',
+        'title' => array(
+          '#markup' => $element['#title'],
+        ),
+        '#suffix' => '</h4>',
+      )
+    );
+    $rows = array();
+
+    // Sort items according to '_weight' (needed when the form comes back after
+    // preview or failed validation).
+    $items = array();
+    $variables['button'] = array();
+    foreach (Element::children($element) as $key) {
+      if ($key === 'add_more') {
+        $variables['button'] = &$element[$key];
+      }
+      else {
+        $items[] = &$element[$key];
+      }
+    }
+    usort($items, '_field_multiple_value_form_sort_helper');
+
+    // Add the items as table rows.
+    foreach ($items as $item) {
+      $item['_weight']['#attributes']['class'] = array($order_class);
+      $item['_weight']['#attributes']['class'] = 'draggable';
+
+      $test = '';
+
+      // Remove weight form element from item render array so it can be rendered
+      // in a separate table column.
+//      $delta_element = $item['_weight'];
+//      unset($item['_weight']);
+
+//      $cells = array(
+//        array('data' => '', 'class' => array('field-multiple-drag')),
+//        array('data' => $item),
+//        array('data' => $delta_element, 'class' => array('delta-order')),
+//      );
+//      $rows[] = array(
+//        'data' => $cells,
+//        'class' => array('draggable'),
+//      );
+    }
+
+
+    $variables['paragraphs_field_header'] = $header;
+    $variables['paragraphs_field_items'] = $items;
+
+    $variables['table'] = array(
+      '#type' => 'table',
+      '#header' => $header,
+      '#rows' => $rows,
+      '#attributes' => array(
+        'id' => $table_id,
+        'class' => array('field-multiple-table'),
+      ),
+      '#tabledrag' => array(
+        array(
+          'action' => 'order',
+          'relationship' => 'sibling',
+          'group' => $order_class,
+        ),
+      ),
+    );
+
+    if (!empty($element['#description'])) {
+      $description_id = $element['#attributes']['aria-describedby'];
+      $description_attributes['id'] = $description_id;
+      $variables['description']['attributes'] = new Attribute($description_attributes);
+      $variables['description']['content'] = $element['#description'];
+
+      // Add the description's id to the table aria attributes.
+      $variables['table']['#attributes']['aria-describedby'] = $element['#attributes']['aria-describedby'];
+    }
+  }
+  else {
+    $variables['elements'] = array();
+    foreach (Element::children($element) as $key) {
+      $variables['elements'][] = $element[$key];
+    }
+  }
+}
+
+//*********************************************
+// Utility functions
+//*********************************************
+
+/**
+ * Utility function to get the inline css style for a background image.
+ *
+ * @param $entity
+ *  Entity containing the image field.
+ * @param $field_name
+ *  Name of the image field to use.
+ * @param $image_style
+ *  Name of the image style to use.
+ * @return string
+ *  Full css style attribute containing background image.
+ */
+function adminkit_get_entity_image_inline_style($entity, $field_name, $image_style = null) {
+  $rendered_style = '';
+
+  if (!$entity->$field_name->isEmpty()) {
+    $file_entity = $entity->get($field_name)->entity->get('field_image')->entity;
+
+    if ($url = themekit_get_image_style_url($file_entity, $image_style)) {
+      $rendered_style = 'style="background-image: url(' . $url . ');"';
+    }
+  }
+
+  return $rendered_style;
+}
+
+/**
+ * Get the url for a specific image style of an image.
+ *
+ * @param File $file
+ *  Image to be used.
+ * @param $image_style
+ *  Name of the image style to use.
+ * @return string
+ */
+function adminkit_get_image_style_url(File $file, $image_style) {
+  $uri = $file->getFileUri();
+  if ($image_style) {
+    $url = ImageStyle::load($image_style)->buildUrl($uri);
+  } else {
+    $url = file_create_url($uri);
+  }
+  return $url;
+}

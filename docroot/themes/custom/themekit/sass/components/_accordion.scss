@@ -1,0 +1,74 @@
+////
+/// Accordion styles
+////
+
+/// Accordion
+/// =========
+.accordion {
+  @include breakpoint(medium) {
+    max-width: 70%;
+  }
+  .sub-title {
+    @include sub-title;
+    &:after {
+      content: none;
+    }
+  }
+  .accordion-item {
+    border-top: 1px solid $san-border;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    padding-left: rem-calc(84);
+    &:last-child {
+      border-bottom: 1px solid $san-border;
+    }
+    .accordion-title {
+      position: relative;
+      color: inherit;
+      font-size: rem-calc(18);
+      line-height: rem-calc(25);
+      border: none;
+      &:before {
+        content: '';
+        position: absolute;
+        top: calc(50% + .5rem);
+        left: rem-calc(-40);
+        width: rem-calc(20);
+        height: 3px;
+        background-color: $san-blue;
+        border-radius: 2px;
+        transform: translateY(-50%);
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: rem-calc(-32px);
+        width: 3px;
+        height: rem-calc(20);
+        background-color: $san-blue;
+        border-radius: 2px;
+        transform: translateY(-50%) scaleY(1);
+        transition: .4s ease transform;
+      }
+      &:hover,
+      &:focus {
+        background-color: transparent;
+      }
+    }
+    &.is-active {
+      .accordion-title {
+        &:after {
+          transform: translateY(-50%) scaleY(0);
+        }
+      }
+    }
+  }
+  .accordion-content {
+    border: none;
+    &:last-child {
+      border: none;
+    }
+  }
+}

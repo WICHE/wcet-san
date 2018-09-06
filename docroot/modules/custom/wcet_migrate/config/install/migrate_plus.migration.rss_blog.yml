@@ -1,0 +1,69 @@
+id: rss_blog
+label: RSS blog import
+migration_group: rss
+dependencies:
+  enforced:
+    module:
+      - wcet_migrate
+
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: simple_xml
+  urls: https://wcetfrontiers.org/category/state-authorization/feed
+
+  ids:
+    guid:
+      type: string
+
+  item_selector: /rss/channel/item
+  fields:
+    -
+      name: guid
+      label: GUID
+      selector: guid
+    -
+      name: title
+      label: Title
+      selector: title
+    -
+      name: description
+      label: Description
+      selector: description
+    -
+      name: link
+      label: Link
+      selector: link
+    -
+      name: date
+      label: Date
+      selector: pubDate
+
+destination:
+  plugin: entity:node
+
+process:
+  title: title
+  body/value: description
+  body/format:
+    plugin: default_value
+    default_value: full_html
+  field_resource_type:
+    plugin: add_term_reference
+    vocabulary: 'resource_type'
+    term_name: 'Article'
+  field_p_resources:
+    plugin: add_blog_link
+    source: link
+  type:
+    plugin: default_value
+    default_value: resource
+  created:
+    plugin: add_date
+    source: date
+  uid:
+    plugin: default_value
+    default_value: 1
+  field_meta_tags:
+    plugin: add_canonical_url
+    source: link

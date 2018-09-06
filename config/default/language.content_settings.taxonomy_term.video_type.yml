@@ -1,0 +1,11 @@
+uuid: f0827403-9b51-49f3-9afb-c41f55890384
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.video_type
+id: taxonomy_term.video_type
+target_entity_type_id: taxonomy_term
+target_bundle: video_type
+default_langcode: site_default
+language_alterable: false

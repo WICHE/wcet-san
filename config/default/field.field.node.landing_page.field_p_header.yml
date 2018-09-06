@@ -1,0 +1,64 @@
+uuid: 584dcb50-9066-4bfa-bf4b-1c8a8712ad2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_p_header
+    - node.type.landing_page
+    - paragraphs.paragraphs_type.compound_header_content
+  module:
+    - entity_reference_revisions
+id: node.landing_page.field_p_header
+field_name: field_p_header
+entity_type: node
+bundle: landing_page
+label: Header
+description: 'Select a component to use for the header of this page.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      compound_header_content: compound_header_content
+    target_bundles_drag_drop:
+      single_image:
+        weight: 7
+        enabled: false
+      single_svg:
+        weight: 8
+        enabled: false
+      single_text_area:
+        weight: 9
+        enabled: false
+      single_video:
+        weight: 10
+        enabled: false
+      compound_faq_section:
+        weight: 13
+        enabled: false
+      compound_header_content:
+        enabled: true
+        weight: 14
+      layout_two_column:
+        weight: 15
+        enabled: false
+      reference_block:
+        weight: 16
+        enabled: false
+      simple_content:
+        weight: 17
+        enabled: false
+      simple_faq:
+        weight: 18
+        enabled: false
+      single_file:
+        weight: 19
+        enabled: false
+      single_link:
+        weight: 21
+        enabled: false
+field_type: entity_reference_revisions

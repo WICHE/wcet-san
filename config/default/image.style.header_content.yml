@@ -1,0 +1,24 @@
+uuid: 097eca6d-320f-42ef-9d3f-35a8b9c92b5b
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+    - image_style_quality
+name: header_content
+label: 'Header Content (1000x350)'
+effects:
+  85e509d5-4f10-4a5b-aa40-cc98205a348d:
+    uuid: 85e509d5-4f10-4a5b-aa40-cc98205a348d
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 1000
+      height: 450
+      crop_type: focal_point
+  27b1ec92-65ef-450e-82f6-557276a8fc20:
+    uuid: 27b1ec92-65ef-450e-82f6-557276a8fc20
+    id: image_style_quality
+    weight: 2
+    data:
+      quality: 75

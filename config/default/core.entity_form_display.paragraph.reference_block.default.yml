@@ -1,0 +1,15 @@
+uuid: 29ddbbbb-8fa2-48ba-9966-c83bf19855d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.reference_block
+id: paragraph.reference_block.default
+targetEntityType: paragraph
+bundle: reference_block
+mode: default
+content: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

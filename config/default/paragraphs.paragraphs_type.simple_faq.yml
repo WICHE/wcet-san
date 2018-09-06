@@ -1,0 +1,9 @@
+uuid: a480c5da-85b8-40bf-97b6-0c3a75ac479e
+langcode: en
+status: true
+dependencies: {  }
+id: simple_faq
+label: 'Simple - FAQ'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

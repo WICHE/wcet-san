@@ -1,0 +1,24 @@
+uuid: 8e49c433-0c8d-4f6d-9e8d-de3235825ddb
+langcode: en
+status: true
+dependencies:
+  config:
+    - media_entity.bundle.file
+  content:
+    - 'file:file:f849322b-4f83-4652-8b65-705a0ea395bb'
+  module:
+    - entity_embed
+    - media_entity
+label: 'File Embed'
+id: file_embed
+type_id: entity
+type_settings:
+  entity_type: media
+  bundles:
+    - file
+  display_plugins:
+    - 'view_mode:media.entity_embed'
+  entity_browser: file_embed
+  entity_browser_settings:
+    display_review: true
+icon_uuid: f849322b-4f83-4652-8b65-705a0ea395bb

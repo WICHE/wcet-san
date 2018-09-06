@@ -1,0 +1,97 @@
+////
+/// Framework - Buttons
+/// @group frameworkComponents
+////
+
+
+$buttons: (
+    default: (
+        background: #777,
+        color: #fff,
+        border: #ccc,
+        active-background: #555,
+        active-color: #fff,
+        active-border: #ccc
+    )
+) !default;
+
+/// Standard button style mixin
+/// @param {String} $button-key - the key in the $buttons map to use from config
+/// @param {String} $size [small] - the button size, choose from defined keywords in the mixin
+@mixin btn($button-key) {
+  $button: extend-in-map($buttons, $button-key);
+
+
+
+  @include disable-mouse-outline;
+  display: inline-block;
+  position: relative;
+  font-size: rem-calc(12);
+  line-height: 1.5;
+  font-weight: 600;
+  appearance: none;
+  color: key($button, color);
+
+  transition: .4s ease background, .4s ease color, .4s ease border;
+
+  @if (($button-key == link) or ($button-key == link-header)) {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: calc(100% - 17px);
+      height: 1px;
+      background: key($button, active-color);
+      transform: scaleX(0);
+      transition: .3s ease-out transform;
+    }
+    @include selectors(active) {
+      &:before {
+        transform: scaleX(1);
+      }
+    }
+  } @else {
+    text-align: center;
+    padding: 13px;
+    min-width: 194px;
+    border-radius: $global-radius;
+    @if map-has-key($button, shadow-color) {
+      --shadow-color: key($button, shadow-color);
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 var(--shadow-color);
+        }
+      }
+      &:focus {
+        animation: pulse 1s;
+        box-shadow: 0 0 0 1rem rgba(key($button, shadow-color), 0);
+      }
+    }
+    @if map-has-key($button, background) {
+      background: key($button, background);
+    }
+    @if map-has-key($button, border) {
+      border: 2px solid key($button, border);
+    }
+
+
+  }
+
+  &:after {
+    @include icon(arrow-right);
+    font-size: rem-calc(10);
+    margin-left: 5px;
+  }
+
+  @include selectors(active) {
+    @if map-has-key($button, active-border) {
+      border-color: key($button, active-border);
+    }
+    @if map-has-key($button, active-background) {
+      background: key($button, active-background);
+    }
+    color: key($button, active-color);
+  }
+}

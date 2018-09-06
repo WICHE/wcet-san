@@ -1,0 +1,395 @@
+////
+/// Page styles
+/// View mode specific layout and styles
+////
+
+.node--type-page.node--view-mode-full {
+  @include content-width(page);
+}
+
+.node--type-page.node--view-mode-teaser {
+
+}
+
+/// Widths
+/// ======
+.layout-container {
+  overflow-x: hidden;
+}
+
+// View Pages
+//.path-events,
+//.path-resources {
+//  .block-page-title-block,
+//  .block-system-main-block {
+//    @include content-width(page);
+//  }
+//  .block-page-title-block {
+//    text-align: center;
+//    margin-bottom: rem-calc(40);
+//  }
+//  .page-title {
+//    @include sub-title;
+//  }
+//}
+
+// User Page
+.path-user.user-logged-in {
+  #main-content > .layout-content {
+    @include content-width(page);
+  }
+}
+
+/// Resources
+/// =========
+
+// Detail Cards
+.field--name-field-resource-type span {
+  position: relative;
+  font-size: rem-calc(10);
+  font-weight: bold;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: .5rem;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+  // Article
+  &.resource-name-article,
+  &.resource-id-18 {
+    color: $article;
+    &:before {
+      background-color: $article;
+    }
+  }
+  // Coordinator Call
+  &.resource-name-coordinator-call,
+  &.resource-id-20 {
+    color: $coordinator-call;
+    &:before {
+      background-color: $coordinator-call;
+    }
+  }
+  // eNewsletter
+  &.resource-name-enewsletter,
+  &.resource-id-16 {
+    color: $e-newsletter;
+    &:before {
+      background-color: $e-newsletter;
+    }
+  }
+  // In The News
+  &.resource-name-in-the-news,
+  &.resource-id-19 {
+    color: $in-the-news;
+    &:before {
+      background-color: $in-the-news;
+    }
+  }
+  // Research
+  &.resource-name-research,
+  &.resource-id-17 {
+    color: $research;
+    &:before {
+      background-color: $research;
+    }
+  }
+  // Whitepaper
+  &.resource-name-white-paper,
+  &.resource-id-25 {
+    color: $white-paper;
+    &:before {
+      background-color: $white-paper;
+    }
+  }
+  &.resource-name-talking-points,
+  &.resource-id-223 {
+    color: $talking-points;
+    &:before {
+      background-color: $talking-points;
+    }
+  }
+  &.resource-name-past-webinar,
+  &.resource-id-289 {
+    color: $webinar;
+    &:before {
+      background-color: $webinar;
+    }
+  }
+}
+
+/// Resource Page
+/// =============
+.page-node-type-event,
+.page-node-type-resource {
+  .node--type-event,
+  .node--type-resource {
+    @include content-width(page);
+    display: flex;
+    flex-flow: row wrap;
+    flex-basis: auto;
+    justify-content: space-between;
+    margin-top: 77px;
+  }
+  .event-info,
+  .resource-info {
+    display: flex;
+    flex-flow: row wrap;
+    flex-basis: auto;
+    max-width: 100%;
+    font-size: 12px;
+    .field--name-field-event-type,
+    .field--name-field-resource-type {
+      margin-right: 8px;
+    }
+    .field--name-field-date,
+    .date-created {
+      color: $san-dark-gray;
+    }
+    .field--name-field-topic {
+      position: relative;
+      color: $san-dark-gray;
+      @include breakpoint(medium) {
+        padding-left: 8px;
+        margin-left: 8px;
+        &:after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 1px;
+          height: 12px;
+          background-color: $san-dark-gray;
+          transform: translateY(-50%);
+        }
+      }
+      .field__item {
+        display: inline-block;
+        &:nth-last-of-type(1n + 2) {
+          &:after {
+            content: ',';
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+  .event-content,
+  .resources-content {
+    max-width: 100%;
+    @include breakpoint(medium) {
+      padding-right: rem-calc(76);
+      width: 69%;
+    }
+  }
+  .event-details,
+  .resources-details {
+    margin-top: 28px;
+    @include breakpoint(medium) {
+      width: 29%;
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+  .event-details-content,
+  .resources-details-content {
+    border-top: 1px solid $san-border;
+    padding-top: 28px;
+    @include breakpoint(medium) {
+      padding-top: 0;
+      padding-left: 56px;
+      border-top: none;
+      border-left: 1px solid $san-border;
+    }
+  }
+  .date {
+    + .date {
+      margin-top: 15px;
+    }
+  }
+  .field--name-field-p-resources {
+    .field__item {
+      margin-top: 40px;
+    }
+  }
+  .media-file {
+    a {
+      @include btn(primary);
+    }
+    .file {
+      background-image: none;
+      padding-left: 0;
+    }
+  }
+  .copy-text-wrapper {
+    position: relative;
+    max-width: rem-calc(194);
+    white-space: nowrap;
+    overflow-x: scroll;
+    border: 2px solid $san-border;
+    border-radius: 8px;
+    padding: rem-calc(10);
+    box-shadow: inset 0 0 0 10px $white;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  .copy-text {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    color: $san-blue;
+    z-index: -1;
+  }
+  .copy-text-title {
+    margin-top: 41px;
+  }
+  .tooltip {
+    display: inline-block;
+    background-color: $san-dark-gray;
+    color: $san-french-gray;
+    padding: .3rem .5rem;
+    border-radius: 8px;
+    animation: copy 2.5s infinite;
+    box-shadow: 0 0 0 1rem rgba($san-dark-gray, 0);
+    font-size: 14px;
+  }
+}
+
+.page-node-type-event {
+  .event-info {
+    .field--name-field-topic {
+      @include breakpoint(medium) {
+        padding-left: 0;
+        margin-left: 0;
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
+}
+
+.field--name-field-resource-type {
+  display: inline-block;
+  vertical-align: bottom;
+  .node__content {
+    flex-basis: auto;
+    flex: 1;
+  }
+}
+
+/// EVENTS
+/// ======
+.field--name-field-event-type {
+  display: inline-block;
+  vertical-align: bottom;
+  span {
+    position: relative;
+    font-size: rem-calc(10);
+    font-weight: bold;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: .5rem;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+    // Webinar
+    &.event-name-webinar,
+    &.event-id-11 {
+      color: $webinar;
+      &:before {
+        background-color: $webinar;
+      }
+    }
+    // Meeting
+    &.event-name-meeting,
+    &.event-id-13 {
+      color: $meeting;
+      &:before {
+        background-color: $meeting;
+      }
+    }
+    // Webinar
+    &.event-name-workshop,
+    &.event-id-14 {
+      color: $workshop;
+      &:before {
+        background-color: $workshop;
+      }
+    }
+  }
+}
+
+.node--type-resource {
+  .resources-content,
+  .resources-details {
+    ~ .paragraph--type--layout-two-column,
+    ~ .paragraph--type--simple-content {
+      margin-top: 0;
+      padding: 0;
+      .field--name-field-body {
+        padding: 0;
+      }
+    }
+    ~ .paragraph--type--simple-content {
+      @include breakpoint(medium) {
+        max-width: 40rem;
+      }
+    }
+  }
+}
+
+.field--name-body,
+.field--name-field-body {
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  ul {
+    margin-left: 2rem;
+    li {
+      ul {
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+        margin-left: 2rem;
+        li {
+          list-style-type: square;
+        }
+      }
+    }
+  }
+  ol {
+    margin-left: 2rem;
+    li {
+      ol {
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+        margin-left: 2rem;
+        li {
+          list-style-type: lower-alpha;
+        }
+      }
+    }
+  }
+}
+
+/// Global File Settings
+/// ====================
+.file {
+  background-image: none!important;
+  padding-left: 0;
+}

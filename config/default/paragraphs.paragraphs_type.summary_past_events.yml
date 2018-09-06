@@ -1,0 +1,9 @@
+uuid: 6a378137-fb93-4401-833d-0db31b48fe86
+langcode: en
+status: true
+dependencies: {  }
+id: summary_past_events
+label: 'Summary - Past Events'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

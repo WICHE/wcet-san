@@ -1,0 +1,33 @@
+uuid: 5549218c-741a-4a57-8463-e402fe68d46a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.compound_card_row.field_header
+    - field.field.paragraph.compound_card_row.field_p_cards
+    - paragraphs.paragraphs_type.compound_card_row
+  module:
+    - entity_reference_revisions
+id: paragraph.compound_card_row.default
+targetEntityType: paragraph
+bundle: compound_card_row
+mode: default
+content:
+  field_header:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_p_cards:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

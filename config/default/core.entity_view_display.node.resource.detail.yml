@@ -1,0 +1,61 @@
+uuid: a04d9007-165d-4d60-846d-d5e757d8067e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.detail
+    - field.field.node.resource.body
+    - field.field.node.resource.field_content_access
+    - field.field.node.resource.field_meta_tags
+    - field.field.node.resource.field_p_content
+    - field.field.node.resource.field_p_resources
+    - field.field.node.resource.field_resource_type
+    - field.field.node.resource.field_topic
+    - node.type.resource
+  module:
+    - smart_trim
+    - user
+id: node.resource.detail
+targetEntityType: node
+bundle: resource
+mode: detail
+content:
+  body:
+    type: smart_trim
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      trim_length: '115'
+      trim_type: chars
+      trim_suffix: ..
+      more_link: '1'
+      more_text: More
+      summary_handler: trim
+      trim_options:
+        text: text
+      more_class: more-link
+    third_party_settings: {  }
+  field_resource_type:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+  field_topic:
+    weight: 1
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden:
+  field_content_access: true
+  field_meta_tags: true
+  field_p_content: true
+  field_p_resources: true
+  langcode: true
+  links: true

@@ -1,0 +1,20 @@
+////
+/// Animation declarations
+////
+
+/// Simple rotation
+@keyframes rotate {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+/// Copy button fancyness
+@keyframes copy {
+  0% {
+    box-shadow: 0 0 0 0 $san-dark-gray;
+  }
+}

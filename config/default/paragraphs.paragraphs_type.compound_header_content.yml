@@ -1,0 +1,9 @@
+uuid: 5c6598db-915a-4cdf-9331-1f0ffca40670
+langcode: en
+status: true
+dependencies: {  }
+id: compound_header_content
+label: 'Compound - Header Content'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Contains e3_google_tag.module.
+ */
+
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function e3_google_tag_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the e3_google_tag module.
+    case 'help.page.e3_google_tag':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom Google Tag Manager implementation.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function e3_google_tag_theme() {
+
+  return [
+    'e3_google_tag_head' => [
+      'render element' => 'children',
+    ],
+    'e3_google_tag_body' => [
+      'render element' => 'children',
+    ]
+  ];
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function e3_google_tag_preprocess_html(&$variables) {
+  $config = \Drupal::config('e3_google_tag.settings');
+  $variables['gtm_code'] = $config->get('gtm_code');
+}

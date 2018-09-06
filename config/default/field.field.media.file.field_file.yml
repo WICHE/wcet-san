@@ -1,0 +1,27 @@
+uuid: 906d1f91-3f0c-4f70-8e36-df56d9509caf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_file
+    - media_entity.bundle.file
+  module:
+    - file
+id: media.file.field_file
+field_name: field_file
+entity_type: media
+bundle: file
+label: File
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'files/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf doc docx xml xls ppt mp3 wav'
+  max_filesize: '10 MB'
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

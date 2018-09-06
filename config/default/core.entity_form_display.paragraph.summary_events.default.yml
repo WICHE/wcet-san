@@ -1,0 +1,22 @@
+uuid: ff8eace7-d5d3-4981-a7ad-f72764280fc6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.summary_events.field_summary_topics
+    - paragraphs.paragraphs_type.summary_events
+id: paragraph.summary_events.default
+targetEntityType: paragraph
+bundle: summary_events
+mode: default
+content:
+  field_summary_topics:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

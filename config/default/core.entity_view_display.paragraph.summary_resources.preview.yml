@@ -1,0 +1,22 @@
+uuid: da9144e2-8426-48fc-a7fe-e4a08e878c3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.summary_resources.field_summary_topics
+    - paragraphs.paragraphs_type.summary_resources
+id: paragraph.summary_resources.preview
+targetEntityType: paragraph
+bundle: summary_resources
+mode: preview
+content:
+  field_summary_topics:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+hidden: {  }

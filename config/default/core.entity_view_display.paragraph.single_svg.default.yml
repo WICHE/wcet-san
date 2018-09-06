@@ -1,0 +1,22 @@
+uuid: b4fef78c-2bd2-4df1-a3fb-ace52e9fb844
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.single_svg.field_svg
+    - paragraphs.paragraphs_type.single_svg
+id: paragraph.single_svg.default
+targetEntityType: paragraph
+bundle: single_svg
+mode: default
+content:
+  field_svg:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden: {  }

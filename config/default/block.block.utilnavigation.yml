@@ -1,0 +1,27 @@
+uuid: ec80c0ac-6949-42cf-996f-ac0fdc4177cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.util-navigation
+  module:
+    - menu_block
+  theme:
+    - themekit
+id: utilnavigation
+theme: themekit
+region: header
+weight: -6
+provider: null
+plugin: 'menu_block:util-navigation'
+settings:
+  id: 'menu_block:util-navigation'
+  label: 'Util Navigation'
+  provider: menu_block
+  label_display: '0'
+  level: 1
+  depth: 0
+  expand: 1
+  parent: 'util-navigation:'
+  suggestion: util_navigation
+visibility: {  }

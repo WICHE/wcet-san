@@ -1,0 +1,15 @@
+uuid: 3313e950-108d-4180-9945-6a56cc1833a6
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - wcet_migrate
+_core:
+  default_config_hash: K-sRYSStzYx3E8Gm6KQ4N0haAWwDlrhunVPqrw5_1UU
+id: coordinators
+label: 'Coordinator Imports'
+description: 'Migrations from coordinators csv files.'
+source_type: 'CSV Files'
+module: null
+shared_configuration: null

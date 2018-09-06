@@ -1,0 +1,73 @@
+uuid: 3dd08ac6-de28-4f7f-9bb6-c8f2491edee6
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.image
+    - field.field.paragraph.compound_header_content.field_header
+    - field.field.paragraph.compound_header_content.field_media_image
+    - field.field.paragraph.compound_header_content.field_p_secondary_content
+    - field.field.paragraph.compound_header_content.field_subheader
+    - field.field.paragraph.compound_header_content.field_subheader_as_h1
+    - paragraphs.paragraphs_type.compound_header_content
+  module:
+    - entity_browser
+    - paragraphs
+id: paragraph.compound_header_content.default
+targetEntityType: paragraph
+bundle: compound_header_content
+mode: default
+content:
+  field_header:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_media_image:
+    weight: 3
+    settings:
+      entity_browser: image
+      field_widget_display: rendered_entity
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: form_preview
+      field_widget_edit: false
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_p_secondary_content:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: Component
+      title_plural: Components
+      edit_mode: preview
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    region: content
+  field_subheader:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_subheader_as_h1:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

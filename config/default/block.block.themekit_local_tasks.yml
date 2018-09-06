@@ -1,0 +1,33 @@
+uuid: 552f8d89-0826-4cb1-b4ef-8bc218696160
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - themekit
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: themekit_local_tasks
+theme: themekit
+region: content
+weight: -7
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      administrator: administrator
+      san_admin: san_admin
+      coordinator: coordinator
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

@@ -1,0 +1,14 @@
+uuid: a957a093-cb4e-4620-97cc-c916502bfda9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.summary_events.field_summary_topics
+    - paragraphs.paragraphs_type.summary_events
+id: paragraph.summary_events.default
+targetEntityType: paragraph
+bundle: summary_events
+mode: default
+content: {  }
+hidden:
+  field_summary_topics: true

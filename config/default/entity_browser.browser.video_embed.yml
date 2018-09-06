@@ -1,0 +1,42 @@
+uuid: 34a879ef-cbe6-4eee-8c5a-d7f8d70127dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.duplicate_of_entity_browser_video
+  module:
+    - entity_browser_entity_form
+    - views
+name: video_embed
+label: 'Video - Embed'
+display: iframe
+display_configuration:
+  width: '800'
+  height: '600'
+  link_text: 'Select Video'
+  auto_open: true
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  0d260601-967c-4bb8-bd44-abaff739a5ab:
+    settings:
+      view: duplicate_of_entity_browser_video
+      view_display: entity_browser_1
+      submit_text: 'Select Video'
+      auto_select: false
+    uuid: 0d260601-967c-4bb8-bd44-abaff739a5ab
+    weight: 1
+    label: 'Existing Videos'
+    id: view
+  a10004f4-24ab-4975-b31b-212dc309802e:
+    settings:
+      entity_type: media
+      bundle: video
+      form_mode: media_browser
+      submit_text: 'Save Video'
+    uuid: a10004f4-24ab-4975-b31b-212dc309802e
+    weight: 2
+    label: 'New Video'
+    id: entity_form

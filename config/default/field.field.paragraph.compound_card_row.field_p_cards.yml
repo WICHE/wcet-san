@@ -1,0 +1,70 @@
+uuid: c7a35c2c-b2f2-4290-9c07-d5733ef84429
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_cards
+    - paragraphs.paragraphs_type.compound_card_row
+    - paragraphs.paragraphs_type.simple_card
+  module:
+    - entity_reference_revisions
+id: paragraph.compound_card_row.field_p_cards
+field_name: field_p_cards
+entity_type: paragraph
+bundle: compound_card_row
+label: Cards
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      simple_card: simple_card
+    target_bundles_drag_drop:
+      compound_card_row:
+        weight: 15
+        enabled: false
+      compound_faq_section:
+        weight: 16
+        enabled: false
+      compound_header_content:
+        weight: 17
+        enabled: false
+      layout_two_column:
+        weight: 18
+        enabled: false
+      reference_block:
+        weight: 19
+        enabled: false
+      simple_card:
+        enabled: true
+        weight: 20
+      simple_content:
+        weight: 21
+        enabled: false
+      simple_faq:
+        weight: 22
+        enabled: false
+      single_file:
+        weight: 23
+        enabled: false
+      single_image:
+        weight: 24
+        enabled: false
+      single_link:
+        weight: 25
+        enabled: false
+      single_svg:
+        weight: 26
+        enabled: false
+      single_text_area:
+        weight: 27
+        enabled: false
+      single_video:
+        weight: 28
+        enabled: false
+field_type: entity_reference_revisions

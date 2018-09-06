@@ -1,0 +1,25 @@
+uuid: e1bb7d7a-6ce5-4fd8-8394-5c6f4a84d90b
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:f3ef521e-186a-4c0d-8cfe-af3fc2e418ec'
+  module:
+    - block_content
+  theme:
+    - themekit
+id: footerinfoleft
+theme: themekit
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:f3ef521e-186a-4c0d-8cfe-af3fc2e418ec'
+settings:
+  id: 'block_content:f3ef521e-186a-4c0d-8cfe-af3fc2e418ec'
+  label: 'Footer Info Left'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

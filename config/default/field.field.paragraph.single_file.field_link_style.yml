@@ -1,0 +1,21 @@
+uuid: da5af546-1485-4bfb-bae6-0d7ecafd625c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link_style
+    - paragraphs.paragraphs_type.single_file
+  module:
+    - options
+id: paragraph.single_file.field_link_style
+field_name: field_link_style
+entity_type: paragraph
+bundle: single_file
+label: 'Link Style'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

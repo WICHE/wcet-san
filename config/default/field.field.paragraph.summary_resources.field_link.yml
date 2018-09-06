@@ -1,0 +1,23 @@
+uuid: b827621d-b31a-4732-933e-cfaa05f4b923
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link
+    - paragraphs.paragraphs_type.summary_resources
+  module:
+    - link
+id: paragraph.summary_resources.field_link
+field_name: field_link
+entity_type: paragraph
+bundle: summary_resources
+label: Link
+description: 'Add link text that will display below resources cards.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

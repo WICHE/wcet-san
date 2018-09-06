@@ -1,0 +1,19 @@
+uuid: 6605734e-0aba-42c4-ba79-f61e099bbf75
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheader
+    - paragraphs.paragraphs_type.compound_header_content
+id: paragraph.compound_header_content.field_subheader
+field_name: field_subheader
+entity_type: paragraph
+bundle: compound_header_content
+label: Subheader
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

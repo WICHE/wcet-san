@@ -1,0 +1,32 @@
+uuid: 35df2165-37d5-46ba-8cb1-f1b89d958e4e
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+  theme:
+    - themekit
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: themekit_page_title
+theme: themekit
+region: content
+weight: -7
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      event: event
+      landing_page: landing_page
+      page: page
+      resource: resource
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'

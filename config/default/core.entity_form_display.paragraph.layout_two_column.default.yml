@@ -1,0 +1,61 @@
+uuid: a94c4f4b-39e3-4c0b-9e28-5d842aea0244
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.layout_two_column.field_header
+    - field.field.paragraph.layout_two_column.field_p_left_column
+    - field.field.paragraph.layout_two_column.field_p_right_column
+    - field.field.paragraph.layout_two_column.field_subheader
+    - paragraphs.paragraphs_type.layout_two_column
+  module:
+    - paragraphs
+id: paragraph.layout_two_column.default
+targetEntityType: paragraph
+bundle: layout_two_column
+mode: default
+content:
+  field_header:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_p_left_column:
+    type: entity_reference_paragraphs
+    weight: 3
+    settings:
+      title: Component
+      title_plural: Components
+      edit_mode: preview
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    region: content
+  field_p_right_column:
+    type: entity_reference_paragraphs
+    weight: 4
+    settings:
+      title: Component
+      title_plural: Components
+      edit_mode: preview
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    region: content
+  field_subheader:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

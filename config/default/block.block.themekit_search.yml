@@ -1,0 +1,22 @@
+uuid: 41535720-04c1-4194-af4c-292f61e15094
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - themekit
+_core:
+  default_config_hash: za-39d5WDUg6XvbyqSnuVYEeq6QM4qKJxW8MnoAha5A
+id: themekit_search
+theme: themekit
+region: header
+weight: -4
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Search
+  provider: search
+  label_display: visible
+visibility: {  }

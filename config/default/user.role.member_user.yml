@@ -1,0 +1,12 @@
+uuid: ff8ef7fb-e43a-48d1-867d-f8deb58b44e2
+langcode: en
+status: true
+dependencies: {  }
+id: member_user
+label: Member
+weight: 3
+is_admin: null
+permissions:
+  - 'access sitemap'
+  - 'view media'
+  - 'view private content'

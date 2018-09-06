@@ -1,0 +1,23 @@
+uuid: 33c45ad3-9615-4bc8-86b4-1b0788fd7e1a
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - themekit
+id: sitebranding
+theme: themekit
+region: footer
+weight: -7
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

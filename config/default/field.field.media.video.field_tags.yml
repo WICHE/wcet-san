@@ -1,0 +1,26 @@
+uuid: 12470a5d-f4a7-4a26-90f8-9e783e1d2fe7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_tags
+    - media_entity.bundle.video
+id: media.video.field_tags
+field_name: field_tags
+entity_type: media
+bundle: video
+label: Tags
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles: {  }
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

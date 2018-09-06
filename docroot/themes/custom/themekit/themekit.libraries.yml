@@ -1,0 +1,37 @@
+# use the base modernizr build provided, or remove, or add your own
+#base:
+#  version: VERSION
+#  js:
+#    js/vendor/modernizr-custom.js: {}
+
+# google fonts
+fonts:
+  css:
+    theme:
+      'https://fonts.googleapis.com/css?family=News+Cycle:400,700|Roboto:400,700': { type: external, minified: true }
+
+# typekit
+#typekit:
+#  version: 1.x
+#  header: true
+#  js:
+#    //use.typekit.net/ydi4zcl.js: { every_page: true }
+#    js/vendor/typekit.js: { every_page: true }
+
+themekit:
+  version: VERSION
+  js:
+    js/dist/themekit.js: {}
+  css:
+    theme:
+      css/style.css: {}
+  dependencies:
+      - core/drupal
+      - core/jquery
+
+# Define additional sub-apps here. Be sure to first add it
+# as an entry point in webpack.config.js
+#myApp:
+#  version: 1.x
+#  js:
+#    js/dist/myApp.js: {}

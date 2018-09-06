@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Theme override for an individual form element.
+ *
+ * Available variables for all fields:
+ * - multiple: Whether there are multiple instances of the field.
+ *
+ * Available variables for single cardinality fields:
+ * - elements: Form elements to be rendered.
+ *
+ * Available variables when there are multiple fields.
+ * - table: Table of field items.
+ * - description: The description element containing the following properties:
+ *   - content: The description content of the form element.
+ *   - attributes: HTML attributes to apply to the description container.
+ * - button: "Add another item" button.
+ *
+ * @see template_preprocess_field_multiple_value_form()
+ */
+#}
+{% if multiple %}
+  <div class="js-form-item form-item admin-paragraphs-form-item admin-paragraphs-multiple">
+    {{ paragraphs_field_header }}
+    <div class="draggable-items-container">
+      {% for item in paragraphs_field_items %}
+        <div class="admin-paragraphs-draggable-item draggable-item">
+          <span class="dragula-handle"></span>
+          {{ item }}
+        </div>
+      {% endfor %}
+    </div>
+    {% if description.content %}
+      <div{{ description.attributes.addClass('description', 'admin-paragraphs-description') }} >{{ description.content }}</div>
+    {% endif %}
+    {% if button %}
+      <div class="clearfix admin-paragraphs-add-more">{{ button }}</div>
+    {% endif %}
+  </div>
+{% else %}
+  <h4 class="label">{{ element['#title'] }}</h4>
+  <div class="js-form-item form-item admin-paragraphs-form-item admin-paragraphs-single">
+    {% for element in elements %}
+      {{ element }}
+    {% endfor %}
+  </div>
+{% endif %}

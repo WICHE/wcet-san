@@ -1,0 +1,29 @@
+// All styles that should be availble to the WYSIWYG
+
+// Add foundation first so foundation utilities can be used everywhere
+@import "foundation";
+
+// Add your own theme/framework utils
+@import "framework/utils/utils";
+
+// Add rest of theme framework
+@import "framework/buttons";
+@import "framework/layout";
+@import "framework/links";
+@import "framework/custom-styles";
+
+@import "base/settings";
+
+@import "base/config";
+
+// print our base foundation styles
+@include foundation-global-styles();
+@include foundation-typography();
+@include foundation-table();
+
+// Add any partials that have relevant WYSIWYG styles
+
+// Custom wysiwyg styles (not much should go here)
+body {
+  padding: 20px;
+}

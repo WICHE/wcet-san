@@ -1,0 +1,75 @@
+<?php
+
+/**
+ * @file
+ * Contains wcet_access_control.module.
+ */
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\node\NodeInterface;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_node_access().
+ */
+function wcet_access_control_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  $type = $node->bundle();
+  if ($op == 'view') {
+    if (($type === 'resource' || $type === 'event') && $node->get('field_content_access')->value === 'private') {
+      if ($account->hasPermission('view private content')) {
+        return AccessResult::allowed()->cachePerUser();
+      } else {
+        return AccessResult::forbidden()->cachePerUser();
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_node_access_records().
+ */
+function wcet_access_control_node_access_records(NodeInterface $node) {
+  $grants = [];
+  $type = $node->bundle();
+  if ($type == 'event') {
+    if ($node->get('field_content_access')->value === 'private') {
+
+      // Define grant that allows to view the published private content.
+      $grants[] = [
+        'realm' => 'custom_access',
+        'gid' => 25,
+        'grant_view' => $node->isPublished(),
+        'grant_update' => 0,
+        'grant_delete' => 0,
+      ];
+
+      // Define grant that blocks private content.
+      $grants[] = [
+        'realm' => 'custom_access',
+        'gid' => 26,
+        'grant_view' => 0,
+        'grant_update' => 0,
+        'grant_delete' => 0,
+      ];
+    }
+  }
+  return $grants;
+}
+
+/**
+ * Implements hook_node_grants().
+ */
+function wcet_access_control_node_grants(AccountInterface $account, $op) {
+  $grants = [];
+  if ($op == 'view') {
+    if ($account->id() != 0 && $account->hasPermission('view private content')) {
+      $grants['custom_access'][] = 25;
+    }
+    else {
+      $grants['custom_access'][] = 26;
+    }
+  }
+
+  return $grants;
+}

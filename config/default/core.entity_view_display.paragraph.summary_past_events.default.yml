@@ -1,0 +1,14 @@
+uuid: 73b28608-9033-417b-86f9-f9f158a37f47
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.summary_past_events.field_summary_topics
+    - paragraphs.paragraphs_type.summary_past_events
+id: paragraph.summary_past_events.default
+targetEntityType: paragraph
+bundle: summary_past_events
+mode: default
+content: {  }
+hidden:
+  field_summary_topics: true

@@ -1,0 +1,6 @@
+uuid: d3c5796a-b181-43b7-92f1-a7aeaae993b8
+langcode: en
+status: true
+dependencies: {  }
+id: content-admin
+label: 'Content Admin'

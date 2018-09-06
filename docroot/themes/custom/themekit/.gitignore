@@ -1,0 +1,53 @@
+# Node modules #
+#######################
+node_modules
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.mysql
+
+# OS generated files #
+######################
+ehthumbs.db
+._*
+.DS_Store
+Thumbs.db
+.buildpath
+.cache
+
+# IDE Files #
+###########
+.idea
+.project
+.settings
+.tmproj
+nbproject
+*.sublime-project
+*.sublime-workspace
+
+# Numerous always-ignore extensions #
+#####################################
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+*.map

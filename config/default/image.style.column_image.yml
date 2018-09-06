@@ -1,0 +1,22 @@
+uuid: 047e5261-3621-4b4c-8bfa-7e1fc795e5c6
+langcode: en
+status: true
+dependencies:
+  module:
+    - image_style_quality
+name: column_image
+label: 'Column Image'
+effects:
+  1c52bf68-f6cf-40b0-a93b-03ae802f8780:
+    uuid: 1c52bf68-f6cf-40b0-a93b-03ae802f8780
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 558
+      height: 325
+  ec803cc4-c06f-429f-b86c-3f4088e25e6c:
+    uuid: ec803cc4-c06f-429f-b86c-3f4088e25e6c
+    id: image_style_quality
+    weight: 2
+    data:
+      quality: 75

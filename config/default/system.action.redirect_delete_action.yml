@@ -1,0 +1,14 @@
+uuid: a2e4de6c-0119-40f1-8caf-948c8d6ee067
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - redirect
+  module:
+    - redirect
+id: redirect_delete_action
+label: 'Delete redirect'
+type: redirect
+plugin: redirect_delete_action
+configuration: {  }

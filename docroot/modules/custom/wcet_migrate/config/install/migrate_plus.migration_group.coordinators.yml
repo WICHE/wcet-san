@@ -1,0 +1,8 @@
+id: coordinators
+label: Coordinator Imports
+description: Migrations from coordinators csv files.
+source_type: CSV Files
+dependencies:
+  enforced:
+    module:
+      - wcet_migrate

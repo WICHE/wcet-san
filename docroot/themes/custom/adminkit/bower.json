@@ -1,0 +1,23 @@
+{
+  "name": "adminkit",
+  "description": "Adminimal child admin theme for Drupal 8 with extra bits!",
+  "main": "index.js",
+  "authors": [
+    "Elevated Third"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "dom-autoscroller": "^2.2.8",
+    "dragula.js": "dragula#^3.7.2",
+    "svg-injector": "^1.1.3"
+  }
+}

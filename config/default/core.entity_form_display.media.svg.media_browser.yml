@@ -1,0 +1,57 @@
+uuid: a788caff-c74e-4c56-a37f-9ac9dcd6f0dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_browser
+    - field.field.media.svg.field_svg
+    - field.field.media.svg.field_svg_type
+    - field.field.media.svg.field_tags
+    - media_entity.bundle.svg
+  module:
+    - file
+id: media.svg.media_browser
+targetEntityType: media
+bundle: svg
+mode: media_browser
+content:
+  field_svg:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_svg_type:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tags:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  uid: true

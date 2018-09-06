@@ -1,0 +1,28 @@
+uuid: 6aaa5af0-4ed5-47dc-88fa-24f4a14b1a6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_video_type
+    - media_entity.bundle.video
+    - taxonomy.vocabulary.video_type
+id: media.video.field_video_type
+field_name: field_video_type
+entity_type: media
+bundle: video
+label: 'Video Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      video_type: video_type
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

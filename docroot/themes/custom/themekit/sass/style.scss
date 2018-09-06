@@ -1,0 +1,48 @@
+// All styles added by themekit
+
+// Add foundation first so foundation utilities can be used everywhere
+@import "foundation";
+
+// Add select2 styles
+@import "core";
+
+// Add your own theme/framework utils
+@import "framework/utils/utils";
+
+// Add rest of theme framework
+@import "framework/buttons";
+@import "framework/layout";
+@import "framework/links";
+@import "framework/typography";
+@import "framework/custom-styles";
+
+// Add anything from bower here
+
+@import "base/settings";
+@import "base/app";
+@import "base/animation";
+@import "base/config";
+
+@import "regions/page";
+@import "regions/header";
+@import "regions/footer";
+
+@import "components/drupal";
+@import "components/accessibility";
+@import "components/select";
+@import "components/accordion";
+@import "components/views";
+
+@import "paragraphs/paragraphs";
+@import "paragraphs/single";
+@import "paragraphs/simple";
+@import "paragraphs/compound";
+@import "paragraphs/layout";
+@import "paragraphs/summary";
+
+@import "content/page";
+@import "content/user";
+@import "content/forms";
+@import "content/tables";
+@import "content/error-messages";
+@import "content/typography";

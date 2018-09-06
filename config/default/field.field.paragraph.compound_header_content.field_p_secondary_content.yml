@@ -1,0 +1,69 @@
+uuid: 613ff362-895c-421a-8be5-6319a80c30ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_secondary_content
+    - paragraphs.paragraphs_type.compound_header_content
+    - paragraphs.paragraphs_type.single_link
+    - paragraphs.paragraphs_type.single_text_area
+  module:
+    - entity_reference_revisions
+id: paragraph.compound_header_content.field_p_secondary_content
+field_name: field_p_secondary_content
+entity_type: paragraph
+bundle: compound_header_content
+label: 'Secondary Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      single_text_area: single_text_area
+      single_link: single_link
+    target_bundles_drag_drop:
+      compound_header_content:
+        weight: -27
+        enabled: false
+      compound_header:
+        weight: -26
+        enabled: false
+      compound_media:
+        weight: -25
+        enabled: false
+      reference_block:
+        weight: -24
+        enabled: false
+      simple_content:
+        weight: -23
+        enabled: false
+      simple_faq:
+        weight: -22
+        enabled: false
+      single_file:
+        weight: -21
+        enabled: false
+      single_heading:
+        weight: -20
+        enabled: false
+      single_image:
+        weight: -19
+        enabled: false
+      single_text_area:
+        enabled: true
+        weight: -18
+      single_link:
+        enabled: true
+        weight: -17
+      single_svg:
+        weight: -16
+        enabled: false
+      single_video:
+        weight: -15
+        enabled: false
+field_type: entity_reference_revisions

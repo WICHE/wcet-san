@@ -1,0 +1,93 @@
+////
+/// Error messages 403 & 404
+////
+
+
+#error-container {
+  display: block;
+  text-align: center;
+  font-size: 180px;
+  font-weight: bold;
+  margin: 20px 15px;
+  line-height: 0;
+}
+
+#error-container {
+  > span {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    line-height: 1;
+    &:nth-of-type(1) {
+      color: $tree-poppy;
+      animation: firstNumber 10s infinite;
+    }
+    &:nth-of-type(3) {
+      color: $bahia;
+      animation: thirdNumber 10s infinite;
+    }
+    &:nth-of-type(2) {
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      color: transparent;
+      animation: zeroSpinner 10s infinite linear;
+      &:nth-of-type(2):before,
+      &:nth-of-type(2):after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: inherit;
+        height: inherit;
+        border-radius: 100%;
+        box-shadow: inset 30px 0 0 rgba($san-blue, 0.4),
+        inset 0 30px 0 rgba($tree-poppy, 0.4),
+        inset -30px 0 0 rgba($bahia, 0.4),
+        inset 0 -30px 0 rgba($san-dark-gray, 0.4);
+      }
+      &:before {
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+
+@keyframes zeroSpinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes firstNumber {
+  0% {
+    color: $san-blue;
+  }
+  33% {
+    color: $bahia;
+  }
+  66% {
+    color: $tree-poppy;
+  }
+  100% {
+    color: $dark-gray;
+  }
+}
+
+@keyframes thirdNumber {
+  0% {
+    color: $tree-poppy;
+  }
+  33% {
+    color: $dark-gray;
+  }
+  66% {
+    color: $san-blue;
+  }
+  100% {
+    color: $bahia;
+  }
+}

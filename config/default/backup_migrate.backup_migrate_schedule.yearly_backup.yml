@@ -1,0 +1,13 @@
+uuid: f6f65df1-4e64-4a1d-b730-272362ed0601
+langcode: en
+status: true
+dependencies: {  }
+id: yearly_backup
+label: 'Yearly backup'
+enabled: true
+keep: null
+period: 31449600
+cron: null
+source_id: entire_site
+destination_id: private_files
+settings_profile_id: null

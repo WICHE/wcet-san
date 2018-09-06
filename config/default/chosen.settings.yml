@@ -1,0 +1,18 @@
+minimum_single: 10
+minimum_multiple: 0
+disable_search_threshold: 5
+minimum_width: 200
+jquery_selector: select
+search_contains: false
+disable_search: false
+placeholder_text_multiple: 'Choose some options'
+placeholder_text_single: 'Choose an option'
+no_results_text: 'No results match'
+disabled_themes:
+  seven: '0'
+  adminimal_theme: '0'
+  adminkit: '0'
+  themekit: '0'
+chosen_include: 0
+_core:
+  default_config_hash: 8OBgqA1x01J7SgSvBzOELfxP9Bu998XgnQjf4EN40mo

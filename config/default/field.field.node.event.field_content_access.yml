@@ -1,0 +1,23 @@
+uuid: 62713179-fcff-4378-9f27-0a9876189774
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_access
+    - node.type.event
+  module:
+    - options
+id: node.event.field_content_access
+field_name: field_content_access
+entity_type: node
+bundle: event
+label: 'Content Access'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: public
+default_value_callback: ''
+settings: {  }
+field_type: list_string

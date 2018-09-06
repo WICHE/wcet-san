@@ -1,0 +1,116 @@
+////
+/// General theme configuration.
+/// @group Configuration
+////
+
+/// Configuration for Drupal Admin tabs.
+$drupal-tabs: (
+  wrap: (
+    background: #fafafa,
+    border: #efefef
+  ),
+  link: (
+    color: #251923,
+    background: #efefef,
+    hover-color: #ffffff,
+    hover-background: #251923
+  ),
+  alt-colors: #f58c2b #a9b02b #819bcd #251923 #652c90
+);
+
+/// z-index organization.
+/// See links below for more information.
+///
+/// @link https://css-tricks.com/handling-z-index/
+/// @link http://www.sitepoint.com/using-sass-maps/
+$z-layers: (
+  skip-link: 8000,
+  ajax-throbber: 7000,
+  debug: 1000,
+  default: 0,
+  bottomless-pit: -9999,
+
+  // example nested z-index.
+  example: (
+    default: 100,
+    image: -2
+  )
+);
+
+/// Button config
+$buttons: (
+  _base: (
+    background: slategray,
+    color: #fff,
+    border: slategray,
+    active-background: darken(slategray, 10%),
+    active-color: #fff,
+    active-border: darken(slategray, 10%)
+  ),
+  primary: (
+    color: $white,
+    background: $san-blue,
+    border: $san-blue,
+    shadow-color: $san-blue,
+    active-shadow-color: $san-blue,
+    active-background: darken($san-blue, 10%),
+    active-color: $white,
+    active-border: darken($san-blue, 10%)
+  ),
+  ghost: (
+    color: $white,
+    border: $white,
+    shadow-color: $white,
+    active-shadow-color: $white,
+    active-background: $white,
+    active-color: $san-dark-gray,
+    active-border: $white
+  ),
+  ghost-content: (
+    color: $san-blue,
+    border: $san-blue,
+    shadow-color: $san-blue,
+    active-shadow-color: $san-blue,
+    active-background: $san-blue,
+    active-color: $white,
+    active-border: $san-blue
+  ),
+  link: (
+    color: $san-dark-gray,
+    active-color: $san-blue,
+  ),
+  link-header: (
+    color: $white,
+    active-color: $white,
+  ),
+);
+
+
+
+$layouts: (
+  page: (
+    width: $global-width,
+    gutters: (
+      small: 10px,
+      medium: 20px
+    )
+  )
+);
+
+/// Icon config
+$icons: (
+  check: '\e86c',
+  error: '\e000',
+  info: '\e88e',
+  settings: '\e8b8',
+  arrow-right: '\e900',
+  arrow-down: '\e901',
+  edit: "\e902",
+  trash: "\e903",
+  view: "\e905",
+  gear: "\e904",
+  clone: "\e906",
+  revision: "\e907",
+  schedule: "\e909",
+  favorite: "\e908"
+);

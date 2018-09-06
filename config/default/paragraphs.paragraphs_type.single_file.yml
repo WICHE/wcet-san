@@ -1,0 +1,9 @@
+uuid: 698d08e9-ccf2-421f-b352-459165debf56
+langcode: en
+status: true
+dependencies: {  }
+id: single_file
+label: 'Single - File'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

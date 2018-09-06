@@ -1,0 +1,33 @@
+uuid: 0352bc62-6cbc-4ad7-8392-7ab0e2ecaaf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.video
+    - field.field.paragraph.single_video.field_media_video
+    - paragraphs.paragraphs_type.single_video
+  module:
+    - entity_browser
+id: paragraph.single_video.default
+targetEntityType: paragraph
+bundle: single_video
+mode: default
+content:
+  field_media_video:
+    weight: 0
+    settings:
+      entity_browser: video
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: form_preview
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

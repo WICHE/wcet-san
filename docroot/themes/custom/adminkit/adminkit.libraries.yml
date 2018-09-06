@@ -1,0 +1,18 @@
+global-styling:
+  version: 1.x
+  css:
+    base:
+      fonts/icomoon/style.css: {}
+#      lib/css/dragula.css: {}
+#      css/draggable-items.css: {}
+#      css/adminkit.css: {}
+      css/src/style.css: {}
+  js:
+#    lib/js/dragula.js: {}
+#    lib/js/dom-autoscroller.js: {}
+#    js/draggable-items.js: {}
+#    js/expandable-paragraphs.js: {}
+    js/dist/adminkit.js: {}
+  dependencies:
+    - core/jquery
+    - core/ckeditor

@@ -1,0 +1,92 @@
+////
+/// Paragraphs - Simple
+////
+
+.paragraph--type--simple-content {
+  .field--name-field-header {
+    margin-bottom: .75em;
+  }
+  .field--name-field-body {
+    margin-bottom: 10px;
+  }
+  .field--name-field-link {
+    a {
+      @include btn(primary);
+    }
+  }
+  .page-node-type-resource & {
+    > .field--name-field-body {
+      @include content-width(page);
+    }
+    p {
+      color: $dark-gray;
+      font-size: .875rem;
+    }
+  }
+  .page-node-type-landing-page .node__content > & {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    @include content-width(page);
+    width: 69%;
+    @include breakpoint(medium) {
+      width: 69%;
+    }
+    .field--name-field-header,
+    .field--name-field-body {
+      width: 69%;
+    }
+  }
+}
+
+.paragraph--type--simple-card {
+  position: relative;
+  margin: 1rem auto;
+  overflow: hidden;
+  border-radius: $global-radius;
+  max-width: 360px;
+  &:hover {
+    img {
+      transform: scale(1.2);
+    }
+  }
+  a {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: $global-radius;
+      z-index: 10;
+    }
+  }
+  .heading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    .field--name-field-header,
+    .field--name-field-subheader {
+      color: $white;
+      font-family: $header-font-family;
+      font-size: rem-calc(18);
+      font-weight: 700;
+      @include breakpoint(medium) {
+        font-size: rem-calc(20);
+      }
+      @include breakpoint(large) {
+        font-size: rem-calc(26);
+      }
+    }
+  }
+  img {
+    border-radius: $global-radius;
+    transform: scale(1);
+    transition: .6s ease transform;
+  }
+}

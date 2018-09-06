@@ -1,0 +1,14 @@
+uuid: f10362a6-021c-4ef8-aa1e-21a589305756
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: c4zaT5cyPxuTXI6JOWt3qRtMvICT9tHB6d9a5VG-CmQ
+id: feedback
+label: 'Website feedback'
+recipients:
+  - no-reply@elevatedthird.com
+reply: ''
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''

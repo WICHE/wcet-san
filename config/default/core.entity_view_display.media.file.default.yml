@@ -1,0 +1,35 @@
+uuid: ffedd8fe-1c3c-47e0-a67c-2e903708df93
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.file.field_file
+    - field.field.media.file.field_file_size
+    - field.field.media.file.field_file_type
+    - field.field.media.file.field_mime_type
+    - field.field.media.file.field_tags
+    - media_entity.bundle.file
+  module:
+    - file
+id: media.file.default
+targetEntityType: media
+bundle: file
+mode: default
+content:
+  field_file:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default
+    region: content
+hidden:
+  created: true
+  field_file_size: true
+  field_file_type: true
+  field_mime_type: true
+  field_tags: true
+  langcode: true
+  name: true
+  thumbnail: true
+  uid: true

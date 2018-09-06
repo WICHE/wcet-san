@@ -1,0 +1,80 @@
+uuid: 31b7b1b9-4cb6-4ac6-b5db-8a2d0e55c4cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.file.field_file
+    - field.field.media.file.field_file_size
+    - field.field.media.file.field_file_type
+    - field.field.media.file.field_mime_type
+    - field.field.media.file.field_tags
+    - media_entity.bundle.file
+  module:
+    - file
+    - path
+id: media.file.default
+targetEntityType: media
+bundle: file
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_file:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_file_type:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_tags:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
+  langcode:
+    type: language_select
+    weight: 6
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_file_size: true
+  field_mime_type: true

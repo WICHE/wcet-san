@@ -1,0 +1,82 @@
+uuid: 72303a3d-24d6-48d7-9e3b-a0ff01bbbb7d
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - wcet_migrate
+_core:
+  default_config_hash: jwlfc_taDHUaB7sW00KgcSCkRxeBKD9NB-BbDv-6_sI
+id: coordinators_main
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: coordinators
+label: 'Main Coordinators Import'
+source:
+  plugin: csv
+  path: /source_files/coordinators.csv
+  header_row_count: 1
+  keys:
+    - email
+  column_names:
+    -
+      compact: Compact
+    -
+      membership: 'Membership Name'
+    -
+      first_name: 'First Name'
+    -
+      last_name: 'Last Name'
+    -
+      job_title: Title
+    -
+      institution: Institution/Organization
+    -
+      street_address: 'Street Address'
+    -
+      city: City
+    -
+      state: State
+    -
+      zip_code: 'Zip Code'
+    -
+      email: Email
+    -
+      phone: Phone
+process:
+  name: email
+  mail: email
+  status:
+    plugin: default_value
+    default_value: 1
+  roles:
+    plugin: default_value
+    default_value: coordinator
+  field_first_name: first_name
+  field_last_name: last_name
+  field_job_title: job_title
+  field_user_membership:
+    plugin: coordinator_membership
+    source: membership
+    value_key: name
+    bundle_key: vid
+    bundle: membership
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_user_institution:
+    plugin: entity_generate
+    source: institution
+    value_key: name
+    bundle_key: vid
+    bundle: institution
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_phone_number: phone
+  field_address:
+    plugin: coordinator_address
+    source: email
+destination:
+  plugin: 'entity:user'
+migration_dependencies: null

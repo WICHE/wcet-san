@@ -1,0 +1,17 @@
+uuid: d1096485-5bf2-45bb-9d16-a0a7aab8a123
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.single_svg.field_svg
+    - paragraphs.paragraphs_type.single_svg
+id: paragraph.single_svg.default
+targetEntityType: paragraph
+bundle: single_svg
+mode: default
+content: {  }
+hidden:
+  created: true
+  field_svg: true
+  status: true
+  uid: true

@@ -1,0 +1,25 @@
+uuid: d4d10cf6-35db-4ba1-b595-3a7a25b872cc
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:63ee22ec-a23f-4eb6-a2f3-7dcb04d34976'
+  module:
+    - block_content
+  theme:
+    - themekit
+id: footerinforight
+theme: themekit
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:63ee22ec-a23f-4eb6-a2f3-7dcb04d34976'
+settings:
+  id: 'block_content:63ee22ec-a23f-4eb6-a2f3-7dcb04d34976'
+  label: 'Footer Info Right'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

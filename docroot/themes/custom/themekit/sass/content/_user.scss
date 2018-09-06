@@ -1,0 +1,121 @@
+////
+/// User Styles
+////
+
+.path-user {
+  .tabs {
+    padding-left: 0;
+  }
+  .layout-container {
+    .field {
+      //margin-top: 1rem;
+    }
+    .profile {
+      margin-top: 30px;
+    }
+    .field--name-field-address {
+      br,
+      .country {
+        display: none;
+      }
+      .address-line1 {
+        position: relative;
+        display: inline-block;
+        &:after {
+          content: ',';
+          display: inline-block;
+          position: absolute;
+          bottom: 0;
+          right: -6px;
+        }
+      }
+      .locality {
+        padding-left: 4px;
+      }
+    }
+  }
+}
+
+.user-form {
+  max-width: 100%;
+  input {
+    max-width: 450px;
+  }
+  @include breakpoint(medium) {
+    width: 661px;
+  }
+  .filter-wrapper {
+    display: none;
+  }
+  .field--name-field-address {
+    summary {
+      display: none;
+    }
+    details {
+      border: none;
+      margin: 0;
+      > .details-wrapper {
+        padding: 0;
+      }
+    }
+  }
+  .button--primary {
+    @include btn(primary);
+  }
+  .confirm-parent,
+  .password-parent {
+    max-width: 100%;
+  }
+  .select2 {
+    @include breakpoint(medium) {
+      min-width: 450px;
+    }
+    .select2-selection--single {
+      position: relative;
+      height: auto;
+      min-width: rem-calc(194);
+      min-height: rem-calc(40);
+      border-width: 1px;
+      border-radius: $global-radius;
+      border-color: $san-dark-gray;
+    }
+    .select2-selection__rendered {
+      color: $san-dark-gray;
+      font-size: $small-font-size;
+      line-height: rem-calc(25);
+      padding: .5rem 1.25rem;
+    }
+    .select2-selection__arrow {
+      top: 50%;
+      right: .5rem;
+      transform: translateY(-50%);
+    }
+    .select2-container--open {
+      border-radius: $global-radius;
+      box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+    }
+    // Dropdown
+    .select2-dropdown {
+      border-color: $san-dark-gray;
+      border-radius: $global-radius;
+      box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+    }
+  }
+}
+
+/// Anon login
+/// ==========
+.path-user:not(.user-logged-in):not(.page-node-type-landing-page) {
+  .layout-content {
+    background-color: $san-athens-gray;
+    padding: 20px 25px;
+    border-radius: 8px;
+    max-width: 330px;
+    margin: 60px auto 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+}
+
+#block-resetpassword {
+  text-align: center;
+}

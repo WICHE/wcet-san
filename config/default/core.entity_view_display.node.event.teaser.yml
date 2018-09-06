@@ -1,0 +1,56 @@
+uuid: 1e8b4084-5f08-4c69-b681-355f448b2556
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.event.body
+    - field.field.node.event.field_content_access
+    - field.field.node.event.field_event_date
+    - field.field.node.event.field_event_type
+    - field.field.node.event.field_featured
+    - field.field.node.event.field_meta_tags
+    - field.field.node.event.field_p_resources
+    - field.field.node.event.field_topic
+    - node.type.event
+  module:
+    - datetime
+    - user
+id: node.event.teaser
+targetEntityType: node
+bundle: event
+mode: teaser
+content:
+  field_event_date:
+    type: datetime_plain
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      timezone_override: ''
+    third_party_settings: {  }
+  field_event_type:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+  field_topic:
+    type: entity_reference_label
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_content_access: true
+  field_featured: true
+  field_meta_tags: true
+  field_p_resources: true
+  field_resources: true
+  langcode: true
+  links: true

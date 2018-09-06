@@ -1,0 +1,9 @@
+uuid: 39fba68d-747d-40a2-adc2-fed3648aa166
+langcode: en
+status: true
+dependencies: {  }
+name: 'File Type'
+vid: file_type
+description: 'Internal categorization used for file organization in the Media Library and Entity Browsers'
+hierarchy: 0
+weight: -4

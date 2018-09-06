@@ -1,0 +1,22 @@
+uuid: a01471e0-c4c8-447d-b2ee-d817f3864896
+langcode: en
+status: true
+dependencies:
+  module:
+    - image_style_quality
+name: simple_card
+label: 'Simple Card'
+effects:
+  91dc2c40-7c97-41c1-9e57-35686f89ff98:
+    uuid: 91dc2c40-7c97-41c1-9e57-35686f89ff98
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 360
+      height: 217
+  28a0cdb7-cabc-4d49-afb1-9ad63e513dd5:
+    uuid: 28a0cdb7-cabc-4d49-afb1-9ad63e513dd5
+    id: image_style_quality
+    weight: 2
+    data:
+      quality: 75

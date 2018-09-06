@@ -1,0 +1,9 @@
+uuid: cf079283-14aa-448a-b4fb-b59941464cfb
+langcode: en
+status: true
+dependencies: {  }
+id: summary_resources
+label: 'Summary - Resources'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

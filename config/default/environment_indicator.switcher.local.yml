@@ -1,0 +1,10 @@
+uuid: 2cf4d663-8766-4ee4-ad35-9d4b54894b3a
+langcode: en
+status: true
+dependencies: {  }
+machine: local
+description: null
+name: Local
+url: 'http://paragon.drupalvm/'
+fg_color: '#fefdff'
+bg_color: '#005093'

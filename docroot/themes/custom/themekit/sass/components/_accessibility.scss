@@ -1,0 +1,46 @@
+////
+/// Accessibility based styles
+///
+/// Only specific accessibility functionality should go here. If you are making some existing component accessible,
+/// those styles should stay with that component.
+////
+
+
+// Skip to content link
+#skip-to-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  z-index: z(skip-link);
+  .skip-to-content-link {
+    display: inline-block;
+    position: absolute;
+    width: 160px;
+    background: $primary-color;
+    color: $white;
+    padding: 5px;
+
+    left: -1000px;
+    opacity: 0;
+    transition-property: opacity, left;
+    transition-duration: 600ms, 0ms;
+    transition-delay: 1000ms, 1600ms;
+    &:focus {
+      left: 0;
+      opacity: 1;
+      transition-property: opacity;
+      transition-duration: 0ms;
+      transition-delay: 0ms;
+    }
+  }
+}
+
+// Adjust style for focusable divs
+#main-content {
+  transition: background 500ms;
+  &:focus {
+    background: lighten($primary-color, 40%);
+    outline: none;
+  }
+}

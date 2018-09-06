@@ -1,0 +1,43 @@
+////
+/// Framework - Custom Style Patterns
+/// @group frameworkComponents
+////
+
+@mixin sub-title {
+  position: relative;
+  display: inline-block;
+  color: $purple;
+  font-size: rem-calc(14);
+  font-weight: 700;
+  margin-bottom: rem-calc(54);
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: $san-border;
+  }
+}
+
+@mixin component-spacing($gutter: $main-section-margin, $direction: both) {
+  @if $direction == both {
+    margin-top: $gutter * 0.5;
+    margin-bottom: $gutter * 0.5;
+  } @else if $direction == top {
+    margin-top: $gutter * 0.5;
+  } @else if $direction == bottom {
+    margin-bottom: $gutter * 0.5;
+  }
+  @include breakpoint(large) {
+    @if $direction == both {
+      margin-top: $gutter;
+      margin-bottom: $gutter;
+    } @else if $direction == top {
+      margin-top: $gutter;
+    } @else if $direction == bottom {
+      margin-bottom: $gutter;
+    }
+  }
+}

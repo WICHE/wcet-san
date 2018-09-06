@@ -1,0 +1,144 @@
+////
+/// Mixins and functions that extend foundation default functionality
+/// @group foundationExtensions
+////
+
+
+/// Sizes DIRECT child elements so that `$n` number of items appear on each row.
+/// @param {Number} $n - Number of elements to display per row.
+/// @param {String} $selector ['.column'] - Selector(s) to use for child elements.
+@mixin tk-grid-layout-child(
+  $n,
+  $selector: '.column'
+) {
+  > #{$selector} {
+    width: percentage(1/$n);
+    float: $global-left;
+
+    &:nth-of-type(1n) {
+      clear: none;
+    }
+
+    &:nth-of-type(#{$n}n+1) {
+      clear: both;
+    }
+
+    &:last-child {
+      float: left;
+    }
+  }
+}
+
+
+/// This block grid variation only applies styles to DIRECT children, which is generally the intended effect. Does NOT use flexbox.
+/// @param {Number} $number [1] - Number of items to display per row
+/// @param {String} $selector ['.column'] - The css selector to use as the child selector
+/// @param {Number} $bottom-gutter [15] - The number of pixels for the bottom margin of each item
+/// @param {String} $gutter [30px] - Gutter size in pixels
+/// @param {String} $behavior [nest] - Takes options 'nest' or 'collapse' or 'null', can take both 'nest collapse'
+/// @example
+///   @include tk-block-grid(3, '.field__item')
+@mixin tk-block-grid($number: 1, $selector: '.column', $bottom-gutter: 15, $gutter: 30px, $behavior: nest) {
+  > #{$selector} {
+    @include grid-column($gutter: $gutter);
+    margin-bottom: #{$bottom-gutter}px;
+    &:last-child {
+      @include grid-column-end();
+    }
+  }
+  @include grid-row($behavior: $behavior, $gutter: $gutter);
+  @include tk-grid-layout-child($number, $selector);
+
+  @if ($behavior == nest) {
+    $margin: rem-calc($gutter) / 2 * -1;
+    margin: 0 $margin;
+  }
+}
+
+
+/// Flex Grid - Implements a block grid on DIRECT child elements so that `$n` number of items appear on each row.
+/// @param {Number} $n - Number of elements to display per row.
+/// @param {String} $grid-item-selector ['.field__item'] - Selector(s) to use for child elements.
+/// @param {String|Map} $gutter [$grid-column-gutter] - Side gutter value
+/// @param {Number} $bottom-gutter [30px] - Bottom gutter value
+/// @param {Boolean} $nest [true] - Should this exhibit nesting margin behavior
+/// @example
+///   @include tk-flex-block-grid(3, '.field__item')
+@mixin tk-flex-block-grid($n: 1, $grid-item-selector: '.field__item', $gutter: $grid-column-gutter, $bottom-gutter: 30px, $nest: true) {
+  @if $nest == true {
+    @if type-of($gutter) == 'map' {
+      @include -zf-breakpoint-value($map: $gutter) {
+        margin-left: $-zf-bp-value / -2;
+        margin-right: $-zf-bp-value / -2;
+      }
+    } @elseif type-of($gutter) == 'number' {
+      margin-left: $gutter / -2;
+      margin-right: $gutter / -2;
+    }
+  }
+
+  display: flex;
+  flex-wrap: wrap;
+  & > #{$grid-item-selector} {
+    $pct: percentage(1/$n);
+    flex: 0 0 $pct;
+    max-width: $pct;
+    margin-top: $bottom-gutter;
+    // account for padding on grid item
+    @include -zf-each-breakpoint {
+      $padding: rem-calc(-zf-get-bp-val($gutter, $-zf-size)) / 2;
+      padding: 0 $padding;
+    }
+
+    // account for margin top for all items not in the first row
+    @for $i from 1 through $n {
+      &:nth-child(#{$i}) {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+
+/// Flex Equal Width Items - Implements equal width items in a row with flexbox.
+/// @param {Map|Number} $gutter - Gutter or map of breakpoint gutters.
+/// @param {String} $flex-item-selector ['.field__item'] - Selector(s) to use for child elements.
+/// @example
+///   @include tk-flex-equal-width-items($grid-column-gutter)
+@mixin tk-flex-equal-width-items($gutter: 0, $flex-item-selector: '.field__item') {
+  display: flex;
+
+  & > #{$flex-item-selector} {
+    flex: 1;
+    width: 0; // Force equal-width columns
+    @if type-of($gutter) == 'map' {
+      @include -zf-breakpoint-value($map: $gutter) {
+        margin-right: $-zf-bp-value;
+      }
+    } @elseif type-of($gutter) == 'number' {
+      margin-right: $gutter;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+
+/// Header style mixin - This mixin includes the responsive header sizes set in _settings.scss. Those are the default
+/// sizes for headers, but you can use this mixin when you want to apply the default header sizes with breakpoints to
+/// other elements.
+/// @param {String} $h - The header element to get sizes for (h1, h2 ...)
+/// @example
+///   @include header-font-size(h2)
+@mixin header-font-size($h, $with-line-height: true) {
+  @if ($with-line-height == true) {
+    line-height: $header-lineheight;
+  }
+  @each $size, $headers in $header-styles {
+    @include breakpoint($size) {
+      font-size: rem-calc(map-get(map-get($headers, $h), 'font-size'));
+    }
+  }
+}

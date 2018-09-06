@@ -1,0 +1,28 @@
+////
+/// Framework - Links
+/// @group frameworkComponents
+////
+
+$links: (
+  default: (
+    color: navy,
+    font-weight: 400,
+    active-color: skyblue
+  )
+) !default;
+
+/// Standard link style mixin
+/// @param {String} $link-key - the key in the $buttons map to use from config
+/// @example
+///   @include link(inline)
+@mixin link($link-key: default) {
+  $link-conf: extend-in-map($links, $link-key);
+
+  color: key($link-conf, color);
+  font-weight: key($link-conf, font-weight);
+
+  @include selectors(active) {
+    color: key($link-conf, active-color);
+    text-decoration: underline;
+  }
+}

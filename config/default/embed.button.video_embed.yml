@@ -1,0 +1,24 @@
+uuid: 5001adb6-bada-4943-85a3-55df668fcd43
+langcode: en
+status: true
+dependencies:
+  config:
+    - media_entity.bundle.video
+  content:
+    - 'file:file:0a4bb9d1-5c80-40be-9bf1-135e7de068de'
+  module:
+    - entity_embed
+    - media_entity
+label: 'Video Embed'
+id: video_embed
+type_id: entity
+type_settings:
+  entity_type: media
+  bundles:
+    - video
+  display_plugins:
+    - 'view_mode:media.entity_embed'
+  entity_browser: video_embed
+  entity_browser_settings:
+    display_review: true
+icon_uuid: 0a4bb9d1-5c80-40be-9bf1-135e7de068de

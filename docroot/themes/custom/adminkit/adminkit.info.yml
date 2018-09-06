@@ -1,0 +1,21 @@
+name: AdminKit
+type: theme
+description: 'Drupal admin sub-theme of the Adminimal Drupal admin theme with specific functional enhancements.'
+core: 8.x
+base theme: adminimal_theme
+
+libraries:
+  - adminkit/global-styling
+
+regions:
+  header: 'Header'
+  pre_content: 'Pre-content'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'
+regions_hidden:
+  - sidebar_first

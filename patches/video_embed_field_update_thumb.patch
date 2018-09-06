@@ -1,0 +1,82 @@
+commit 3026fc151c32f731e005f9e7f248b4102d7834b2
+Author: Tanner Langley <tlangley141@gmail.com>
+Date:   Mon Sep 11 08:44:50 2017 -0600
+
+    Fix thumbnails so they update when the source is changed.
+
+diff --git a/modules/video_embed_media/src/Plugin/MediaEntity/Type/VideoEmbedField.php b/modules/video_embed_media/src/Plugin/MediaEntity/Type/VideoEmbedField.php
+index deeae3e..80abdba 100644
+--- a/modules/video_embed_media/src/Plugin/MediaEntity/Type/VideoEmbedField.php
++++ b/modules/video_embed_media/src/Plugin/MediaEntity/Type/VideoEmbedField.php
+@@ -219,6 +219,36 @@ class VideoEmbedField extends MediaTypeBase {
+   /**
+    * {@inheritdoc}
+    */
++  public function shouldUpdateThumbnail(MediaInterface $media, MediaInterface $originalMedia = NULL) {
++    // If there is no original media entity, then entity is new and thumbnails
++    // should be created.
++    return true;
++
++//    if ($originalMedia === NULL) {
++//      return TRUE;
++//    }
++//    // If source field is changed, then also thumbnail should be changed.
++//    $source_field = $this->configuration['source_field'];
++//
++//    /** @var \Drupal\file\FileInterface $file */
++//    $file = $media->{$source_field}->entity;
++//
++//    /** @var \Drupal\file\FileInterface $previousFile */
++//    $previousFile = $originalMedia->{$source_field}->entity;
++//
++//    // Xor covers case when source field is deleted (emptied) and when it's
++//    // filled from previously empty field. That means switching between default
++//    // icon and thumbnail created from image file.
++//    if (($file xor $previousFile) || ($file && $previousFile && $file->getFileUri() !== $previousFile->getFileUri())) {
++//      return TRUE;
++//    }
++
++//    return parent::shouldUpdateThumbnail($media, $originalMedia);
++  }
++
++  /**
++   * {@inheritdoc}
++   */
+   public function getDefaultThumbnail() {
+     return $this->mediaSettings->get('icon_base') . '/video.png';
+   }
+diff --git a/src/ProviderPluginBase.php b/src/ProviderPluginBase.php
+index aeb82a5..7b14560 100644
+--- a/src/ProviderPluginBase.php
++++ b/src/ProviderPluginBase.php
+@@ -121,14 +121,23 @@ abstract class ProviderPluginBase extends PluginBase implements ProviderPluginIn
+    */
+   public function downloadThumbnail() {
+     $local_uri = $this->getLocalThumbnailUri();
+-    if (!file_exists($local_uri)) {
+-      file_prepare_directory($this->thumbsDirectory, FILE_CREATE_DIRECTORY);
+-      try {
+-        $thumbnail = $this->httpClient->request('GET', $this->getRemoteThumbnailUrl());
+-        file_unmanaged_save_data((string) $thumbnail->getBody(), $local_uri);
+-      }
+-      catch (\Exception $e) {
++    file_prepare_directory($this->thumbsDirectory, FILE_CREATE_DIRECTORY);
++    try {
++      // If file exists, delete the current item
++      if ($existing = \Drupal::entityQuery('file')
++          ->condition('uri', $local_uri)
++          ->execute()) {
++        $existing_id = array_values($existing)[0];
++
++        $file_manager = \Drupal::entityTypeManager()->getStorage('file');
++        $existing_thumb = $file_manager->load($existing_id);
++        $file_manager->delete([$existing_thumb]);
+       }
++      // Get the file, and if file exists in files replace the file (file is always named by ID, so we need to replace)
++      $thumbnail = $this->httpClient->request('GET', $this->getRemoteThumbnailUrl());
++      file_unmanaged_save_data((string) $thumbnail->getBody(), $local_uri, FILE_EXISTS_REPLACE);
++    }
++    catch (\Exception $e) {
+     }
+   }
+ 

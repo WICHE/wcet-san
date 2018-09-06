@@ -1,0 +1,22 @@
+uuid: 65025b7a-c6b8-4645-ac20-1fa48fd51d0c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - adminkit
+_core:
+  default_config_hash: smz14vCHZMvBUirgYNWjDWMqi5xWOY5mdTDyQWbduo4
+id: adminkit_messages
+theme: adminkit
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

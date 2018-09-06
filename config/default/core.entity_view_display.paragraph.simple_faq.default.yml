@@ -1,0 +1,31 @@
+uuid: b23640e7-dd46-4293-a91a-332bb72ab5f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.simple_faq.field_body
+    - field.field.paragraph.simple_faq.field_header
+    - paragraphs.paragraphs_type.simple_faq
+  module:
+    - text
+id: paragraph.simple_faq.default
+targetEntityType: paragraph
+bundle: simple_faq
+mode: default
+content:
+  field_body:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_header:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

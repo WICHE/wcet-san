@@ -1,0 +1,330 @@
+////
+/// Drupal default stuff
+////
+
+
+// The skip-link link will be completely hidden until a user tabs to the link.
+// See the element-focusable rule in system.base.css.
+#skip-link {
+  margin: 0;
+
+  a,
+  a:visited {
+    display: block;
+    width: 100%;
+    padding: 2px 0 3px 0;
+    text-align: center;
+    background-color: #666;
+    color: #fff;
+  }
+}
+
+
+
+
+// Styling for Drupal admin tabs.
+ul.primary {
+  font-size: 16px;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  //background: key($drupal-tabs, wrap, background);
+  //border-bottom: 1px solid key($drupal-tabs, wrap, border);
+
+  li {
+    list-style: none;
+    float: left;
+    margin-bottom: 0;
+
+    a {
+      position: relative;
+      padding: 8px 18px;
+      background: key($drupal-tabs, link, background);
+      border-top: 5px solid #ffd204;
+      border-radius: 3px;
+      display: block;
+      color: key($drupal-tabs, link, color);
+      font-weight: normal;
+      text-decoration: none;
+      transition: 0.4s ease background, 0.4s ease color;
+
+      &:hover,
+      &:active {
+        background: key($drupal-tabs, link, hover-background);
+        color: key($drupal-tabs, link, hover-color);
+      }
+    }
+
+    &:nth-child(1) {
+      a {
+        padding: 8px 18px 8px 40px;
+        @include icon-before(view);
+        &:before {
+          position: absolute;
+          top: 50%;
+          left: 10px;
+          width: 1rem;
+          height: 1rem;
+          font-size: 1.5rem;
+          transform: translateY(-80%);
+        }
+      }
+    }
+    a[href*="scheduled"] {
+      padding: 8px 18px 8px 40px;
+      @include icon-before(schedule);
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        width: 1rem;
+        height: 1rem;
+        font-size: 1.2rem;
+        transform: translateY(-60%);
+      }
+    }
+    a[href*="shortcuts"] {
+      padding: 8px 18px 8px 40px;
+      @include icon-before(favorite);
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        width: 1rem;
+        height: 1rem;
+        font-size: 1.2rem;
+        transform: translateY(-60%);
+      }
+    }
+    a[href*="edit"] {
+      padding: 8px 18px 8px 40px;
+      @include icon-before(edit);
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        width: 1rem;
+        height: 1rem;
+        font-size: 1.2rem;
+        transform: translateY(-60%);
+      }
+    }
+    a[href*="delete"] {
+      padding: 8px 18px 8px 40px;
+      @include icon-before(trash);
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        width: 1rem;
+        height: 1rem;
+        font-size: 1.2rem;
+        transform: translateY(-60%);
+      }
+    }
+    a[href*="revisions"] {
+      padding: 8px 18px 8px 40px;
+      @include icon-before(revision);
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        width: 1rem;
+        height: 1rem;
+        font-size: 1.2rem;
+        transform: translateY(-60%);
+      }
+    }
+    a[href*="devel"] {
+      padding: 8px 18px 8px 40px;
+      @include icon-before(gear);
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        width: 1rem;
+        height: 1rem;
+        font-size: 1.2rem;
+        transform: translateY(-60%);
+      }
+    }
+    a[href*="entity_clone"] {
+      padding: 8px 18px 8px 40px;
+      @include icon-before(clone);
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        width: 1rem;
+        height: 1rem;
+        font-size: 1.2rem;
+        transform: translateY(-60%);
+      }
+    }
+  }
+
+  $alt-colors: key($drupal-tabs, alt-colors);
+
+  @for $i from 1 through length($alt-colors) {
+
+    li:nth-child(#{length($alt-colors)}n + #{$i}) {
+
+      a {
+        border-top: 5px solid nth($alt-colors, $i);
+
+        &:hover,
+        &:active {
+          background: nth($alt-colors, $i);
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+.tabs {
+  @include content-width(page);
+  margin-top: 50px;
+}
+
+
+// Custom styles for Drupal's notification messages.
+.region-highlighted {
+  @include content-width(page);
+}
+
+.messages {
+  color: $body-font-color;
+  margin: 6px 0;
+  padding: 8px 10px;
+  position: relative;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  background-image: none;
+
+  &:before {
+    @extend %icon-base;
+    font-size: 30px;
+    margin-right: 10px;
+  }
+}
+
+.messages--ok,
+.messages--status {
+  color: darken($statusokbg, 10%);
+  border-color: lighten($statusokbg, 50%);
+
+  a {
+    color: lighten($statusokbg, 50%);
+  }
+}
+
+.messages--status {
+  &:before {
+    @include icon(check, true);
+    color: #81b564;
+  }
+}
+
+.messages--ok {
+  &:before {
+    @include icon(info, true);
+    color: #81b564;
+  }
+}
+
+.messages--warning {
+  &:before {
+    @include icon(info);
+    color: #e2be6c;
+  }
+}
+
+.messages--error {
+  background-color: $errorbg;
+  border-color: darken($errorbg, 10%);
+  color: #fff;
+
+  a {
+    color: lighten($errorbg, 50%);
+  }
+
+  &:before {
+    @include icon(error);
+  }
+}
+
+.messages ul {
+  list-style: none;
+  margin: 0; /* LTR */
+  padding: 0;
+}
+.messages ul li {
+  border-bottom: 1px solid #fff;
+  list-style-image: none;
+  margin-bottom: 4px;
+  padding-bottom: 5px;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+// Fix some styles in Krumo
+.krumo-element,
+.krumo-footnote,
+.krumo-call,
+.krumo-preview {
+  color: #231f20;
+}
+
+//
+// Replace Drupal Ajax Throbber
+//
+// The following snippet replaces the default ajax throbber with a custom svg element and rotation.
+// The fallback replaces the Drupal gif with a less ugly custom gif. Only the throbber element has
+// been modified here, so it will still have the default behavior of appearing inline and default
+// size, etc. Size can be altered easily below.
+//
+// Color of svg spinner can easily be changed in the loader.svg file, or completely replace
+// with an alternative.
+//
+// Relies on modernizr cssanimations test.
+//
+.cssanimations .ajax-progress.ajax-progress-fullscreen {
+  height: 44px;
+  width: 44px;
+  top: 50%;
+  left: 50%;
+  margin-top: -22px;
+  margin-left: -22px;
+  background: $white;
+  z-index: z(ajax-throbber);
+  opacity: 0.9;
+  border: 2px solid $primary-color;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: url(../../images/svg/loader.svg);
+    @include bg-style(contain);
+    animation: rotate 700ms linear infinite normal;
+  }
+}
+
+.no-cssanimations .ajax-progress.ajax-progress-fullscreen {
+  // Drupal default height, width
+  //height: 19px;
+  //width: 19px;
+  background: url(../../images/gif-loader.gif);
+  @include bg-style(contain);
+}
+

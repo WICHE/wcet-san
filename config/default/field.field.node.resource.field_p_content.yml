@@ -1,0 +1,72 @@
+uuid: 44568bbe-a846-4460-93d2-cee2f25267ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_p_content
+    - node.type.resource
+    - paragraphs.paragraphs_type.layout_two_column
+    - paragraphs.paragraphs_type.simple_content
+  module:
+    - entity_reference_revisions
+id: node.resource.field_p_content
+field_name: field_p_content
+entity_type: node
+bundle: resource
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      layout_two_column: layout_two_column
+      simple_content: simple_content
+    target_bundles_drag_drop:
+      compound_card_row:
+        weight: 15
+        enabled: false
+      compound_faq_section:
+        weight: 16
+        enabled: false
+      compound_header_content:
+        weight: 17
+        enabled: false
+      layout_two_column:
+        enabled: true
+        weight: 18
+      reference_block:
+        weight: 19
+        enabled: false
+      simple_card:
+        weight: 20
+        enabled: false
+      simple_content:
+        enabled: true
+        weight: 21
+      simple_faq:
+        weight: 22
+        enabled: false
+      single_file:
+        weight: 23
+        enabled: false
+      single_image:
+        weight: 24
+        enabled: false
+      single_link:
+        weight: 25
+        enabled: false
+      single_svg:
+        weight: 26
+        enabled: false
+      single_text_area:
+        weight: 27
+        enabled: false
+      single_video:
+        weight: 28
+        enabled: false
+field_type: entity_reference_revisions

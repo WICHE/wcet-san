@@ -1,0 +1,46 @@
+uuid: 843608e0-db39-4143-b1d8-0826c09860dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: default
+label: Default
+description: ''
+attributes:
+  target:
+    id: target
+    weight: 0
+    settings:
+      widget_type: simple_checkbox
+matchers:
+  e240a232-ec5a-4eec-9e0c-51975ea27529:
+    uuid: e240a232-ec5a-4eec-9e0c-51975ea27529
+    id: 'entity:node'
+    weight: -10
+    settings:
+      result_description: Pages
+      bundles: {  }
+      group_by_bundle: true
+      include_unpublished: false
+  9e0a2445-5e64-43ad-a979-7ae02eba53d1:
+    uuid: 9e0a2445-5e64-43ad-a979-7ae02eba53d1
+    id: 'entity:media'
+    weight: -9
+    settings:
+      result_description: 'Media Pages'
+      bundles: {  }
+      group_by_bundle: true
+  ee0d5f7b-2998-47c2-a374-b352bdeb0046:
+    uuid: ee0d5f7b-2998-47c2-a374-b352bdeb0046
+    id: 'entity:file'
+    weight: -8
+    settings:
+      result_description: 'Direct link to file'
+      bundles: null
+      group_by_bundle: null
+      images:
+        show_dimensions: false
+        show_thumbnail: false
+        thumbnail_image_style: null

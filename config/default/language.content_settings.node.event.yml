@@ -1,0 +1,11 @@
+uuid: d5d5b91b-d64e-4267-bb8b-3149d62d2ddd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.event
+id: node.event
+target_entity_type_id: node
+target_bundle: event
+default_langcode: site_default
+language_alterable: false

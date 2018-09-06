@@ -1,0 +1,39 @@
+uuid: 109273a3-3742-4ec0-ad7c-62bbdbc9ad18
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.compound_faq_section.field_header
+    - field.field.paragraph.compound_faq_section.field_p_faq
+    - paragraphs.paragraphs_type.compound_faq_section
+  module:
+    - paragraphs
+id: paragraph.compound_faq_section.default
+targetEntityType: paragraph
+bundle: compound_faq_section
+mode: default
+content:
+  field_header:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_p_faq:
+    type: entity_reference_paragraphs
+    weight: 1
+    settings:
+      title: Component
+      title_plural: Components
+      edit_mode: preview
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: simple_faq
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

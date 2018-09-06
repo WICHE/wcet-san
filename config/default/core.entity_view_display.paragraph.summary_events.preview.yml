@@ -1,0 +1,22 @@
+uuid: 4b233d34-920d-4ac5-817f-846bdeba5548
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.summary_events.field_summary_topics
+    - paragraphs.paragraphs_type.summary_events
+id: paragraph.summary_events.preview
+targetEntityType: paragraph
+bundle: summary_events
+mode: preview
+content:
+  field_summary_topics:
+    weight: 0
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden: {  }

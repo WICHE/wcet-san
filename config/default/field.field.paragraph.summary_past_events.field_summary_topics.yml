@@ -1,0 +1,29 @@
+uuid: be31e6c1-62c8-4fb6-875b-cb7a115997ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_summary_topics
+    - paragraphs.paragraphs_type.summary_past_events
+    - taxonomy.vocabulary.topic
+id: paragraph.summary_past_events.field_summary_topics
+field_name: field_summary_topics
+entity_type: paragraph
+bundle: summary_past_events
+label: Topic(s)
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      topic: topic
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

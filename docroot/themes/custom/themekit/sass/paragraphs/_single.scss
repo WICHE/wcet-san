@@ -1,0 +1,39 @@
+////
+/// Paragraphs - Single
+////
+
+.paragraph--type--single-file,
+.paragraph--type--single-link {
+  $styles: (
+    primary: primary,
+    secondary: ghost-content,
+    tertiary: link,
+
+  );
+  a {
+    //@include btn(primary);
+  }
+  @each $style, $btn in $styles {
+    &.#{$style} {
+      a {
+        @include btn($btn);
+      }
+    }
+  }
+
+
+  .paragraph--type--compound-header-content & {
+    $styles: (
+      primary: primary,
+      secondary: ghost,
+      tertiary: link-header
+    );
+    @each $style, $btn in $styles {
+      &.#{$style} {
+        a {
+          @include btn($btn);
+        }
+      }
+    }
+  }
+}

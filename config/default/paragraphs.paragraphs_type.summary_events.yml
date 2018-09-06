@@ -1,0 +1,9 @@
+uuid: db361074-c5ea-4872-bd60-c3882ff729c7
+langcode: en
+status: true
+dependencies: {  }
+id: summary_events
+label: 'Summary - Events'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

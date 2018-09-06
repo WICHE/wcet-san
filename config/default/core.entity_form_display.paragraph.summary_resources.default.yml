@@ -1,0 +1,33 @@
+uuid: 7d1ae6df-50fe-46ef-9b68-3f25d7fd6ef5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.summary_resources.field_link
+    - field.field.paragraph.summary_resources.field_summary_topics
+    - paragraphs.paragraphs_type.summary_resources
+  module:
+    - link
+id: paragraph.summary_resources.default
+targetEntityType: paragraph
+bundle: summary_resources
+mode: default
+content:
+  field_link:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_summary_topics:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

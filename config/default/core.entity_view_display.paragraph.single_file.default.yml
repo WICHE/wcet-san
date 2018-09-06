@@ -1,0 +1,41 @@
+uuid: 4b6fdd2e-95aa-4fe2-8aef-c50190d70e4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.single_file.field_header
+    - field.field.paragraph.single_file.field_link_style
+    - field.field.paragraph.single_file.field_media_file
+    - paragraphs.paragraphs_type.single_file
+  module:
+    - options
+id: paragraph.single_file.default
+targetEntityType: paragraph
+bundle: single_file
+mode: default
+content:
+  field_header:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_link_style:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_media_file:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden: {  }

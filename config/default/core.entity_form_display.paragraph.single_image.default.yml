@@ -1,0 +1,32 @@
+uuid: 6a8669d7-60a5-4e4c-b693-e1b0d64fb3dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.image
+    - field.field.paragraph.single_image.field_media_image
+    - paragraphs.paragraphs_type.single_image
+  module:
+    - entity_browser
+id: paragraph.single_image.default
+targetEntityType: paragraph
+bundle: single_image
+mode: default
+content:
+  field_media_image:
+    type: entity_browser_entity_reference
+    weight: 0
+    region: content
+    settings:
+      entity_browser: image
+      field_widget_display: label
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

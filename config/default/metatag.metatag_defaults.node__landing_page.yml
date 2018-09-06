@@ -1,0 +1,9 @@
+uuid: 28f31db0-ff24-40b6-8978-49c8ac4a3660
+langcode: en
+status: true
+dependencies: {  }
+id: node__landing_page
+label: 'Content: Landing Page'
+tags:
+  title: '[node:field_p_header:entity:field_header]'
+  description: '[node:field_p_header:entity:field_header]'

@@ -1,0 +1,35 @@
+uuid: 0affa458-4a2b-4d54-a306-89aa58890551
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.simple_faq.field_body
+    - field.field.paragraph.simple_faq.field_header
+    - paragraphs.paragraphs_type.simple_faq
+  module:
+    - text
+id: paragraph.simple_faq.default
+targetEntityType: paragraph
+bundle: simple_faq
+mode: default
+content:
+  field_body:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_header:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

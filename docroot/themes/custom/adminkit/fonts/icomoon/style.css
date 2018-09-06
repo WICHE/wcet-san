@@ -1,0 +1,115 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?vwwl7y');
+  src:  url('fonts/icomoon.eot?vwwl7y#iefix') format('embedded-opentype'),
+    url('icomoon.woff2?vwwl7y') format('woff2'),
+    url('icomoon.ttf?vwwl7y') format('truetype'),
+    url('icomoon.woff?vwwl7y') format('woff'),
+    url('icomoon.svg?vwwl7y#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-layout-2:before {
+  content: "\e900";
+}
+.icon-layout-3:before {
+  content: "\e901";
+}
+.icon-layout-4:before {
+  content: "\e902";
+}
+.icon-media-left:before {
+  content: "\e903";
+}
+.icon-media-right:before {
+  content: "\e904";
+}
+.icon-looks_3:before {
+  content: "\e3fb";
+}
+.icon-looks_4:before {
+  content: "\e3fd";
+}
+.icon-looks_5:before {
+  content: "\e3fe";
+}
+.icon-looks_6:before {
+  content: "\e3ff";
+}
+.icon-looks_one:before {
+  content: "\e400";
+}
+.icon-looks_two:before {
+  content: "\e401";
+}
+.icon-filter_1:before {
+  content: "\e3d0";
+}
+.icon-filter_2:before {
+  content: "\e3d1";
+}
+.icon-filter_3:before {
+  content: "\e3d2";
+}
+.icon-filter_4:before {
+  content: "\e3d4";
+}
+.icon-filter_5:before {
+  content: "\e3d5";
+}
+.icon-filter_6:before {
+  content: "\e3d6";
+}
+.icon-filter_7:before {
+  content: "\e3d7";
+}
+.icon-filter_8:before {
+  content: "\e3d8";
+}
+.icon-filter_9:before {
+  content: "\e3d9";
+}
+.icon-format_align_center:before {
+  content: "\e234";
+}
+.icon-format_align_justify:before {
+  content: "\e235";
+}
+.icon-format_align_left:before {
+  content: "\e236";
+}
+.icon-format_align_right:before {
+  content: "\e237";
+}
+.icon-images:before {
+  content: "\e90e";
+}
+.icon-headphones:before {
+  content: "\e910";
+}
+.icon-play:before {
+  content: "\e912";
+}
+.icon-undo2:before {
+  content: "\e967";
+}
+.icon-redo2:before {
+  content: "\e968";
+}
+

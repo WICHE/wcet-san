@@ -1,0 +1,9 @@
+uuid: 63a30166-f51a-4859-98f4-9df6372f89cd
+langcode: en
+status: true
+dependencies: {  }
+name: 'SVG Type'
+vid: svg_type
+description: 'Internal categorization used for SVG organization in the Media Library and Entity Browsers'
+hierarchy: 0
+weight: -1

@@ -1,0 +1,9 @@
+uuid: 24c27003-0e6d-4b11-b5d7-b7ce882ce164
+langcode: en
+status: true
+dependencies: {  }
+name: Membership
+vid: membership
+description: 'Memberships that member users can be associated with.'
+hierarchy: 0
+weight: -7

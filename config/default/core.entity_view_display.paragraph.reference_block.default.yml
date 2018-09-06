@@ -1,0 +1,12 @@
+uuid: 6190a27c-b109-40d3-b6f0-153bde3fe7dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.reference_block
+id: paragraph.reference_block.default
+targetEntityType: paragraph
+bundle: reference_block
+mode: default
+content: {  }
+hidden: {  }

@@ -1,0 +1,9 @@
+uuid: 253b1d5b-a621-4d38-88ad-ddcab80a55ea
+langcode: en
+status: true
+dependencies: {  }
+name: Topic
+vid: topic
+description: 'A general vocabulary of topics that can be used to classify any type of content on the site.'
+hierarchy: 0
+weight: -10

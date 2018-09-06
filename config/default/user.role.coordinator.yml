@@ -1,0 +1,12 @@
+uuid: dd02d601-aeda-48af-aab0-d2ff501cc514
+langcode: en
+status: true
+dependencies: {  }
+id: coordinator
+label: Coordinator
+weight: 5
+is_admin: null
+permissions:
+  - 'access sitemap'
+  - 'view media'
+  - 'view private content'

@@ -1,0 +1,31 @@
+uuid: 1d3f8db1-c81a-4d39-ae45-f818884815cb
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - scheduler
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+      - util-navigation
+    parent: 'main:'
+  scheduler:
+    expand_fieldset: when_required
+    fields_display_mode: vertical_tab
+    publish_enable: false
+    publish_past_date: error
+    publish_required: false
+    publish_revision: false
+    publish_touch: false
+    unpublish_enable: false
+    unpublish_required: false
+    unpublish_revision: false
+name: 'Landing Page'
+type: landing_page
+description: 'Use <em>Landing Page</em> for all marketing pages, such as top level pages, content rich pages and overview pages.  This content type provides a series of layout components that can be added and arranged to build dynamic landing pages.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

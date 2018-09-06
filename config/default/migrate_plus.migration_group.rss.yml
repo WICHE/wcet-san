@@ -1,0 +1,15 @@
+uuid: 26fc6fbf-9c84-4455-bf05-fcb3b9fabb9d
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - wcet_migrate
+_core:
+  default_config_hash: wMnqH_iF_0mJJXW_P43Om5HhUhJIT119grNyYbOD-kw
+id: rss
+label: RSS
+description: 'Migrations importing from an RSS feed.'
+source_type: 'RSS feed'
+module: null
+shared_configuration: null

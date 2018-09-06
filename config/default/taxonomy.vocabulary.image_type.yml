@@ -1,0 +1,9 @@
+uuid: 22b94356-db45-4088-a728-0d3b085c4dd1
+langcode: en
+status: true
+dependencies: {  }
+name: 'Image Type'
+vid: image_type
+description: 'Internal categorization used for image organization in the Media Library and Entity Browsers'
+hierarchy: 0
+weight: -2

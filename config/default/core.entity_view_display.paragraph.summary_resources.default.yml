@@ -1,0 +1,29 @@
+uuid: 2c07d4fd-4082-4caa-849e-27ad3239679e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.summary_resources.field_link
+    - field.field.paragraph.summary_resources.field_summary_topics
+    - paragraphs.paragraphs_type.summary_resources
+  module:
+    - link
+id: paragraph.summary_resources.default
+targetEntityType: paragraph
+bundle: summary_resources
+mode: default
+content:
+  field_link:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 80
+      url_plain: true
+      url_only: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  field_summary_topics: true

@@ -1,0 +1,23 @@
+uuid: fbf7f69e-89a7-4936-95dd-f7f54d63c506
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link
+    - paragraphs.paragraphs_type.simple_card
+  module:
+    - link
+id: paragraph.simple_card.field_link
+field_name: field_link
+entity_type: paragraph
+bundle: simple_card
+label: Link
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

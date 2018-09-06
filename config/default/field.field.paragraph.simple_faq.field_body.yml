@@ -1,0 +1,28 @@
+uuid: b73bd11c-8ccc-430b-a2d9-2428cd8d763a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - paragraphs.paragraphs_type.simple_faq
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    restricted_html: '0'
+    full_html: '0'
+    plain_text: '0'
+id: paragraph.simple_faq.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: simple_faq
+label: Answer
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

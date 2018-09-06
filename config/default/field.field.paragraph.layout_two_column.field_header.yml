@@ -1,0 +1,19 @@
+uuid: e4786309-972c-4878-b2e1-bfd0a24993a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_header
+    - paragraphs.paragraphs_type.layout_two_column
+id: paragraph.layout_two_column.field_header
+field_name: field_header
+entity_type: paragraph
+bundle: layout_two_column
+label: Header
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

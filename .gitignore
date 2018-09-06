@@ -1,0 +1,82 @@
+# Drupal #
+##########
+docroot/files
+docroot/sites/*/files
+docroot/sites/*/settings.local.php
+docroot/sites/*/local.services.yml
+docroot/sites/*/private
+private
+
+
+# Composer#
+###########
+/drush/contrib/
+/vendor/
+/docroot/core/
+/docroot/modules/contrib/
+/docroot/themes/contrib/
+/docroot/profiles/contrib/
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.mysql
+
+# OS generated files #
+######################
+ehthumbs.db
+._*
+.DS_Store
+Thumbs.db
+.buildpath
+.cache
+.project
+.settings
+.tmproj
+nbproject
+*.sublime-project
+*.sublime-workspace
+
+# Folders #
+###########
+.hg
+.svn
+.CVS
+.idea
+
+# Numerous always-ignore extensions #
+#####################################
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+*.map
+
+# Ignore patches not in the patches directory #
+*.patch
+!patches/*.patch
+
+
+# Ignore git directories/files in composer plugins #
+vendor/**/.git
+docroot/**/.git
+vendor/**/.gitattributes
+docroot/**/.gitattributes

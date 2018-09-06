@@ -1,0 +1,21 @@
+uuid: 438b0931-9b06-4469-9f62-225b67065a96
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+    - video_embed_media
+third_party_settings:
+  crop:
+    image_field: null
+id: video
+label: Video
+description: ''
+type: video_embed_field
+queue_thumbnail_downloads: false
+new_revision: false
+type_configuration:
+  source_field: field_video
+field_map:
+  id: field_video_id
+  image_local: thumbnail

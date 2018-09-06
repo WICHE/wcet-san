@@ -1,0 +1,87 @@
+////
+/// Icons
+/// @group utility
+////
+
+$icon-font-name: 'icomoon' !default;
+$icon-font-dir: '../fonts/icomoon/fonts/' !default;
+$icons-enabled: false;
+
+@mixin themekit-icons() {
+  @font-face {
+    font-family: $icon-font-name;
+    src: url($icon-font-dir + $icon-font-name + '.eot?48442214');
+    src: url($icon-font-dir + $icon-font-name + '.eot?48442214#iefix') format('embedded-opentype'),
+    url($icon-font-dir + $icon-font-name + '.woff?48442214') format('woff'),
+    url($icon-font-dir + $icon-font-name + '.ttf?48442214') format('truetype'),
+    url($icon-font-dir + $icon-font-name + '.svg?48442214#3xl') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  %icon-base {
+    font-family: $icon-font-name;
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    text-align: center;
+
+    // For safety - reset parent styles, that can break glyph codes
+    font-variant: normal;
+    text-transform: none;
+
+    // Ensure consistent height
+    line-height: 1;
+
+    // Font smoothing. That was taken from TWBS
+    font-smoothing: antialiased;
+  }
+
+  $icons-enabled: true !global;
+}
+
+
+$icons: () !default;
+
+/// Add a font icon. This must be used in a before or after pseudo class
+@mixin icon($icon, $replace: false, $map: $icons) {
+  @if (map-has-key($map, $icon)) {
+    $icon: map-get($map, $icon);
+  }
+
+  @if ($replace == false) {
+    @extend %icon-base;
+  }
+
+  content: '#{$icon}';
+}
+
+/// Add an icon to the before pseudo class
+@mixin icon-before($icon, $replace: false) {
+  &:before {
+    @include icon($icon, $replace);
+    @content;
+  }
+}
+
+/// Add an icon to the after pseudo class
+@mixin icon-after($icon, $replace: false) {
+  &:after {
+    @include icon($icon, $replace);
+    @content;
+  }
+}
+
+/// Replace text with icon
+@mixin replace-text-with-icon($icon, $font-size: $global-font-size) {
+  font: 0/0 transparent;
+  text-decoration: none;
+  @include icon-before($icon) {
+    font-size: $font-size;
+    @content;
+  }
+}

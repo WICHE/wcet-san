@@ -1,0 +1,39 @@
+uuid: 1744e52b-2f81-4d02-ba08-09aaefa5384a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.compound_card_row.field_header
+    - field.field.paragraph.compound_card_row.field_p_cards
+    - paragraphs.paragraphs_type.compound_card_row
+  module:
+    - paragraphs
+id: paragraph.compound_card_row.default
+targetEntityType: paragraph
+bundle: compound_card_row
+mode: default
+content:
+  field_header:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_p_cards:
+    type: entity_reference_paragraphs
+    weight: 1
+    settings:
+      title: Component
+      title_plural: Components
+      edit_mode: preview
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: simple_card
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

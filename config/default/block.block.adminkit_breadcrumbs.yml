@@ -1,0 +1,22 @@
+uuid: 2f71150c-1d8a-4cf2-9c54-da0a5dc19ed4
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - adminkit
+_core:
+  default_config_hash: xN5Ur2AOnbLC6o9oFmOUPa0Y5vRACdQHtXTwsCSlZsg
+id: adminkit_breadcrumbs
+theme: adminkit
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

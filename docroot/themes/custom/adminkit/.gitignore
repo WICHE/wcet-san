@@ -1,0 +1,67 @@
+
+CHANGELOG.txt
+COPYRIGHT.txt
+INSTALL.mysql.txt
+INSTALL.pgsql.txt
+INSTALL.sqlite.txt
+INSTALL.txt
+LICENSE.txt
+MAINTAINERS.txt
+README.txt
+UPGRADE.txt
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.mysql
+
+# OS generated files #
+######################
+ehthumbs.db
+._*
+.DS_Store
+Thumbs.db
+.buildpath
+.cache
+.project
+.settings
+.tmproj
+nbproject
+*.sublime-project
+*.sublime-workspace
+
+# Folders #
+###########
+.hg
+.svn
+.CVS
+.idea
+
+# Numerous always-ignore extensions #
+#####################################
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+*.patch
+*.map
+
+node_modules

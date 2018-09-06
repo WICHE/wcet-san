@@ -1,0 +1,82 @@
+uuid: 3042dc48-2117-4c7d-b686-fc155947c16e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_left_column
+    - paragraphs.paragraphs_type.layout_two_column
+    - paragraphs.paragraphs_type.simple_content
+    - paragraphs.paragraphs_type.single_file
+    - paragraphs.paragraphs_type.single_image
+    - paragraphs.paragraphs_type.single_link
+  module:
+    - entity_reference_revisions
+id: paragraph.layout_two_column.field_p_left_column
+field_name: field_p_left_column
+entity_type: paragraph
+bundle: layout_two_column
+label: 'Left Column'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      simple_content: simple_content
+      single_file: single_file
+      single_image: single_image
+      single_link: single_link
+    target_bundles_drag_drop:
+      layout_two_column:
+        weight: 16
+        enabled: false
+      compound_card_row:
+        weight: 17
+        enabled: false
+      compound_faq_section:
+        weight: 17
+        enabled: false
+      compound_header_content:
+        weight: 19
+        enabled: false
+      reference_block:
+        weight: 21
+        enabled: false
+      simple_card:
+        weight: 22
+        enabled: false
+      simple_content:
+        enabled: true
+        weight: 22
+      simple_faq:
+        weight: 23
+        enabled: false
+      single_file:
+        enabled: true
+        weight: 24
+      single_image:
+        enabled: true
+        weight: 26
+      single_link:
+        enabled: true
+        weight: 27
+      single_svg:
+        weight: 28
+        enabled: false
+      single_text_area:
+        weight: 29
+        enabled: false
+      single_video:
+        weight: 30
+        enabled: false
+      summary_events:
+        weight: 31
+        enabled: false
+      summary_resources:
+        weight: 32
+        enabled: false
+field_type: entity_reference_revisions

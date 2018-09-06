@@ -1,0 +1,17 @@
+uuid: 1d6c7762-1097-47a4-8257-991cd55b5d4d
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+third_party_settings:
+  crop:
+    image_field: null
+id: svg
+label: SVG
+description: ''
+type: generic
+queue_thumbnail_downloads: false
+new_revision: false
+type_configuration: {  }
+field_map: {  }

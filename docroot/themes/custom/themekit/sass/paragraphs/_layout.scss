@@ -1,0 +1,89 @@
+////
+/// Paragraphs - Layout
+////
+
+
+/// 2 Columns
+/// =========
+.paragraph--type--layout-two-column {
+  @include content-width(page, $collapse: false);
+  @include component-spacing();
+  margin-top: 50px;
+  margin-bottom: 50px;
+  @include breakpoint(medium) {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+  .field--name-field-subheader {
+    @include sub-title;
+  }
+  .field--name-field-header {
+    color: $dark-gray;
+    margin-bottom: .75em;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 51px;
+    @include breakpoint(medium) {
+      width: 70%;
+    }
+  }
+  .columns {
+    @include breakpoint(medium) {
+      display: flex;
+      justify-content: space-between;
+    }
+    .field--name-field-body {
+      padding: 0;
+    }
+  }
+  .column {
+    &:last-child {
+      @include breakpoint(sm-md down) {
+        margin-top: 20px;
+      }
+    }
+    @include breakpoint(medium) {
+      width: 48.3%;
+    }
+    .field--name-field-header {
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 1;
+      margin-bottom: 0;
+    }
+    .field--name-field-subheader {
+      color: $san-medium-gray;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 0;
+      &:after {
+        content: none;
+      }
+    }
+    p {
+      margin-top: 19px;
+    }
+  }
+  img {
+    border-radius: $global-radius;
+  }
+  .field--name-field-link {
+    margin-top: 1rem;
+    a {
+      @include btn(primary);
+    }
+  }
+  .node--type-resource & {
+    margin-right: 0;
+    margin-bottom: 30px;
+    margin-left: 0;
+    .column {
+      p {
+        margin-top: 10px;
+        color: $san-french-gray;
+        font-size: rem-calc(12);
+      }
+    }
+  }
+}
+

@@ -1,0 +1,26 @@
+uuid: 966b9e6d-c614-4671-9596-7f4ca0d31b16
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.single_image.field_media_image
+    - paragraphs.paragraphs_type.single_image
+  module:
+    - media_entity_image
+id: paragraph.single_image.default
+targetEntityType: paragraph
+bundle: single_image
+mode: default
+content:
+  field_media_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: media_image
+    region: content
+hidden:
+  created: true
+  uid: true

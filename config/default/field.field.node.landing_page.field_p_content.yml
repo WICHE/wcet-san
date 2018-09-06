@@ -1,0 +1,91 @@
+uuid: 0934d996-1075-41f6-b8dc-5c3e5626ed7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_p_content
+    - node.type.landing_page
+    - paragraphs.paragraphs_type.compound_card_row
+    - paragraphs.paragraphs_type.compound_faq_section
+    - paragraphs.paragraphs_type.layout_two_column
+    - paragraphs.paragraphs_type.simple_content
+    - paragraphs.paragraphs_type.summary_events
+    - paragraphs.paragraphs_type.summary_past_events
+    - paragraphs.paragraphs_type.summary_resources
+  module:
+    - entity_reference_revisions
+id: node.landing_page.field_p_content
+field_name: field_p_content
+entity_type: node
+bundle: landing_page
+label: Content
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      layout_two_column: layout_two_column
+      compound_faq_section: compound_faq_section
+      compound_card_row: compound_card_row
+      simple_content: simple_content
+      summary_events: summary_events
+      summary_past_events: summary_past_events
+      summary_resources: summary_resources
+    target_bundles_drag_drop:
+      single_svg:
+        weight: -35
+        enabled: false
+      layout_two_column:
+        enabled: true
+        weight: -34
+      compound_faq_section:
+        enabled: true
+        weight: -33
+      compound_card_row:
+        enabled: true
+        weight: -32
+      simple_content:
+        enabled: true
+        weight: -31
+      reference_block:
+        weight: -30
+        enabled: false
+      single_text_area:
+        weight: -29
+        enabled: false
+      single_image:
+        weight: -28
+        enabled: false
+      single_video:
+        weight: -27
+        enabled: false
+      single_file:
+        weight: -26
+        enabled: false
+      single_link:
+        weight: -25
+        enabled: false
+      compound_header_content:
+        weight: -24
+        enabled: false
+      simple_faq:
+        weight: -23
+        enabled: false
+      simple_card:
+        weight: -22
+        enabled: false
+      summary_events:
+        enabled: true
+        weight: -21
+      summary_past_events:
+        enabled: true
+        weight: -20
+      summary_resources:
+        enabled: true
+        weight: -19
+field_type: entity_reference_revisions

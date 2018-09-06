@@ -1,0 +1,9 @@
+uuid: d0ded6c1-0661-4ded-86cf-9f71e02b10de
+langcode: en
+status: true
+dependencies: {  }
+id: compound_faq_section
+label: 'Compound - FAQ Section'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

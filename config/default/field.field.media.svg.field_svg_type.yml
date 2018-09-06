@@ -1,0 +1,28 @@
+uuid: 6c4b6eac-4568-4324-bffc-3ddab13d3b4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_svg_type
+    - media_entity.bundle.svg
+    - taxonomy.vocabulary.svg_type
+id: media.svg.field_svg_type
+field_name: field_svg_type
+entity_type: media
+bundle: svg
+label: 'SVG Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      svg_type: svg_type
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

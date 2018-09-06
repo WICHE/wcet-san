@@ -1,0 +1,22 @@
+uuid: e1706bef-71a0-4cd9-9a57-3f248f674106
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.summary_past_events.field_summary_topics
+    - paragraphs.paragraphs_type.summary_past_events
+id: paragraph.summary_past_events.preview
+targetEntityType: paragraph
+bundle: summary_past_events
+mode: preview
+content:
+  field_summary_topics:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+hidden: {  }

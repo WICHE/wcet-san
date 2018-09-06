@@ -1,0 +1,101 @@
+////
+/// Entity browser supplemental styling for admin theme.
+////
+
+.entity-browser-form {
+  * {
+    box-sizing: border-box;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+
+    &.type-svg {
+      border: 0 none;
+    }
+  }
+
+  .views-field-name {
+    font-size: 16px;
+  }
+
+  .views-field-name:nth-child(n+1) {
+    margin-top: 10px;
+  }
+
+  .eb-tabs {
+    margin-bottom: 20px;
+  }
+
+  .view-header {
+    position: absolute;
+    top: 5px;
+    right: 0;
+  }
+
+  .view-content {
+    display: flex;
+    flex: 1;
+    flex-flow: row wrap;
+  }
+
+  .views-row {
+    padding: 15px 10px;
+    transition: background 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+    width: 0;
+    flex-basis: 50%;
+
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+
+    @media (min-width: 450px) {
+    flex-basis: 33.333%;
+
+    }
+
+    @media (min-width: 600px) {
+      flex-basis: 25%;
+    }
+  }
+
+  .views-row:hover {
+    background: #f7f7f7;
+  }
+
+  .column-selected:hover,
+  .column-selected {
+    background: lighten(#0074bd, 55%);
+    box-shadow: 0 0 0 1px #cce3f3 inset;
+  }
+
+  // Add .view-entity-browser-BROWSER-NAME to this list for items you want to hide the checkbox
+  .view-entity-browser-image,
+  .view-entity-browser-svg,
+  .view-entity-browser-video {
+    .form-type-checkbox.form-no-label {
+      display: none;
+    }
+  }
+
+  .view-entity-browser-svg {
+    .views-field-field-svg {
+      width: 100%;
+    }
+
+    .views-field-name {
+      text-align: center;
+    }
+
+    img {
+      width: 80%;
+      max-height: 80px;
+      margin: 0 auto;
+    }
+  }
+}

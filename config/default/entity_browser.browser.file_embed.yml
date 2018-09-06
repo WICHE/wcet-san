@@ -1,0 +1,42 @@
+uuid: 90917ff2-4fe7-4bfa-9580-c5e884e6fb10
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.entity_browser_file
+  module:
+    - entity_browser_entity_form
+    - views
+name: file_embed
+label: 'File - Embed'
+display: iframe
+display_configuration:
+  width: '800'
+  height: '600'
+  link_text: 'Select File'
+  auto_open: true
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  680747bb-fc06-481f-a79f-281778ebe891:
+    settings:
+      view: entity_browser_file
+      view_display: entity_browser_1
+      submit_text: 'Select File'
+      auto_select: false
+    uuid: 680747bb-fc06-481f-a79f-281778ebe891
+    weight: -10
+    label: 'Existing Files'
+    id: view
+  a7e5ece2-6a90-45f8-a81d-f627577ab924:
+    settings:
+      entity_type: media
+      bundle: file
+      form_mode: media_browser
+      submit_text: 'Save File'
+    uuid: a7e5ece2-6a90-45f8-a81d-f627577ab924
+    weight: -9
+    label: 'New File'
+    id: entity_form

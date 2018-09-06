@@ -1,0 +1,33 @@
+uuid: 74bf8a0f-b9a3-40cf-8661-48043e110846
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.single_link.field_link
+    - field.field.paragraph.single_link.field_link_style
+    - paragraphs.paragraphs_type.single_link
+  module:
+    - link
+id: paragraph.single_link.default
+targetEntityType: paragraph
+bundle: single_link
+mode: default
+content:
+  field_link:
+    weight: 0
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_link_style:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

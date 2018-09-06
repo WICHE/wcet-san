@@ -1,0 +1,9 @@
+uuid: f1642635-5645-4a38-a7e0-3c58273f3787
+langcode: en
+status: true
+dependencies: {  }
+name: 'Resource Type'
+vid: resource_type
+description: 'When adding a resource, select a term from this vocabulary to determine it''s type.'
+hierarchy: 0
+weight: -8

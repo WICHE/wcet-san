@@ -1,0 +1,10 @@
+uuid: 11c8b121-0619-415c-9287-9d9f18330477
+langcode: en
+status: true
+dependencies:
+  module:
+    - media_entity
+id: media.form_preview
+label: 'Form Preview'
+targetEntityType: media
+cache: true

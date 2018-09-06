@@ -1,0 +1,9 @@
+uuid: b6c89f2c-50bf-47de-b217-cf3f8ea4738f
+langcode: en
+status: true
+dependencies: {  }
+id: single_svg
+label: 'Single - SVG'
+icon_uuid: null
+description: null
+behavior_plugins: {  }

@@ -1,0 +1,73 @@
+id: coordinators_main
+label: Main Coordinators Import
+migration_group: coordinators
+dependencies:
+  enforced:
+    module:
+      - wcet_migrate
+
+source:
+  plugin: csv
+  path: /source_files/coordinators.csv
+  header_row_count: 1
+  keys:
+    - email
+  column_names:
+      0:
+        compact: Compact
+      1:
+        membership: Membership Name
+      2:
+        first_name: First Name
+      3:
+        last_name: Last Name
+      4:
+        job_title: Title
+      5:
+        institution: "Institution/Organization"
+      6:
+        street_address: Street Address
+      7:
+        city: City
+      8:
+        state: State
+      9:
+        zip_code: Zip Code
+      10:
+        email: Email
+      11:
+        phone: Phone
+process:
+  name: email
+  mail: email
+  status:
+    plugin: default_value
+    default_value: 1
+  roles:
+    plugin: default_value
+    default_value: coordinator
+  field_first_name: first_name
+  field_last_name: last_name
+  field_job_title: job_title
+  field_user_membership:
+    plugin: coordinator_membership
+    source: membership
+    value_key: name
+    bundle_key: vid
+    bundle: membership
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_user_institution:
+    plugin: entity_generate
+    source: institution
+    value_key: name
+    bundle_key: vid
+    bundle: institution
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_phone_number: phone
+  field_address:
+    plugin: coordinator_address
+    source: email
+destination:
+  plugin: entity:user

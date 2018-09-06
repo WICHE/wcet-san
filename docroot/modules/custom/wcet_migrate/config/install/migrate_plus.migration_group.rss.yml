@@ -1,0 +1,8 @@
+id: rss
+label: RSS
+description: Migrations importing from an RSS feed.
+source_type: RSS feed
+dependencies:
+  enforced:
+    module:
+      - wcet_migrate

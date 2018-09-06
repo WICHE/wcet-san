@@ -1,0 +1,15 @@
+uuid: 759e3db9-47b9-4e7e-baa2-6b1a4e04a080
+name: 'State Authorization Network'
+mail: no-reply@elevatedthird.com
+slogan: ''
+page:
+  403: /node/77
+  404: /node/76
+  front: /node/22
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
+mail_notification: ''

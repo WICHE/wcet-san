@@ -1,0 +1,65 @@
+////
+/// Framework - Layouts
+/// @group frameworkComponents
+////
+
+$layouts: (
+  page: (
+    width: 1200px,
+    gutters: (
+      small: 20px,
+      large: 40px
+    )
+  )
+) !default;
+
+/// Set the gutters of an element using padding.
+/// @param {map} $gutters - A map containing gutter sizes for each breakpoint.
+/// @example
+///   @include set-gutters($grid-column-gutter)
+@mixin set-gutters($gutters: $grid-column-gutter) {
+  @if type-of($gutters == map) {
+    @each $bp, $size in $gutters {
+      $size: rem-calc($size);
+      @include breakpoint($bp) {
+        @include left-right(padding, $size);
+      }
+    }
+  }
+}
+
+/// Set a max-width, center aligned layout using config.
+///
+/// @param {string|map|number} $key - Value to use for content width.
+/// @param {string} $collapse - Collapse gutters
+/// @param {string} $config-map [$layouts] - Map to use for layout configuration.
+/// @example
+///   @include content-width(default)
+@mixin content-width($key, $collapse: false, $config-map: $layouts) {
+  $value-type: type-of($key);
+  $layout: null;
+
+  @if ($value-type == number) {
+    // value is a one-off size unit.
+    max-width: $key;
+    @include left-right(margin, auto);
+  } @else {
+    @if ($value-type == string) {
+      // Assume value is key of config map.
+      $layout: extend-in-map($config-map, $key);
+
+    } @else if ($value-type == map) {
+      // value is a one-off map.
+      $layout: $value-type;
+    }
+
+    max-width: rem-calc(map-get($layout, width));
+    @include left-right(margin, auto);
+
+    @if (not $collapse) {
+      @if (map-has-key($layout, gutters) and type-of(map-get($layout, gutters)) == map) {
+        @include set-gutters(map-get($layout, gutters));
+      }
+    }
+  }
+}

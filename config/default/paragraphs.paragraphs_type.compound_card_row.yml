@@ -1,0 +1,9 @@
+uuid: 87bdc617-c42b-46fd-ad29-7976de42793e
+langcode: en
+status: true
+dependencies: {  }
+id: compound_card_row
+label: 'Compound - Card Row'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

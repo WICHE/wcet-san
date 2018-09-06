@@ -1,0 +1,44 @@
+uuid: 9394015f-e168-4343-bd68-c415ab4e1666
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.form_preview
+    - field.field.media.video.field_tags
+    - field.field.media.video.field_video
+    - field.field.media.video.field_video_id
+    - field.field.media.video.field_video_type
+    - image.style.medium
+    - media_entity.bundle.video
+  module:
+    - image
+id: media.video.form_preview
+targetEntityType: media
+bundle: video
+mode: form_preview
+content:
+  name:
+    label: hidden
+    type: string
+    weight: 1
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  thumbnail:
+    type: image
+    weight: 0
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_tags: true
+  field_video: true
+  field_video_id: true
+  field_video_type: true
+  langcode: true
+  uid: true

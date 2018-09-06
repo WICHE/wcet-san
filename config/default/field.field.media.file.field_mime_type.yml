@@ -1,0 +1,19 @@
+uuid: cb23bcc6-0123-4819-ad34-a948af3e8057
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_mime_type
+    - media_entity.bundle.file
+id: media.file.field_mime_type
+field_name: field_mime_type
+entity_type: media
+bundle: file
+label: 'File MIME Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

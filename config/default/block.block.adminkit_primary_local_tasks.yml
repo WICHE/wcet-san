@@ -1,0 +1,22 @@
+uuid: 2b342350-e746-4eec-b98d-513b08f90de7
+langcode: en
+status: true
+dependencies:
+  theme:
+    - adminkit
+_core:
+  default_config_hash: C4jeRGOb3fSzrQjlRI_321KDXGWBJhSYTyIYb-vIsXw
+id: adminkit_primary_local_tasks
+theme: adminkit
+region: header
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: false
+visibility: {  }

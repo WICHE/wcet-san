@@ -1,0 +1,23 @@
+uuid: dbae955f-613e-4abc-98a6-5f1b570b20d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheader_as_h1
+    - paragraphs.paragraphs_type.compound_header_content
+id: paragraph.compound_header_content.field_subheader_as_h1
+field_name: field_subheader_as_h1
+entity_type: paragraph
+bundle: compound_header_content
+label: 'Use subheader as h1'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

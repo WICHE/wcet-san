@@ -1,0 +1,47 @@
+{
+  "name": "dom-autoscroller",
+  "version": "2.2.8",
+  "description": "Auto scroll dom elements",
+  "main": "dist/bundle.js",
+  "jsnext:main": "dist/bundle.es.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ./rollit"
+  },
+  "keywords": [
+    "scrolling",
+    "DOM"
+  ],
+  "author": "Quentin Engles <hollowdoor99@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "animation-frame-polyfill": "^1.0.0",
+    "create-point-cb": "^1.0.0",
+    "dom-mousemove-dispatcher": "^1.0.1",
+    "dom-plane": "^1.0.1",
+    "dom-set": "^1.0.1",
+    "type-func": "^1.0.1"
+  },
+  "devDependencies": {
+    "dragula": "^3.7.2",
+    "minifyify": "^7.3.3",
+    "rollup": "^0.41.4",
+    "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-commonjs": "^5.0.5",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-uglify": "^1.0.1",
+    "uglify-js": "^2.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hollowdoor/dom_autoscroller.git"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "index.js"
+  ]
+}

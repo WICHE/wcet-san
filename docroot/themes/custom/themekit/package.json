@@ -1,0 +1,36 @@
+{
+  "name": "themekit",
+  "version": "1.0.0",
+  "description": "Starter drupal theme kit.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "find node_modules/ -name '*.info' -type f -delete"
+  },
+  "author": "Elevated Third",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.6.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-concat": "^2.6.0",
+    "gulp-livereload": "^3.8.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.0",
+    "sassdoc": "^2.1.20",
+    "webpack": "^2.6.1",
+    "webpack-stream": "^3.2.0"
+  },
+  "dependencies": {
+    "clipboard": "^1.7.1",
+    "formatter.js": "git+https://github.com/firstopinion/formatter.js.git",
+    "foundation-sites": "6.4.3",
+    "script-loader": "^0.7.0",
+    "select2": "^4.0.6-rc.1",
+    "svg-injector": "1.1.3"
+  }
+}

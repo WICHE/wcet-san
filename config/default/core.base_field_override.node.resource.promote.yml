@@ -1,0 +1,22 @@
+uuid: f20fc1f6-2bc6-4c55-bbc4-0636790c473b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.resource
+id: node.resource.promote
+field_name: promote
+entity_type: node
+bundle: resource
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

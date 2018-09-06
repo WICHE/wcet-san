@@ -1,0 +1,9 @@
+uuid: 79c033fb-0bb0-4cb0-9f5b-7526d38224e8
+langcode: en
+status: true
+dependencies: {  }
+name: 'Event Type'
+vid: event_type
+description: 'When creating an event, select a term from this vocabulary to determine its type.'
+hierarchy: 0
+weight: -9

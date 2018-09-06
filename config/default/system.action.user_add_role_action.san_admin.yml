@@ -1,0 +1,14 @@
+uuid: 4142e24b-b5e6-4f0e-9e32-ab53c8219b03
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.san_admin
+  module:
+    - user
+id: user_add_role_action.san_admin
+label: 'Add the SAN Admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: san_admin

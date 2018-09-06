@@ -1,0 +1,67 @@
+uuid: 8ade7f35-51e5-40c6-8c40-d4d282a97684
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.form_preview
+    - field.field.media.file.field_file
+    - field.field.media.file.field_file_size
+    - field.field.media.file.field_file_type
+    - field.field.media.file.field_mime_type
+    - field.field.media.file.field_tags
+    - image.style.thumbnail
+    - media_entity.bundle.file
+  module:
+    - file
+    - image
+id: media.file.form_preview
+targetEntityType: media
+bundle: file
+mode: form_preview
+content:
+  field_file:
+    type: file_default
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_file_type:
+    type: entity_reference_label
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    region: content
+  field_tags:
+    type: entity_reference_label
+    weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    region: content
+  name:
+    label: hidden
+    type: string
+    weight: 1
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  thumbnail:
+    type: image
+    weight: 0
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_file_size: true
+  field_mime_type: true
+  langcode: true
+  uid: true

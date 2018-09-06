@@ -1,0 +1,20 @@
+sitegroup: wcet_san
+
+deploy_tasks:
+  development:
+    before_deploy:
+      - composer install
+    after_deploy:
+      - cd docroot && drush -y updb --cache-clear=0
+      - cd docroot && drush -y cr
+  production:
+    before_deploy:
+      - composer install
+    after_deploy:
+      - cd docroot && drush -y updb --cache-clear=0
+      - cd docroot && drush -y cr
+
+shared:
+  production:
+    - src: files
+      dst: docroot/sites/default/files

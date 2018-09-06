@@ -1,0 +1,53 @@
+uuid: ee9834bc-d2e2-407d-83ea-945a076c15ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.form_preview
+    - field.field.media.svg.field_svg
+    - field.field.media.svg.field_svg_type
+    - field.field.media.svg.field_tags
+    - media_entity.bundle.svg
+  module:
+    - file
+id: media.svg.form_preview
+targetEntityType: media
+bundle: svg
+mode: form_preview
+content:
+  field_svg:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_svg_type:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_tags:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  name:
+    label: above
+    type: string
+    weight: 1
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  langcode: true
+  thumbnail: true
+  uid: true

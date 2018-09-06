@@ -1,0 +1,74 @@
+////
+/// Table Styles
+////
+
+table {
+  thead {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $san-dark-gray;
+  }
+  tbody {
+    border: none;
+    tr {
+      border-bottom: 1px solid $san-french-gray;
+      transition: .3s ease background-color;
+      &:hover {
+        background-color: $san-athens-gray;
+      }
+    }
+  }
+  th {
+    a {
+      color: $san-dark-gray;
+      position: relative;
+      padding-right: 1rem;
+      transition: .3s ease transform, .3s ease color;
+      span.tablesort {
+        display: none;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: .4rem;
+        height: .4rem;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        border-color: $san-dark-gray;
+        transform: translate(-50%, -50%) rotate(135deg);
+        transition: .4s ease border-color;
+      }
+      &:hover {
+        color: $san-blue;
+        &:before {
+          border-color: $san-blue;
+        }
+      }
+    }
+    &.is-active {
+      a:before {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+  tr {
+    &:nth-child(even) {
+      background: transparent;
+      border-bottom: 1px solid $san-french-gray;
+    }
+  }
+  td {
+    &.is-active {
+      background-color: transparent;
+    }
+  }
+  a {
+    color: $san-dark-gray;
+    transition: .3s ease color;
+    &:hover {
+      color: $san-blue;
+    }
+  }
+}

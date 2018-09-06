@@ -1,0 +1,14 @@
+uuid: 04e0746f-b662-45ec-9d3e-1d88adb9e352
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.san_admin
+  module:
+    - user
+id: user_remove_role_action.san_admin
+label: 'Remove the SAN Admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: san_admin

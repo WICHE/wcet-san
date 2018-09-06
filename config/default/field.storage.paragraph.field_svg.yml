@@ -1,0 +1,20 @@
+uuid: 6c2ebba8-62a7-48ad-92be-53341808d66d
+langcode: en
+status: true
+dependencies:
+  module:
+    - media_entity
+    - paragraphs
+id: paragraph.field_svg
+field_name: field_svg
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

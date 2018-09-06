@@ -1,0 +1,125 @@
+////
+/// Style
+/// @group utility
+////
+
+$img-dir: '../../images' !default;
+
+
+/// Apply a background color that extends past it's wrapper.
+/// @example
+///   @include full-width-bg-color(green, before)
+@mixin full-width-bg-color($color, $psuedo-element: before, $addRelative: true, $z-index: null) {
+  @if ($addRelative) {
+    position: relative;
+  }
+
+  @if ($z-index) {
+    z-index: $z-index;
+  }
+
+  &:#{$psuedo-element} {
+    content: '';
+    position: absolute;
+    width: 500%;
+    top: 0;
+    left: -150%;
+    height: 100%;
+    background: $color;
+    z-index: -1;
+  }
+}
+
+/// Required for message styles
+@mixin square($dimensions) {
+  height: $dimensions;
+  width: $dimensions;
+}
+
+/// Required for message styles
+@mixin circle($dimensions) {
+  height: $dimensions;
+  width: $dimensions;
+  border-radius: 50%;
+}
+
+/// Return the path to an image in the theme images directory.
+@function img-get($img) {
+  @return $img-dir + $img;
+}
+
+/// Background image style with background-size parameter
+/// @param {String} $background-size [cover] - Background color
+@mixin bg-style($background-size: cover) {
+  background-repeat: no-repeat;
+  background-size: $background-size;
+  background-position: center center;
+}
+
+
+@mixin shadow-border($width: 1px, $color: #ccc) {
+  box-shadow: 0 0 0 $width $color;
+}
+
+
+/// Add a property to the left and right of a box.
+/// @example
+///   left-right(margin, 10px)
+@mixin left-right($property, $value, $border-style: solid, $border-color: #000) {
+  @if ($property == border) {
+    #{$property}-left: $value $border-style, $border-color;
+    #{$property}-right: $value $border-style, $border-color;
+  } @else {
+    #{$property}-left: $value;
+    #{$property}-right: $value;
+  }
+}
+
+/// Add a property to the top and bottom of a box.
+/// @example
+///   top-bottom(margin, 10px)
+@mixin top-bottom($property, $value: 1px, $border-style: solid, $border-color: #000) {
+  @if ($property == border) {
+    #{$property}-top: $value $border-style $border-color;
+    #{$property}-bottom: $value $border-style $border-color;
+  } @else {
+    #{$property}-top: $value;
+    #{$property}-bottom: $value;
+  }
+}
+
+
+
+$gradients: (
+  _base: (
+    type: linear,
+    position: "to right",
+    stops: (
+      #000 "0%",
+      #fff "100%"
+    )
+  )
+) !default;
+
+
+/// Gradients - Helpful mixin when many gradients are used on a site so you can call them by name.
+/// @param {String} $gradient-key - key in $gradients map to determine styles from config
+/// @param {String} $type [linear] - valid gradient type (linear/radial)
+/// @param {String} $position ["to right"] - the directional keyword for the gradient
+/// @param {Boolean} $legacy-support [false] - include background color where gradients aren't supported
+/// @example
+///   @include gradient(gray, linear, "to right")
+@mixin gradient($gradient-key, $type: linear, $position: "to right") {
+  $gradient: extend-in-map($gradients, $gradient-key);
+  $stops: map-get($gradient, stops);
+
+  @if $type != linear and $type != radial {
+    @warn "`#{$type} is not a valid gradient type. The parameter must be linear or radial.";
+  }
+
+  @if $type == linear {
+    background-image: linear-gradient(unquote($position), #{$stops});
+  } @elseif $type == radial {
+    background-image: radial-gradient(unquote($position), #{$stops});
+  }
+}

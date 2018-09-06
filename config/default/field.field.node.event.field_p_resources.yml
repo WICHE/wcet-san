@@ -1,0 +1,78 @@
+uuid: aa82313d-2e92-42fa-9635-f411829158fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_p_resources
+    - node.type.event
+    - paragraphs.paragraphs_type.single_file
+    - paragraphs.paragraphs_type.single_link
+  module:
+    - entity_reference_revisions
+id: node.event.field_p_resources
+field_name: field_p_resources
+entity_type: node
+bundle: event
+label: Resources
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      single_link: single_link
+      single_file: single_file
+    target_bundles_drag_drop:
+      single_link:
+        enabled: true
+        weight: 10
+      single_file:
+        enabled: true
+        weight: 13
+      single_image:
+        weight: 15
+        enabled: false
+      single_svg:
+        weight: 16
+        enabled: false
+      compound_card_row:
+        weight: 17
+        enabled: false
+      single_text_area:
+        weight: 17
+        enabled: false
+      compound_faq_section:
+        weight: 18
+        enabled: false
+      single_video:
+        weight: 18
+        enabled: false
+      compound_header_content:
+        weight: 19
+        enabled: false
+      layout_two_column:
+        weight: 20
+        enabled: false
+      reference_block:
+        weight: 21
+        enabled: false
+      simple_card:
+        weight: 22
+        enabled: false
+      simple_content:
+        weight: 23
+        enabled: false
+      simple_faq:
+        weight: 24
+        enabled: false
+      summary_events:
+        weight: 31
+        enabled: false
+      summary_resources:
+        weight: 32
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,288 @@
+////
+/// Helpers
+/// @group utility
+////
+
+
+/// Return a map from the specified key. Optionally specify a sub key.
+/// Works similarly to map-get but with support for sub keys.
+/// @param {map} $map
+/// @param {string} $key - The map key to retrieve.
+/// @param {string} $sub-key [null] - A sub-key of $key
+/// @returns {*|null} The value of the supplied key
+/// @example
+///   key($colors, default, light)
+@function key($map, $key, $sub-key: null) {
+  @if map-has-key($map, $key) {
+    $val: map-get($map, $key);
+
+    @if $sub-key and map-has-key($val, $sub-key) {
+      $val: map-get($val, $sub-key);
+    }
+
+    @return $val;
+  }
+
+  @warn "Unknown '#{$key}' in '#{$map}'.";
+  @return null;
+}
+
+
+/// Allows for sub-maps of configuration maps to extend other sub-maps.
+///
+/// Example:
+///   $conf-map: (
+///     base-config: (
+///       color: red,
+///       size: large
+///     ),
+///     red-button: (
+///       extend: base-config,
+///       arrow: true
+///     )
+///   );
+///
+/// @example
+///   extend-in-map($conf-map, red-button)
+@function extend-in-map($map-to-search, $sub-map-key) {
+  $map-to-merge: key($map-to-search, $sub-map-key);
+
+  @if (map-has-key($map-to-merge, extend)) {
+    $key-of-map-to-extend: map-get($map-to-merge, extend);
+
+    @if (map-has-key($map-to-search, $key-of-map-to-extend)) {
+      @return map-merge(key($map-to-search, $key-of-map-to-extend), $map-to-merge);
+    }
+  }
+
+  @return $map-to-merge;
+}
+
+
+$z-layers: (
+  bottomless-pit: -9999,
+  default: 0,
+  debug: 1000
+) !default;
+
+/// Retrieve the z-index from $z-layers.
+/// @see $z-layers
+/// @example
+///   z(banner, default)
+@function z($key, $sub-key: null) {
+  @return key($z-layers, $key, $sub-key);
+}
+
+
+/// Store groups of commonly used selectors
+$selector-groups: (
+  form-inputs: (
+    text: "[type='text']",
+    password: "[type='password']",
+    date: "[type='date']",
+    datetime: "[type='datetime']",
+    datetime-local: "[type='datetime-local']",
+    month: "[type='month']",
+    week: "[type='week']",
+    email: "[type='email']",
+    number: "[type='number']",
+    search: "[type='search']",
+    tel: "[type='tel']",
+    time: "[type='time']",
+    url: "[type='url']",
+    color: "[type='color']",
+    textarea: "textarea"
+  ),
+  headers: (
+    h1: 'h1',
+    h2: 'h2',
+    h3: 'h3',
+    h4: 'h4',
+    h5: 'h5',
+    h6: 'h6'
+  ),
+  buttons: (
+    input: '[type="button"]',
+    submit: '[type="submit"]',
+    button: 'button'
+  ),
+  body-text: (
+    p: 'p',
+    ul: 'ul',
+    ol: 'ol',
+    div: 'div'
+  ),
+  active: (
+    hover: "&:hover",
+    focus: "&:focus",
+    active: "&:active"
+  )
+) !default;
+
+/// Include a group of selectors defined in the $selector-groups map.
+/// @see $selector-groups
+@function selectors($selector-key, $exclude: '') {
+  $selectors: map-get($selector-groups, $selector-key);
+  $selector-string: '';
+  $postfix: '';
+
+  @each $key, $selector in $selectors {
+    @if str-length($selector-string) > 0 {
+      $postfix: ', ';
+    }
+    @if index($exclude, $key) == null {
+      $selector-string: $selector-string + $postfix + $selector;
+    }
+  }
+
+  @return $selector-string;
+}
+
+/// A mixin wrapper of the selector() function.
+/// @see {function} selectors
+/// @example
+///   @include selectors(active) {
+///     text-decoration: underline;
+///   }
+@mixin selectors($selector-key, $exclude: '') {
+  #{selectors($selector-key, $exclude)} {
+    @content;
+  }
+}
+
+
+/// Helper function to replace characters in a string
+/// Explanation found - https://codepen.io/tigt/post/optimizing-svgs-in-data-uris
+/// @param {String} $string - The string to search (haystack).
+/// @param {String} $search - The string to search for (needle).
+/// @param {String} $replace - The string to replace with each instance of the needle.
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+            str-replace(str-slice($string, $index +
+            str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+
+/// Function to create an optimized svg url
+/// @param {String} $svg - The svg to optimize.
+@function svg-url($svg){
+  //
+  //  Chunk up string in order to avoid
+  //  "stack level too deep" error
+  //
+  $encoded:'';
+  $slice: 2000;
+  $index: 0;
+  $loops: ceil(str-length($svg)/$slice);
+  @for $i from 1 through $loops {
+    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    //
+    //   Encode (may need a few extra replacements)
+    //
+    $chunk: str-replace($chunk,'"','\'');
+    $chunk: str-replace($chunk,'<','%3C');
+    $chunk: str-replace($chunk,'>','%3E');
+    $chunk: str-replace($chunk,'&','%26');
+    $chunk: str-replace($chunk,'#','%23');
+    $chunk: str-replace($chunk,'(','%28');
+    $chunk: str-replace($chunk,')','%29');
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+  @return url("data:image/svg+xml;charset=utf8,#{$encoded}");
+}
+
+/// Sets a percentage that equals a pixel value at a specified width.
+/// This is useful for setting default widths that scale down.
+@function px-to-percent($px, $container-width) {
+  @return percentage($px/$container-width);
+}
+
+/// Basic clearfix
+/// @example
+///   @include clear()
+@mixin clear() {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+/// Wrap @content in $selector if true, else just print @content. This is useful for situations like when you need to
+/// be able to use a button mixin on both button/a elements and input elements, but the mixin requires pseudo elements which
+/// means the input will need to be wrapped in a span.
+/// @param {String} $selector - A valid CSS selector
+/// @param {Boolean} $boolean - A boolean representing whether or not the selector should be used
+/// @example
+///   @include dependent-selector('input[type="submit"]', true) {
+///     appearance: none;
+///     line-height: 1;
+///   }
+@mixin dependent-selector($selector, $boolean) {
+  @if ($boolean) {
+    #{$selector} {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+};
+
+
+/// Get a vw value based on the target max px size and the @include breakpoint
+/// at which you want that max px size to be reached
+/// @param {String} $target - The font-size in px (ie - 72px)
+/// @param {Number} $screen-width [map-get($breakpoints, large)] - The screen-width to use to generate vw-context
+/// @example
+///   get-vw(20px, large)
+@function get-vw($target, $screen-width: map-get($breakpoints, large)) {
+  @if type-of($screen-width) != number {
+    @error '$screen-width must be a number!';
+  }
+  $vw-context: ($screen-width * .01) + 0px;
+  @return ($target/$vw-context) * 1vw;
+}
+
+
+/// @param {Number} $size - The target max size in px
+/// @param {String} $breakpoint [large] - The key of the bp at which max size is reached, or a specific value (ie - 1000px)
+/// @param {Map} $breakpoint-map [$breakpoints] - A breakpoint map
+/// @param {String} $property [font-size] - The property to set these values for. Defaults to `font-size` and most often will be used for that
+/// @example
+///   @include vw-with-max(15px, large, $property: padding);
+@mixin vw-with-max($size, $breakpoint: large, $breakpoint-map: $breakpoints, $property: font-size) {
+  $target-bp: '';
+  @if (type-of($breakpoint) == string) {
+    @if (type-of($breakpoint-map) != map) {
+      $breakpoint-map: $breakpoints;
+    }
+    $target-bp: map-get($breakpoints, $breakpoint);
+  } @else if (type-of($breakpoint) == number) {
+    $target-bp: $breakpoint + 0px;
+  } @else {
+    @error "Sorry, `#{$breakpoint}` is not an appropriate value for $breakpoint. :("
+  }
+
+  #{$property}: get-vw($size, $target-bp);
+  @include breakpoint(#{$breakpoint}) {
+    #{$property}: $size;
+  }
+}
+
+
+/// Get first element of list
+/// @param {List} $list - A list
+@function first($list) {
+  @return nth($list, 1);
+}
+
+/// Get last element of list
+/// @param {List} $list - A list
+@function last($list) {
+  @return nth($list, length($list));
+}

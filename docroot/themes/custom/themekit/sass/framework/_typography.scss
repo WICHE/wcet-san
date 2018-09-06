@@ -1,0 +1,14 @@
+////
+/// Typography
+/// @group frameworkComponents
+////
+
+/// Font VW Max - Converts a max size at a breakpoint to a VW that scales up to that max size
+/// @param {Number} $size - The target max size in px
+/// @param {String} $breakpoint [large] - The key of the bp at which max size is reached, or a specific value (ie - 1000px)
+/// @param {Map} $breakpoint-map [$breakpoints] - A breakpoint map
+/// @example
+///   @include font-vw-max(20px, large)
+@mixin font-vw-max($size, $breakpoint: large, $breakpoint-map: $breakpoints) {
+  @include vw-with-max($size, $breakpoint: large, $breakpoint-map: $breakpoints, $property: font-size)
+}

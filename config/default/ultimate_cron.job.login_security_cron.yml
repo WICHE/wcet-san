@@ -1,0 +1,17 @@
+uuid: 5f031798-4eea-4ae1-b091-0000446f219f
+langcode: en
+status: true
+dependencies:
+  module:
+    - login_security
+title: 'Default cron handler'
+id: login_security_cron
+weight: 0
+module: login_security
+callback: login_security_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

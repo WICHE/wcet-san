@@ -1,0 +1,23 @@
+uuid: f120b1b0-7a71-4644-85e9-5c73fab9cb92
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link_style
+    - paragraphs.paragraphs_type.single_link
+  module:
+    - options
+id: paragraph.single_link.field_link_style
+field_name: field_link_style
+entity_type: paragraph
+bundle: single_link
+label: 'Link Style'
+description: 'Select a style for this link. Primary appears as a solid blue button, secondary appears as a transparent button with a white outline and tertiary appears as a link with gray text and an arrow to the right.'
+required: true
+translatable: false
+default_value:
+  -
+    value: primary
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -6,6 +6,8 @@ dependencies:
     - core.entity_view_mode.node.featured
     - field.field.node.resource.body
     - field.field.node.resource.field_content_access
+    - field.field.node.resource.field_meta_tags
+    - field.field.node.resource.field_p_content
     - field.field.node.resource.field_p_resources
     - field.field.node.resource.field_resource_type
     - field.field.node.resource.field_topic
@@ -44,7 +46,11 @@ content:
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   field_content_access: true
+  field_meta_tags: true
+  field_p_content: true
   field_p_resources: true
   langcode: true

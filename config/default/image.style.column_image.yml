@@ -14,6 +14,7 @@ effects:
     data:
       width: 558
       height: 325
+      anchor: center-center
   ec803cc4-c06f-429f-b86c-3f4088e25e6c:
     uuid: ec803cc4-c06f-429f-b86c-3f4088e25e6c
     id: image_style_quality

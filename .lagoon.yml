@@ -30,5 +30,5 @@ environments:
     routes:
       - varnish:
         - "wcetsan.wiche.edu":
-            tls-acme: 'false'
+            tls-acme: 'true'
             insecure: Redirect

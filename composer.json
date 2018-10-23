@@ -22,7 +22,7 @@
     "drupal-composer/drupal-scaffold": "^2.2",
     "cweagans/composer-patches": "~1.0",
     "wikimedia/composer-merge-plugin": "dev-master",
-    "drupal/core": "8.6.1",
+    "drupal/core": "8.6.2",
     "drush/drush": "~8.0",
     "drupal/console": "^1.0",
     "drupal/devel": "^1.0",
@@ -135,12 +135,6 @@
       },
       "drupal/video_embed_field": {
         "Thumbnail not updated": "./patches/video_embed_field_update_thumb.patch"
-      },
-      "drupal/swiftmailer": {
-        "htmlspecialchars() expects parameter 1 to be string": "https://www.drupal.org/files/issues/swiftmailer-htmlspecialchars_-2855052-9-do-not-test.patch"
-      },
-      "drupal/core": {
-        "The Views integration Datetime Range fields should extend the views integration for regular Datetime fields": "https://www.drupal.org/files/issues/improve_the_views_integration_for_daterange_fields-2786577-60.patch"
       }
     }
   },

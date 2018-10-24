@@ -17,16 +17,18 @@ tasks:
         name: task2
         command: cd docroot; drush -y cr all
         service: cli
-    
-
-cronjobs:
-  - name: drush cron
-    schedule: "*/15 * * * *"
-    command: drush cron
-    service: cli
 
 environments:
   master:
+    cronjobs:
+      - name: drush cron
+        schedule: "*/15 * * * *"
+        command: drush cron
+        service: cli
+      - name: drush mim rss_blog
+        schedule: "H * * * *" # once per Hour
+        command: drush mim rss_blog
+        service: cli
     routes:
       - varnish:
         - "wcetsan.wiche.edu":

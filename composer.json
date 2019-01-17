@@ -86,7 +86,7 @@
     "drupal/swiftmailer": "^1.0",
     "drupal/backup_migrate": "^4.0",
     "drupal/scheduler": "^1.0",
-    "drupal/entity_clone": "^1.0",
+    "drupal/entity_clone": "^1.0-beta1",
     "symfony/css-selector": "~3.3",
     "drupal/migrate_plus": "^4.0@beta",
     "drupal/migrate_tools": "^4.0@beta",

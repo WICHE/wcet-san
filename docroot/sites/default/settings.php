@@ -8,17 +8,17 @@ $settings['trusted_host_patterns'] = array(
     '^.+\.wiche\.edu$'
 );
 
-// amazee.io Database connection
-if(getenv('AMAZEEIO_SITENAME')){
-    $databases['default']['default'] = array(
-        'driver' => 'mysql',
-        'database' => getenv('AMAZEEIO_SITENAME'),
-        'username' => getenv('AMAZEEIO_DB_USERNAME'),
-        'password' => getenv('AMAZEEIO_DB_PASSWORD'),
-        'host' => getenv('AMAZEEIO_DB_HOST'),
-        'port' => getenv('AMAZEEIO_DB_PORT'),
-        'prefix' => '',
-    );
+### Lagoon Database connection
+if(getenv('LAGOON')){
+  $databases['default']['default'] = array(
+    'driver' => 'mysql',
+    'database' => getenv('MARIADB_DATABASE') ?: 'drupal',
+    'username' => getenv('MARIADB_USERNAME') ?: 'drupal',
+    'password' => getenv('MARIADB_PASSWORD') ?: 'drupal',
+    'host' => getenv('MARIADB_HOST') ?: 'mariadb',
+    'port' => 3306,
+    'prefix' => '',
+  );
 }
 
 // amazee.io Varnish & Reverse proxy settings

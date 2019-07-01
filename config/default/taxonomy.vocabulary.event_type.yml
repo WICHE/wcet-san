@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Event Type'
 vid: event_type
 description: 'When creating an event, select a term from this vocabulary to determine its type.'
-hierarchy: 0
 weight: -9

@@ -5,5 +5,4 @@ dependencies: {  }
 name: Topic
 vid: topic
 description: 'A general vocabulary of topics that can be used to classify any type of content on the site.'
-hierarchy: 0
 weight: -10

@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'SVG Type'
 vid: svg_type
 description: 'Internal categorization used for SVG organization in the Media Library and Entity Browsers'
-hierarchy: 0
 weight: -1

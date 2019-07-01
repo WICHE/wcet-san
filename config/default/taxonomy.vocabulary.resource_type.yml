@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Resource Type'
 vid: resource_type
 description: 'When adding a resource, select a term from this vocabulary to determine it''s type.'
-hierarchy: 0
 weight: -8

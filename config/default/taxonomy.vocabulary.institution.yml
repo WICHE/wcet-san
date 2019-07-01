@@ -5,5 +5,4 @@ dependencies: {  }
 name: Institution
 vid: institution
 description: 'Institutions member users can be associated with.'
-hierarchy: 0
 weight: -6

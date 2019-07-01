@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'File Type'
 vid: file_type
 description: 'Internal categorization used for file organization in the Media Library and Entity Browsers'
-hierarchy: 0
 weight: -4

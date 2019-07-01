@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Video Type'
 vid: video_type
 description: 'Internal categorization used for video organization in the Media Library and Entity Browsers'
-hierarchy: 0
 weight: -3

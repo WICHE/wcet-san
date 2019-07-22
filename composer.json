@@ -75,7 +75,6 @@
     "drupal/mailsystem": "^4.0",
     "drupal/image_style_quality": "^1.0",
     "drupal/sitemap": "^1.0",
-    "drupal/simple_sitemap": "^2.0",
     "drupal/contact_storage_export": "^1.0",
     "drupal/seckit": "^1.0",
     "drupal/security_review": "^1.0",
@@ -91,7 +90,8 @@
     "drupal/migrate_plus": "^4.0@beta",
     "drupal/migrate_tools": "^4.0@beta",
     "drupal/block_field": "^1.0@alpha",
-    "drupal/migrate_source_csv": "^2.0"
+    "drupal/migrate_source_csv": "^2.0",
+    "drupal/simple_sitemap": "^3.3"
   },
   "conflict": {
       "drupal/drupal": "*"

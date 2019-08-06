@@ -1,5 +1,5 @@
-# ThemeKit
-A starter Drupal subtheme reliant on the Drupal core Classy theme.
+# Adminkit
+A Drupal admin subtheme based on Adminimal.
  
 ## Setup 
 
@@ -75,4 +75,47 @@ gulp watch
 ```
 
 Watches for any JavaScript or sass changes and compiles them to css and js. this is similar to `gulp default` but with a
-file watcher.
+file watcher. 
+
+
+## Bower
+Bower is used to manage packages for the web. More information can be found [here](http://bower.io/). 
+
+### setup
+Bower requires node and npm. You will need to install it just once, globally.
+
+```
+npm install -g bower
+```
+### manage packages 
+A bower project will already be initialized in themekit. Syntax is very similar to npm. To add a package...
+
+```
+bower install PACKAGENAME --save
+```
+The `--save` tag adds the package as a dependency to the `bower.json` file. You should generally always include it.
+
+If you want to remove a package from your project because it sucks and you are no longer using it...
+
+```
+bower uninstall PACKAGENAME --save
+```
+This will remove all the files the package added AND remove the dependency in the `bower.json` file.
+
+Bower projects can also have dependencies, so installing a package may include others. Uninstalling a package will remove all of its dependencies as well.
+
+```
+bower update <PACKAGENAME>
+```
+Upade all (or single) package to most recent version as defined in the `bower.json` file for that package.
+
+Most commonly used packages will be compatible with bower. Search for packages [here](http://bower.io/search/).
+
+### add to gulp workflow
+Now add the assets to your gulp workflow.
+
+Add the path to any `css` files in the `stylesSrc` array in the config section of `gulpfile.js`.
+
+Any `js` files go in the `scriptsSrc`array in the config section of `gulpfile.js`.
+
+Any `scss` assets that you will be importing into your theme (ie - libraries, susy, foundation) should have their path added to the `includePaths` array in the config section of `gulpfile.js`. This adds that path so you can simply `@include ASSET` in your style.scss file.

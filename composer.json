@@ -23,7 +23,7 @@
     "cweagans/composer-patches": "~1.0",
     "wikimedia/composer-merge-plugin": "dev-master",
     "drupal/core": "8.7.*",
-    "drush/drush": "~8.0",
+    "drush/drush": "^8",
     "drupal/console": "^1.0",
     "drupal/devel": "^1.0",
     "drupal/config_installer": "^1.0",

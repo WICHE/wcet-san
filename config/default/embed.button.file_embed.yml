@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.entity_embed
+    - entity_browser.browser.file_embed
     - media_entity.bundle.file
-  content:
-    - 'file:file:f849322b-4f83-4652-8b65-705a0ea395bb'
   module:
     - entity_embed
     - media_entity
@@ -21,4 +21,7 @@ type_settings:
   entity_browser: file_embed
   entity_browser_settings:
     display_review: true
-icon_uuid: f849322b-4f83-4652-8b65-705a0ea395bb
+icon:
+  data: iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfiAQgWGyd7G7BFAAABFElEQVRIx8WVv06EQBCHvyMQQucj2PgOV9opD2BCa6FPYGFnrsPEJ7jmrqS0pLOwsbPyFWiluAsSyWkhWXXYP2wM3m+bAWY/dn5MBvhSzodjvXGKRjMFiFlg0ysbzijl7VBFLTV2XVCQSUTAeJVkFLIQH4AW4QfQIHwBA0Q4SAi54qCPa+7o1JMb2j564Z6UB78T3Krt8MgzJ6YTdORawPWvK5Xj78Gg4qHmygOpmic3ICG3AFIaF6Dh2KeEP3swASChMs6EikSm6zw4IjK87l1aqP+M23/1QNcHK0sfnI/pg7UFMMqDEg9N4EHApaWEJTsXIOLQAoh+jBUDoBWjY2oP9g/49iA2WqdTLM10/97l6ufyJwSVbsdi1Qc9AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAxLTA4VDIyOjI3OjM5KzAxOjAw/+KQ0wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMS0wOFQyMjoyNzozOSswMTowMI6/KG8AAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
+  uri: 'public://embed_buttons/file_1.png'
+icon_uuid: null

@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.entity_embed
+    - entity_browser.browser.video_embed
     - media_entity.bundle.video
-  content:
-    - 'file:file:0a4bb9d1-5c80-40be-9bf1-135e7de068de'
   module:
     - entity_embed
     - media_entity
@@ -21,4 +21,7 @@ type_settings:
   entity_browser: video_embed
   entity_browser_settings:
     display_review: true
-icon_uuid: 0a4bb9d1-5c80-40be-9bf1-135e7de068de
+icon:
+  data: iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABJElEQVRYhe3WL0tDURjH8c/GGAuGIWIwrSkoBjGKRTAs+BbMgmjyT/AdGK0mq1EsFi36AsRgEkTQOfAPIiIqm+HccIUpXDgbyO4XTno4z/O93Ad+h5x+p4B5DEfo9YETNLMK7GMkgsAABjGKtwj9MlPEA6ayXopFC19Ze8YUyEIFZcIOzGIbQxEa13ArLGQLF1hCI6nPYA11vGKxgBvs4TiCQJpiMuwKh9jAJHaxgwWsQjsx7wbLSf87bKKaqtXQLnVpcJozzOG9U7EXS/j82/BeCfxJLpAL5AK5QF8I1HEgRHFHgRdMoBT5lDGOI1wKkXwqxHARY3iEFXwKsRn73GM6+dgq1oVovsYTtgpJccDPrI5FQ3gnpqkIv6OJ8y7MzPlnfANdIUb1rmtOlwAAAABJRU5ErkJggg==
+  uri: 'public://embed_buttons/video-camera (1)_0.png'
+icon_uuid: null

@@ -79,6 +79,7 @@ module:
   paragraphs_browser: 0
   paragraphs_previewer: 0
   path: 0
+  path_alias: 0
   pathauto: 0
   rdf: 0
   redirect: 0

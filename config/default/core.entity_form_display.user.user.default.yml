@@ -80,6 +80,8 @@ content:
   google_analytics:
     weight: 3
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   contact: true
   langcode: true

@@ -26,10 +26,10 @@ fonts:
 themekit:
   version: VERSION
   js:
-    js/dist/themekit.js: {}
+    dist/themekit.js: {}
   css:
     theme:
-      css/style.css: {}
+      dist/style.css: {}
   dependencies:
       - core/drupal
       - core/jquery

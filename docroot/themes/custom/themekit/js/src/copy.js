@@ -6,7 +6,7 @@
  */
 
 import $ from 'jquery';
-import './foundation-setup';
+// import './foundation-setup';
 import Clipboard from 'clipboard';
 import { Tooltip } from 'foundation-sites/js/foundation.tooltip';
 

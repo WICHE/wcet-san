@@ -8,7 +8,7 @@
  */
 
 import $ from 'jquery';
-import './foundation-setup';
+// import './foundation-setup';
 import { ResponsiveMenu } from 'foundation-sites/js/foundation.responsiveMenu';
 
 new ResponsiveMenu($('.block-menu.menu--main > ul'));
@@ -48,11 +48,11 @@ function removeClonedNav() {
 
 }
 
-if (Foundation.MediaQuery.atLeast('large')) {
-  removeClonedNav();
-} else {
-  cloneNav();
-}
+// if (Foundation.MediaQuery.atLeast('large')) {
+//   removeClonedNav();
+// } else {
+//   cloneNav();
+// }
 
 /// Mobile Button
 let $mobileMenuButton = $('.menu-button');

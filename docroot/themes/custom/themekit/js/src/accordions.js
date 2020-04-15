@@ -8,7 +8,7 @@
  */
 
 import $ from 'jquery';
-import './foundation-setup'
+// import './foundation-setup'
 import { Accordion } from 'foundation-sites/js/foundation.accordion';
 
 new Accordion($('.accordion'), {

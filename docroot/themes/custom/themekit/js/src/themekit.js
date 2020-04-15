@@ -2,7 +2,7 @@
  * theme.js
  * Entry point for all theme related js.
  */
-import './foundation-setup';
+// import './foundation-setup';
 import './skip-link';
 import './inject-svg';
 import './select';

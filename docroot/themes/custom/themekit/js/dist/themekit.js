@@ -67,7 +67,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/**
-	 * theme.js
+	 * themekit.js
 	 * Entry point for all theme related js.
 	 */
 	(0, _jquery2.default)('.views-table').addClass('stack');
@@ -111,7 +111,7 @@
 	                              * of any file that is implementing a foundation component. Webpack determines
 	                              * dependencies so this will only be added once. Keep in mind this is where the global
 	                              * Foundation is being initialized `$(document).foudnation()`, so it's probably reasonable
-	                              * to include this in the `theme.js` file first, as well as Foundation component files.
+	                              * to include this in the `themekit.js` file first, as well as Foundation component files.
 	                              */
 
 	_foundation.Foundation.addToJquery(_jquery2.default);
@@ -3184,9 +3184,9 @@
 
 	  var id = 0;
 	  Utils.GetUniqueElementId = function (element) {
-	    // Get a unique element Id. If element has no id, 
-	    // creates a new unique number, stores it in the id 
-	    // attribute and returns the new id. 
+	    // Get a unique element Id. If element has no id,
+	    // creates a new unique number, stores it in the id
+	    // attribute and returns the new id.
 	    // If an id already exists, it simply returns it.
 
 	    var select2Id = element.getAttribute('data-select2-id');
@@ -3205,7 +3205,7 @@
 
 	  Utils.StoreData = function (element, name, value) {
 	    // Stores an item in the cache for a specified element.
-	    // name is the cache key.    
+	    // name is the cache key.
 	    var id = Utils.GetUniqueElementId(element);
 	    if (!Utils.__cache[id]) {
 	      Utils.__cache[id] = {};
@@ -3216,19 +3216,19 @@
 
 	  Utils.GetData = function (element, name) {
 	    // Retrieves a value from the cache by its key (name)
-	    // name is optional. If no name specified, return 
+	    // name is optional. If no name specified, return
 	    // all cache items for the specified element.
 	    // and for a specified element.
 	    var id = Utils.GetUniqueElementId(element);
 	    if (name) {
 	      if (Utils.__cache[id]) {
-	        return Utils.__cache[id][name] != null ? 
+	        return Utils.__cache[id][name] != null ?
 		      Utils.__cache[id][name]:
 		      $(element).data(name); // Fallback to HTML5 data attribs.
 	      }
 	      return $(element).data(name); // Fallback to HTML5 data attribs.
 	    } else {
-	      return Utils.__cache[id];			   
+	      return Utils.__cache[id];
 	    }
 	  };
 
@@ -7505,7 +7505,7 @@
 
 	      $e.attr('ajax--url', Utils.GetData($e[0], 'ajaxUrl'));
 	      Utils.StoreData($e[0], 'ajax-Url', Utils.GetData($e[0], 'ajaxUrl'));
-		  
+
 	    }
 
 	    var dataset = {};

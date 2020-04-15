@@ -13,6 +13,11 @@ libraries:
   - themekit/themekit
   - themekit/fonts
 
+libraries-override:
+  core/modernizr:
+    js:
+      assets/vendor/modernizr/modernizr.min.js: js/vendor/modernizr-custom.js
+
 regions:
   header: Header
   help: Help

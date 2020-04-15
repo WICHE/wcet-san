@@ -314,7 +314,7 @@ ul.primary {
     top: 0;
     width: 40px;
     height: 40px;
-    background: url(../../images/svg/loader.svg);
+    background: url(../images/svg/loader.svg);
     @include bg-style(contain);
     animation: rotate 700ms linear infinite normal;
   }
@@ -324,7 +324,7 @@ ul.primary {
   // Drupal default height, width
   //height: 19px;
   //width: 19px;
-  background: url(../../images/gif-loader.gif);
+  background: url(../images/gif-loader.gif);
   @include bg-style(contain);
 }
 

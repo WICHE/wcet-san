@@ -1,59 +1,150 @@
-var webpack = require("webpack");
+const webpack = require('webpack');
+const path = require('path');
+const fs = require('fs');
+const chalk = require('chalk');
+const yaml = require('js-yaml');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 
-var entryPoints = {
-  themekit: "./js/src/theme.js",
-
-  // You can define additional entry points for something like
-  // a react app as shown below. Once this is defined, it will
-  // create an output file named "myApp.js" which you can add to
-  // the site using Drupal's libarary system.
-  // "quick-quote": "./js/src/quick-quote/index.js"
+const entryPoints = {
+  polyfill: 'babel-polyfill',
+  themekit: './js/src/themekit.js',
+  style: './sass/style.scss',
+  wysiwyg: './sass/wysiwyg.scss',
 };
 
-var compiledEntries = {};
+const compiledEntries = {};
 
-for (var prop in entryPoints) {
+for (const prop in entryPoints) {
   compiledEntries[prop] = entryPoints[prop];
-  // compiledEntries[prop + ".min"] = entryPoints[prop];
 }
 
-var config = {
-  context: __dirname,
-  entry: compiledEntries,
+module.exports = (env, argv) => {
+  const isDev = argv.mode === 'development';
+  let vmName = '';
 
-  output: {
-    filename: "[name].js",
-  },
+  if (isDev) {
+    vmName = 'vzn.lndo.site';
+  }
 
-  externals: {
-    jquery: 'jQuery'
-  },
+  return {
+    context: __dirname,
+    entry: compiledEntries,
 
-  devtool: 'cheap-source-map',
-  plugins: [
-    // The below will shim global jquery, the first two lines will replace $/jQuery when require('jquery') is called
-    // The third line, which we probably will always need with Drupal, then uses the window.jQuery instead of the
-    // module jquery when require('jquery') is called
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      "window.jQuery": "jquery"
-    })
-  ],
-  module: {
-    loaders: [
+    output: {
+      path: `${__dirname}/dist`,
+      filename: '[name].js',
+    },
+
+    resolve: {
+      extensions: ['.js', '.vue', '.json', '.jsx'],
+      alias: {
+        vue$: 'vue/dist/vue.esm.js',
+      },
+    },
+
+    externals: {
+      jquery: 'jQuery',
+    },
+
+    devtool: isDev ? 'source-map' : false,
+
+    plugins: [
+      // The below will shim global jquery, the first two lines will replace $/jQuery
+      // when require('jquery') is called. The third line, which we probably will always
+      // need with Drupal, then uses the window.jQuery instead of the module jquery when
+      // require('jquery') is called
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+      }),
+
+      new BrowserSyncPlugin({
+        host: 'localhost',
+        port: 3000,
+        proxy: vmName,
+      },
       {
-        test: /\.js$/,
-        // must add exceptions to this exlude statement for anything that needs to be trasnpiled by babel
-        exclude: /node_modules\/(?!foundation-sites)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ["env"]
-        }
-      }
-    ]
-  },
+        injectCss: true,
+      }),
 
+      new FixStyleOnlyEntriesPlugin(),
+      new MiniCssExtractPlugin({ filename: '[name].css' }),
+    ],
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            name: 'commons',
+            chunks: 'initial',
+            // If you add more entryPoints, set minChunks to 2
+            minChunks: 2,
+          },
+        },
+      },
+    },
+    module: {
+      rules: [
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader',
+        },
+        // {
+        //   enforce: 'pre',
+        //   test: /\.js$/,
+        //   exclude: /node_modules/,
+        //   loader: 'eslint-loader',
+        // },
+        {
+          test: /\.js$/,
+          // must add exceptions to this exlude statement for
+          // anything that needs to be transpiled by babel
+          exclude: [/node_modules\/(?!foundation-sites)/],
+          loader: 'babel-loader',
+        },
+        {
+          test: /\.jsx?$/,
+          exclude: [/node_modules\/(?!foundation-sites)/],
+          loader: 'babel-loader',
+        },
+        {
+          test: /\.(png|jpg|gif)$/,
+          use: [{ loader: 'file-loader' }],
+        },
+        {
+          test: /\.(woff2?|ttf|otf|eot|svg)$/,
+          exclude: /node_modules/,
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[ext]',
+          },
+        },
+        {
+          test: /\.(sa|sc|c)ss$/,
+          use: [{
+            loader: MiniCssExtractPlugin.loader,
+          }, {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              sourceMap: isDev,
+            },
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: isDev,
+            },
+          }, {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [path.resolve(__dirname, './node_modules/foundation-sites/scss')],
+              sourceMap: isDev,
+            },
+          }],
+        },
+      ],
+    },
+  };
 };
-
-module.exports = config;

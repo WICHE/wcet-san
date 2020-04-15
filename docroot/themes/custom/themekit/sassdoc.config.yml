@@ -1,0 +1,8 @@
+groups:
+  configuration: 'Configuration'
+  utility: 'Framework Utilities'
+  frameworkComponents: 'Framework Components'
+  foundationExtensions: 'Foundation Extensions'
+  settings: 'Noteworthy Settings'
+  'undefined': 'Ungrouped'
+basePath: 'https://github.com/SassDoc/sassdoc'

@@ -1,0 +1,175 @@
+uuid: a26deec4-2af1-474b-84e3-2aef5e87960f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+    - search_api
+  config:
+    - field.storage.node.field_resource_type
+    - field.storage.node.field_topic
+    - search_api.server.solr
+id: index
+name: index
+description: ''
+read_only: false
+field_settings:
+  created:
+    label: 'Authored on'
+    datasource_id: 'entity:node'
+    property_path: created
+    type: date
+    dependencies:
+      module:
+        - node
+  nid:
+    label: ID
+    datasource_id: 'entity:node'
+    property_path: nid
+    type: integer
+    dependencies:
+      module:
+        - node
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    boost: 0.8
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        'entity:node':
+          page: default
+          resource: default
+  resource_type:
+    label: 'Resource Type » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_resource_type:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_resource_type
+      module:
+        - taxonomy
+  status:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 5
+    dependencies:
+      module:
+        - node
+  topic:
+    label: 'Topic » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_topic:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_topic
+      module:
+        - taxonomy
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - node
+  uid:
+    label: null
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - page
+        - resource
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
+  html_filter:
+    all_fields: false
+    fields:
+      - rendered_item
+      - resource_type
+      - title
+      - topic
+      - type
+    title: true
+    alt: true
+    tags:
+      b: 2
+      em: 1
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      u: 1
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
+  ignorecase:
+    all_fields: false
+    fields:
+      - rendered_item
+      - resource_type
+      - title
+      - topic
+      - type
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+  language_with_fallback: {  }
+  rendered_item: {  }
+  type_boost:
+    boosts:
+      'entity:node':
+        datasource_boost: !!float 1
+        bundle_boosts:
+          resource: !!float 2
+    weights:
+      preprocess_index: 0
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: solr

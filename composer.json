@@ -58,7 +58,6 @@
     "drupal/address": "^1.0",
     "drupal/name": "^1.0",
     "drupal/search_api": "^1.0",
-    "drupal/search_api_solr": "^1.0",
     "drupal/chosen": "^2.0",
     "drupal/shield": "^1.0",
     "drupal/environment_indicator": "^3.0",
@@ -91,7 +90,8 @@
     "drupal/migrate_tools": "^4.0@beta",
     "drupal/block_field": "^1.0@alpha",
     "drupal/migrate_source_csv": "^2.0",
-    "drupal/simple_sitemap": "^3.3"
+    "drupal/simple_sitemap": "^3.3",
+    "drupal/search_api_solr": "^1.0"
   },
   "conflict": {
       "drupal/drupal": "*"

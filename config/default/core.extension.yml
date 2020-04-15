@@ -85,7 +85,8 @@ module:
   redirect: 0
   redirect_404: 0
   scheduler: 0
-  search: 0
+  search_api: 0
+  search_api_solr: 0
   seckit: 0
   security_review: 0
   serialization: 0

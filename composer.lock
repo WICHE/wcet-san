@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "638b7ec3c627fab7c8ab986dd370504e",
+    "content-hash": "c2ef0ebc99ef8ace35ed96e318063cbf",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1521,104 +1521,6 @@
             "time": "2019-03-30T10:41:38+00:00"
         },
         {
-            "name": "drupal/acquia_connector",
-            "version": "1.17.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/acquia_connector.git",
-                "reference": "8.x-1.17"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/acquia_connector-8.x-1.17.zip",
-                "reference": "8.x-1.17",
-                "shasum": "3d9e5421d55a4fe01cf013a7dc504c3b1ee27715"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "php": "^7.1"
-            },
-            "require-dev": {
-                "drupal/search_api_solr": "*",
-                "drush/drush": "~9.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev",
-                    "dev-8.x-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.17",
-                    "datestamp": "1576181672",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                },
-                "drush": {
-                    "services": {
-                        "drush.services.yml": "^9"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Dane Powell",
-                    "homepage": "https://www.drupal.org/user/339326"
-                },
-                {
-                    "name": "Mark Trapp",
-                    "homepage": "https://www.drupal.org/user/212019"
-                },
-                {
-                    "name": "Stanislav Mixnovich",
-                    "homepage": "https://www.drupal.org/user/2859977"
-                },
-                {
-                    "name": "acquia",
-                    "homepage": "https://www.drupal.org/user/1231722"
-                },
-                {
-                    "name": "ayang",
-                    "homepage": "https://www.drupal.org/user/1777884"
-                },
-                {
-                    "name": "blueminds",
-                    "homepage": "https://www.drupal.org/user/128652"
-                },
-                {
-                    "name": "dmitrii",
-                    "homepage": "https://www.drupal.org/user/411965"
-                },
-                {
-                    "name": "grasmash",
-                    "homepage": "https://www.drupal.org/user/455714"
-                },
-                {
-                    "name": "irek02",
-                    "homepage": "https://www.drupal.org/user/736644"
-                },
-                {
-                    "name": "kolafson",
-                    "homepage": "https://www.drupal.org/user/822402"
-                },
-                {
-                    "name": "vlad.pavlovic",
-                    "homepage": "https://www.drupal.org/user/92673"
-                }
-            ],
-            "description": "Allows Drupal websites to connect with Acquia.",
-            "homepage": "https://www.drupal.org/project/acquia_connector",
-            "support": {
-                "source": "https://git.drupalcode.org/project/acquia_connector"
-            }
-        },
-        {
             "name": "drupal/address",
             "version": "1.8.0",
             "source": {
@@ -2408,73 +2310,6 @@
             }
         },
         {
-            "name": "drupal/config_readonly",
-            "version": "1.0.0-beta3",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/config_readonly.git",
-                "reference": "8.x-1.0-beta3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/config_readonly-8.x-1.0-beta3.zip",
-                "reference": "8.x-1.0-beta3",
-                "shasum": "ef474bcf5f46221e88b1cf4fa2b6abe99439b878"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-beta3",
-                    "datestamp": "1519398184",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "beejeebus",
-                    "homepage": "https://www.drupal.org/user/38580"
-                },
-                {
-                    "name": "effulgentsia",
-                    "homepage": "https://www.drupal.org/user/78040"
-                },
-                {
-                    "name": "moshe weitzman",
-                    "homepage": "https://www.drupal.org/user/23"
-                },
-                {
-                    "name": "pwolanin",
-                    "homepage": "https://www.drupal.org/user/49851"
-                },
-                {
-                    "name": "scor",
-                    "homepage": "https://www.drupal.org/user/52142"
-                },
-                {
-                    "name": "wheatpenny",
-                    "homepage": "https://www.drupal.org/user/1128182"
-                }
-            ],
-            "description": "Enables making the active configuration store read-only to prevent configuration changes on a Drupal site.",
-            "homepage": "https://www.drupal.org/project/config_readonly",
-            "support": {
-                "source": "http://cgit.drupalcode.org/config_readonly"
-            }
-        },
-        {
             "name": "drupal/config_update",
             "version": "1.6.0",
             "source": {
@@ -3235,29 +3070,26 @@
         },
         {
             "name": "drupal/ctools",
-            "version": "3.2.0",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ctools.git",
-                "reference": "8.x-3.2"
+                "reference": "8.x-3.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.2.zip",
-                "reference": "8.x-3.2",
-                "shasum": "d6da87239b64ba708a5977e7b33b1e009e36b091"
+                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.4.zip",
+                "reference": "8.x-3.4",
+                "shasum": "016ca5abb7ac4ca720352a72e8989f3ef0e20539"
             },
             "require": {
-                "drupal/core": "^8.5"
+                "drupal/core": "^8.7.7 || ^9"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-3.2",
-                    "datestamp": "1550728386",
+                    "version": "8.x-3.4",
+                    "datestamp": "1585763383",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3322,90 +3154,8 @@
             "description": "Provides a number of utility and helper APIs for Drupal developers and site builders.",
             "homepage": "https://www.drupal.org/project/ctools",
             "support": {
-                "source": "http://cgit.drupalcode.org/ctools",
+                "source": "https://git.drupalcode.org/project/ctools",
                 "issues": "https://www.drupal.org/project/issues/ctools"
-            }
-        },
-        {
-            "name": "drupal/devel",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/devel.git",
-                "reference": "8.x-1.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/devel-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "01f3349ef75f6e21fceef24be9d3d6506ca29647"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "suggest": {
-                "symfony/var-dumper": "Pretty print complex values better with var-dumper available"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1507197844",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Moshe Weitzman",
-                    "homepage": "https://github.com/weitzman",
-                    "email": "weitzman@tejasa.com",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Hans Salvisberg",
-                    "homepage": "https://www.drupal.org/u/salvis",
-                    "email": "drupal@salvisberg.com",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Luca Lusso",
-                    "homepage": "https://www.drupal.org/u/lussoluca",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Marco (willzyx)",
-                    "homepage": "https://www.drupal.org/u/willzyx",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "See contributors",
-                    "homepage": "https://www.drupal.org/node/3236/committers"
-                },
-                {
-                    "name": "salvis",
-                    "homepage": "https://www.drupal.org/user/82964"
-                },
-                {
-                    "name": "willzyx",
-                    "homepage": "https://www.drupal.org/user/1043862"
-                }
-            ],
-            "description": "Various blocks, pages, and functions for developers.",
-            "homepage": "http://drupal.org/project/devel",
-            "support": {
-                "source": "http://cgit.drupalcode.org/devel",
-                "issues": "http://drupal.org/project/devel",
-                "irc": "irc://irc.freenode.org/drupal-contribute"
             }
         },
         {
@@ -4131,6 +3881,112 @@
             "support": {
                 "source": "https://git.drupal.org/project/google_analytics.git",
                 "issues": "https://www.drupal.org/project/issues/google_analytics"
+            }
+        },
+        {
+            "name": "drupal/graphql",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/graphql.git",
+                "reference": "8.x-3.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/graphql-8.x-3.0.zip",
+                "reference": "8.x-3.0",
+                "shasum": "ccba88a346fd816cccbf93f65273efbd6be70c2b"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "webonyx/graphql-php": "^0.12.5"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.0",
+                    "datestamp": "1572538570",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "fubhy",
+                    "homepage": "https://www.drupal.org/user/761344"
+                },
+                {
+                    "name": "klausi",
+                    "homepage": "https://www.drupal.org/user/262198"
+                },
+                {
+                    "name": "pmelab",
+                    "homepage": "https://www.drupal.org/user/555322"
+                }
+            ],
+            "description": "Exposes your Drupal data model through a GraphQL schema.",
+            "homepage": "http://drupal.org/project/graphql",
+            "support": {
+                "source": "https://git.drupalcode.org/project/graphql"
+            }
+        },
+        {
+            "name": "drupal/graphql_search_api",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/graphql_search_api.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/graphql_search_api-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "60c38eb7e12e6024ad23b82ffb735db832dc2ee6"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/graphql": "*",
+                "drupal/search_api": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1578882487",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "joaogarin",
+                    "homepage": "https://www.drupal.org/user/612814"
+                },
+                {
+                    "name": "kyuubi",
+                    "homepage": "https://www.drupal.org/user/652554"
+                }
+            ],
+            "description": "A Search API GraphQL schema.",
+            "homepage": "https://www.drupal.org/project/graphql_search_api",
+            "support": {
+                "source": "https://git.drupalcode.org/project/graphql_search_api"
             }
         },
         {
@@ -5525,70 +5381,6 @@
             "homepage": "https://www.drupal.org/project/paragraphs_previewer",
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs_previewer"
-            }
-        },
-        {
-            "name": "drupal/password_policy",
-            "version": "3.0.0-alpha5",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/password_policy.git",
-                "reference": "8.x-3.0-alpha5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/password_policy-8.x-3.0-alpha5.zip",
-                "reference": "8.x-3.0-alpha5",
-                "shasum": "74f170caa739e886d2de0df27a479f94014e273f"
-            },
-            "require": {
-                "drupal/core": "^8.5.0",
-                "drupal/ctools": "^3.1"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-3.0-alpha5",
-                    "datestamp": "1559916365",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "AohRveTPV",
-                    "homepage": "https://www.drupal.org/user/2760115"
-                },
-                {
-                    "name": "deekayen",
-                    "homepage": "https://www.drupal.org/user/972"
-                },
-                {
-                    "name": "miglius",
-                    "homepage": "https://www.drupal.org/user/18741"
-                },
-                {
-                    "name": "nerdstein",
-                    "homepage": "https://www.drupal.org/user/1557710"
-                },
-                {
-                    "name": "shrop",
-                    "homepage": "https://www.drupal.org/user/14767"
-                }
-            ],
-            "description": "Sets up constraints and expiration of passwords.",
-            "homepage": "https://www.drupal.org/project/password_policy",
-            "support": {
-                "source": "https://git.drupalcode.org/project/password_policy"
             }
         },
         {
@@ -10292,6 +10084,51 @@
             "time": "2015-12-17T08:42:14+00:00"
         },
         {
+            "name": "webonyx/graphql-php",
+            "version": "v0.12.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webonyx/graphql-php.git",
+                "reference": "4c545e5ec4fc37f6eb36c19f5a0e7feaf5979c95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/4c545e5ec4fc37f6eb36c19f5a0e7feaf5979c95",
+                "reference": "4c545e5ec4fc37f6eb36c19f5a0e7feaf5979c95",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8",
+                "psr/http-message": "^1.0",
+                "react/promise": "2.*"
+            },
+            "suggest": {
+                "psr/http-message": "To use standard GraphQL server",
+                "react/promise": "To leverage async resolving on React PHP platform"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GraphQL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A PHP port of GraphQL reference implementation",
+            "homepage": "https://github.com/webonyx/graphql-php",
+            "keywords": [
+                "api",
+                "graphql"
+            ],
+            "time": "2018-09-02T14:59:54+00:00"
+        },
+        {
             "name": "wikimedia/composer-merge-plugin",
             "version": "dev-master",
             "source": {
@@ -12551,7 +12388,6 @@
     "stability-flags": {
         "wikimedia/composer-merge-plugin": 20,
         "drupal/field_tools": 20,
-        "drupal/password_policy": 15,
         "drupal/migrate_plus": 10,
         "drupal/migrate_tools": 10,
         "drupal/block_field": 15

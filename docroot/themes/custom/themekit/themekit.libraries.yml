@@ -3,6 +3,7 @@
 ### - 01 - Fonts
 ### - 02 - Themekit
 ### - 03 - Polyfills
+### - 04 - Search
 ####
 
 
@@ -27,6 +28,7 @@ themekit:
   version: VERSION
   js:
     dist/themekit.js: {}
+    dist/commons.js: {}
   css:
     theme:
       dist/style.css: {}
@@ -48,3 +50,25 @@ babel-polyfill:
   version: 1.x
   js:
     dist/polyfill.js: {}
+
+
+
+
+
+########################
+### 04 - Search
+########################
+
+header_search_block:
+  version: VERSION
+  js:
+    dist/search_header.js: {}
+  dependencies:
+    - themekit/babel-polyfill
+
+main_search_block:
+  version: VERSION
+  js:
+    dist/search_main.js: {}
+  dependencies:
+    - themekit/babel-polyfill

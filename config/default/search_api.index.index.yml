@@ -8,6 +8,8 @@ dependencies:
     - search_api
   config:
     - field.storage.node.field_resource_type
+    - field.storage.taxonomy_term.field_label_color
+    - field.storage.taxonomy_term.field_slug
     - field.storage.node.field_topic
     - search_api.server.solr
 id: index
@@ -15,6 +17,18 @@ name: index
 description: ''
 read_only: false
 field_settings:
+  color:
+    label: 'Resource Type » Taxonomy term » Label Color » Taxonomy term » Slug'
+    datasource_id: 'entity:node'
+    property_path: 'field_resource_type:entity:field_label_color:entity:field_slug'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_resource_type
+        - field.storage.taxonomy_term.field_label_color
+        - field.storage.taxonomy_term.field_slug
+      module:
+        - taxonomy
   created:
     label: 'Authored on'
     datasource_id: 'entity:node'
@@ -98,7 +112,7 @@ field_settings:
       module:
         - node
   uid:
-    label: null
+    label: uid
     datasource_id: 'entity:node'
     property_path: uid
     type: integer
@@ -107,11 +121,16 @@ field_settings:
     dependencies:
       module:
         - node
+  url:
+    label: URI
+    property_path: search_api_url
+    type: string
 datasource_settings:
   'entity:node':
     bundles:
       default: false
       selected:
+        - landing_page
         - page
         - resource
     languages:

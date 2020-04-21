@@ -116,6 +116,7 @@ module:
   views_ui: 0
   wcet_access_control: 0
   wcet_migrate: 0
+  wcet_search: 0
   menu_link_content: 1
   views: 10
   paragraphs: 11

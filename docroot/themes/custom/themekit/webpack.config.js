@@ -10,6 +10,8 @@ const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const entryPoints = {
   polyfill: 'babel-polyfill',
   themekit: './js/src/themekit.js',
+  search_header: './js/src/search-header/search-header.jsx', // React component
+  search_main: './js/src/search-main/search-main.jsx', // React component
   style: './sass/style.scss',
   wysiwyg: './sass/wysiwyg.scss',
 };
@@ -25,7 +27,7 @@ module.exports = (env, argv) => {
   let vmName = '';
 
   if (isDev) {
-    vmName = 'vzn.lndo.site';
+    vmName = 'wcetsan.wiche.edu.docker.amazee.io';
   }
 
   return {

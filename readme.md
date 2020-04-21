@@ -23,3 +23,23 @@ This project uses CMI for all configuration changes. To make a configuration upd
 ## Composer
 
 All packages in this project are managed using Composer - see composer.json for detailed information about each package. This project is built serverside, so none of the vendor directories are commited. Be sure to run `composer install` when you first download the site and `composer update` when you are pulling updates.
+
+
+## Local Setup
+**Requirements**
+- Pygmy `sudo gem install pygmy`
+- Docker for Mac
+
+1. From project root run `pygmy up`
+2. Inject custom SSH key if none was picked up `pygmy addkey [path/to/key]`
+3. Composer Docker containers `docker-compose up -d`
+3. Sometimes need to force recreate `docker-compose up -d --force-recreate`
+4. SSH into container `docker-compose exec cli sh`
+5. Composer install `composer install`
+3. Stop development by running `pygmy stop`
+4. Remove all containers by running `pygmy down`
+5. Check status and SSH keys by running `pygmy status`
+
+Need to log into Amazee UI dashboard to add SSH keys and check on environment setups.
+May need to be added by Amazee support via Rocket Chat
+Solr dashboard http://localhost:32781/solr/#/

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.landing_page.field_meta_description
     - field.field.node.landing_page.field_meta_tags
     - field.field.node.landing_page.field_p_content
     - field.field.node.landing_page.field_p_header
@@ -10,12 +11,20 @@ dependencies:
   module:
     - entity_reference_revisions
     - metatag
+    - text
     - user
 id: node.landing_page.default
 targetEntityType: node
 bundle: landing_page
 mode: default
 content:
+  field_meta_description:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_meta_tags:
     weight: 2
     label: hidden
@@ -44,3 +53,4 @@ content:
 hidden:
   langcode: true
   links: true
+  search_api_excerpt: true

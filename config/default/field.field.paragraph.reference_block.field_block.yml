@@ -1,0 +1,23 @@
+uuid: c1a678c1-5ed2-43c6-9cc6-23aaa7a68d04
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_block
+    - paragraphs.paragraphs_type.reference_block
+  module:
+    - block_field
+id: paragraph.reference_block.field_block
+field_name: field_block
+entity_type: paragraph
+bundle: reference_block
+label: Block
+description: 'Select a pre-existing block to be placed in this desired location on this page.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  plugin_ids:
+    main_search_block: main_search_block
+field_type: block_field

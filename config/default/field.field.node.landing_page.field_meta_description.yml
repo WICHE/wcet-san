@@ -1,0 +1,28 @@
+uuid: bcbfce76-ccf9-4012-b085-d50b1ddff6fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_description
+    - node.type.landing_page
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: '0'
+    restricted_html: '0'
+    full_html: '0'
+    plain_text: '0'
+id: node.landing_page.field_meta_description
+field_name: field_meta_description
+entity_type: node
+bundle: landing_page
+label: 'Meta Description'
+description: 'Input a short description to be sent to search engines and anywhere that a teaser of text on this page is needed. Keep the character count for this content to less than 160.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

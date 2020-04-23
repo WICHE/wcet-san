@@ -1,37 +1,74 @@
-# use the base modernizr build provided, or remove, or add your own
-#base:
-#  version: VERSION
-#  js:
-#    js/vendor/modernizr-custom.js: {}
+####
+### WCET Theme Libraries
+### - 01 - Fonts
+### - 02 - Themekit
+### - 03 - Polyfills
+### - 04 - Search
+####
 
-# google fonts
+
+########################
+### 01 - Fonts
+########################
+
 fonts:
   css:
     theme:
       'https://fonts.googleapis.com/css?family=News+Cycle:400,700|Roboto:400,700': { type: external, minified: true }
 
-# typekit
-#typekit:
-#  version: 1.x
-#  header: true
-#  js:
-#    //use.typekit.net/ydi4zcl.js: { every_page: true }
-#    js/vendor/typekit.js: { every_page: true }
+
+
+
+
+########################
+### 02 - Themekit
+########################
 
 themekit:
   version: VERSION
   js:
-    js/dist/themekit.js: {}
+    dist/themekit.js: {}
+    dist/commons.js: {}
   css:
     theme:
-      css/style.css: {}
+      dist/style.css: {}
   dependencies:
       - core/drupal
       - core/jquery
+      - core/modernizer
+      - themekit/babel-polyfill
 
-# Define additional sub-apps here. Be sure to first add it
-# as an entry point in webpack.config.js
-#myApp:
-#  version: 1.x
-#  js:
-#    js/dist/myApp.js: {}
+
+
+
+
+########################
+### 03 - Polyfills
+########################
+
+babel-polyfill:
+  version: 1.x
+  js:
+    dist/polyfill.js: {}
+
+
+
+
+
+########################
+### 04 - Search
+########################
+
+header_search_block:
+  version: VERSION
+  js:
+    dist/search_header.js: {}
+  dependencies:
+    - themekit/babel-polyfill
+
+main_search_block:
+  version: VERSION
+  js:
+    dist/search_main.js: {}
+  dependencies:
+    - themekit/babel-polyfill

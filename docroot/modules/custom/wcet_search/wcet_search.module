@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Adds custom search functionality utilizing Solr / SearchAPI / GraphQL / React
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function wcet_search_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.wcet_search':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Adds block functionality revolving around search components.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

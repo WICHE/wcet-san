@@ -4,7 +4,8 @@
 @import "foundation";
 
 // Add select2 styles
-@import "core";
+//@import "core";
+@import "../node_modules/select2/dist/css/select2.min.css";
 
 // Add your own theme/framework utils
 @import "framework/utils/utils";
@@ -27,10 +28,11 @@
 @import "regions/header";
 @import "regions/footer";
 
-@import "components/drupal";
 @import "components/accessibility";
-@import "components/select";
 @import "components/accordion";
+@import "components/drupal";
+@import "components/search";
+@import "components/select";
 @import "components/views";
 
 @import "paragraphs/paragraphs";

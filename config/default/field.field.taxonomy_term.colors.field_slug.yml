@@ -1,0 +1,19 @@
+uuid: 319c28a4-c003-4c0f-83ff-55238079cd51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_slug
+    - taxonomy.vocabulary.colors
+id: taxonomy_term.colors.field_slug
+field_name: field_slug
+entity_type: taxonomy_term
+bundle: colors
+label: Slug
+description: 'An unchanging value for the title of this color term.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

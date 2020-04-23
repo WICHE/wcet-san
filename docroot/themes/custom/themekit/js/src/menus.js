@@ -8,13 +8,9 @@
  */
 
 import $ from 'jquery';
-import './foundation-setup';
 import { ResponsiveMenu } from 'foundation-sites/js/foundation.responsiveMenu';
 
 new ResponsiveMenu($('.block-menu.menu--main > ul'));
-
-
-
 
 $(window).on('changed.zf.mediaquery', function(event, newSize, oldSize) {
   const bpSmall = ['small', 'sm-md'],
@@ -27,7 +23,7 @@ $(window).on('changed.zf.mediaquery', function(event, newSize, oldSize) {
   }
 });
 
-const blocksToClone = ['block-utilnavigation'];
+const blocksToClone = ['block-utilnavigation', 'block-wcet-search'];
 
 function cloneNav() {
   const $nav = $('.region-header .menu--main');
@@ -48,11 +44,11 @@ function removeClonedNav() {
 
 }
 
-if (Foundation.MediaQuery.atLeast('large')) {
-  removeClonedNav();
-} else {
-  cloneNav();
-}
+// if (Foundation.MediaQuery.atLeast('large')) {
+//   removeClonedNav();
+// } else {
+//   cloneNav();
+// }
 
 /// Mobile Button
 let $mobileMenuButton = $('.menu-button');

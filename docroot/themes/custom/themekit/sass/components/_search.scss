@@ -1,0 +1,441 @@
+/**
+ * @file
+ * Components - Search
+ * - 01 - Header
+ * - 02 - Main
+ * - 03 - Results
+ * - 04 - Pagination
+ */
+
+
+/*------------------------------------*\
+  01 - Header
+\*------------------------------------*/
+
+#search-app--header {
+  /**
+   * General
+   */
+  .search-header {
+    display: flex;
+    flex-flow: nowrap row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 16px;
+
+    @include breakpoint(large) {
+      justify-content: flex-end;
+      margin-bottom: 0;
+    }
+
+    &.active {
+      .search-header--form {
+        @include transform(translateY(0));
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  /**
+   * Form
+   */
+  .search-header--form {
+    @include breakpoint(large) {
+      @include transition(all 0.35s ease-in-out);
+      @include transform(translateY(-100%));
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    input {
+      height: inherit;
+      margin: 0;
+      padding: 4px 1rem;
+      line-height: 1;
+      font-size: rem-calc(15);
+    }
+  }
+
+  /**
+   * Submit
+   */
+  .search-header--search-trigger {
+    display: flex;
+    flex-flow: nowrap row;
+    align-items: center;
+    margin-left: 8px;
+    font-size: rem-calc(15);
+    color: $san-dark-font-color;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 12px;
+      height: 12px;
+      margin-right: 4px;
+      background: url(../images/icon-search.svg) no-repeat center;
+      background-size: cover;
+    }
+  }
+}
+
+
+
+
+
+/*------------------------------------*\
+  02 - Main
+\*------------------------------------*/
+
+#search-app--main {
+  /**
+   * General
+   */
+  .search-main--keyword,
+  .search-main--result-data,
+  .search-main--pagination {
+    @include content-width(small);
+  }
+
+  /**
+   * Keyword
+   */
+  .search-main--keyword {
+    display: flex;
+    flex-flow: nowrap column;
+
+    @include breakpoint(large) {
+      flex-flow: nowrap row;
+    }
+
+    input {
+      margin: 0;
+    }
+
+    .form-submit {
+      @include transition(all 0.35s ease-in-out);
+      flex-grow: 1;
+      margin-top: 16px;
+      padding: 8px 32px;
+      border-radius: 8px;
+      background-color: $san-blue;
+      font-size: rem-calc(12);
+      font-weight: $global-weight-bold;
+      color: $white;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $san-light-blue;
+      }
+
+      @include breakpoint(large) {
+        margin-top: 0;
+        margin-left: 16px;
+      }
+    }
+  }
+
+  /**
+   * Result Data
+   */
+  .search-main--result-data {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: rem-calc(15);
+    text-align: center;
+    color: $san-dark-gray;
+  }
+
+  /**
+   * Facets
+   */
+  .search-main--facets {
+    @include content-width(page);
+    display: flex;
+    flex-flow: nowrap column;
+
+    @include breakpoint(large) {
+      flex-flow: nowrap row;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .filters {
+      @include breakpoint(large) {
+        display: flex;
+        flex-flow: nowrap row;
+        align-items: center;
+        margin-right: 16px;
+
+        > .filter:first-child {
+          margin-right: 16px;
+        }
+      }
+    }
+
+    .sort {
+      @include breakpoint(large) {
+        margin-right: 16px;
+      }
+    }
+
+    select {
+      margin: 0 0 16px 0;
+
+      @include breakpoint(large) {
+        margin: 0;
+      }
+    }
+
+    button {
+      flex-grow: 1;
+      cursor: pointer;
+    }
+
+    .form-submit {
+      @include transition(all 0.35s ease-in-out);
+      padding: 12px 32px;
+      border-radius: 8px;
+      border: solid 2px $san-blue;
+      background-color: transparent;
+      font-size: rem-calc(12);
+      font-weight: $global-weight-bold;
+      color: $san-blue;
+
+      &:hover {
+        background-color: $san-blue;
+        color: $white;
+      }
+    }
+
+    .clear-filters {
+      padding: 12px 32px;
+      font-size: rem-calc(12);
+      color: $san-dark-gray;
+    }
+  }
+}
+
+
+
+
+
+/*------------------------------------*\
+  03 - Results
+\*------------------------------------*/
+
+#search-app--main {
+  .search-main--results {
+    @include content-width(small);
+    margin-top: 32px;
+
+    /**
+     * General
+     */
+    .search-result {
+      @include transition(transform 0.35s ease-in-out);
+      @include transform(scale(1));
+      margin-bottom: 16px;
+      padding: 18px 24px 14px;
+      border-radius: 8px;
+      position: relative;
+
+      &:hover {
+        @include transform(scale(1.02));
+      }
+    }
+
+    .search-result--link {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-indent: -9999px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .search-result--title {
+      margin: 4px 0;
+      font-size: rem-calc(18);
+    }
+
+    /**
+     * Resources
+     */
+    .search-result {
+      &.resource {
+        background-color: $san-athens-gray;
+
+        .search-result--info {
+          display: flex;
+          flex-flow: nowrap row;
+          align-items: center;
+        }
+
+        .search-result--resource-type {
+          display: flex;
+          flex-flow: nowrap row;
+          align-items: center;
+          margin-right: 8px;
+          font-size: rem-calc(10);
+
+          &:before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 4px;
+            margin-right: 4px;
+            border-radius: 50%;
+          }
+        }
+
+        .search-result--created {
+          font-size: rem-calc(12);
+          color: $san-dove-gray;
+        }
+
+        .search-result--topics {
+          font-size: rem-calc(10);
+          color: $san-dove-gray;
+        }
+      }
+
+      &.private {
+        padding-right: 2rem;
+
+        &:after {
+          content: '';
+          display: block;
+          width: 20px;
+          height: 30px;
+          margin: auto;
+          background: url(../images/svg/lock-closed.svg) no-repeat center;
+          background-size: cover;
+          opacity: 0.5;
+          position: absolute;
+          top: 0;
+          right: 24px;
+          bottom: 0;
+        }
+      }
+
+      @each $name, $color in $colors {
+        &.#{$name} {
+          .search-result--resource-type {
+            color: $color;
+
+            &:before {
+              background-color: $color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+/*------------------------------------*\
+  04 - Pagination
+\*------------------------------------*/
+
+#search-app--main {
+  .search-main--pagination {
+    margin-top: 40px;
+
+    li {
+      list-style: none;
+    }
+
+    a {
+      @include transition(all 0.35s ease-in-out);
+      line-height: 1;
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      font-size: 1.125rem;
+
+      li:not(.previous):not(.next) {
+        margin: 0 8px;
+
+        a {
+          display: inline-block;
+          padding: 0 2px 1px;
+          border-bottom: solid 2px transparent;
+          text-decoration: none;
+          color: $black;
+
+          &:hover {
+            border-bottom: solid 2px $san-blue;
+          }
+        }
+      }
+
+      li.active {
+        a {
+          border-bottom: solid 2px $san-blue !important;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .previous a,
+    .next a {
+      display: flex;
+      align-items: center;
+      font-size: rem-calc(12);
+
+      &:before,
+      &:after {
+        width: 20px;
+        height: 10px;
+        line-height: 8px;
+        font-size: 20px;
+      }
+    }
+
+    .previous {
+      margin-right: auto;
+
+      &.disabled {
+        a,
+        a:before {
+          color: $san-dove-gray;
+        }
+      }
+
+      a:before {
+        @include icon(arrow);
+        margin-right: 4px;
+
+      }
+    }
+
+    .next {
+      margin-left: auto;
+
+      &.disabled {
+        a,
+        a:after {
+          color: $san-dove-gray;
+        }
+      }
+
+      a:after {
+        @include icon(arrow);
+        @include transform(rotate(180deg));
+        margin-left: 4px;
+      }
+    }
+  }
+}

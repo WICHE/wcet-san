@@ -1,0 +1,8 @@
+uuid: 2e4447bb-8adc-4568-85f6-74ad6e8fa8a2
+langcode: en
+status: true
+dependencies: {  }
+name: Colors
+vid: colors
+description: 'Site-wide color settings'
+weight: 0

@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.compound_card_row
     - paragraphs.paragraphs_type.compound_faq_section
     - paragraphs.paragraphs_type.layout_two_column
+    - paragraphs.paragraphs_type.reference_block
     - paragraphs.paragraphs_type.simple_content
     - paragraphs.paragraphs_type.summary_events
     - paragraphs.paragraphs_type.summary_past_events
@@ -33,6 +34,7 @@ settings:
       compound_faq_section: compound_faq_section
       compound_card_row: compound_card_row
       simple_content: simple_content
+      reference_block: reference_block
       summary_events: summary_events
       summary_past_events: summary_past_events
       summary_resources: summary_resources
@@ -53,8 +55,8 @@ settings:
         enabled: true
         weight: -31
       reference_block:
+        enabled: true
         weight: -30
-        enabled: false
       single_text_area:
         weight: -29
         enabled: false

@@ -11,7 +11,7 @@ dependencies:
 id: utilnavigation
 theme: themekit
 region: header
-weight: -6
+weight: -5
 provider: null
 plugin: 'menu_block:util-navigation'
 settings:

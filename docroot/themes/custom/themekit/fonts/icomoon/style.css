@@ -1,13 +1,14 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?hgnmo9');
-  src:  url('fonts/icomoon.eot?hgnmo9#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.woff2?hgnmo9') format('woff2'),
-    url('fonts/icomoon.ttf?hgnmo9') format('truetype'),
-    url('fonts/icomoon.woff?hgnmo9') format('woff'),
-    url('fonts/icomoon.svg?hgnmo9#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?g3w0mo');
+  src:  url('fonts/icomoon.eot?g3w0mo#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.woff2?g3w0mo') format('woff2'),
+    url('fonts/icomoon.ttf?g3w0mo') format('truetype'),
+    url('fonts/icomoon.woff?g3w0mo') format('woff'),
+    url('fonts/icomoon.svg?g3w0mo#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
+  font-display: block;
 }
 
 [class^="icon-"], [class*=" icon-"] {
@@ -25,6 +26,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-keyboard_backspace:before {
+  content: "\e90a";
+}
 .icon-favorite:before {
   content: "\e908";
 }

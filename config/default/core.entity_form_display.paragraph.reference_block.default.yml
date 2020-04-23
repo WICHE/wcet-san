@@ -3,12 +3,24 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.reference_block.field_block
     - paragraphs.paragraphs_type.reference_block
+  module:
+    - block_field
 id: paragraph.reference_block.default
 targetEntityType: paragraph
 bundle: reference_block
 mode: default
-content: {  }
+content:
+  field_block:
+    weight: 0
+    settings:
+      plugin_id: ''
+      settings: {  }
+      configuration_form: full
+    third_party_settings: {  }
+    type: block_field_default
+    region: content
 hidden:
   created: true
   status: true

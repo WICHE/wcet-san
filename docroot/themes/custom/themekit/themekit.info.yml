@@ -6,12 +6,17 @@ core: 8.x
 base theme: classy
 
 ckeditor_stylesheets:
-  - css/wysiwyg.css
+  - dist/wysiwyg.css
 
 libraries:
   - core/Drupal
   - themekit/themekit
   - themekit/fonts
+
+libraries-override:
+  core/modernizr:
+    js:
+      assets/vendor/modernizr/modernizr.min.js: js/vendor/modernizr-custom.js
 
 regions:
   header: Header

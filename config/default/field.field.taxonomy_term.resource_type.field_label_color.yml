@@ -1,0 +1,29 @@
+uuid: f5900a63-a4c4-4a60-ac87-555b9c5fdd0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_label_color
+    - taxonomy.vocabulary.colors
+    - taxonomy.vocabulary.resource_type
+id: taxonomy_term.resource_type.field_label_color
+field_name: field_label_color
+entity_type: taxonomy_term
+bundle: resource_type
+label: 'Label Color'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      colors: colors
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

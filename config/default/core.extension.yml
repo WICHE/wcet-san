@@ -51,6 +51,9 @@ module:
   filter: 0
   focal_point: 0
   google_analytics: 0
+  graphql: 0
+  graphql_core: 0
+  graphql_search_api: 0
   help: 0
   history: 0
   image: 0
@@ -85,7 +88,8 @@ module:
   redirect: 0
   redirect_404: 0
   scheduler: 0
-  search: 0
+  search_api: 0
+  search_api_solr: 0
   seckit: 0
   security_review: 0
   serialization: 0
@@ -112,6 +116,7 @@ module:
   views_ui: 0
   wcet_access_control: 0
   wcet_migrate: 0
+  wcet_search: 0
   menu_link_content: 1
   views: 10
   paragraphs: 11

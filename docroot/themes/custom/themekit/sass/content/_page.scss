@@ -14,24 +14,8 @@
 /// Widths
 /// ======
 .layout-container {
-  overflow-x: hidden;
+  overflow: hidden;
 }
-
-// View Pages
-//.path-events,
-//.path-resources {
-//  .block-page-title-block,
-//  .block-system-main-block {
-//    @include content-width(page);
-//  }
-//  .block-page-title-block {
-//    text-align: center;
-//    margin-bottom: rem-calc(40);
-//  }
-//  .page-title {
-//    @include sub-title;
-//  }
-//}
 
 // User Page
 .path-user.user-logged-in {

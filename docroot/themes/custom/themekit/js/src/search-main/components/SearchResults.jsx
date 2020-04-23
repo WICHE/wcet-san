@@ -27,18 +27,12 @@ class SearchResults extends React.Component {
       userLoggedIn: false,
       keyword: '',
       sort: '',
+      init: false,
       facets: [
         { name: 'topic', label: 'Topics', urlParam: 'topic', selected: [], options: [] },
         { name: 'resource_type', label: 'Resource Type', urlParam: 'type', selected: [], options: [] },
       ],
     };
-
-    // this.updateKeyword = this.updateKeyword.bind(this);
-    // this.updateFilter = this.updateFilter.bind(this);
-    // this.updateSort = this.updateSort.bind(this);
-    // this.handlePageClick = this.handlePageClick.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   /**
@@ -130,33 +124,14 @@ class SearchResults extends React.Component {
   };
 
   /**
-   * Comment updateKeyword
-   */
-  // updateKeyword = (value) => {
-  //   // Update state with change
-  //   this.setState(preState => {
-  //     return {
-  //       keyword: value,
-  //       pageIndex: 0,
-  //     }
-  //   }, () => {
-  //     this.updateResults('key', value);
-  //   });
-  // };
-
-  /**
    * Comment updateSort
    */
   updateSort = (item) => {
     const sort = typeof item === "object" ? item.target.value : item;
     // Update state with change
-    if (this.state.sort != sort) {
-      this.setState(preState => {
-        return {
-          sort: sort,
-        }
-      },() => {
-        this.updateResults('sort', sort);
+    if (this.state.sort !== sort) {
+      this.setState( {
+        sort: sort,
       });
     }
   };
@@ -259,13 +234,10 @@ class SearchResults extends React.Component {
   };
 
   clearFilters = () => {
-    // Prevent query from running multiple times
-    this.init = false;
-    Object.keys(this.facets).forEach((index) => {
-      this.facets[index].selected = [];
+    Object.keys(this.state.facets).forEach((index) => {
+      this.state.facets[index].selected = [];
+      this.queryResults();
     });
-    // Allow query to run on last update
-    this.init = true;
   };
 
   /**
@@ -345,6 +317,7 @@ class SearchResults extends React.Component {
               color
               topic
               created
+              content_access
             }
           }
           facets{
@@ -369,7 +342,8 @@ class SearchResults extends React.Component {
           resource_type: item.resource_type,
           color: item.color,
           topics: item.topic,
-          created: item.created
+          created: item.created,
+          access: item.content_access
         });
       });
 
@@ -385,6 +359,7 @@ class SearchResults extends React.Component {
           resultCount: data.result_count,
           pageCount: Math.ceil(data.result_count / this.state.pageSize),
           facets: facetData,
+          userLoggedIn: bodyElement.classList.contains('user-logged-in'),
         }
       });
     });
@@ -419,6 +394,8 @@ class SearchResults extends React.Component {
           color={ result.color }
           topics={ result.topics.join(', ') }
           created={ this.convertTime(result.created) }
+          access={ result.access }
+          userLoggedIn={ this.state.userLoggedIn }
         />
       )
     });
@@ -428,8 +405,8 @@ class SearchResults extends React.Component {
     if (this.state.pageCount > 1) {
       pagination = (
         <ReactPaginate
-          previousLabel={ '← Previous' }
-          nextLabel={ 'Next →' }
+          previousLabel={ 'Previous' }
+          nextLabel={ 'Next' }
           breakLabel={ <span className='gap'>...</span> }
           pageCount={ this.state.pageCount }
           onPageChange={ this.handlePageClick }
@@ -446,13 +423,14 @@ class SearchResults extends React.Component {
     return (
       <div className="search-main">
         <div className="search-main--keyword">
-          <input type="text" placeholder="Search" onChange={ this.handleChange }/>
-          <button onClick={ this.handleSubmit }>Submit</button>
+          <input type="text" placeholder={ resultKeyword } onChange={ this.handleChange }/>
+          <button className="form-submit" onClick={ this.handleSubmit }>Submit</button>
         </div>
 
         <div className="search-main--result-data">
-          <strong>{ this.state.currentPage + 1 }-{ this.state.pageCount }</strong>
-          of <strong>{ this.state.resultCount } results</strong> for { resultKeyword }
+          <strong>{ this.state.currentPage + 1 }-{ this.state.pageCount } </strong>
+          of <strong>{ this.state.resultCount } results </strong>
+          { resultKeyword !== '' ? "for" : '' } <em>{ resultKeyword }</em>
         </div>
 
         <div className="search-main--facets">
@@ -461,17 +439,15 @@ class SearchResults extends React.Component {
           </div>
 
           <div className="sort">
-            <select id="sortby" name="sortby" defaultValue={ this.state.sort }>
+            <label>Sort By:</label>
+            <select id="sortby" name="sortby" defaultValue={ this.state.sort } onChange={ this.updateSort }>
               <option value="">Sort by Relevancy</option>
               <option value="date">Sort by Date</option>
             </select>
           </div>
 
-          <button onClick={ this.handleSubmit }>Clear Filter</button>
-
-          <div className="clear">
-            <button onClick={ this.clearFilters }>Clear Filter</button>
-          </div>
+          <button className="form-submit" onClick={ this.handleSubmit }>Apply</button>
+          <button className="clear-filters" onClick={ this.clearFilters }>Clear Filter</button>
         </div>
 
         <div className="search-main--results">

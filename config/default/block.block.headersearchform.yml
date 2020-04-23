@@ -1,0 +1,20 @@
+uuid: c3dc900a-af45-436f-abe9-a1f75a640ba7
+langcode: en
+status: true
+dependencies:
+  module:
+    - wcet_search
+  theme:
+    - themekit
+id: headersearchform
+theme: themekit
+region: header
+weight: -6
+provider: null
+plugin: header_search_block
+settings:
+  id: header_search_block
+  label: 'Header Search Form'
+  provider: wcet_search
+  label_display: '0'
+visibility: {  }

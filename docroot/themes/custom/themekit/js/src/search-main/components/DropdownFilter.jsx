@@ -26,8 +26,9 @@ class DropdownFilter extends React.Component {
     return (
       <div className={`filter type-${ this.props.item.name }`}>
         <div className="filter-list" id={`toggle-${ this.props.item.name }`}>
+          <label>{ this.props.item.label }:</label>
           <select onChange={ this.handleChange }>
-            <option value="">{ this.props.item.label }</option>
+            <option value="">All { this.props.item.label }</option>
             { filterItems }
           </select>
         </div>

@@ -94,7 +94,14 @@ $layouts: (
       small: 10px,
       medium: 20px
     )
-  )
+  ),
+  small: (
+    width: rem-calc(768),
+    gutters: (
+      small: 10px,
+      medium: 20px,
+    ),
+  ),
 );
 
 /// Icon config
@@ -112,5 +119,14 @@ $icons: (
   clone: "\e906",
   revision: "\e907",
   schedule: "\e909",
-  favorite: "\e908"
+  favorite: "\e908",
+  arrow: "\e90a",
+);
+
+$colors: (
+  purple: $purple,
+  dark-green: $e-newsletter,
+  light-green: $light-green,
+  rust: $webinar,
+  dark-blue: $talking-points,
 );

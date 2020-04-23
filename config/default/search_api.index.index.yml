@@ -7,6 +7,7 @@ dependencies:
     - taxonomy
     - search_api
   config:
+    - field.storage.node.field_content_access
     - field.storage.node.field_resource_type
     - field.storage.taxonomy_term.field_label_color
     - field.storage.taxonomy_term.field_slug
@@ -29,6 +30,14 @@ field_settings:
         - field.storage.taxonomy_term.field_slug
       module:
         - taxonomy
+  content_access:
+    label: 'Content Access'
+    datasource_id: 'entity:node'
+    property_path: field_content_access
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_content_access
   created:
     label: 'Authored on'
     datasource_id: 'entity:node'

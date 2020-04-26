@@ -2221,8 +2221,7 @@ ul.primary {
     display: flex;
     flex-flow: nowrap row;
     justify-content: center;
-    align-items: center;
-    padding-bottom: 16px; }
+    align-items: center; }
     @media print, screen and (min-width: 64em) {
       #search-app--header .search-header {
         justify-content: flex-end;
@@ -2264,6 +2263,24 @@ ul.primary {
 /*------------------------------------*\
   02 - Main
 \*------------------------------------*/
+.block-wcet-search h2 {
+  margin-bottom: 64px;
+  padding-bottom: 16px;
+  font-size: 1rem;
+  text-align: center;
+  color: #652c90;
+  position: relative; }
+  .block-wcet-search h2:after {
+    content: '';
+    width: 160px;
+    height: 2px;
+    margin: auto;
+    background-color: #c3c5cc;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0; }
+
 #search-app--main {
   /**
    * General

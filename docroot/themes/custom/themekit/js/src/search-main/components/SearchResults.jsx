@@ -76,6 +76,14 @@ class SearchResults extends React.Component {
   };
 
   /**
+   * Comment truncateContent
+   */
+  truncateStripContent = (content) => {
+    const contentStripped = content.replace(/(<([^>]+)>)/ig, "");
+    return contentStripped.slice(0, 150) + '...';
+  };
+
+  /**
    * Comment handlePageClick
    */
   handlePageClick = (data) => {
@@ -318,6 +326,8 @@ class SearchResults extends React.Component {
               topic
               created
               content_access
+              processed
+              description
             }
           }
           facets{
@@ -333,7 +343,13 @@ class SearchResults extends React.Component {
       const data = result ? result.data.allResults : [];
       const nodes = [];
       const bodyElement = document.querySelector('body');
+
       data.documents.map(item => {
+
+        const description = item.description ? item.description
+          : item.processed && item.type === 'page' ? this.truncateStripContent(item.processed)
+          : null;
+
         nodes.push({
           nid: item.nid,
           title: item.title,
@@ -343,7 +359,8 @@ class SearchResults extends React.Component {
           color: item.color,
           topics: item.topic,
           created: item.created,
-          access: item.content_access
+          access: item.content_access,
+          description: description,
         });
       });
 
@@ -396,6 +413,8 @@ class SearchResults extends React.Component {
           created={ this.convertTime(result.created) }
           access={ result.access }
           userLoggedIn={ this.state.userLoggedIn }
+          summary={ result.summary }
+          description={ result.description }
         />
       )
     });
@@ -424,11 +443,12 @@ class SearchResults extends React.Component {
       <div className="search-main">
         <div className="search-main--keyword">
           <input type="text" placeholder={ resultKeyword } onChange={ this.handleChange }/>
-          <button className="form-submit" onClick={ this.handleSubmit }>Submit</button>
+          <button className="form-submit" onClick={ this.handleSubmit }>Search</button>
         </div>
 
         <div className="search-main--result-data">
-          <strong>{ this.state.currentPage + 1 }-{ this.state.pageCount } </strong>
+          <strong>{ this.state.currentPage * this.state.pageSize }-
+            { this.state.currentPage * this.state.pageSize + this.state.pageSize } </strong>
           of <strong>{ this.state.resultCount } results </strong>
           { resultKeyword !== '' ? "for" : '' } <em>{ resultKeyword }</em>
         </div>

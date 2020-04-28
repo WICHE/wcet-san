@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_exclude_from_search
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
@@ -20,21 +21,23 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 100
+    weight: 0
     settings: {  }
     third_party_settings: {  }
     region: content
   field_meta_tags:
-    weight: 102
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: metatag_empty_formatter
     region: content
   links:
-    weight: 101
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_exclude_from_search: true
   langcode: true
+  search_api_excerpt: true

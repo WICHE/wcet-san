@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.page.body
+    - field.field.node.page.field_exclude_from_search
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
@@ -31,5 +32,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_exclude_from_search: true
   field_meta_tags: true
   langcode: true
+  search_api_excerpt: true

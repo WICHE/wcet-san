@@ -28,8 +28,12 @@ function ResultItem(props) {
 
       <div className="search-result--title">{ props.title }</div>
 
-      { props.topics != null &&
+      { props.type === 'resource' &&
         <div className="search-result--topics">{ props.topics }</div>
+      }
+
+      { props.type === 'landing_page' || props.type === 'page' &&
+        <div className="search-result--description">{ props.description }</div>
       }
     </div>
   )

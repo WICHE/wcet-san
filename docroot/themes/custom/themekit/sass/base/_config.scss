@@ -85,8 +85,6 @@ $buttons: (
   ),
 );
 
-
-
 $layouts: (
   page: (
     width: $global-width,
@@ -102,6 +100,11 @@ $layouts: (
       medium: 20px,
     ),
   ),
+  xsmall: (
+    width: rem-calc(560),
+    gutters: 10px,
+    medium: 20px,
+  )
 );
 
 /// Icon config

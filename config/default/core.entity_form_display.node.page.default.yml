@@ -4,12 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_exclude_from_search
     - field.field.node.page.field_meta_tags
     - node.type.page
   module:
     - metatag
     - path
     - scheduler
+    - search_api_exclude_entity
     - text
 _core:
   default_config_hash: KSvzyFhdLuxniTsunUnUfpfMmod2l57GibtVjL8ymHM
@@ -33,6 +35,13 @@ content:
     weight: 10
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_exclude_from_search:
+    weight: 123
+    settings:
+      field_label: 'Yes, exclude this entity from the search indexes.'
+    third_party_settings: {  }
+    type: search_api_exclude_entity_widget
     region: content
   field_meta_tags:
     weight: 122

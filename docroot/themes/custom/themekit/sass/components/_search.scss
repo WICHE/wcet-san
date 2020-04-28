@@ -88,7 +88,7 @@
 \*------------------------------------*/
 
 .block-wcet-search {
-  h2 {
+  > h2 {
     margin-top: 64px;
     margin-bottom: 64px;
     padding-bottom: 16px;
@@ -117,8 +117,9 @@
    */
   .search-main--keyword,
   .search-main--result-data,
-  .search-main--pagination {
-    @include content-width(small);
+  .search-main--pagination,
+  .search-main--results {
+    @include content-width(xsmall);
   }
 
   /**
@@ -174,7 +175,7 @@
    * Facets
    */
   .search-main--facets {
-    @include content-width(page);
+    @include content-width(small);
     display: flex;
     flex-flow: nowrap column;
 
@@ -213,12 +214,13 @@
 
     button {
       flex-grow: 1;
+      flex-shrink: 0;
       cursor: pointer;
     }
 
     .form-submit {
       @include transition(all 0.35s ease-in-out);
-      padding: 12px 32px;
+      padding: 12px 24px;
       border-radius: 8px;
       border: solid 2px $san-blue;
       background-color: transparent;
@@ -233,7 +235,7 @@
     }
 
     .clear-filters {
-      padding: 12px 32px;
+      padding: 12px 24px;
       font-size: rem-calc(12);
       color: $san-dark-gray;
     }
@@ -250,7 +252,6 @@
 
 #search-app--main {
   .search-main--results {
-    @include content-width(small);
     margin-top: 32px;
 
     /**
@@ -282,6 +283,10 @@
     .search-result--title {
       margin: 4px 0;
       font-size: rem-calc(18);
+    }
+
+    .search-result--description {
+      font-size: rem-calc(12);
     }
 
     /**

@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.featured
     - field.field.node.resource.body
     - field.field.node.resource.field_content_access
+    - field.field.node.resource.field_exclude_from_search
     - field.field.node.resource.field_meta_tags
     - field.field.node.resource.field_p_content
     - field.field.node.resource.field_p_resources
@@ -50,7 +51,9 @@ content:
     third_party_settings: {  }
 hidden:
   field_content_access: true
+  field_exclude_from_search: true
   field_meta_tags: true
   field_p_content: true
   field_p_resources: true
   langcode: true
+  search_api_excerpt: true

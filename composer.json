@@ -89,7 +89,8 @@
     "drupal/simple_sitemap": "^3.3",
     "drupal/search_api_solr": "^1.0",
     "drupal/graphql": "^3.0",
-    "drupal/graphql_search_api": "^1.1"
+    "drupal/graphql_search_api": "^1.1",
+    "drupal/search_api_exclude_entity": "^1.0"
   },
   "conflict": {
       "drupal/drupal": "*"

@@ -2263,7 +2263,7 @@ ul.primary {
 /*------------------------------------*\
   02 - Main
 \*------------------------------------*/
-.block-wcet-search h2 {
+.block-wcet-search > h2 {
   margin-top: 64px;
   margin-bottom: 64px;
   padding-bottom: 16px;
@@ -2271,7 +2271,7 @@ ul.primary {
   text-align: center;
   color: #652c90;
   position: relative; }
-  .block-wcet-search h2:after {
+  .block-wcet-search > h2:after {
     content: '';
     width: 160px;
     height: 2px;
@@ -2297,18 +2297,11 @@ ul.primary {
    */ }
   #search-app--main .search-main--keyword,
   #search-app--main .search-main--result-data,
-  #search-app--main .search-main--pagination {
-    max-width: 48rem;
+  #search-app--main .search-main--pagination,
+  #search-app--main .search-main--results {
+    max-width: 35rem;
     margin-left: auto;
-    margin-right: auto;
-    padding-left: 0.625rem;
-    padding-right: 0.625rem; }
-    @media print, screen and (min-width: 48em) {
-      #search-app--main .search-main--keyword,
-      #search-app--main .search-main--result-data,
-      #search-app--main .search-main--pagination {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem; } }
+    margin-right: auto; }
   #search-app--main .search-main--keyword {
     display: flex;
     flex-flow: nowrap column; }
@@ -2341,7 +2334,7 @@ ul.primary {
     text-align: center;
     color: #575d70; }
   #search-app--main .search-main--facets {
-    max-width: 75rem;
+    max-width: 48rem;
     margin-left: auto;
     margin-right: auto;
     padding-left: 0.625rem;
@@ -2375,10 +2368,11 @@ ul.primary {
           margin: 0; } }
     #search-app--main .search-main--facets button {
       flex-grow: 1;
+      flex-shrink: 0;
       cursor: pointer; }
     #search-app--main .search-main--facets .form-submit {
       transition: all 0.35s ease-in-out;
-      padding: 12px 32px;
+      padding: 12px 24px;
       border-radius: 8px;
       border: solid 2px #4a90e2;
       background-color: transparent;
@@ -2389,7 +2383,7 @@ ul.primary {
         background-color: #4a90e2;
         color: #ffffff; }
     #search-app--main .search-main--facets .clear-filters {
-      padding: 12px 32px;
+      padding: 12px 24px;
       font-size: 0.75rem;
       color: #575d70; }
 
@@ -2397,11 +2391,6 @@ ul.primary {
   03 - Results
 \*------------------------------------*/
 #search-app--main .search-main--results {
-  max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 0.625rem;
-  padding-right: 0.625rem;
   margin-top: 32px;
   /**
      * General
@@ -2409,10 +2398,6 @@ ul.primary {
   /**
      * Resources
      */ }
-  @media print, screen and (min-width: 48em) {
-    #search-app--main .search-main--results {
-      padding-left: 1.25rem;
-      padding-right: 1.25rem; } }
   #search-app--main .search-main--results .search-result {
     transition: -webkit-transform 0.35s ease-in-out;
     transition: transform 0.35s ease-in-out;
@@ -2437,6 +2422,8 @@ ul.primary {
   #search-app--main .search-main--results .search-result--title {
     margin: 4px 0;
     font-size: 1.125rem; }
+  #search-app--main .search-main--results .search-result--description {
+    font-size: 0.75rem; }
   #search-app--main .search-main--results .search-result.resource {
     background-color: #f7f7f8; }
     #search-app--main .search-main--results .search-result.resource .search-result--info {

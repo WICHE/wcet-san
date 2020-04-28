@@ -6,7 +6,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Route path="/search" component={SearchResults} />
+        <Route path="/search" component={ SearchResults } />
       </Router>
     )
   }

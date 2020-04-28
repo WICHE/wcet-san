@@ -432,15 +432,13 @@
       }
     }
 
+    .disabled {
+      opacity: 0;
+      visibility: hidden;
+    }
+
     .previous {
       margin-right: auto;
-
-      &.disabled {
-        a,
-        a:before {
-          color: $san-dove-gray;
-        }
-      }
 
       a:before {
         @include icon(arrow);
@@ -451,13 +449,6 @@
 
     .next {
       margin-left: auto;
-
-      &.disabled {
-        a,
-        a:after {
-          color: $san-dove-gray;
-        }
-      }
 
       a:after {
         @include icon(arrow);

@@ -2527,19 +2527,16 @@ ul.primary {
       height: 10px;
       line-height: 8px;
       font-size: 20px; }
+  #search-app--main .search-main--pagination .disabled {
+    opacity: 0;
+    visibility: hidden; }
   #search-app--main .search-main--pagination .previous {
     margin-right: auto; }
-    #search-app--main .search-main--pagination .previous.disabled a,
-    #search-app--main .search-main--pagination .previous.disabled a:before {
-      color: #707070; }
     #search-app--main .search-main--pagination .previous a:before {
       content: "\E90A";
       margin-right: 4px; }
   #search-app--main .search-main--pagination .next {
     margin-left: auto; }
-    #search-app--main .search-main--pagination .next.disabled a,
-    #search-app--main .search-main--pagination .next.disabled a:after {
-      color: #707070; }
     #search-app--main .search-main--pagination .next a:after {
       content: "\E90A";
       -webkit-transform: rotate(180deg);

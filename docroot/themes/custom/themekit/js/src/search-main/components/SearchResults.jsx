@@ -242,10 +242,16 @@ class SearchResults extends React.Component {
   };
 
   clearFilters = () => {
+    const filters = document.querySelectorAll('.filter select');
+
     Object.keys(this.state.facets).forEach((index) => {
       this.state.facets[index].selected = [];
       this.queryResults();
     });
+
+    filters.forEach((select) => {
+      select.value = "";
+    })
   };
 
   /**

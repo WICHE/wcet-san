@@ -7,9 +7,7 @@ class DropdownFilter extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange = (e) => {
-    const facetName = this.props.item.name;
-    const value = e.target.value;
+  handleChange = (facetName, value) => {
     this.props.updateFilter(facetName, value);
   };
 
@@ -19,15 +17,19 @@ class DropdownFilter extends React.Component {
         <FilterItem
           key={ item.name }
           item={ item }
+          facetName={ this.props.item.name }
+          selected={ this.props.item.selected === item.name }
         />
       )
     }) : [];
+
+    // @TODO decode selected item from encoded value of searchResults
 
     return (
       <div className={`filter type-${ this.props.item.name }`}>
         <div className="filter-list" id={`toggle-${ this.props.item.name }`}>
           <label>{ this.props.item.label }:</label>
-          <select onChange={ this.handleChange }>
+          <select onChange={ (e) => this.handleChange(this.props.item.name, e.target.value) }>
             <option value="">All { this.props.item.label }</option>
             { filterItems }
           </select>

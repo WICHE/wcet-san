@@ -2362,7 +2362,10 @@ ul.primary {
       #search-app--main .search-main--facets .sort {
         margin-right: 16px; } }
     #search-app--main .search-main--facets select {
-      margin: 0 0 16px 0; }
+      margin: 0 0 16px 0;
+      text-transform: capitalize; }
+      #search-app--main .search-main--facets select option {
+        text-transform: capitalize; }
       @media print, screen and (min-width: 64em) {
         #search-app--main .search-main--facets select {
           margin: 0; } }

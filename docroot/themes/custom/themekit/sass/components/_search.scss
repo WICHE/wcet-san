@@ -206,6 +206,11 @@
 
     select {
       margin: 0 0 16px 0;
+      text-transform: capitalize;
+
+      option {
+        text-transform: capitalize;
+      }
 
       @include breakpoint(large) {
         margin: 0;

@@ -8,10 +8,12 @@ import ResultItem from "./ResultItem";
 
 class SearchResults extends React.Component {
   /**
-   * The constructor is a method that’s automatically called during the creation
+   * The constructor is a method that’s automatically called during the
+   * creation
    * of an object from a class. It can handle your initial setup stuff like
    * defaulting some properties of the object, or sanity checking the arguments
-   * that were passed in. Simply put, the constructor aids in constructing things.
+   * that were passed in. Simply put, the constructor aids in constructing
+   * things.
    *
    */
   constructor(props) {
@@ -29,11 +31,12 @@ class SearchResults extends React.Component {
       sort: '',
       init: false,
       facets: [
-        { name: 'topic', label: 'Topics', urlParam: 'topic', selected: [], options: [] },
-        { name: 'resource_type', label: 'Resource Type', urlParam: 'type', selected: [], options: [] },
+        { name: 'topic', label: 'Topics', urlParam: 'topic', selected: '', options: [] },
+        { name: 'resource_type', label: 'Resource Type', urlParam: 'type', selected: '', options: [] },
       ],
     };
   }
+
 
   /**
    * Comment componentDidMount
@@ -44,8 +47,8 @@ class SearchResults extends React.Component {
 
     // Get facet params from URL if they exist
     facetData.map((item, index) => {
-      if(urlParams[facetData[index].urlParam]) {
-        facetData[index].selected.push(urlParams[facetData[index].urlParam]);
+      if(urlParams[facetData[index].urlParam] !== undefined) {
+        facetData[index].selected = decodeURIComponent(urlParams[facetData[index].urlParam]);
       }
     });
 
@@ -99,35 +102,38 @@ class SearchResults extends React.Component {
   };
 
   /**
+   * Comment updateKeyword
+   */
+  updateKeyword = (value) => {
+    // Update state with change
+    this.setState(preState => {
+      return {
+        keyword: value,
+        pageIndex: 0,
+      }
+    }, () => {
+      this.updateResults('key', value);
+    });
+  };
+
+  /**
    * Comment updateFilter
    */
   updateFilter = (facetName, value) => {
     const facetData = this.state.facets;
-    let key = '';
-    let newValue = '';
 
     facetData.map((item, index) => {
-      // Find the correct facet object
       if (item.name === facetName) {
-        key = item.urlParam;
-        // If value is in selected list, remove it
-        // Else add value to selected list
-        if(facetData[index].selected.includes(value)) {
-          const itemIndex = facetData[index].selected.indexOf(value);
-          if (itemIndex > -1) {
-            facetData[index].selected.splice(itemIndex, 1);
-          }
-        } else {
-          facetData[index].selected.push(value);
-          newValue = value;
-        }
+        facetData[index].selected = value;
       }
     });
 
     // Update state with change
-    this.setState({
-      facets: facetData,
-      pageIndex: 0,
+    this.setState(preState => {
+      return {
+        facets: facetData,
+        pageIndex: 0,
+      }
     });
   };
 
@@ -147,7 +153,7 @@ class SearchResults extends React.Component {
   /**
    * Comment updateResults
    */
-  updateResults = (key = null, value = null) => {
+  updateResults = (key = null, value = null, runQuery = true) => {
     // Get current route
     const data = queryString.parse(this.props.location.search);
 
@@ -157,7 +163,7 @@ class SearchResults extends React.Component {
         value = value.toString();
       }
       // If value is array, join as comma separated list
-      data[key] = typeof value === 'string' ? value : value.join(',');
+      data[key] = typeof value === 'string' ? encodeURIComponent(value) : encodeURIComponent(value.join(','));
     } else {
       delete data[key];
     }
@@ -177,7 +183,9 @@ class SearchResults extends React.Component {
     }
 
     // Update query
-    this.queryResults();
+    if (runQuery) {
+      this.queryResults();
+    }
   };
 
   /**
@@ -236,9 +244,24 @@ class SearchResults extends React.Component {
     this.setState({ keyword: event.target.value });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = (event, key) => {
     event.preventDefault();
-    this.queryResults();
+    // this.updateKeyword(this.state.keyword);
+    switch (key) {
+      case 'keyword':
+        this.updateKeyword(this.state.keyword);
+        break;
+      case 'filter':
+        this.state.facets.forEach((facets, index) => {
+          // only want to run query when we want to run - on filter change
+          if (this.state.facets.length === index) {
+            this.updateResults(facets.urlParam, facets.selected, false);
+          } else {
+            this.updateResults(facets.urlParam, facets.selected, true);
+          }
+        });
+        break;
+    }
   };
 
   clearFilters = () => {
@@ -281,7 +304,7 @@ class SearchResults extends React.Component {
       if (item.selected.length > 0) {
         // If there are selected items, add them to the filters.
         Object.keys(item.selected).forEach((key) => {
-          catFilters.push(`{name: "${item.name}", value: "${decodeURIComponent(item.selected[key])}", operator: "="}`);
+          catFilters.push(`{name: "${item.name}", value: "${ item.selected }", operator: "="}`);
         });
       }
     });
@@ -396,34 +419,45 @@ class SearchResults extends React.Component {
     // Keyword
     const resultKeyword = this.state.keyword;
 
+    // Result count
+    let resultsLast = this.state.currentPage * this.state.pageSize + this.state.pageSize;
+    if (this.state.resultCount <= resultsLast) {
+      resultsLast = this.state.resultCount;
+    }
+
     // Facets
     const facetItems = this.state.facets.map(item =>
       <DropdownFilter
         key={ item.name }
         item={ item }
-        updateFilter={ this.updateFilter }
+        updateFilter={ this.updateFilter } //@params = facetName, value
       />
     );
 
     // Results comment
-    const results = this.state.results.map((result) => {
-      return (
-        <ResultItem
-          key={ result.nid }
-          title={ result.title }
-          type={ result.type }
-          url={ result.url }
-          resource_type={ result.resource_type }
-          color={ result.color }
-          topics={ result.topics.join(', ') }
-          created={ this.convertTime(result.created) }
-          access={ result.access }
-          userLoggedIn={ this.state.userLoggedIn }
-          summary={ result.summary }
-          description={ result.description }
-        />
-      )
-    });
+    let results = [];
+    if (this.state.results === undefined || this.state.results.length === 0) {
+      results = "Sorry, no results were found";
+    } else {
+      results = this.state.results.map((result) => {
+        return (
+          <ResultItem
+            key={result.nid}
+            title={result.title}
+            type={result.type}
+            url={result.url}
+            resource_type={result.resource_type}
+            color={result.color}
+            topics={result.topics.join(', ')}
+            created={this.convertTime(result.created)}
+            access={result.access}
+            userLoggedIn={this.state.userLoggedIn}
+            summary={result.summary}
+            description={result.description}
+          />
+        )
+      });
+    }
 
     // Pagination comment
     let pagination;
@@ -445,16 +479,17 @@ class SearchResults extends React.Component {
       );
     }
 
+
+
     return (
       <div className="search-main">
         <div className="search-main--keyword">
           <input type="text" placeholder={ resultKeyword } onChange={ this.handleChange }/>
-          <button className="form-submit" onClick={ this.handleSubmit }>Search</button>
+          <button className="form-submit" onClick={ e => this.handleSubmit(e, 'keyword') }>Search</button>
         </div>
 
         <div className="search-main--result-data">
-          <strong>{ this.state.currentPage * this.state.pageSize }-
-            { this.state.currentPage * this.state.pageSize + this.state.pageSize } </strong>
+          <strong>{ this.state.currentPage * this.state.pageSize + 1 }-{ resultsLast } </strong>
           of <strong>{ this.state.resultCount } results </strong>
           { resultKeyword !== '' ? "for" : '' } <em>{ resultKeyword }</em>
         </div>
@@ -472,7 +507,7 @@ class SearchResults extends React.Component {
             </select>
           </div>
 
-          <button className="form-submit" onClick={ this.handleSubmit }>Apply</button>
+          <button className="form-submit" onClick={ e => this.handleSubmit(e, 'filter') }>Apply</button>
           <button className="clear-filters" onClick={ this.clearFilters }>Clear Filter</button>
         </div>
 

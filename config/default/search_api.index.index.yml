@@ -96,7 +96,8 @@ field_settings:
     label: 'Resource Type » Taxonomy term » Name'
     datasource_id: 'entity:node'
     property_path: 'field_resource_type:entity:name'
-    type: string
+    type: text
+    boost: !!float 3
     dependencies:
       config:
         - field.storage.node.field_resource_type
@@ -226,6 +227,7 @@ processor_settings:
       'entity:node':
         datasource_boost: !!float 1
         bundle_boosts:
+          landing_page: !!float 13
           resource: !!float 2
     weights:
       preprocess_index: 0

@@ -2410,6 +2410,7 @@ ul.primary {
     margin-bottom: 16px;
     padding: 18px 24px 14px;
     border-radius: 8px;
+    background-color: #f7f7f8;
     position: relative; }
     #search-app--main .search-main--results .search-result:hover {
       -webkit-transform: scale(1.02);
@@ -2427,31 +2428,29 @@ ul.primary {
     font-size: 1.125rem; }
   #search-app--main .search-main--results .search-result--description {
     font-size: 0.75rem; }
-  #search-app--main .search-main--results .search-result.resource {
-    background-color: #f7f7f8; }
-    #search-app--main .search-main--results .search-result.resource .search-result--info {
-      display: flex;
-      flex-flow: nowrap row;
-      align-items: center; }
-    #search-app--main .search-main--results .search-result.resource .search-result--resource-type {
-      display: flex;
-      flex-flow: nowrap row;
-      align-items: center;
-      margin-right: 8px;
-      font-size: 0.625rem; }
-      #search-app--main .search-main--results .search-result.resource .search-result--resource-type:before {
-        content: '';
-        display: block;
-        width: 4px;
-        height: 4px;
-        margin-right: 4px;
-        border-radius: 50%; }
-    #search-app--main .search-main--results .search-result.resource .search-result--created {
-      font-size: 0.75rem;
-      color: #707070; }
-    #search-app--main .search-main--results .search-result.resource .search-result--topics {
-      font-size: 0.625rem;
-      color: #707070; }
+  #search-app--main .search-main--results .search-result.resource .search-result--info {
+    display: flex;
+    flex-flow: nowrap row;
+    align-items: center; }
+  #search-app--main .search-main--results .search-result.resource .search-result--resource-type {
+    display: flex;
+    flex-flow: nowrap row;
+    align-items: center;
+    margin-right: 8px;
+    font-size: 0.625rem; }
+    #search-app--main .search-main--results .search-result.resource .search-result--resource-type:before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 4px;
+      margin-right: 4px;
+      border-radius: 50%; }
+  #search-app--main .search-main--results .search-result.resource .search-result--created {
+    font-size: 0.75rem;
+    color: #707070; }
+  #search-app--main .search-main--results .search-result.resource .search-result--topics {
+    font-size: 0.625rem;
+    color: #707070; }
   #search-app--main .search-main--results .search-result.private {
     padding-right: 2rem; }
     #search-app--main .search-main--results .search-result.private:after {

@@ -374,7 +374,6 @@ class SearchResults extends React.Component {
       const bodyElement = document.querySelector('body');
 
       data.documents.map(item => {
-
         const description = item.description ? item.description
           : item.processed && item.type === 'page' ? this.truncateStripContent(item.processed)
           : null;

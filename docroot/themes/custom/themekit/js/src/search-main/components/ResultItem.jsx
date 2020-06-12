@@ -16,6 +16,10 @@ function ResultItem(props) {
     ${ !isLoggedIn && access === 'private' ? 'private' : ''}`
   ;
 
+  const descriptionString = props.description;
+  const descriptionObject = document.createElement('div');
+  descriptionObject.innerHTML = descriptionString;
+
   return (
     <div className={ classes }>
       <a className="search-result--link" href={ url }>link</a>
@@ -32,8 +36,8 @@ function ResultItem(props) {
         <div className="search-result--topics">{ props.topics }</div>
       }
 
-      { props.type === 'landing_page' || props.type === 'page' &&
-        <div className="search-result--description">{ props.description }</div>
+      { props.description &&
+        <div className="search-result--description">{descriptionObject.innerText}</div>
       }
     </div>
   )

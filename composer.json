@@ -92,7 +92,7 @@
     "drupal/block_field": "^1.0@alpha",
     "drupal/migrate_source_csv": "^2.0",
     "drupal/simple_sitemap": "^3.3",
-    "drupal/token": "1.7"
+    "drupal/token": "1.7",
     "drupal/search_api_solr": "^1.0",
     "drupal/graphql": "^3.0",
     "drupal/graphql_search_api": "^1.1",

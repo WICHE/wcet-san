@@ -37,7 +37,7 @@
     "drupal/config_update": "^1.0",
     "drupal/contact_storage": "^1.0",
     "drupal/pathauto": "^1.0",
-    "drupal/metatag": "1.*",
+    "drupal/metatag": "1.13",
     "drupal/redirect": "^1.0",
     "drupal/field_group": "^3.0",
     "drupal/paragraphs": "^1.0",

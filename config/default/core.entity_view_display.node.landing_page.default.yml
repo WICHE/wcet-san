@@ -11,28 +11,12 @@ dependencies:
     - node.type.landing_page
   module:
     - entity_reference_revisions
-    - metatag
-    - text
     - user
 id: node.landing_page.default
 targetEntityType: node
 bundle: landing_page
 mode: default
 content:
-  field_meta_description:
-    weight: 3
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
-  field_meta_tags:
-    weight: 2
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: metatag_empty_formatter
-    region: content
   field_p_content:
     type: entity_reference_revisions_entity_view
     weight: 1
@@ -53,6 +37,8 @@ content:
     region: content
 hidden:
   field_exclude_from_search: true
+  field_meta_description: true
+  field_meta_tags: true
   langcode: true
   links: true
   search_api_excerpt: true

@@ -23,13 +23,11 @@ class DropdownFilter extends React.Component {
       )
     }) : [];
 
-    // @TODO decode selected item from encoded value of searchResults
-
     return (
       <div className={`filter type-${ this.props.item.name }`}>
         <div className="filter-list" id={`toggle-${ this.props.item.name }`}>
           <label>{ this.props.item.label }:</label>
-          <select onChange={ (e) => this.handleChange(this.props.item.name, e.target.value) }>
+          <select onChange={ (e) => this.handleChange(this.props.item.name, e.target.value) } defaultValue={this.props.item.selected}>
             <option value="">All { this.props.item.label }</option>
             { filterItems }
           </select>

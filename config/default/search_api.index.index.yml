@@ -2,20 +2,20 @@ uuid: a26deec4-2af1-474b-84e3-2aef5e87960f
 langcode: en
 status: true
 dependencies:
+  module:
+    - node
+    - taxonomy
+    - search_api
+    - search_api_exclude_entity
   config:
+    - field.storage.node.body
+    - field.storage.node.field_content_access
+    - field.storage.node.field_meta_description
     - field.storage.node.field_resource_type
     - field.storage.taxonomy_term.field_label_color
     - field.storage.taxonomy_term.field_slug
-    - field.storage.node.field_content_access
-    - field.storage.node.field_meta_description
-    - field.storage.node.body
     - field.storage.node.field_topic
     - search_api.server.solr
-  module:
-    - taxonomy
-    - node
-    - search_api
-    - search_api_exclude_entity
 id: index
 name: index
 description: ''
@@ -96,7 +96,7 @@ field_settings:
     label: 'Resource Type » Taxonomy term » Name'
     datasource_id: 'entity:node'
     property_path: 'field_resource_type:entity:name'
-    type: text
+    type: string
     boost: !!float 3
     dependencies:
       config:
@@ -235,6 +235,6 @@ tracker_settings:
   default:
     indexing_order: fifo
 options:
-  index_directly: true
+  index_directly: false
   cron_limit: 50
 server: solr

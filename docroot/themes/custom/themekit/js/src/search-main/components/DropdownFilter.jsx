@@ -27,9 +27,16 @@ class DropdownFilter extends React.Component {
       <div className={`filter type-${ this.props.item.name }`}>
         <div className="filter-list" id={`toggle-${ this.props.item.name }`}>
           <label>{ this.props.item.label }:</label>
+
           <select onChange={ (e) => this.handleChange(this.props.item.name, e.target.value) } defaultValue={this.props.item.selected}>
-            <option value="">All { this.props.item.label }</option>
-            { filterItems }
+            <option value="" selected="">All Resource Types</option>
+            <option value="article">Article</option>
+            <option value="article (wcet frontiers)">Article (WCET Frontiers)</option>
+            <option value="coordinator call">Coordinator Call</option>
+            <option value="enewsletter">eNewsletter</option>
+            <option value="research">Research</option>
+            <option value="talking points (white papers)">Talking Points (White Papers)</option>
+            <option value="past webinars, events &amp; podcasts">Past Webinars, Events & Podcasts</option>
           </select>
         </div>
       </div>

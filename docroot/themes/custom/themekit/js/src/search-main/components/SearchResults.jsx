@@ -478,8 +478,6 @@ class SearchResults extends React.Component {
       );
     }
 
-
-
     return (
       <div className="search-main">
         <div className="search-main--keyword">
@@ -495,7 +493,40 @@ class SearchResults extends React.Component {
 
         <div className="search-main--facets">
           <div className="filters">
-            { facetItems }
+            <div className="filter type-topic">
+              <div id="toggle-topic" className="filter-list">
+                <label>Topics:</label>
+                <select onChange={ (e) => this.updateFilter('topic', e.target.value) } value={this.state.facets[0].selected}>
+                  <option value="">All Topics</option>
+                  <option value="compliance requirements (nonsara)">Compliance Requirements (nonsara)</option>
+                  <option value="federal regulations">Federal Regulations</option>
+                  <option value="getting started">Getting Started</option>
+                  <option value="history">History</option>
+                  <option value="military students">Military Students</option>
+                  <option value="other higher education issues">Other Higher Education Issues</option>
+                  <option value="professional licensure">Professional Licensure</option>
+                  <option value="reciprocity (sara)">Reciprocity (sara)</option>
+                  <option value="sansational awards">Sansational Awards</option>
+                  <option value="student complaints">Student Complaints</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="filter type-resource_type">
+              <div id="toggle-resource_type" className="filter-list">
+                <label>Resource Type:</label>
+                <select onChange={ (e) => this.updateFilter('resource_type', e.target.value) } value={this.state.facets[1].selected}>
+                  <option value="">All Resource Types</option>
+                  <option value="article">Article</option>
+                  <option value="article (wcet frontiers)">Article (WCET Frontiers)</option>
+                  <option value="coordinator call">Coordinator Call</option>
+                  <option value="enewsletter">eNewsletter</option>
+                  <option value="research">Research</option>
+                  <option value="talking points (white papers)">Talking Points (White Papers)</option>
+                  <option value="past webinars, events &amp; podcasts">Past Webinars, Events & Podcasts</option>
+                </select>
+              </div>
+            </div>
           </div>
 
           <div className="sort">

@@ -519,10 +519,10 @@ class SearchResults extends React.Component {
                   <option value="">All Resource Types</option>
                   <option value="article">Article</option>
                   <option value="article (wcet frontiers)">Article (WCET Frontiers)</option>
-                  <option value="coordinator call">Coordinator Call</option>
-                  <option value="enewsletter">eNewsletter</option>
+                  <option value="coordinator call">Coordinator Calls</option>
+                  <option value="enewsletter">eNewsletters</option>
                   <option value="research">Research</option>
-                  <option value="talking points (white papers)">Talking Points (White Papers)</option>
+                  <option value="talking points (white papers)">Talking Points (white papers)</option>
                   <option value="past webinars, events &amp; podcasts">Past Webinars, Events & Podcasts</option>
                 </select>
               </div>

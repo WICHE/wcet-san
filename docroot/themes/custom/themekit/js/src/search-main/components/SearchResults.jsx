@@ -517,7 +517,6 @@ class SearchResults extends React.Component {
                 <label>Resource Type:</label>
                 <select onChange={ (e) => this.updateFilter('resource_type', e.target.value) } value={this.state.facets[1].selected}>
                   <option value="">All Resource Types</option>
-                  <option value="article">Article</option>
                   <option value="article (wcet frontiers)">Article (WCET Frontiers)</option>
                   <option value="coordinator call">Coordinator Calls</option>
                   <option value="enewsletter">eNewsletters</option>

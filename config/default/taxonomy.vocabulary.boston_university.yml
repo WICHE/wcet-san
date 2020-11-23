@@ -1,0 +1,8 @@
+uuid: 4591aca1-fc23-4c35-bb2e-6728039875de
+langcode: en
+status: true
+dependencies: {  }
+name: 'Boston University'
+vid: boston_university
+description: ''
+weight: 0

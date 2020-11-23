@@ -1,0 +1,11 @@
+uuid: 51cb1bec-f92f-4a53-a050-5b5cd0bab8f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.boston_university
+id: taxonomy_term.boston_university
+target_entity_type_id: taxonomy_term
+target_bundle: boston_university
+default_langcode: site_default
+language_alterable: false

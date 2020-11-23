@@ -61,7 +61,7 @@
     "drupal/search_api_solr": "^1.0",
     "drupal/chosen": "^2.0",
     "drupal/shield": "^1.0",
-    "drupal/environment_indicator": "^3.0",
+    "drupal/environment_indicator": "^4.0",
     "drupal/field_tools": "dev-1.x",
     "drupal/google_analytics": "^2.0",
     "drupal/ultimate_cron": "^2.0",

@@ -9,6 +9,12 @@ dependencies:
     - taxonomy.vocabulary.resource_type
     - taxonomy.vocabulary.topic
   content:
+    - 'taxonomy_term:resource_type:4e61d88c-86c1-4c18-9120-037a0c29f83c'
+    - 'taxonomy_term:resource_type:6a892a40-d8b1-4356-b8d3-7cb63179ee16'
+    - 'taxonomy_term:resource_type:72a88b1c-5130-48d3-9590-6d3181380eb1'
+    - 'taxonomy_term:resource_type:935bfec1-9fcc-49b4-9b41-d95ace5d243a'
+    - 'taxonomy_term:resource_type:988227b2-8040-484a-b91c-435dd03f97d3'
+    - 'taxonomy_term:resource_type:b6008175-ca67-4f42-af89-1c14ce175f5d'
     - 'taxonomy_term:topic:3959358f-683e-4a21-b53e-b6d7b66053ab'
   module:
     - node
@@ -592,7 +598,13 @@ display:
           group_type: group
           admin_label: ''
           operator: or
-          value: {  }
+          value:
+            18: 18
+            20: 20
+            16: 16
+            289: 289
+            17: 17
+            223: 223
           group: 1
           exposed: true
           expose:
@@ -601,6 +613,8 @@ display:
             description: ''
             use_operator: false
             operator: field_resource_type_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: resource_type
             required: false
             remember: false
@@ -612,9 +626,7 @@ display:
               member_user: '0'
               san_admin: '0'
               coordinator: '0'
-            reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
+            reduce: true
           is_grouped: false
           group_info:
             label: ''

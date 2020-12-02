@@ -5,10 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.media.entity_embed
     - entity_browser.browser.video_embed
-    - media_entity.bundle.video
+    - media.type.video
   module:
     - entity_embed
-    - media_entity
+    - media
 label: 'Video Embed'
 id: video_embed
 type_id: entity

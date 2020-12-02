@@ -7,7 +7,7 @@ dependencies:
     - field.field.media.video.field_video
     - field.field.media.video.field_video_id
     - field.field.media.video.field_video_type
-    - media_entity.bundle.video
+    - media.type.video
   module:
     - video_embed_field
 id: media.video.default
@@ -40,5 +40,6 @@ hidden:
   field_video_id: true
   field_video_type: true
   langcode: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true

@@ -4,14 +4,16 @@ status: true
 dependencies:
   module:
     - crop
+    - media_entity_generic
 third_party_settings:
   crop:
     image_field: null
 id: svg
 label: SVG
 description: ''
-type: generic
+source: generic
 queue_thumbnail_downloads: false
 new_revision: false
-type_configuration: {  }
+source_configuration:
+  source_field: field_media_generic
 field_map: {  }

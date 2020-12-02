@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_media_file
-    - media_entity.bundle.file
+    - media.type.file
     - paragraphs.paragraphs_type.single_file
 id: paragraph.single_file.field_media_file
 field_name: field_media_file

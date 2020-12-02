@@ -3,10 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.svg.field_media_generic
     - field.field.media.svg.field_svg
     - field.field.media.svg.field_svg_type
     - field.field.media.svg.field_tags
-    - media_entity.bundle.svg
+    - media.type.svg
   module:
     - file
     - path
@@ -65,6 +66,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 100
+    region: content
+    third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
     weight: 5
@@ -75,4 +83,5 @@ content:
       match_limit: 10
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_media_generic: true

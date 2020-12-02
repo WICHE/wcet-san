@@ -3,12 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - media_entity.bundle.file
+    - media.type.file
     - taxonomy.vocabulary.file_type
     - taxonomy.vocabulary.tags
   module:
     - entity_browser
-    - media_entity
+    - media
     - taxonomy
     - user
 id: entity_browser_file

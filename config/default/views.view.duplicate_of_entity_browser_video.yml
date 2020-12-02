@@ -4,11 +4,11 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_video
-    - media_entity.bundle.video
+    - media.type.video
     - taxonomy.vocabulary.tags
   module:
     - entity_browser
-    - media_entity
+    - media
     - taxonomy
     - user
     - video_embed_field

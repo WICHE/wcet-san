@@ -5,10 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.media.entity_embed
     - entity_browser.browser.file_embed
-    - media_entity.bundle.file
+    - media.type.file
   module:
     - entity_embed
-    - media_entity
+    - media
 label: 'File Embed'
 id: file_embed
 type_id: entity

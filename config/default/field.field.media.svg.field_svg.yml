@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_svg
-    - media_entity.bundle.svg
+    - media.type.svg
   module:
     - file
 id: media.svg.field_svg

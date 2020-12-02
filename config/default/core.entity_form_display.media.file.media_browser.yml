@@ -9,7 +9,7 @@ dependencies:
     - field.field.media.file.field_file_type
     - field.field.media.file.field_mime_type
     - field.field.media.file.field_tags
-    - media_entity.bundle.file
+    - media.type.file
   module:
     - file
     - path

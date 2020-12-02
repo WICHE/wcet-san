@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_mime_type
-    - media_entity.bundle.file
+    - media.type.file
 id: media.file.field_mime_type
 field_name: field_mime_type
 entity_type: media

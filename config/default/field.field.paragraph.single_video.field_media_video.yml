@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_media_video
-    - media_entity.bundle.video
+    - media.type.video
     - paragraphs.paragraphs_type.single_video
 id: paragraph.single_video.field_media_video
 field_name: field_media_video

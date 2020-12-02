@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - image.style.media_browser_thumb
-    - media_entity.bundle.image
+    - media.type.image
     - taxonomy.vocabulary.image_type
     - taxonomy.vocabulary.tags
   module:
     - entity_browser
     - image
-    - media_entity
+    - media
     - taxonomy
     - user
 id: entity_browser_image

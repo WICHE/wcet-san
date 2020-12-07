@@ -9,20 +9,18 @@
     }
   ],
   "require-dev": {
-    "drupal/drupal-extension": "^3.2",
     "behat/mink": "~1.7",
     "behat/mink-goutte-driver": "~1.2",
     "jcalderonzumba/gastonjs": "~1.0.2",
     "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
-    "mikey179/vfsstream": "~1.2",
-    "phpunit/phpunit": "~4.8"
+    "mikey179/vfsstream": "~1.2"
   },
   "require": {
     "composer/installers": "^1.2",
     "drupal-composer/drupal-scaffold": "^2.2",
     "cweagans/composer-patches": "~1.0",
     "wikimedia/composer-merge-plugin": "dev-master",
-    "drupal/core": "8.8.11",
+    "drupal/core": "9.1.0",
     "drush/drush": "^10",
     "drupal/console": "^1.0",
     "drupal/coffee": "^1.0",
@@ -88,7 +86,8 @@
     "drupal/graphql_search_api": "^1.1",
     "drupal/search_api_exclude_entity": "^1.0",
     "drupal/media_entity_generic": "^1.1",
-    "drupal/csv_serialization": "^2"
+    "drupal/csv_serialization": "^2",
+    "twig/twig": "2.12.0"
   },
   "conflict": {
       "drupal/drupal": "*"
@@ -125,6 +124,9 @@
     "patches": {
       "drupal/metatag": {
         "Compatibility break with graphql 3.0": "https://www.drupal.org/files/issues/2020-04-22/metatag-n3129863-3.patch"
+      },
+      "drupal/field_tools": {
+        "Compatibility with Drupal 9": "https://www.drupal.org/files/issues/2020-06-06/Compatibility_with_Drupal_9-3147230-2.patch"
       }
     }
   },

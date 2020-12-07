@@ -2,37 +2,64 @@ page_title: Sitemap
 message:
   value: ''
   format: restricted_html
-show_front: true
-show_titles: true
-show_books: {  }
-books_expanded: true
-show_menus:
-  main: main
-  account: '0'
-  admin: '0'
-  devel: '0'
-  footer: '0'
-  tools: '0'
-show_menus_hidden: false
-show_vocabularies:
-  tags: '0'
-show_description: true
-show_count: true
-vocabulary_depth: -1
-term_threshold: 0
-forum_threshold: -1
-rss_front: rss.xml
-show_rss_links: 1
-rss_taxonomy: -1
-css: false
-order:
-  front: -50
-  menus_account: -50
-  menus_admin: -50
-  menus_devel: -50
-  menus_footer: -50
-  menus_main: -50
-  menus_tools: -50
-  vocabularies_tags: -50
 _core:
   default_config_hash: qZeaiLq06xBUfw-JNZtgetxUUMz-J8YCzw_LuhPrk2E
+include_css: false
+plugins:
+  frontpage:
+    enabled: true
+    weight: -50
+    settings:
+      title: 'Front page'
+      rss: /rss.xml
+  'menu:main':
+    enabled: true
+    weight: -50
+    settings:
+      title: 'Main navigation'
+      show_disabled: false
+  'menu:account':
+    enabled: false
+    weight: -50
+    settings:
+      title: 'User account menu'
+      show_disabled: false
+  'menu:admin':
+    enabled: false
+    weight: -50
+    settings:
+      title: Administration
+      show_disabled: false
+  'menu:devel':
+    enabled: false
+    weight: -50
+    settings:
+      title: null
+      show_disabled: false
+  'menu:footer':
+    enabled: false
+    weight: -50
+    settings:
+      title: Footer
+      show_disabled: false
+  'menu:tools':
+    enabled: false
+    weight: -50
+    settings:
+      title: Tools
+      show_disabled: false
+  'vocabulary:tags':
+    enabled: false
+    weight: -50
+    settings:
+      title: Tags
+      show_description: true
+      show_count: true
+      term_depth: 9
+      term_count_threshold: 0
+      customize_link: null
+      term_link: entity.taxonomy_term.canonical|taxonomy_term
+      always_link: null
+      enable_rss: true
+      rss_link: view.taxonomy_term.feed_1|arg_0
+      rss_depth: 9

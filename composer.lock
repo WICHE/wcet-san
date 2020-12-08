@@ -3989,8 +3989,7 @@
             "homepage": "https://www.drupal.org/project/field_tools",
             "support": {
                 "source": "https://git.drupalcode.org/project/field_tools"
-            },
-            "time": "2020-07-16T15:26:23+00:00"
+            }
         },
         {
             "name": "drupal/focal_point",
@@ -11518,6 +11517,5 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }

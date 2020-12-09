@@ -87,7 +87,8 @@
     "drupal/search_api_exclude_entity": "^1.0",
     "drupal/media_entity_generic": "^1.1",
     "drupal/csv_serialization": "^2",
-    "twig/twig": "2.12.0"
+    "twig/twig": "2.12.0",
+    "drupal/upgrade_status": "^3.0"
   },
   "conflict": {
       "drupal/drupal": "*"

@@ -92,9 +92,7 @@ services:
       << : *default-environment
 
   solr:
-    build:
-      context: .
-      dockerfile: solr.dockerfile
+    image: amazeeio/solr:5.5-drupal
     labels:
       lagoon.type: solr
     ports:

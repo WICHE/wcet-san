@@ -17,7 +17,7 @@ x-environment:
     LAGOON_ROUTE: http://wcetsan.wiche.edu.docker.amazee.io
     PHP_MEMORY_LIMIT: "-1"
     # Uncomment if you like to have the system behave like in production
-    #LAGOON_ENVIRONMENT_TYPE: production
+    LAGOON_ENVIRONMENT_TYPE: production
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
     #XDEBUG_ENABLE: "true"
 

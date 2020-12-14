@@ -25,7 +25,7 @@ if(getenv('LAGOON')){
 // WARNING: you have to create a search_api server having "solr" machine name at
 // /admin/config/search/search-api/add-server to make this work.
 if (getenv('LAGOON')) {
-  $config['search_api.server.solr']['backend_config']['connector_config']['host'] = getenv('SOLR_HOST') ?: 'solr';
+  $config['search_api.server.solr']['backend_config']['connector_config']['host'] = getenv('SOLR_SERVICE_HOST') ?: 'solr';
   $config['search_api.server.solr']['backend_config']['connector_config']['path'] = '/solr/';
   $config['search_api.server.solr']['backend_config']['connector_config']['core'] = getenv('SOLR_CORE') ?: 'drupal';
   $config['search_api.server.solr']['backend_config']['connector_config']['port'] = 8983;

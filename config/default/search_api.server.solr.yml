@@ -2,6 +2,13 @@ uuid: 7b3f2712-911b-4fd1-86db-1f4deccbdb82
 langcode: en
 status: true
 dependencies:
+  config:
+    - search_api_solr.solr_field_type.text_edge_und_4_5_0
+    - search_api_solr.solr_field_type.text_edgestring_und_4_5_0
+    - search_api_solr.solr_field_type.text_en_4_5_0
+    - search_api_solr.solr_field_type.text_ngram_und_4_5_0
+    - search_api_solr.solr_field_type.text_ngramstring_und_4_5_0
+    - search_api_solr.solr_field_type.text_und_4_5_0
   module:
     - search_api_solr
 id: solr
@@ -19,22 +26,28 @@ backend_config:
     timeout: 5
     index_timeout: 5
     optimize_timeout: 10
+    finalize_timeout: 30
     commit_within: 1000
-    solr_version: ''
+    solr_version: '5'
     http_method: AUTO
-    http_user: ''
-    http:
-      http_user: ''
-      http_pass: ''
-    http_pass: ''
     skip_schema_check: false
+    jmx: false
+    solr_install_dir: ''
+  disabled_field_types: {  }
+  disabled_caches: {  }
+  disabled_request_handlers:
+    - request_handler_elevate_default_7_0_0
+    - request_handler_replicationmaster_default_7_0_0
+    - request_handler_replicationslave_default_7_0_0
+  disabled_request_dispatchers:
+    - request_dispatcher_httpcaching_default_7_0_0
+  rows: 10
+  index_single_documents_fallback_count: 10
   retrieve_data: false
   highlight_data: false
-  site_hash: false
-  domain: generic
-  finalize_timeout: 30
-  server_prefix: ''
-  optimize: false
-  environment: default
-  index_single_documents_fallback_count: 10
   fallback_multiple: true
+  server_prefix: ''
+  domain: generic
+  environment: default
+  optimize: false
+  site_hash: false

@@ -5,7 +5,7 @@ tasks:
 
     - run:
         name: first cache clear
-        command: cd docroot; drush -y cr all
+        command: drush cr
         service: cli
 
     - run:
@@ -20,7 +20,7 @@ tasks:
     
     - run:
         name: second cache clear
-        command: cd docroot; drush -y cr all
+        command: drush cr
         service: cli
 
 environments:

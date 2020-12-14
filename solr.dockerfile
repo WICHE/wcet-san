@@ -1,4 +1,4 @@
-FROM amazeeio/solr:6.6
+FROM amazeeio/solr:6.6-drupal
 
 COPY .lagoon/solr /solr-conf/conf
 

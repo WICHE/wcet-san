@@ -78,3 +78,6 @@ if (file_exists(__DIR__ . '/settings.local.php')) {
 if (file_exists(__DIR__ . '/local.services.yml')) {
     $settings['container_yamls'][] = __DIR__ . '/local.services.yml';
 }$settings['install_profile'] = 'standard';
+
+// Set config directory
+$settings['config_sync_directory'] = '../config/default';

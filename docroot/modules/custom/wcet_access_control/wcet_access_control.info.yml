@@ -1,5 +1,5 @@
 name: WCET Access Control
 type: module
 description: Defines custom access rules.
-core: 8.x
+core_version_requirement: ^8 || ^9
 package: 'WCET|SAN'

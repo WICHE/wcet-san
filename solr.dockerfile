@@ -2,8 +2,6 @@ FROM amazeeio/solr:6.6
 
 COPY .lagoon/solr /solr-conf
 
-RUN precreate-core drupal /solr-conf
-
 # we need root for the fix-permissions to work
 USER root
 
@@ -17,4 +15,5 @@ RUN fix-permissions /var/solr \
 # solr really doesn't like to be run as root, so we define the default user agin
 USER solr
 
+RUN precreate-core drupal /solr-conf
 CMD ["solr-foreground"]

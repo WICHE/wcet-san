@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f51165811b17acc3fcffc289165cc0ab",
+    "content-hash": "f43867c716d150f2eec126b32af1e7b6",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3196,6 +3196,9 @@
                         "[web-root]/profiles/README.txt": "assets/scaffold/files/profiles.README.txt",
                         "[web-root]/themes/README.txt": "assets/scaffold/files/themes.README.txt"
                     }
+                },
+                "patches_applied": {
+                    "Add optional parameters to StatementInterface::fetchObject()...": "https://www.drupal.org/files/issues/2020-12-03/3128548-15-StatementInterface.patch"
                 }
             },
             "autoload": {

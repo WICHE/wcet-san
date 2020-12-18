@@ -123,6 +123,9 @@
 	},	  
     "enable-patching": true,
     "patches": {
+      "drupal/core": {
+        "Add optional parameters to StatementInterface::fetchObject()...": "https://www.drupal.org/files/issues/2020-12-03/3128548-15-StatementInterface.patch"
+      },
       "drupal/metatag": {
         "Compatibility break with graphql 3.0": "https://www.drupal.org/files/issues/2020-04-22/metatag-n3129863-3.patch"
       },

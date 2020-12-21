@@ -2,7 +2,7 @@ version: '2.3'
 
 x-lagoon-project:
   # Lagoon project name (leave `&lagoon-project` when you edit this)
-  &lagoon-project wcetsan_wiche_edu
+  &lagoon-project wcetsan-wiche-edu
 
 x-volumes:
   &default-volumes

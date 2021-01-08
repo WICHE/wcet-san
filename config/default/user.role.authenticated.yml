@@ -20,3 +20,4 @@ permissions:
   - 'skip comment approval'
   - 'use graphql explorer'
   - 'use text format basic_html'
+  - 'view media'

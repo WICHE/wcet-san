@@ -4,10 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.form_preview
+    - field.field.media.svg.field_media_generic
     - field.field.media.svg.field_svg
     - field.field.media.svg.field_svg_type
     - field.field.media.svg.field_tags
-    - media_entity.bundle.svg
+    - media.type.svg
   module:
     - file
 id: media.svg.form_preview
@@ -48,6 +49,7 @@ content:
     region: content
 hidden:
   created: true
+  field_media_generic: true
   langcode: true
   thumbnail: true
   uid: true

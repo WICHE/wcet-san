@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_svg_type
-    - media_entity.bundle.svg
+    - media.type.svg
     - taxonomy.vocabulary.svg_type
 id: media.svg.field_svg_type
 field_name: field_svg_type

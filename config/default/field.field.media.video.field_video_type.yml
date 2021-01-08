@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_video_type
-    - media_entity.bundle.video
+    - media.type.video
     - taxonomy.vocabulary.video_type
 id: media.video.field_video_type
 field_name: field_video_type

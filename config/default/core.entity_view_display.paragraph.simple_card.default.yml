@@ -11,7 +11,7 @@ dependencies:
     - paragraphs.paragraphs_type.simple_card
   module:
     - link
-    - media_entity_image
+    - media
 id: paragraph.simple_card.default
 targetEntityType: paragraph
 bundle: simple_card

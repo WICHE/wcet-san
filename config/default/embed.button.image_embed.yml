@@ -5,10 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.media.entity_embed
     - entity_browser.browser.image_embed
-    - media_entity.bundle.image
+    - media.type.image
   module:
     - entity_embed
-    - media_entity
+    - media
 label: 'Image Embed'
 id: image_embed
 type_id: entity

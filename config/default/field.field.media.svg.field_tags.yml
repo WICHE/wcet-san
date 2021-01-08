@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_tags
-    - media_entity.bundle.svg
+    - media.type.svg
 id: media.svg.field_tags
 field_name: field_tags
 entity_type: media

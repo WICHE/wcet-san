@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_image_type
-    - media_entity.bundle.image
+    - media.type.image
     - taxonomy.vocabulary.image_type
 id: media.image.field_image_type
 field_name: field_image_type

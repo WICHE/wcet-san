@@ -6,7 +6,7 @@ dependencies:
     - field.field.media.image.field_image
     - field.field.media.image.field_image_type
     - field.field.media.image.field_tags
-    - media_entity.bundle.image
+    - media.type.image
   module:
     - image
 id: media.image.default

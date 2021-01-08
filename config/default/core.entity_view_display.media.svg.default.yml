@@ -3,10 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.svg.field_media_generic
     - field.field.media.svg.field_svg
     - field.field.media.svg.field_svg_type
     - field.field.media.svg.field_tags
-    - media_entity.bundle.svg
+    - media.type.svg
   module:
     - file
 id: media.svg.default
@@ -23,6 +24,7 @@ content:
     region: content
 hidden:
   created: true
+  field_media_generic: true
   field_svg_type: true
   field_tags: true
   langcode: true

@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_svg
-    - media_entity.bundle.svg
+    - media.type.svg
     - taxonomy.vocabulary.svg_type
     - taxonomy.vocabulary.tags
   module:
     - entity_browser
     - file
-    - media_entity
+    - media
     - taxonomy
     - user
 id: entity_browser_svg

@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.single_image.field_media_image
     - paragraphs.paragraphs_type.single_image
   module:
-    - media_entity_image
+    - media
 id: paragraph.single_image.default
 targetEntityType: paragraph
 bundle: single_image

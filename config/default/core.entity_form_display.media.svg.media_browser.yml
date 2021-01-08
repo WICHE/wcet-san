@@ -4,10 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_form_mode.media.media_browser
+    - field.field.media.svg.field_media_generic
     - field.field.media.svg.field_svg
     - field.field.media.svg.field_svg_type
     - field.field.media.svg.field_tags
-    - media_entity.bundle.svg
+    - media.type.svg
   module:
     - file
     - path
@@ -53,7 +54,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 100
+    region: content
+    third_party_settings: {  }
 hidden:
   created: true
+  field_media_generic: true
   langcode: true
   uid: true

@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_svg
-    - media_entity.bundle.svg
+    - media.type.svg
     - paragraphs.paragraphs_type.single_svg
 id: paragraph.single_svg.field_svg
 field_name: field_svg

@@ -35,7 +35,6 @@ module:
   e3_google_tag: 0
   editor: 0
   embed: 0
-  entity: 0
   entity_browser: 0
   entity_browser_entity_form: 0
   entity_clone: 0
@@ -66,9 +65,8 @@ module:
   login_security: 0
   mailsystem: 0
   markup: 0
-  media_entity: 0
-  media_entity_document: 0
-  media_entity_image: 0
+  media: 0
+  media_entity_generic: 0
   menu_block: 0
   menu_ui: 0
   metatag: 0

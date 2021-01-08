@@ -1,11 +1,11 @@
-uuid: f347fc95-ae96-41a5-abe1-8447f13a0948
+uuid: fc09c13f-6db5-42d8-ac85-bca09ca26637
 langcode: en
 status: true
 dependencies:
   module:
     - media
-id: media.field_mime_type
-field_name: field_mime_type
+id: media.field_media_generic
+field_name: field_media_generic
 entity_type: media
 type: string
 settings:
@@ -18,4 +18,4 @@ cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false
-custom_storage: false
+custom_storage: true

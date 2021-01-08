@@ -8,7 +8,7 @@ dependencies:
     - field.field.media.image.field_image_type
     - field.field.media.image.field_tags
     - image.style.medium
-    - media_entity.bundle.image
+    - media.type.image
   module:
     - focal_point
     - path
@@ -63,6 +63,13 @@ content:
     weight: 30
     region: content
     settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 100
+    region: content
     third_party_settings: {  }
 hidden:
   created: true

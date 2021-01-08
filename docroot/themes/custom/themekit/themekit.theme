@@ -21,6 +21,24 @@ use Drupal\Core\Link;
 //*********************************************
 
 /**
+ * Implements template_preprocess_menu().
+ */
+function themekit_preprocess_menu(&$variables) {
+  // Hide logout link for the non-authenticated user.
+  $items = $variables['items'];
+  foreach ($items as $key => &$item) {
+    // Hide  link if the user is logged in.
+    if (
+      !$item['url']->isExternal()
+      && $item['url']->getRouteName() == 'user.logout'
+      && !\Drupal::currentUser()->isAuthenticated()
+    ) {
+      unset($variables['items'][$key]);
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_node().
  */
 function themekit_preprocess_node(&$variables) {

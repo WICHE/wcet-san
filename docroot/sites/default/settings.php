@@ -26,8 +26,8 @@ if(getenv('LAGOON')){
 // /admin/config/search/search-api/add-server to make this work.
 if (getenv('LAGOON')) {
   $config['search_api.server.solr']['backend_config']['connector_config']['host'] = getenv('SOLR_HOST') ?: 'solr';
-  $config['search_api.server.solr']['backend_config']['connector_config']['path'] = '/solr/';
-  $config['search_api.server.solr']['backend_config']['connector_config']['core'] = getenv('SOLR_CORE') ?: 'drupal';
+  $config['search_api.server.solr']['backend_config']['connector_config']['path'] = '';
+  $config['search_api.server.solr']['backend_config']['connector_config']['core'] = getenv('SOLR_CORE') ?: 'wcet';
   $config['search_api.server.solr']['backend_config']['connector_config']['port'] = 8983;
   $config['search_api.server.solr']['backend_config']['connector_config']['http_user'] = (getenv('SOLR_USER') ?: '');
   $config['search_api.server.solr']['backend_config']['connector_config']['http']['http_user'] = (getenv('SOLR_USER') ?: '');
@@ -78,3 +78,6 @@ if (file_exists(__DIR__ . '/settings.local.php')) {
 if (file_exists(__DIR__ . '/local.services.yml')) {
     $settings['container_yamls'][] = __DIR__ . '/local.services.yml';
 }$settings['install_profile'] = 'standard';
+
+// Set config directory
+$settings['config_sync_directory'] = '../config/default';

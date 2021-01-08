@@ -57,7 +57,8 @@ settings:
       language_list: un
     stylescombo:
       styles: ''
-    linkit:
+    drupallink:
+      linkit_enabled: true
       linkit_profile: ''
 image_upload:
   status: true

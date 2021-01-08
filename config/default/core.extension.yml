@@ -2,6 +2,7 @@ module:
   action: 0
   address: 0
   admin_toolbar: 0
+  admin_toolbar_search: 0
   admin_toolbar_tools: 0
   adminimal_admin_toolbar: 0
   advagg: 0
@@ -89,6 +90,7 @@ module:
   search_api: 0
   search_api_exclude_entity: 0
   search_api_solr: 0
+  search_api_solr_legacy: 0
   seckit: 0
   security_review: 0
   serialization: 0
@@ -109,6 +111,7 @@ module:
   twig_field_value: 0
   ultimate_cron: 0
   update: 0
+  upgrade_status: 0
   user: 0
   video_embed_field: 0
   video_embed_media: 0

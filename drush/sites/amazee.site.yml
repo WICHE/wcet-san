@@ -1,0 +1,22 @@
+dev:
+  host: ssh.lagoon.amazeeio.cloud
+  options:
+    backup-dir: /tmp
+    command-specific:
+      sql-sync:
+        no-ordered-dump: true
+  root: /app/docroot
+  user: wcetsan-wiche-edu-develop
+  ssh:
+    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'
+master:
+  host: ssh.lagoon.amazeeio.cloud
+  options:
+    backup-dir: /tmp
+    command-specific:
+      sql-sync:
+        no-ordered-dump: true
+  root: /app/docroot
+  user: wcetsan-wiche-edu-master
+  ssh:
+    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'

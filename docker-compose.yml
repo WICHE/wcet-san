@@ -76,7 +76,7 @@ services:
 
 
   mariadb:
-    image: amazeeio/mariadb-drupal
+    image: uselagoon/mariadb-drupal:latest
     labels:
       lagoon.type: mariadb
     ports:
@@ -103,7 +103,7 @@ services:
       <<: *default-environment
   
   varnish:
-    image: amazeeio/varnish-drupal
+    image: uselagoon/varnish-drupal:latest
     labels:
       lagoon.type: varnish
     links:

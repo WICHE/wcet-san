@@ -1,12 +1,11 @@
 <?php
 
-//Trusted host patterns
-$settings['trusted_host_patterns'] = array(
-    '^amazee\.io$',
-    '^.+\.amazee\.io$',
-    '^wiche\.edu$',
-    '^.+\.wiche\.edu$'
-);
+// Trusted Host Patterns.
+// Trusted host patterns are not necessary on lagoon as traffic will only
+// be routed to your site via the routes (hosts) defined in .lagoon.yml.
+if (getenv('LAGOON')) {
+  $settings['trusted_host_patterns'][] = '.*';
+}
 
 ### Lagoon Database connection
 if(getenv('LAGOON')){

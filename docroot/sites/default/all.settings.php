@@ -36,7 +36,7 @@ $settings['file_chmod_file'] = 0664;
 // Environment Indicator settings
 $config['environment_indicator.indicator']['bg_color'] = '#930007';
 $config['environment_indicator.indicator']['fg_color'] = '#ffffff';
-$config['environment_indicator.indicator']['name'] = 'Amazee ' . getenv('AMAZEEIO_SITE_ENVIRONMENT');
+$config['environment_indicator.indicator']['name'] = 'amazee.io ' . getenv('LAGOON_ENVIRONMENT_TYPE');
 
 // Install profile settings
 $settings['install_profile'] = 'standard';

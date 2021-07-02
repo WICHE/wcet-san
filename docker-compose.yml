@@ -84,13 +84,6 @@ services:
     environment:
       << : *default-environment
 
-  redis:
-    image: amazeeio/redis
-    labels:
-      lagoon.type: redis
-    environment:
-      << : *default-environment
-
   solr:
     build:
       context: .

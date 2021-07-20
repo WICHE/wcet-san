@@ -16,9 +16,11 @@ $config_directories = array(
 // Set default paths to public, private and temp directories.
 $settings['file_public_path'] = 'sites/default/files';
 $settings['file_private_path'] = 'sites/default/files/private';
-if (getenv('AMAZEEIO_TMP_PATH')) {
-    $config['system.file']['path']['temporary'] = getenv('AMAZEEIO_TMP_PATH');
-}
+
+// Temp directory.
+if (getenv('TMP')) {
+    $config['system.file']['path']['temporary'] = getenv('TMP');
+  }
 
 // Access control for update.php script.
 $settings['update_free_access'] = FALSE;
@@ -34,7 +36,7 @@ $settings['file_chmod_file'] = 0664;
 // Environment Indicator settings
 $config['environment_indicator.indicator']['bg_color'] = '#930007';
 $config['environment_indicator.indicator']['fg_color'] = '#ffffff';
-$config['environment_indicator.indicator']['name'] = 'Amazee ' . getenv('AMAZEEIO_SITE_ENVIRONMENT');
+$config['environment_indicator.indicator']['name'] = 'amazee.io ' . getenv('LAGOON_ENVIRONMENT_TYPE');
 
 // Install profile settings
 $settings['install_profile'] = 'standard';

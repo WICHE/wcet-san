@@ -14,10 +14,10 @@ x-environment:
   &default-environment
     LAGOON_PROJECT: *lagoon-project
     # Route that should be used locally
-    LAGOON_ROUTE: http://wcetsan.wiche.edu.docker.amazee.io
+    LAGOON_ROUTE: http://wcetsan-wiche-edu.docker.amazee.io
     PHP_MEMORY_LIMIT: "-1"
     # Uncomment if you like to have the system behave like in production
-    LAGOON_ENVIRONMENT_TYPE: production
+    # LAGOON_ENVIRONMENT_TYPE: production
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
     #XDEBUG_ENABLE: "true"
 
@@ -53,7 +53,7 @@ services:
       - cli # basically just tells docker-compose to build the cli first
     environment:
       << : *default-environment # loads the defined environment variables from the top
-      LAGOON_LOCALDEV_URL: nginx-wcet.wiche.edu.docker.amazee.io # generate another route for nginx, by default we go to varnish
+      LAGOON_LOCALDEV_URL: nginx-wcetwiche-edu.docker.amazee.io # generate another route for nginx, by default we go to varnish
     networks:
       - amazeeio-network
       - default
@@ -76,18 +76,11 @@ services:
 
 
   mariadb:
-    image: amazeeio/mariadb-drupal
+    image: uselagoon/mariadb-drupal:latest
     labels:
       lagoon.type: mariadb
     ports:
       - "3306" # exposes the port 3306 with a random local port, find it with `docker-compose port mariadb 3306`
-    environment:
-      << : *default-environment
-
-  redis:
-    image: amazeeio/redis
-    labels:
-      lagoon.type: redis
     environment:
       << : *default-environment
 
@@ -103,7 +96,7 @@ services:
       <<: *default-environment
   
   varnish:
-    image: amazeeio/varnish-drupal
+    image: uselagoon/varnish-drupal:latest
     labels:
       lagoon.type: varnish
     links:

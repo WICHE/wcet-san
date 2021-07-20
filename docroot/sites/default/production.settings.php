@@ -22,6 +22,6 @@ $config['system.performance']['css']['preprocess'] = TRUE;
 $config['system.performance']['js']['preprocess'] = TRUE;
 
 // Environment Indicator Settings
-$config['environment_indicator.indicator']['name'] = 'Amazee ' . getenv('AMAZEEIO_SITE_ENVIRONMENT') . ' [Master DB]';
+$config['environment_indicator.indicator']['name'] = 'amazee.io ' . getenv('LAGOON_ENVIRONMENT_TYPE') . ' [Master DB]';
 $config['environment_indicator.indicator']['bg_color'] = '#930007';
 $config['environment_indicator.indicator']['fg_color'] = '#ffffff';

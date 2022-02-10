@@ -16,13 +16,13 @@
     "mikey179/vfsstream": "~1.2"
   },
   "require": {
-    "composer/installers": "^1.2",
-    "drupal-composer/drupal-scaffold": "^2.2",
+    "composer/installers": "^1.0",
+    "drupal/core-composer-scaffold": "^9.3.5",
     "cweagans/composer-patches": "~1.0",
     "wikimedia/composer-merge-plugin": "dev-master",
-    "drupal/core": "^9.2.0",
+    "drupal/core": "^9.3.2",
     "drush/drush": "^10",
-    "drupal/console": "^1.0",
+    "drupal/console": "^1.9.8",
     "drupal/coffee": "^1.0",
     "drupal/admin_toolbar": "^2.4",
     "drupal/adminimal_theme": "^1.0",
@@ -154,5 +154,15 @@
               "DrupalProject\\composer\\ParagonScriptHandler::createPrivateTempDirectories",
               "DrupalProject\\composer\\ParagonScriptHandler::makeRobotsHidden"
           ]
-      }
+      },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true,
+      "cweagans/composer-patches": true,
+      "drupal/console-extend-plugin": true,
+      "drupal-composer/drupal-scaffold": true,
+      "wikimedia/composer-merge-plugin": true,
+      "drupal/core-composer-scaffold": true
+    }
+  }
 }

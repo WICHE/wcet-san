@@ -11,14 +11,15 @@ bundle: single_video
 mode: default
 content:
   field_media_video:
-    weight: 0
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      link: true
       view_mode: default
+      link: true
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    weight: 0
     region: content
 hidden:
   created: true
+  search_api_excerpt: true
   uid: true

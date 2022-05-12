@@ -2,11 +2,6 @@ uuid: a26deec4-2af1-474b-84e3-2aef5e87960f
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - taxonomy
-    - search_api
-    - search_api_exclude_entity
   config:
     - field.storage.node.body
     - field.storage.node.field_content_access
@@ -16,6 +11,38 @@ dependencies:
     - field.storage.taxonomy_term.field_slug
     - field.storage.node.field_topic
     - search_api.server.solr
+  module:
+    - node
+    - taxonomy
+    - search_api
+    - search_api_exclude_entity
+third_party_settings:
+  search_api_solr:
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+      _core:
+        default_config_hash: 914vBglS7nVnl8EUqBejfUPPRT6wnWYcOhMli6oL4jY
+    term_modifiers:
+      slop: 10000000
+      fuzzy: 2
+    advanced:
+      index_prefix: ''
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
 id: index
 name: index
 description: ''
@@ -173,18 +200,21 @@ processor_settings:
       preprocess_query: -30
   entity_status: {  }
   highlight:
-    highlight: always
-    highlight_partial: false
+    weights:
+      postprocess_query: 0
+    prefix: '<strong>'
+    suffix: '</strong>'
     excerpt: true
     excerpt_length: 256
     exclude_fields:
       - rendered_item
       - title
-    prefix: '<strong>'
-    suffix: '</strong>'
-    weights:
-      postprocess_query: 0
+    highlight: always
+    highlight_partial: false
   html_filter:
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
     all_fields: false
     fields:
       - description
@@ -202,10 +232,10 @@ processor_settings:
       h2: 3
       h3: 2
       strong: 2
-    weights:
-      preprocess_index: -15
-      preprocess_query: -15
   ignorecase:
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
     all_fields: false
     fields:
       - rendered_item
@@ -213,9 +243,6 @@ processor_settings:
       - title
       - topic
       - type
-    weights:
-      preprocess_index: -20
-      preprocess_query: -20
   language_with_fallback: {  }
   rendered_item: {  }
   search_api_exclude_entity_processor:
@@ -223,45 +250,18 @@ processor_settings:
       node:
         - field_exclude_from_search
   type_boost:
+    weights:
+      preprocess_index: 0
     boosts:
       'entity:node':
         datasource_boost: !!float 1
         bundle_boosts:
           landing_page: !!float 13
           resource: !!float 2
-    weights:
-      preprocess_index: 0
 tracker_settings:
   default:
     indexing_order: fifo
 options:
-  index_directly: false
   cron_limit: 50
+  index_directly: false
 server: solr
-third_party_settings:
-  search_api_solr:
-    highlighter:
-      maxAnalyzedChars: 51200
-      fragmenter: gap
-      usePhraseHighlighter: true
-      highlightMultiTerm: true
-      preserveMulti: false
-      regex:
-        slop: 0.5
-        pattern: blank
-        maxAnalyzedChars: 10000
-      highlight:
-        mergeContiguous: false
-        requireFieldMatch: false
-        snippets: 3
-        fragsize: 0
-      _core:
-        default_config_hash: 914vBglS7nVnl8EUqBejfUPPRT6wnWYcOhMli6oL4jY
-    advanced:
-      index_prefix: ''
-    multilingual:
-      limit_to_content_language: false
-      include_language_independent: true
-    term_modifiers:
-      slop: 10000000
-      fuzzy: 2

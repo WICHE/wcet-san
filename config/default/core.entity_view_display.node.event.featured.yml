@@ -23,45 +23,45 @@ bundle: event
 mode: featured
 content:
   body:
-    label: hidden
     type: smart_trim
-    weight: 0
+    label: hidden
     settings:
       trim_length: 200
       trim_type: chars
       trim_suffix: ''
+      wrap_output: false
+      wrap_class: trimmed
       more_link: true
+      more_class: more-link
       more_text: ' Learn More'
       summary_handler: trim
       trim_options:
         text: true
-      more_class: more-link
-      wrap_output: false
-      wrap_class: trimmed
     third_party_settings: {  }
+    weight: 0
     region: content
   field_content_access:
-    weight: 3
+    type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: list_default
+    weight: 3
     region: content
   field_event_type:
-    weight: 1
+    type: entity_reference_label
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 1
     region: content
   field_topic:
-    weight: 2
+    type: entity_reference_label
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 2
     region: content
 hidden:
   field_event_date: true
@@ -70,3 +70,4 @@ hidden:
   field_p_resources: true
   langcode: true
   links: true
+  search_api_excerpt: true

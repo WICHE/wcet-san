@@ -16,11 +16,11 @@ bundle: svg
 mode: default
 content:
   field_svg:
-    weight: 0
+    type: file_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: file_default
+    weight: 0
     region: content
 hidden:
   created: true
@@ -29,5 +29,6 @@ hidden:
   field_tags: true
   langcode: true
   name: true
+  search_api_excerpt: true
   thumbnail: true
   uid: true

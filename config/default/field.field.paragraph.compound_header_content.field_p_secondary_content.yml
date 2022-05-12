@@ -22,16 +22,16 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       single_text_area: single_text_area
       single_link: single_link
+    negate: 0
     target_bundles_drag_drop:
-      compound_header_content:
-        weight: -27
-        enabled: false
       compound_header:
         weight: -26
+        enabled: false
+      compound_header_content:
+        weight: -27
         enabled: false
       compound_media:
         weight: -25
@@ -54,15 +54,15 @@ settings:
       single_image:
         weight: -19
         enabled: false
-      single_text_area:
-        enabled: true
-        weight: -18
       single_link:
-        enabled: true
         weight: -17
+        enabled: true
       single_svg:
         weight: -16
         enabled: false
+      single_text_area:
+        weight: -18
+        enabled: true
       single_video:
         weight: -15
         enabled: false

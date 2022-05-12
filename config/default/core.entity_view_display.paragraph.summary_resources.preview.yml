@@ -13,10 +13,12 @@ mode: preview
 content:
   field_summary_topics:
     type: entity_reference_label
-    weight: 0
-    region: content
     label: above
     settings:
       link: false
     third_party_settings: {  }
-hidden: {  }
+    weight: 0
+    region: content
+hidden:
+  field_link: true
+  search_api_excerpt: true

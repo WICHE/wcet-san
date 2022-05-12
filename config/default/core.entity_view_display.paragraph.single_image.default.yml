@@ -13,13 +13,13 @@ bundle: single_image
 mode: default
 content:
   field_media_image:
-    weight: 0
+    type: media_image
     label: hidden
     settings:
       image_style: ''
       image_link: ''
     third_party_settings: {  }
-    type: media_image
+    weight: 0
     region: content
 hidden:
   created: true

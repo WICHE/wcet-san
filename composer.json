@@ -123,9 +123,6 @@
 	},
     "enable-patching": true,
     "patches": {
-      "drupal/metatag": {
-        "Compatibility break with graphql 3.0": "https://www.drupal.org/files/issues/2020-04-22/metatag-n3129863-3.patch"
-      }
     }
   },
   "scripts": {

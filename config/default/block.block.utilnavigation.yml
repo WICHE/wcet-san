@@ -17,13 +17,16 @@ plugin: 'menu_block:util-navigation'
 settings:
   id: 'menu_block:util-navigation'
   label: 'Util Navigation'
-  provider: menu_block
   label_display: '0'
+  provider: menu_block
   follow: false
   follow_parent: child
+  label_link: false
+  label_type: block
   level: 1
   depth: 0
-  expand: 1
+  expand_all_items: false
   parent: 'util-navigation:'
   suggestion: util_navigation
+  expand: 1
 visibility: {  }

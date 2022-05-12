@@ -28,7 +28,6 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       layout_two_column: layout_two_column
       compound_faq_section: compound_faq_section
@@ -38,56 +37,57 @@ settings:
       summary_events: summary_events
       summary_past_events: summary_past_events
       summary_resources: summary_resources
+    negate: 0
     target_bundles_drag_drop:
-      single_svg:
-        weight: -35
+      compound_card_row:
+        weight: -32
+        enabled: true
+      compound_faq_section:
+        weight: -33
+        enabled: true
+      compound_header_content:
+        weight: -24
         enabled: false
       layout_two_column:
-        enabled: true
         weight: -34
-      compound_faq_section:
         enabled: true
-        weight: -33
-      compound_card_row:
-        enabled: true
-        weight: -32
-      simple_content:
-        enabled: true
-        weight: -31
       reference_block:
-        enabled: true
         weight: -30
-      single_text_area:
-        weight: -29
+        enabled: true
+      simple_card:
+        weight: -22
         enabled: false
-      single_image:
-        weight: -28
-        enabled: false
-      single_video:
-        weight: -27
+      simple_content:
+        weight: -31
+        enabled: true
+      simple_faq:
+        weight: -23
         enabled: false
       single_file:
         weight: -26
         enabled: false
+      single_image:
+        weight: -28
+        enabled: false
       single_link:
         weight: -25
         enabled: false
-      compound_header_content:
-        weight: -24
+      single_svg:
+        weight: -35
         enabled: false
-      simple_faq:
-        weight: -23
+      single_text_area:
+        weight: -29
         enabled: false
-      simple_card:
-        weight: -22
+      single_video:
+        weight: -27
         enabled: false
       summary_events:
-        enabled: true
         weight: -21
+        enabled: true
       summary_past_events:
-        enabled: true
         weight: -20
-      summary_resources:
         enabled: true
+      summary_resources:
         weight: -19
+        enabled: true
 field_type: entity_reference_revisions

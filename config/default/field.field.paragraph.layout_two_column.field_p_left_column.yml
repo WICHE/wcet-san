@@ -24,16 +24,13 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       simple_content: simple_content
       single_file: single_file
       single_image: single_image
       single_link: single_link
+    negate: 0
     target_bundles_drag_drop:
-      layout_two_column:
-        weight: 16
-        enabled: false
       compound_card_row:
         weight: 17
         enabled: false
@@ -43,6 +40,9 @@ settings:
       compound_header_content:
         weight: 19
         enabled: false
+      layout_two_column:
+        weight: 16
+        enabled: false
       reference_block:
         weight: 21
         enabled: false
@@ -50,20 +50,20 @@ settings:
         weight: 22
         enabled: false
       simple_content:
-        enabled: true
         weight: 22
+        enabled: true
       simple_faq:
         weight: 23
         enabled: false
       single_file:
-        enabled: true
         weight: 24
+        enabled: true
       single_image:
-        enabled: true
         weight: 26
-      single_link:
         enabled: true
+      single_link:
         weight: 27
+        enabled: true
       single_svg:
         weight: 28
         enabled: false

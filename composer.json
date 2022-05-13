@@ -120,18 +120,9 @@
     },
 	"merge-plugin": {
 		"include": [ "docroot/modules/custom/*/composer.json" ]
-	},	  
+	},
     "enable-patching": true,
     "patches": {
-      "drupal/core": {
-        "Add optional parameters to StatementInterface::fetchObject()...": "https://www.drupal.org/files/issues/2020-12-03/3128548-15-StatementInterface.patch"
-      },
-      "drupal/metatag": {
-        "Compatibility break with graphql 3.0": "https://www.drupal.org/files/issues/2020-04-22/metatag-n3129863-3.patch"
-      },
-      "drupal/field_tools": {
-        "Compatibility with Drupal 9": "https://www.drupal.org/files/issues/2020-06-06/Compatibility_with_Drupal_9-3147230-2.patch"
-      }
     }
   },
   "scripts": {

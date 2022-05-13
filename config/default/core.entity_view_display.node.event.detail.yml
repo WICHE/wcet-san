@@ -23,38 +23,38 @@ bundle: event
 mode: detail
 content:
   body:
-    label: hidden
     type: smart_trim
-    weight: 1
+    label: hidden
     settings:
       trim_length: 115
       trim_type: chars
       trim_suffix: ..
+      wrap_output: false
+      wrap_class: trimmed
       more_link: true
+      more_class: more-link
       more_text: More
       summary_handler: trim
       trim_options:
         text: true
-      more_class: more-link
-      wrap_output: false
-      wrap_class: trimmed
     third_party_settings: {  }
+    weight: 1
     region: content
   field_content_access:
     type: list_default
-    weight: 2
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_topic:
     type: entity_reference_label
-    weight: 0
-    region: content
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   field_event_date: true
   field_event_type: true
@@ -63,3 +63,4 @@ hidden:
   field_p_resources: true
   langcode: true
   links: true
+  search_api_excerpt: true

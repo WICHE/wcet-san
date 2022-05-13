@@ -23,28 +23,28 @@ mode: teaser
 content:
   field_event_date:
     type: datetime_plain
-    weight: 1
-    region: content
     label: hidden
     settings:
       timezone_override: ''
     third_party_settings: {  }
+    weight: 1
+    region: content
   field_event_type:
     type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
     weight: 0
     region: content
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
   field_topic:
     type: entity_reference_label
-    weight: 2
-    region: content
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
+    weight: 2
+    region: content
 hidden:
   body: true
   field_content_access: true
@@ -54,3 +54,4 @@ hidden:
   field_resources: true
   langcode: true
   links: true
+  search_api_excerpt: true

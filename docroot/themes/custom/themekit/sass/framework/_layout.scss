@@ -63,3 +63,8 @@ $layouts: (
     }
   }
 }
+
+// Set reusable mixin classes
+.page-max-width {
+  @include content-width(page);
+}

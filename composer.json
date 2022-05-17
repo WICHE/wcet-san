@@ -89,7 +89,8 @@
     "drupal/csv_serialization": "^2",
     "twig/twig": "^2.12.0",
     "drupal/upgrade_status": "^3.0",
-    "drupal/webform": "^6.1"
+    "drupal/webform": "^6.1",
+    "drupal/views_data_export": "^1.1"
   },
   "conflict": {
       "drupal/drupal": "*"

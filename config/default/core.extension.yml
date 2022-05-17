@@ -86,6 +86,7 @@ module:
   rdf: 0
   redirect: 0
   redirect_404: 0
+  rest: 0
   scheduler: 0
   search_api: 0
   search_api_exclude_entity: 0
@@ -115,6 +116,7 @@ module:
   user: 0
   video_embed_field: 0
   video_embed_media: 0
+  views_data_export: 0
   views_ui: 0
   wcet_access_control: 0
   wcet_migrate: 0

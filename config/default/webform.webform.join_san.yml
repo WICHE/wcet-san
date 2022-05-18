@@ -200,15 +200,14 @@ elements: |-
     '#select2': true
   upload:
     '#type': webform_document_file
-    '#title': Upload
-    '#title_display': none
+    '#title': 'Download sample document and upload after completed'
+    '#title_display': before
     '#states':
       visible:
         ':input[name="group_type"]':
           value: more5
     '#file_placeholder': '<a download="" href="https://filesamples.com/samples/document/xlsx/sample3.xlsx">Download doc</a>'
     '#file_extensions': xlsx
-    '#required': true
   coordinator_information:
     '#type': webform_markup
     '#markup': |-

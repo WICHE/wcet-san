@@ -77,16 +77,18 @@ elements: |-
     '#required': true
   singe_point_contact:
     '#type': fieldset
-    '#title': 'Singe Point Contact'
+    '#title': 'Single Point Contact'
     full_name:
       '#type': webform_name
       '#title': 'Full Name'
+      '#required': true
       '#title__access': false
+      '#first__title': 'First Name'
       '#middle__access': false
+      '#last__title': 'Last Name'
       '#suffix__access': false
       '#degree__title': 'Job Title'
       '#degree__required': true
-      '#required': true
     institution_organization:
       '#type': textfield
       '#title': 'Institution / Organization'
@@ -500,7 +502,7 @@ settings:
   purge_days: null
   results_disabled: false
   results_disabled_ignore: false
-  results_customize: false
+  results_customize: true
   token_view: false
   token_update: false
   token_delete: false

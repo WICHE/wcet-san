@@ -77,16 +77,18 @@ elements: |-
     '#required': true
   singe_point_contact:
     '#type': fieldset
-    '#title': 'Singe Point Contact'
+    '#title': 'Single Point Contact'
     full_name:
       '#type': webform_name
       '#title': 'Full Name'
+      '#required': true
       '#title__access': false
+      '#first__title': 'First Name'
       '#middle__access': false
+      '#last__title': 'Last Name'
       '#suffix__access': false
       '#degree__title': 'Job Title'
       '#degree__required': true
-      '#required': true
     institution_organization:
       '#type': textfield
       '#title': 'Institution / Organization'
@@ -200,15 +202,14 @@ elements: |-
     '#select2': true
   upload:
     '#type': webform_document_file
-    '#title': Upload
-    '#title_display': none
+    '#title': 'Download sample document and upload after completed'
+    '#title_display': before
     '#states':
       visible:
         ':input[name="group_type"]':
           value: more5
     '#file_placeholder': '<a download="" href="https://filesamples.com/samples/document/xlsx/sample3.xlsx">Download doc</a>'
     '#file_extensions': xlsx
-    '#required': true
   coordinator_information:
     '#type': webform_markup
     '#markup': |-
@@ -501,7 +502,7 @@ settings:
   purge_days: null
   results_disabled: false
   results_disabled_ignore: false
-  results_customize: false
+  results_customize: true
   token_view: false
   token_update: false
   token_delete: false

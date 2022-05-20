@@ -1,0 +1,25 @@
+uuid: c7a38cac-e2fc-4d02-b26c-f342fafb79b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_intro_copy
+    - node.type.resource_table
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats: {  }
+id: node.resource_table.field_intro_copy
+field_name: field_intro_copy
+entity_type: node
+bundle: resource_table
+label: 'Intro copy'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

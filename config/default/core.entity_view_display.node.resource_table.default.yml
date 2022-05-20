@@ -1,0 +1,34 @@
+uuid: 67c25320-00bc-4c7e-b031-50c32cb591e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.resource_table.body
+    - field.field.node.resource_table.field_intro_copy
+    - node.type.resource_table
+  module:
+    - text
+    - user
+id: node.resource_table.default
+targetEntityType: node
+bundle: resource_table
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_intro_copy:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

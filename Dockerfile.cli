@@ -1,4 +1,4 @@
-FROM uselagoon/node:16-builder as nodebuilder
+FROM amazeeio/node:16-builder as nodebuilder
 
 COPY docroot/themes/custom/themekit/  /app/docroot/themes/custom/themekit/
 

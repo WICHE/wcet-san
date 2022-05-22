@@ -1,8 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
-const chalk = require('chalk');
-const yaml = require('js-yaml');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
@@ -93,12 +91,6 @@ module.exports = (env, argv) => {
           test: /\.vue$/,
           loader: 'vue-loader',
         },
-        // {
-        //   enforce: 'pre',
-        //   test: /\.js$/,
-        //   exclude: /node_modules/,
-        //   loader: 'eslint-loader',
-        // },
         {
           test: /\.js$/,
           // must add exceptions to this exlude statement for
@@ -141,7 +133,9 @@ module.exports = (env, argv) => {
           }, {
             loader: 'sass-loader',
             options: {
-              includePaths: [path.resolve(__dirname, './node_modules/foundation-sites/scss')],
+              sassOptions: {
+                includePaths: [path.resolve(__dirname, './node_modules/foundation-sites/scss')],
+              },
               sourceMap: isDev,
             },
           }],

@@ -7,8 +7,12 @@ dependencies:
     - field.field.node.resource_table.field_intro_copy
     - node.type.resource_table
   module:
+    - entity_print
     - text
     - user
+third_party_settings:
+  entity_print:
+    pdf_label: 'View PDF'
 id: node.resource_table.default
 targetEntityType: node
 bundle: resource_table
@@ -19,16 +23,23 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 2
+    region: content
+  entity_print_view_pdf:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_intro_copy:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
 hidden:
+  entity_print_view_epub: true
+  entity_print_view_word_docx: true
   langcode: true
   links: true
   search_api_excerpt: true

@@ -109,13 +109,16 @@
   }
 }
 
-/// Resource Page
+/// Resource Page / Resource Table
 /// =============
 .page-node-type-event,
-.page-node-type-resource {
+.page-node-type-resource,
+.page-node-type-resource-table {
   .node--type-event,
-  .node--type-resource {
+  .node--type-resource,
+  .node--type-resource-table {
     @include content-width(page);
+
     display: flex;
     flex-flow: row wrap;
     flex-basis: auto;
@@ -336,6 +339,24 @@
   }
 }
 
+.page-node-type-resource-table {
+  article.node--view-mode-full {
+    .resource-table-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .resource-title-pretext {
+        width: 70%;
+      }
+    }
+
+    .field--name-body {
+      width: 100%;
+    }
+  }
+}
+
 .field--name-body,
 .field--name-field-body {
   a {
@@ -376,4 +397,11 @@
 .file {
   background-image: none!important;
   padding-left: 0;
+}
+
+a.print__link--pdf {
+  @include btn(primary);
+
+  color: $san-blue;
+  background-color: transparent;
 }

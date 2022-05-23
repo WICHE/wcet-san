@@ -12,7 +12,7 @@ dependencies:
     - user
 third_party_settings:
   entity_print:
-    pdf_label: 'View PDF'
+    pdf_label: 'Download PDF >'
 id: node.resource_table.default
 targetEntityType: node
 bundle: resource_table

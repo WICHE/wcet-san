@@ -345,9 +345,14 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      margin-bottom: 2rem;
 
-      .resource-title-pretext {
-        width: 70%;
+      @include breakpoint(large) {
+        margin-bottom: 0;
+
+        .resource-title-pretext {
+          width: 70%;
+        }
       }
     }
 

@@ -4697,6 +4697,32 @@ table a {
   margin: 20px 15px;
   line-height: 0; }
 
+.node--type-resource-table table {
+  text-align: left;
+}
+.node--type-resource-table table thead {
+  background: #662d90;
+  color: #fff;
+}
+.node--type-resource-table table tbody tr {
+  border-bottom: 1px solid #c3c5ca;
+}
+.node--type-resource-table table tbody tr:nth-child(2n+1) {
+  background-color: #f7f7f8;
+}
+.node--type-resource-table table tbody tr td:not(:last-child) {
+  border-right: 1px solid #c3c5ca;
+}
+.node--type-resource-table table tbody a {
+  line-height: inherit;
+  color: #1779ba;
+  text-decoration: none;
+  cursor: pointer;
+}
+.node--type-resource-table table tbody a:hover {
+  text-decoration: underline;
+}
+
 #error-container > span {
   display: inline-block;
   position: relative;

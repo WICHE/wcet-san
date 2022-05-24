@@ -1,12 +1,3 @@
-FROM amazeeio/node:16-builder as nodebuilder
-
-COPY docroot/themes/custom/themekit/  /app/docroot/themes/custom/themekit/
-
-WORKDIR /app/docroot/themes/custom/themekit
-RUN npm install
-RUN npm run build
-
-
 FROM uselagoon/php-7.4-cli-drupal:latest
 
 COPY composer.json composer.lock /app/
@@ -16,8 +7,6 @@ COPY scripts /app/scripts
 RUN composer install --prefer-dist --no-dev --no-suggest --optimize-autoloader --apcu-autoloader
 
 COPY . /app
-
-COPY --from=nodebuilder /app/ /app/
 
 # Define where the Drupal Root is located
 ENV WEBROOT=docroot

@@ -4710,6 +4710,10 @@ table a {
   background: #662d90;
   color: #fff;
 }
+.node--type-resource-table table thead tr th {
+  border-bottom: 1px solid #662d90;
+  border-right: 1px solid #707070;
+}
 .node--type-resource-table table tbody tr {
   border-bottom: 1px solid #c3c5ca;
 }
@@ -4738,14 +4742,14 @@ table a {
   background: #662d90;
 }
 
-.node--type-resource-table table thead tr:first-child th:first-child::after {
-  box-shadow: inset -8px -2px 4px -6px rgb(0 0 0 / 50%);
+.node--type-resource-table table.scrolling thead tr:first-child th:first-child::after {
   content: "";
-  left: 0;
   height: 100%;
   position: absolute;
   top: 0;
-  width: 100%;
+  width: 7px;
+  right: -6px;
+  background-image: linear-gradient(to right,#000000a1,transparent);
 }
 
 .node--type-resource-table table tbody tr td:first-child {
@@ -4755,14 +4759,14 @@ table a {
   border-bottom: 1px solid #c3c5ca;
 }
 
-.node--type-resource-table table tbody tr td:first-child::after {
-  box-shadow: inset -8px -2px 4px -6px rgb(0 0 0 / 50%);
+.node--type-resource-table table.scrolling tbody tr td:first-child::after {
   content: "";
-  left: 0;
-  height: 100%;
+  height: 101%;
   position: absolute;
   top: 0;
-  width: 100%;
+  width: 7px;
+  right: -7px;
+  background-image: linear-gradient(to right, #00000075 , transparent);
 }
 
 /* ------------------------------- */

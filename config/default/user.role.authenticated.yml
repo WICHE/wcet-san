@@ -1,7 +1,17 @@
 uuid: b2cd88dc-8d71-4e7a-a643-d9aabc4f4a34
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.basic_html
+  module:
+    - contact
+    - entity_print
+    - filter
+    - graphql
+    - media
+    - shortcut
+    - system
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
 id: authenticated
@@ -14,6 +24,7 @@ permissions:
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'bypass graphql field security'
+  - 'entity print access bundle resource_table'
   - 'execute graphql requests'
   - 'post comments'
   - 'search content'

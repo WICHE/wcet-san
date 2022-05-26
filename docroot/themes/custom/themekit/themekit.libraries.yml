@@ -33,6 +33,7 @@ themekit:
   css:
     theme:
       dist/style.css: {}
+      dist/overrides.css: {}
   dependencies:
       - core/drupal
       - core/jquery

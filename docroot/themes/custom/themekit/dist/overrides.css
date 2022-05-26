@@ -74,5 +74,10 @@
     padding-left: 40px;
     font-size: 13px; }
 
+.resource-id-417 {
+  color: #8ba4d4; }
+  .resource-id-417::before {
+    background-color: #8ba4d4; }
+
 
 /*# sourceMappingURL=overrides.css.map*/

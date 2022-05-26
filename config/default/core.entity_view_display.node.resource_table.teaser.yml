@@ -6,29 +6,29 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.resource_table.body
     - field.field.node.resource_table.field_intro_copy
+    - field.field.node.resource_table.field_resource_type
     - node.type.resource_table
   module:
-    - text
     - user
 id: node.resource_table.teaser
 targetEntityType: node
 bundle: resource_table
 mode: teaser
 content:
-  body:
-    type: text_summary_or_trimmed
+  field_resource_type:
+    type: entity_reference_label
     label: hidden
     settings:
-      trim_length: 600
+      link: false
     third_party_settings: {  }
-    weight: 101
-    region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
+  body: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   field_intro_copy: true
   langcode: true
+  links: true
   search_api_excerpt: true

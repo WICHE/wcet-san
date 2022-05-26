@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.resource_table.body
     - field.field.node.resource_table.field_intro_copy
+    - field.field.node.resource_table.field_resource_type
     - node.type.resource_table
   module:
     - entity_print
@@ -36,6 +37,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_resource_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden:
   entity_print_view_epub: true

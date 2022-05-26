@@ -57,7 +57,7 @@
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		"overrides": 0
+/******/ 		"script_overrides": 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -148,17 +148,17 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./js/src/overrides.js","commons"]);
+/******/ 	deferredModules.push(["./js/src/script_overrides.js","commons"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./js/src/overrides.js":
-/*!*****************************!*\
-  !*** ./js/src/overrides.js ***!
-  \*****************************/
+/***/ "./js/src/script_overrides.js":
+/*!************************************!*\
+  !*** ./js/src/script_overrides.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -183,6 +183,27 @@ var tableElement = (0, _jquery2.default)('.node--type-resource-table table');
   }
 });
 
+function checkOverflow(el) {
+  var headerOverflow = el[0].tHead.clientWidth;
+  var curOverflow = el[0].clientWidth;
+
+  if (!curOverflow || curOverflow === 'visible') {
+    el.style.overflow = 'hidden';
+  }
+
+  var isOverflowing = curOverflow < headerOverflow;
+
+  return isOverflowing;
+}
+
+if (checkOverflow(tableElement) === true) {
+  (0, _jquery2.default)(tableElement).addClass("scrollable");
+  var scroll_hint = document.createElement("span");
+  (0, _jquery2.default)(scroll_hint).addClass("scroll-hint");
+  (0, _jquery2.default)(tableElement)[0].parentElement.classList.add("show-scroll-hint");
+  (0, _jquery2.default)(tableElement)[0].parentElement.prepend(scroll_hint);
+}
+
 /***/ }),
 
 /***/ "jquery":
@@ -197,4 +218,4 @@ module.exports = jQuery;
 /***/ })
 
 /******/ });
-//# sourceMappingURL=overrides.js.map
+//# sourceMappingURL=script_overrides.js.map

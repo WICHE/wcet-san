@@ -5,7 +5,8 @@
   max-width: 100%;
   position: relative;
   overflow-x: auto;
-  border-radius: 0; }
+  border-radius: 0;
+  padding-top: 70px; }
   .node--type-resource-table table thead {
     background: #662d90;
     color: #fff; }
@@ -52,6 +53,26 @@
     cursor: pointer; }
     .node--type-resource-table table tbody a:hover {
       text-decoration: underline; }
+
+.node--type-resource-table .show-scroll-hint {
+  position: relative; }
+  .node--type-resource-table .show-scroll-hint .scroll-hint::before {
+    content: "Swipe screen";
+    width: auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    top: 0;
+    background-repeat: no-repeat;
+    background-position: 5px 11px;
+    background-size: 30px;
+    background-image: url(aa4eafb749e07c68c3752eeb2a6df7e7.png);
+    padding-left: 40px;
+    font-size: 13px; }
 
 
 /*# sourceMappingURL=overrides.css.map*/

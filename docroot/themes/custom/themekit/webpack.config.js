@@ -13,6 +13,7 @@ const entryPoints = {
   search_main: './js/src/search-main/search-main.jsx', // React component
   style: './sass/style.scss',
   wysiwyg: './sass/wysiwyg.scss',
+  overrides: './sass/overrides.scss',
 };
 
 const compiledEntries = {};

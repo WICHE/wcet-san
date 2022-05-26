@@ -28,6 +28,7 @@ themekit:
   version: VERSION
   js:
     dist/themekit.js: {}
+    dist/overrides.js: {}
     dist/commons.js: {}
   css:
     theme:

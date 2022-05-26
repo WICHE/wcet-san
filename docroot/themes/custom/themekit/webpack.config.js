@@ -8,6 +8,7 @@ const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const entryPoints = {
   polyfill: 'babel-polyfill',
   themekit: './js/src/themekit.js',
+  overrides: './js/src/overrides.js',
   search_header: './js/src/search-header/search-header.jsx', // React component
   search_main: './js/src/search-main/search-main.jsx', // React component
   style: './sass/style.scss',

@@ -183,8 +183,13 @@
   details.form-wrapper {
     height: auto;
 
-    summary::marker {
-      color: #888;
+    summary {
+      &::marker {
+        color: #888;
+      }
+      &::before {
+        display: none;
+      }
     }
   }
 
@@ -196,18 +201,63 @@
     font-weight: 600;
     appearance: none;
     margin: 1rem 0;
-    color: #ffff;
+    color: #4a90e2;
     transition: 0.4s ease background, 0.4s ease color, 0.4s ease border;
     text-align: center;
     padding: 13px;
     min-width: 194px;
     border-radius: 8px;
-    background: #4a90e2;
+    background: transparent;
     border: 2px solid #4a90e2;
 
-    &:hover {
-      background: transparent;
-      color: #4a90e2;
+    &[value="Submit"] {
+      color: #ffff;
+      background: #4a90e2;
+
+      &:hover {
+        background: transparent;
+        color: #4a90e2;
+      }
+    }
+  }
+
+  // Institution entities, less than 5
+  #institution_table {
+    table {
+      thead {
+        display: none;
+      }
+
+      tbody {
+        tr {
+          &:hover {
+            background-color: transparent;
+          }
+
+          td {
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .form-item {
+              width: 100%;
+
+              @media print, screen and (min-width: 48em) {
+                width: 49%;
+              }
+
+              &:first-child {
+                width: 100%;
+              }
+
+              .select2-container {
+                width: 100% !important;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

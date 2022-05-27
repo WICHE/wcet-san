@@ -128,6 +128,8 @@
     height: auto; }
     .webform-submission-form details.form-wrapper summary::marker {
       color: #888; }
+    .webform-submission-form details.form-wrapper summary::before {
+      display: none; }
   .webform-submission-form input[type="submit"] {
     display: inline-block;
     position: relative;
@@ -138,17 +140,38 @@
        -moz-appearance: none;
             appearance: none;
     margin: 1rem 0;
-    color: #ffff;
+    color: #4a90e2;
     transition: 0.4s ease background, 0.4s ease color, 0.4s ease border;
     text-align: center;
     padding: 13px;
     min-width: 194px;
     border-radius: 8px;
-    background: #4a90e2;
+    background: transparent;
     border: 2px solid #4a90e2; }
-    .webform-submission-form input[type="submit"]:hover {
-      background: transparent;
-      color: #4a90e2; }
+    .webform-submission-form input[type="submit"][value="Submit"] {
+      color: #ffff;
+      background: #4a90e2; }
+      .webform-submission-form input[type="submit"][value="Submit"]:hover {
+        background: transparent;
+        color: #4a90e2; }
+  .webform-submission-form #institution_table table thead {
+    display: none; }
+  .webform-submission-form #institution_table table tbody tr:hover {
+    background-color: transparent; }
+  .webform-submission-form #institution_table table tbody tr td {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+    .webform-submission-form #institution_table table tbody tr td .form-item {
+      width: 100%; }
+      @media print, screen and (min-width: 48em) {
+        .webform-submission-form #institution_table table tbody tr td .form-item {
+          width: 49%; } }
+      .webform-submission-form #institution_table table tbody tr td .form-item:first-child {
+        width: 100%; }
+      .webform-submission-form #institution_table table tbody tr td .form-item .select2-container {
+        width: 100% !important; }
 
 
 /*# sourceMappingURL=overrides.css.map*/

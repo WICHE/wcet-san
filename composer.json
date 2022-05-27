@@ -91,7 +91,8 @@
     "drupal/upgrade_status": "^3.0",
     "drupal/webform": "^6.1",
     "drupal/views_data_export": "^1.1",
-    "drupal/webform_views": "^5.0@beta"
+    "drupal/webform_views": "^5.0@beta",
+    "drupal/entity_print": "^2.5"
   },
   "conflict": {
       "drupal/drupal": "*"

@@ -1,8 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
-const chalk = require('chalk');
-const yaml = require('js-yaml');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
@@ -10,10 +8,12 @@ const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const entryPoints = {
   polyfill: 'babel-polyfill',
   themekit: './js/src/themekit.js',
+  script_overrides: './js/src/script_overrides.js',
   search_header: './js/src/search-header/search-header.jsx', // React component
   search_main: './js/src/search-main/search-main.jsx', // React component
   style: './sass/style.scss',
   wysiwyg: './sass/wysiwyg.scss',
+  overrides: './sass/overrides.scss',
 };
 
 const compiledEntries = {};
@@ -93,12 +93,6 @@ module.exports = (env, argv) => {
           test: /\.vue$/,
           loader: 'vue-loader',
         },
-        // {
-        //   enforce: 'pre',
-        //   test: /\.js$/,
-        //   exclude: /node_modules/,
-        //   loader: 'eslint-loader',
-        // },
         {
           test: /\.js$/,
           // must add exceptions to this exlude statement for
@@ -141,7 +135,9 @@ module.exports = (env, argv) => {
           }, {
             loader: 'sass-loader',
             options: {
-              includePaths: [path.resolve(__dirname, './node_modules/foundation-sites/scss')],
+              sassOptions: {
+                includePaths: [path.resolve(__dirname, './node_modules/foundation-sites/scss')],
+              },
               sourceMap: isDev,
             },
           }],

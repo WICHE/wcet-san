@@ -57,7 +57,7 @@
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		"search_header": 0
+/******/ 		"script_overrides": 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -148,51 +148,74 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./js/src/search-header/search-header.jsx","commons"]);
+/******/ 	deferredModules.push(["./js/src/script_overrides.js","commons"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./js/src/search-header/App.jsx":
-/*!**************************************!*\
-  !*** ./js/src/search-header/App.jsx ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: Unexpected token (11:15)\n\n\u001b[0m \u001b[90m  9 | \u001b[39m  }\n \u001b[90m 10 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 | \u001b[39m  handleSubmit \u001b[33m=\u001b[39m (event) \u001b[33m=>\u001b[39m {\n \u001b[90m    | \u001b[39m               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 | \u001b[39m    event\u001b[33m.\u001b[39mpreventDefault()\u001b[33m;\u001b[39m\n \u001b[90m 13 | \u001b[39m    window\u001b[33m.\u001b[39mlocation\u001b[33m.\u001b[39mhref \u001b[33m=\u001b[39m \u001b[32m'/search?key='\u001b[39m \u001b[33m+\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mstate\u001b[33m.\u001b[39mkeyword\u001b[33m;\u001b[39m\n \u001b[90m 14 | \u001b[39m  }\u001b[33m;\u001b[39m\u001b[0m\n");
-
-/***/ }),
-
-/***/ "./js/src/search-header/search-header.jsx":
-/*!************************************************!*\
-  !*** ./js/src/search-header/search-header.jsx ***!
-  \************************************************/
+/***/ "./js/src/script_overrides.js":
+/*!************************************!*\
+  !*** ./js/src/script_overrides.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var _jquery = __webpack_require__(/*! jquery */ "jquery");
 
-var _react2 = _interopRequireDefault(_react);
+var _jquery2 = _interopRequireDefault(_jquery);
 
-var _reactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
-var _reactDom2 = _interopRequireDefault(_reactDom);
+var tableElement = (0, _jquery2.default)('.node--type-resource-table table');
 
-var _App = __webpack_require__(/*! ./App */ "./js/src/search-header/App.jsx");
+(0, _jquery2.default)(tableElement).on("scroll", function () {
+  if ((0, _jquery2.default)(this).scrollLeft() > 0) {
+    (0, _jquery2.default)(this).hasClass("scrolling") ? "" : (0, _jquery2.default)(this).addClass("scrolling");
+  } else {
+    (0, _jquery2.default)(this).hasClass("scrolling") ? (0, _jquery2.default)(this).removeClass("scrolling") : "";
+  }
+});
 
-var _App2 = _interopRequireDefault(_App);
+function checkOverflow(el) {
+  var headerOverflow = el[0].tHead.clientWidth;
+  var curOverflow = el[0].clientWidth;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  if (!curOverflow || curOverflow === 'visible') {
+    el.style.overflow = 'hidden';
+  }
 
-_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('search-app--header'));
+  var isOverflowing = curOverflow < headerOverflow;
+
+  return isOverflowing;
+}
+
+if (checkOverflow(tableElement) === true) {
+  (0, _jquery2.default)(tableElement).addClass("scrollable");
+  var scroll_hint = document.createElement("span");
+  (0, _jquery2.default)(scroll_hint).addClass("scroll-hint");
+  (0, _jquery2.default)(tableElement)[0].parentElement.classList.add("show-scroll-hint");
+  (0, _jquery2.default)(tableElement)[0].parentElement.prepend(scroll_hint);
+}
+
+/***/ }),
+
+/***/ "jquery":
+/*!*************************!*\
+  !*** external "jQuery" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = jQuery;
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=search_header.js.map
+//# sourceMappingURL=script_overrides.js.map

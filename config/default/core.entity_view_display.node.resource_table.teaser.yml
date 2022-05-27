@@ -1,0 +1,34 @@
+uuid: 63a0ff09-4f0f-4ea4-a2d1-49c845b370f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.resource_table.body
+    - field.field.node.resource_table.field_intro_copy
+    - field.field.node.resource_table.field_resource_type
+    - node.type.resource_table
+  module:
+    - user
+id: node.resource_table.teaser
+targetEntityType: node
+bundle: resource_table
+mode: teaser
+content:
+  field_resource_type:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_intro_copy: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

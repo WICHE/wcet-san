@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ctools
+    - node
   theme:
     - themekit
 _core:
@@ -17,16 +17,17 @@ plugin: page_title_block
 settings:
   id: page_title_block
   label: 'Page title'
-  provider: core
   label_display: '0'
+  provider: core
 visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
     bundles:
       event: event
       landing_page: landing_page
       page: page
       resource: resource
-    negate: true
-    context_mapping:
-      node: '@node.node_route_context:node'
+      resource_table: resource_table

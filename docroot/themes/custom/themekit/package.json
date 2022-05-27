@@ -65,7 +65,7 @@
     "babel-polyfill": "^6.26.0",
     "clipboard": "^1.7.1",
     "eslint-import-resolver-webpack": "^0.11.1",
-    "formatter.js": "git+https://github.com/firstopinion/formatter.js.git",
+    "formatter.js": "https://github.com/jaridmargolin/formatter.js.git",
     "foundation-sites": "^6.5.1",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",

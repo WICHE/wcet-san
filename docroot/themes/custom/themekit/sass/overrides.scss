@@ -1,0 +1,116 @@
+.node--type-resource-table table {
+  text-align: left;
+  display: block;
+  width: 100vw;
+  max-width: 100%;
+  position: relative;
+  overflow-x: auto;
+  border-radius: 0;
+  padding-top: 70px;
+
+  thead {
+    background: #662d90;
+    color: #fff;
+
+    tr th {
+      border-bottom: 1px solid #662d90;
+      border-right: 1px solid #707070;
+    }
+
+    // first header cell Sticky on overflow
+    tr:first-child th:first-child {
+      position: sticky;
+      left: 0;
+      background: #662d90;
+    }
+  }
+
+  &.scrolling {
+    thead tr:first-child th:first-child::after {
+      content: "";
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 7px;
+      right: -6px;
+      background-image: linear-gradient(to right, #000000a1, transparent);
+    }
+
+    tbody tr td:first-child::after {
+      content: "";
+      height: 101%;
+      position: absolute;
+      top: 0;
+      width: 7px;
+      right: -7px;
+      background-image: linear-gradient(to right, #00000075, transparent);
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #c3c5ca;
+
+      &:nth-child(2n+1) {
+        background-color: #f7f7f8;
+      }
+
+      &:nth-child(2n+2) {
+        background-color: #fff;
+      }
+
+      td:not(:last-child) {
+        border-right: 1px solid #c3c5ca;
+      }
+
+      // first row cell sticky when overflow
+      td:first-child {
+        position: sticky;
+        left: 0;
+        background: inherit;
+        border-bottom: 1px solid #c3c5ca;
+      }
+    }
+
+    a {
+      line-height: inherit;
+      color: #1779ba;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.node--type-resource-table .show-scroll-hint {
+  position: relative;
+
+  .scroll-hint::before {
+    content: "Swipe screen";
+    width: auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    background-repeat: no-repeat;
+    background-position: 5px 11px;
+    background-size: 30px;
+    background-image: url("../images/swipe.png");
+    padding-left: 40px;
+    font-size: 13px;
+  }
+}
+
+.resource-id-417 {
+  color: #8ba4d4;
+
+  &::before {
+    background-color: #8ba4d4;
+  }
+}

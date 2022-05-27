@@ -1,0 +1,23 @@
+uuid: 962f6ca4-e1d9-41c8-bd96-934f7c04b628
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.resource_table
+  module:
+    - text
+id: node.resource_table.body
+field_name: body
+entity_type: node
+bundle: resource_table
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

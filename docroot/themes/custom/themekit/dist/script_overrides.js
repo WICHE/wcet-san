@@ -184,16 +184,19 @@ var tableElement = (0, _jquery2.default)('.node--type-resource-table table');
 });
 
 function checkOverflow(el) {
-  var headerOverflow = el[0].tHead.clientWidth;
-  var curOverflow = el[0].clientWidth;
+  // If node--type-resource-table is found
+  if (el.length > 0) {
+    var headerOverflow = el[0].tHead.clientWidth;
+    var curOverflow = el[0].clientWidth;
 
-  if (!curOverflow || curOverflow === 'visible') {
-    el.style.overflow = 'hidden';
+    if (!curOverflow || curOverflow === 'visible') {
+      el.style.overflow = 'hidden';
+    }
+
+    var isOverflowing = curOverflow < headerOverflow;
+
+    return isOverflowing;
   }
-
-  var isOverflowing = curOverflow < headerOverflow;
-
-  return isOverflowing;
 }
 
 if (checkOverflow(tableElement) === true) {

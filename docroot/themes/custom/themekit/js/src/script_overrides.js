@@ -11,14 +11,17 @@ $(tableElement).on("scroll", function () {
 });
 
 function checkOverflow(el) {
-  const headerOverflow = el[0].tHead.clientWidth;
-  const curOverflow = el[0].clientWidth;
+  // If node--type-resource-table is found
+  if(el.length > 0) {
+    const headerOverflow = el[0].tHead.clientWidth;
+    const curOverflow = el[0].clientWidth;
 
-  if (!curOverflow || curOverflow === 'visible') { el.style.overflow = 'hidden'; }
+    if (!curOverflow || curOverflow === 'visible') { el.style.overflow = 'hidden'; }
 
-  const isOverflowing = curOverflow < headerOverflow;
+    const isOverflowing = curOverflow < headerOverflow;
 
-  return isOverflowing;
+    return isOverflowing;
+  }
 }
 
 if(checkOverflow(tableElement) === true) {

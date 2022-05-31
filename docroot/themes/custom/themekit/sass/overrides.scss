@@ -129,6 +129,12 @@
     padding-right: 1.25rem;
   }
 
+  .title h1 {
+    border-bottom: 1px solid #c3c5ca;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
   .form-item {
     label {
       font-weight: 600;
@@ -184,6 +190,10 @@
     height: auto;
 
     summary {
+      .details-title {
+        font-weight: 600;
+        color: #000;
+      }
       &::marker {
         color: #888;
       }

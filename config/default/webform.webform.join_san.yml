@@ -13,6 +13,13 @@ title: 'Join SAN'
 description: ''
 category: ''
 elements: |-
+  title:
+    '#type': processed_text
+    '#wrapper_attributes':
+      class:
+        - title
+    '#text': '<h1>Join SAN</h1>'
+    '#format': full_html
   markup:
     '#type': webform_markup
     '#markup': |-
@@ -149,6 +156,7 @@ elements: |-
     '#multiple__sorting': false
     '#multiple__operations': false
     '#multiple__add_more_input': false
+    '#wrapper_type': container
     '#format_items': hr
     '#element':
       name:

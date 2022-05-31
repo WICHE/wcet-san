@@ -89,6 +89,10 @@
     .webform-submission-form {
       padding-left: 1.25rem;
       padding-right: 1.25rem; } }
+  .webform-submission-form .title h1 {
+    border-bottom: 1px solid #c3c5ca;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem; }
   .webform-submission-form .form-item label {
     font-weight: 600; }
   .webform-submission-form #edit-singe-point-contact {
@@ -126,6 +130,9 @@
     right: 10px; }
   .webform-submission-form details.form-wrapper {
     height: auto; }
+    .webform-submission-form details.form-wrapper summary .details-title {
+      font-weight: 600;
+      color: #000; }
     .webform-submission-form details.form-wrapper summary::marker {
       color: #888; }
     .webform-submission-form details.form-wrapper summary::before {

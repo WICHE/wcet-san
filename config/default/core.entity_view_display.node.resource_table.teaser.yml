@@ -5,8 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.resource_table.body
+    - field.field.node.resource_table.field_content_access
     - field.field.node.resource_table.field_intro_copy
     - field.field.node.resource_table.field_resource_type
+    - field.field.node.resource_table.field_topic
     - node.type.resource_table
   module:
     - user
@@ -28,7 +30,9 @@ hidden:
   entity_print_view_epub: true
   entity_print_view_pdf: true
   entity_print_view_word_docx: true
+  field_content_access: true
   field_intro_copy: true
+  field_topic: true
   langcode: true
   links: true
   search_api_excerpt: true

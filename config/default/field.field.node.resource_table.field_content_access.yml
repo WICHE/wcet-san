@@ -1,0 +1,23 @@
+uuid: c9ac9c9d-104b-41f1-9e8b-f9bd959f206b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_access
+    - node.type.resource_table
+  module:
+    - options
+id: node.resource_table.field_content_access
+field_name: field_content_access
+entity_type: node
+bundle: resource_table
+label: 'Content Access'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: public
+default_value_callback: ''
+settings: {  }
+field_type: list_string

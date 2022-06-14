@@ -3973,7 +3973,8 @@ ul.primary {
 .page-node-type-event .node--type-event,
 .page-node-type-event .node--type-resource,
 .page-node-type-resource .node--type-event,
-.page-node-type-resource .node--type-resource {
+.page-node-type-resource .node--type-resource,
+.page-node-type-resource-table .node--type-resource-table {
   max-width: 75rem;
   margin-left: auto;
   margin-right: auto;
@@ -4312,6 +4313,17 @@ ul.primary {
 .path-user .layout-container .field--name-field-address .locality {
   padding-left: 4px; }
 
+.page-node-type-resource-table article.node--view-mode-full .resource-table-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 2rem; }
+  @media print, screen and (min-width: 64em) {
+    .page-node-type-resource-table article.node--view-mode-full .resource-table-content .resource-title-pretext {
+      width: 70%; } }
+
+  .page-node-type-resource-table article.node--view-mode-full .field--name-body {
+    width: 100%; }
 .user-form {
   max-width: 100%; }
   .user-form input {
@@ -4348,6 +4360,33 @@ ul.primary {
     border: 2px solid #4a90e2; }
     [data-whatinput='mouse'] .user-form .button--primary {
       outline: 0; }
+
+a.print__link--pdf {
+  display: inline-block;
+  position: relative;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  font-weight: 600;
+  -webkit-appearance: none;
+      -moz-appearance: none;
+          appearance: none;
+  color: #ffffff;
+  transition: .4s ease background, .4s ease color, .4s ease border;
+  text-align: center;
+  padding: 13px;
+  min-width: 194px;
+  border-radius: 8px;
+  --shadow-color: key($button, shadow-color);
+  background: #4a90e2;
+  border: 2px solid #4a90e2;
+  color: #4a90e2;
+  background-color: transparent; }
+  [data-whatinput='mouse'] a.print__link--pdf {
+    outline: 0; }
+
+a.print__link--pdf:hover {
+  background-color: #4a90e2;
+  color: #ffffff; }
 
 @keyframes pulse {
   0% {
@@ -4657,7 +4696,10 @@ table a {
   font-weight: bold;
   margin: 20px 15px;
   line-height: 0; }
+/* -------------------------------- */
 
+
+/* ------------------------------- */
 #error-container > span {
   display: inline-block;
   position: relative;

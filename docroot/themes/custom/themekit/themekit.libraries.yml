@@ -28,10 +28,12 @@ themekit:
   version: VERSION
   js:
     dist/themekit.js: {}
+    dist/script_overrides.js: {}
     dist/commons.js: {}
   css:
     theme:
       dist/style.css: {}
+      dist/overrides.css: {}
   dependencies:
       - core/drupal
       - core/jquery

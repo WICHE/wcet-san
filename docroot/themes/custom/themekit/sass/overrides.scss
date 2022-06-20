@@ -142,10 +142,167 @@
   }
 }
 
+// New resource table taxonomy
 .resource-id-417 {
   color: #8ba4d4;
 
   &::before {
     background-color: #8ba4d4;
+  }
+}
+
+// Form base styles
+.webform-submission-form {
+  max-width: 75rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+
+  @media print, screen and (min-width: 48em) {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .title h1 {
+    border-bottom: 1px solid #c3c5ca;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-item {
+    label {
+      font-weight: 600;
+    }
+  }
+
+  #edit-singe-point-contact {
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(64, 64, 64, 0.3);
+
+    legend {
+      margin-bottom: 0;
+
+      .fieldset-legend {
+        font-weight: 600;
+        font-size: 18px;
+      }
+    }
+  }
+
+  details.form-wrapper,
+  .select2-selection,
+  input[type="email"],
+  input[type="tel"],
+  input[type="text"],
+  input[type="textarea"] {
+    background: #fff;
+    height: calc(2em + 0.75rem + 2px);
+    padding: 0.5rem 1rem;
+    border-color: rgba(64, 64, 64, 0.3);
+    border-radius: 30px;
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid rgba(64, 64, 64, 0.3);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  // Select2 overrides
+  .select2-selection {
+    .select2-selection__arrow {
+      top: 50%;
+      transform: translateY(-50%);
+      right: 10px;
+    }
+  }
+
+  details.form-wrapper {
+    height: auto;
+
+    summary {
+      .details-title {
+        font-weight: 600;
+        color: #000;
+      }
+      &::marker {
+        color: #888;
+      }
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  input[type="submit"] {
+    display: inline-block;
+    position: relative;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    font-weight: 600;
+    appearance: none;
+    margin: 1rem 0;
+    color: #4a90e2;
+    transition: 0.4s ease background, 0.4s ease color, 0.4s ease border;
+    text-align: center;
+    padding: 13px;
+    min-width: 194px;
+    border-radius: 8px;
+    background: transparent;
+    border: 2px solid #4a90e2;
+
+    &[value="Submit"] {
+      color: #ffff;
+      background: #4a90e2;
+
+      &:hover {
+        background: transparent;
+        color: #4a90e2;
+      }
+    }
+  }
+
+  // Institution entities, less than 5
+  #institution_table {
+    table {
+      thead {
+        display: none;
+      }
+
+      tbody {
+        tr {
+          &:hover {
+            background-color: transparent;
+          }
+
+          td {
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .form-item {
+              width: 100%;
+
+              @media print, screen and (min-width: 48em) {
+                width: 49%;
+              }
+
+              &:first-child {
+                width: 100%;
+              }
+
+              .select2-container {
+                width: 100% !important;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

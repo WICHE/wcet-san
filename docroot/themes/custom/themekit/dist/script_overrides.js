@@ -173,7 +173,7 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-var tableElement = (0, _jquery2.default)('.node--type-resource-table table');
+var tableElement = (0, _jquery2.default)(".node--type-resource-table .field--name-body > table");
 
 (0, _jquery2.default)(tableElement).on("scroll", function () {
   if ((0, _jquery2.default)(this).scrollLeft() > 0) {
@@ -183,14 +183,20 @@ var tableElement = (0, _jquery2.default)('.node--type-resource-table table');
   }
 });
 
+var nestedTables = tableElement.find("td table");
+// Add class to td if nested table found
+nestedTables.map(function (key, childTable) {
+  (0, _jquery2.default)(childTable)[0].parentElement.classList.add("has-nested-table");
+});
+
 function checkOverflow(el) {
   // If node--type-resource-table is found
   if (el.length > 0) {
     var headerOverflow = el[0].tHead.clientWidth;
     var curOverflow = el[0].clientWidth;
 
-    if (!curOverflow || curOverflow === 'visible') {
-      el.style.overflow = 'hidden';
+    if (!curOverflow || curOverflow === "visible") {
+      el.style.overflow = "hidden";
     }
 
     var isOverflowing = curOverflow < headerOverflow;

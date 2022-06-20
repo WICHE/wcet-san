@@ -32,7 +32,7 @@
     font-size: 14px;
   }
 
-  table {
+  .field--name-body > table {
     text-align: left;
     display: block;
     width: 100vw;
@@ -81,8 +81,8 @@
       }
     }
 
-    tbody {
-      tr {
+    & > tbody {
+      & > tr {
         border-bottom: 1px solid #c3c5ca;
 
         &:nth-child(2n+1) {
@@ -114,6 +114,22 @@
 
         &:hover {
           text-decoration: underline;
+        }
+      }
+
+      td.has-nested-table {
+        padding: 0;
+
+        tbody {
+          background-color: inherit;
+
+          tr:last-child {
+            border-bottom: 0;
+
+            td {
+              border-bottom: 0;
+            }
+          }
         }
       }
     }

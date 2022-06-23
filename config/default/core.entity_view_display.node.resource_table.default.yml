@@ -4,11 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.node.resource_table.body
+    - field.field.node.resource_table.field_content_access
     - field.field.node.resource_table.field_intro_copy
     - field.field.node.resource_table.field_resource_type
+    - field.field.node.resource_table.field_topic
     - node.type.resource_table
   module:
     - entity_print
+    - options
     - text
     - user
 third_party_settings:
@@ -24,27 +27,42 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 4
     region: content
   entity_print_view_pdf:
     settings: {  }
     third_party_settings: {  }
     weight: 0
     region: content
+  field_content_access:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
   field_intro_copy:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 3
     region: content
   field_resource_type:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
-    weight: 3
+    weight: 1
+    region: content
+  field_topic:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   entity_print_view_epub: true

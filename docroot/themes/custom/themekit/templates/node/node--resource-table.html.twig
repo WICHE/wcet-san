@@ -103,7 +103,13 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
       </h1>
       {{ rendered_content.field_intro_copy }}
     </div>
-    {{ rendered_content.entity_print_view_pdf }}
+    <div class="resource-table-links">
+      {{ rendered_content.entity_print_view_pdf }}
+      <h5 class="copy-text-title">Share via link</h5>
+      <div class="copy-text-wrapper has-tip" data-clipboard-text="{{ site_url }}" data-tooltip aria-haspopup="true" tabindex="1" title="Copied" data-disable-hover="true" data-alignment="center" data-position="bottom" data-v-offset="8">
+        <span class="copy-text">{{ site_url }}</span>
+      </div>
+    </div>
   </div>
   {{ rendered_content.body }}
 </article>

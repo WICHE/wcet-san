@@ -78,21 +78,27 @@ elements: |-
       </div>
       <br />
       &nbsp;
+  markup_01:
+    '#type': webform_markup
+    '#markup': '<h3 class="form-required">Name of the Membership (institution, system, organization, or group name)</h3>'
   name_of_the_membership_institution_system_organization_or_group_:
     '#type': textfield
     '#title': 'Name of the Membership (institution, system, organization, or group name)'
+    '#title_display': invisible
     '#required': true
   singe_point_contact:
     '#type': fieldset
-    '#title': 'Single Point Contact'
+    '#title': 'Single Point of Contact for Billing'
     full_name:
       '#type': webform_name
       '#title': 'Full Name'
       '#required': true
       '#title__access': false
       '#first__title': 'First Name'
+      '#first__required': true
       '#middle__access': false
       '#last__title': 'Last Name'
+      '#last__required': true
       '#suffix__access': false
       '#degree__title': 'Job Title'
       '#degree__required': true
@@ -104,6 +110,7 @@ elements: |-
     address:
       '#type': webform_address
       '#title': Address
+      '#required': true
       '#address__title_display': before
       '#address__required': true
       '#address_2__access': false
@@ -116,8 +123,8 @@ elements: |-
       '#postal_code__title': Zip
       '#postal_code__title_display': before
       '#postal_code__required': true
+      '#country__required': true
       '#select2': true
-      '#required': true
     contact_information:
       '#type': webform_contact
       '#title': 'Contact Information'
@@ -133,12 +140,16 @@ elements: |-
       '#postal_code__access': false
       '#country__access': false
       '#required': true
+  membership_size:
+    '#type': webform_markup
+    '#markup': '<h3 class="form-required">Membership Size</h3>'
   group_type:
     '#type': select
-    '#title': 'Group Type'
+    '#title': 'Membership Size'
     '#description': |-
       <p style="line-height:1.295"><span style="font-size:11pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Calibri,sans-serif"><span style="color:#000000"><strong style="font-weight:700"><span style="font-style:normal"><span style="text-decoration:none">Please provide the requested information for institutions/organizations that are part of this membership.</span></span></strong></span></span></span></p>
       <span style="font-size:11pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Calibri,sans-serif"><span style="color:#000000"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">If your SAN membership is a group membership with 5 or fewer institutions/organizations, please complete the fields below.&nbsp; If your membership is a group membership of more than 5 institutions/organizations, please provide the contact information on this (spreadsheet) and send the completed file by email to Leigha Fletcher at </span></span></span></span></span></span><a href="mailto:lfletcher@wiche.edu" style="text-decoration:none"><span style="font-size:11pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Calibri,sans-serif"><span style="color:#0563c1"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:underline"><span style="-webkit-text-decoration-skip:none"><span style="text-decoration-skip-ink:none">lfletcher@wiche.edu</span></span></span></span></span></span></span></span></a><span style="font-size:11pt; font-variant:normal; white-space:pre-wrap"><span style="font-family:Calibri,sans-serif"><span style="color:#000000"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">.</span></span></span></span></span></span>
+    '#title_display': invisible
     '#options':
       less5: '5 or less'
       more5: 'More than 5'
@@ -216,8 +227,9 @@ elements: |-
       visible:
         ':input[name="group_type"]':
           value: more5
-    '#file_placeholder': '<a download="" href="https://filesamples.com/samples/document/xlsx/sample3.xlsx">Download doc</a>'
+    '#file_placeholder': '<strong><a download="" href="https://wcetsan.wiche.edu/sites/default/files/files/2022-06/SAN_Membership_list_of_contacts_of_member_institutions.xlsx">Download - Sample List of contacts for Member Institutions (xlsx)</a></strong>'
     '#file_extensions': xlsx
+    '#sanitize': true
   coordinator_information:
     '#type': webform_markup
     '#markup': |-
@@ -237,12 +249,14 @@ elements: |-
     full_name_coordinator_1:
       '#type': webform_name
       '#title': 'Full Name (Coordinator 1)'
+      '#required': true
       '#title__access': false
+      '#first__required': true
       '#middle__access': false
+      '#last__required': true
       '#suffix__access': false
       '#degree__title': 'Job Title'
       '#degree__required': true
-      '#required': true
     institution_organization_coordinator_1:
       '#type': textfield
       '#title': 'Institution / Organization  (Coordinator 1)'
@@ -251,6 +265,7 @@ elements: |-
     address_coordinator_1:
       '#type': webform_address
       '#title': 'Address (Coordinator 1)'
+      '#required': true
       '#address__title_display': before
       '#address__required': true
       '#address_2__access': false
@@ -263,8 +278,8 @@ elements: |-
       '#postal_code__title': Zip
       '#postal_code__title_display': before
       '#postal_code__required': true
+      '#country__required': true
       '#select2': true
-      '#required': true
     contact_information_coordinator_1_:
       '#type': webform_contact
       '#title': 'Contact Information (Coordinator 1)'
@@ -291,45 +306,34 @@ elements: |-
       '#middle__access': false
       '#suffix__access': false
       '#degree__title': 'Job Title'
-      '#degree__required': true
-      '#required': true
     institution_organization_coordinator_2:
       '#type': textfield
       '#title': 'Institution / Organization  (Coordinator 2)'
       '#title_display': before
-      '#required': true
     address_coordinator_2:
       '#type': webform_address
       '#title': 'Address (Coordinator 2)'
       '#address__title_display': before
-      '#address__required': true
       '#address_2__access': false
       '#city__title': City
       '#city__title_display': before
-      '#city__required': true
       '#state_province__title': 'State / Territory'
       '#state_province__title_display': before
-      '#state_province__required': true
       '#postal_code__title': Zip
       '#postal_code__title_display': before
-      '#postal_code__required': true
       '#select2': true
-      '#required': true
     contact_information_coordinator_2:
       '#type': webform_contact
       '#title': 'Contact Information (Coordinator 2)'
       '#name__access': false
       '#company__access': false
-      '#email__required': true
       '#phone__title': 'Phone Number'
-      '#phone__required': true
       '#address__access': false
       '#address_2__access': false
       '#city__access': false
       '#state_province__access': false
       '#postal_code__access': false
       '#country__access': false
-      '#required': true
   coordinator_3:
     '#type': details
     '#title': 'Coordinator #3'
@@ -340,45 +344,34 @@ elements: |-
       '#middle__access': false
       '#suffix__access': false
       '#degree__title': 'Job Title'
-      '#degree__required': true
-      '#required': true
     institution_organization_coordinator_3:
       '#type': textfield
       '#title': 'Institution / Organization  (Coordinator 3)'
       '#title_display': before
-      '#required': true
     address_coordinator_3:
       '#type': webform_address
       '#title': 'Address (Coordinator 3)'
       '#address__title_display': before
-      '#address__required': true
       '#address_2__access': false
       '#city__title': City
       '#city__title_display': before
-      '#city__required': true
       '#state_province__title': 'State / Territory'
       '#state_province__title_display': before
-      '#state_province__required': true
       '#postal_code__title': Zip
       '#postal_code__title_display': before
-      '#postal_code__required': true
       '#select2': true
-      '#required': true
     contact_information_coordinator_3:
       '#type': webform_contact
       '#title': 'Contact Information (Coordinator 3)'
       '#name__access': false
       '#company__access': false
-      '#email__required': true
       '#phone__title': 'Phone Number'
-      '#phone__required': true
       '#address__access': false
       '#address_2__access': false
       '#city__access': false
       '#state_province__access': false
       '#postal_code__access': false
       '#country__access': false
-      '#required': true
 css: ''
 javascript: ''
 settings:

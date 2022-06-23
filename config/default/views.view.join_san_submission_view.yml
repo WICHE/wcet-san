@@ -439,7 +439,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Group Type'
+          label: 'Membership Size'
           exclude: false
           alter:
             alter_text: false

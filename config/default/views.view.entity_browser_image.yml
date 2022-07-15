@@ -140,6 +140,8 @@ display:
           settings:
             image_style: media_browser_thumb
             image_link: ''
+            image_loading:
+              attribute: lazy
           group_column: ''
           group_columns: {  }
           group_rows: true

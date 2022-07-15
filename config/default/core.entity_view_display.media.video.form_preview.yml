@@ -32,10 +32,15 @@ content:
     settings:
       image_style: medium
       image_link: ''
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     region: content
 hidden:
   created: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   field_tags: true
   field_video: true
   field_video_id: true

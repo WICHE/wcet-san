@@ -242,6 +242,8 @@ display:
           settings:
             image_style: thumbnail
             image_link: ''
+            image_loading:
+              attribute: lazy
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -810,6 +812,7 @@ display:
           exposed: false
           expose:
             label: ''
+            field_identifier: created
           granularity: second
       title: Media
       header: {  }

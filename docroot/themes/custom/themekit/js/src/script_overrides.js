@@ -10,10 +10,53 @@ $(tableElement).on("scroll", function () {
   }
 });
 
-const nestedTables = tableElement.find("td table");
-// Add class to td if nested table found
-nestedTables.map(function (key, childTable) {
-  $(childTable)[0].parentElement.classList.add("has-nested-table");
+const tableTopRows = tableElement.find("> tbody > tr");
+
+tableTopRows.map(function (key, row) {
+  let tallestTableHeight = 0;
+  const tables = $(row).find("table");
+
+  console.log(`row ${key}:`)
+
+  // Find the tallest table in the row
+  tables.map(function (key, table) {
+    console.log($(table)[0].clientHeight);
+
+    $(table)[0].parentElement.classList.add("has-nested-table");
+    tallestTableHeight = $(table)[0].clientHeight > tallestTableHeight ? $(table)[0].clientHeight : tallestTableHeight;
+  });
+
+
+  tables.map(function (key, table) {
+      let rows = $(table).find("tr");
+      let rowHeights = []
+      let outlierHeight = 0;
+      let flexRowRatio = 0;
+
+      rows.map(function (key, row) {
+        rowHeights.push(row.clientHeight)
+      });
+
+      // Set flex basis values
+      flexRowRatio = Number((Math.abs(100 / rowHeights.length)).toPrecision(2));
+      rows.map(function (key, row) {
+        row.style.flex = `0 0 ${flexRowRatio}%`;
+      });
+
+      outlierHeight = (Math.max(...rowHeights) + 5);
+
+      tallestTableHeight = (outlierHeight * rowHeights.length > tallestTableHeight) ? outlierHeight * rowHeights.length : tallestTableHeight;
+
+    // Special case - if you find a table that has a taller cell than the table rows / amount of cells then recalculate entire base row height.
+    // let rows = $(table).find("tr");
+    // console.log("")
+    // tallestTable = $(table)[0].clientHeight > tallestTable ? $(table)[0].clientHeight : tallestTable;
+  });
+
+  // Set all tds in the row that contains nested element to the tallest table
+  tables.map(function (key, table) {
+    $(table)[0].parentElement.style.height = `${tallestTableHeight}px`;
+  });
 });
 
 function checkOverflow(el) {

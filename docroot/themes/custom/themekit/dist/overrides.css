@@ -85,6 +85,8 @@
   .node--type-resource-table .field--name-body > table > tbody td.has-nested-table {
     padding: 0;
     position: relative; }
+    .node--type-resource-table .field--name-body > table > tbody td.has-nested-table p:empty {
+      background-color: red; }
     .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table {
       margin: 0;
       height: 100%; }

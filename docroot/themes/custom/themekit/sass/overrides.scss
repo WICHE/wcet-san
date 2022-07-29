@@ -121,6 +121,10 @@
         padding: 0;
         position: relative;
 
+        p:empty {
+          background-color: red;
+        }
+
         table {
           margin: 0;
           height: 100%;

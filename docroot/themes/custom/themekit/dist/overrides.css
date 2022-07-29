@@ -35,7 +35,7 @@
   position: relative;
   overflow-x: auto;
   border-radius: 0;
-  padding-top: 70px; }
+  padding-top: 30px; }
   .node--type-resource-table .field--name-body > table thead {
     background: #662d90;
     color: #fff; }
@@ -54,7 +54,7 @@
     width: 7px;
     right: -6px;
     background-image: linear-gradient(to right, #000000a1, transparent); }
-  .node--type-resource-table .field--name-body > table.scrolling tbody tr td:first-child::after {
+  .node--type-resource-table .field--name-body > table.scrolling > tbody > tr > td:first-child::after {
     content: "";
     height: 101%;
     position: absolute;
@@ -83,16 +83,31 @@
     .node--type-resource-table .field--name-body > table > tbody a:hover {
       text-decoration: underline; }
   .node--type-resource-table .field--name-body > table > tbody td.has-nested-table {
-    padding: 0; }
-    .node--type-resource-table .field--name-body > table > tbody td.has-nested-table tbody {
-      background-color: inherit; }
-      .node--type-resource-table .field--name-body > table > tbody td.has-nested-table tbody tr:last-child {
-        border-bottom: 0; }
-        .node--type-resource-table .field--name-body > table > tbody td.has-nested-table tbody tr:last-child td {
+    padding: 0;
+    position: relative; }
+    .node--type-resource-table .field--name-body > table > tbody td.has-nested-table p:empty {
+      background-color: red; }
+    .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table {
+      margin: 0;
+      height: 100%; }
+      .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody {
+        background-color: inherit;
+        display: flex;
+        flex-direction: column;
+        height: 100%; }
+        .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr {
+          display: flex; }
+          .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr td {
+            border-bottom: 0; }
+        .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr:last-child {
           border-bottom: 0; }
+          .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr:last-child td {
+            border-bottom: 0; }
 
 .node--type-resource-table .show-scroll-hint {
   position: relative; }
+  .node--type-resource-table .show-scroll-hint table.scrollable {
+    padding-top: 70px; }
   .node--type-resource-table .show-scroll-hint .scroll-hint::before {
     content: "Swipe screen";
     width: auto;
@@ -217,5 +232,3 @@
       .webform-submission-form #institution_table table tbody tr td .form-item .select2-container {
         width: 100% !important; }
 
-
-/*# sourceMappingURL=overrides.css.map*/

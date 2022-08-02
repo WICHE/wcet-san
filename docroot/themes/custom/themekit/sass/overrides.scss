@@ -40,7 +40,7 @@
     position: relative;
     overflow-x: auto;
     border-radius: 0;
-    padding-top: 70px;
+    padding-top: 30px;
 
     thead {
       background: #662d90;
@@ -70,7 +70,7 @@
         background-image: linear-gradient(to right, #000000a1, transparent);
       }
 
-      tbody tr td:first-child::after {
+      & > tbody > tr > td:first-child::after {
         content: "";
         height: 101%;
         position: absolute;
@@ -119,15 +119,37 @@
 
       td.has-nested-table {
         padding: 0;
+        position: relative;
 
-        tbody {
-          background-color: inherit;
+        p:empty {
+          background-color: red;
+        }
 
-          tr:last-child {
-            border-bottom: 0;
+        table {
+          margin: 0;
+          height: 100%;
 
-            td {
+          tbody {
+            background-color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+
+            tr {
+              display: flex;
+              // flex: 1 1 auto;
+
+              td {
+                border-bottom: 0;
+              }
+            }
+
+            tr:last-child {
               border-bottom: 0;
+
+              td {
+                border-bottom: 0;
+              }
             }
           }
         }
@@ -138,6 +160,10 @@
 
 .node--type-resource-table .show-scroll-hint {
   position: relative;
+
+  table.scrollable {
+    padding-top: 70px;
+  }
 
   .scroll-hint::before {
     content: "Swipe screen";

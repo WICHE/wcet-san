@@ -101,7 +101,8 @@
         flex-direction: column;
         height: 100%; }
         .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr {
-          display: flex; }
+          display: flex;
+          align-items: center; }
           .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr td {
             border-bottom: 0; }
         .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr:last-child {
@@ -237,3 +238,5 @@
       .webform-submission-form #institution_table table tbody tr td .form-item .select2-container {
         width: 100% !important; }
 
+
+/*# sourceMappingURL=overrides.css.map*/

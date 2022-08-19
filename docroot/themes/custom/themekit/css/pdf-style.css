@@ -1,12 +1,3 @@
-.node--type-resource-table .copy-text-wrapper {
-  position: relative;
-  max-width: 194px;
-  white-space: nowrap;
-  border: 2px solid #c3c5ca;
-  border-radius: 8px;
-  padding: 10px;
-}
-
 .node--type-resource-table .copy-text {
   position: relative;
   max-width: 100%;
@@ -16,6 +7,7 @@
 
 .node--type-resource-table .copy-text-title {
   margin-top: 20px;
+  margin-bottom: 5px;
 }
 
 .node--type-resource-table .field--name-body > table {
@@ -58,23 +50,6 @@
   > tr:nth-child(2n + 2) {
   background-color: #fff;
 }
-.node--type-resource-table
-  .field--name-body
-  > table
-  > tbody
-  > tr
-  td:not(:last-child) {
-  border-right: 1px solid #c3c5ca;
-}
-.node--type-resource-table
-  .field--name-body
-  > table
-  > tbody
-  > tr
-  td:first-child {
-  background: inherit;
-  border-bottom: 1px solid #c3c5ca;
-}
 .node--type-resource-table .field--name-body > table > tbody a {
   line-height: inherit;
   color: #1779ba;
@@ -89,14 +64,6 @@
   td.has-nested-table {
   padding: 0;
   position: relative;
-}
-.node--type-resource-table
-  .field--name-body
-  > table
-  > tbody
-  td.has-nested-table
-  p:empty {
-  background-color: red;
 }
 .node--type-resource-table
   .field--name-body

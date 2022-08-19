@@ -1,0 +1,69 @@
+uuid: e8124033-d3e2-4df2-b6b5-e9ff96bb2fee
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.pdf
+    - field.field.node.resource_table.body
+    - field.field.node.resource_table.field_content_access
+    - field.field.node.resource_table.field_intro_copy
+    - field.field.node.resource_table.field_resource_type
+    - field.field.node.resource_table.field_topic
+    - node.type.resource_table
+  module:
+    - entity_print
+    - options
+    - text
+    - user
+third_party_settings:
+  entity_print:
+    pdf_label: 'Download PDF >'
+id: node.resource_table.pdf
+targetEntityType: node
+bundle: resource_table
+mode: pdf
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_content_access:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_intro_copy:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_resource_type:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_topic:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

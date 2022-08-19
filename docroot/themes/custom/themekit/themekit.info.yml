@@ -1,12 +1,16 @@
 name: Themekit
 type: theme
-description: 'A subtheme of Classy, built for Elevated Third.'
+description: "A subtheme of Classy, built for Elevated Third."
 core_version_requirement: ^8 || ^9
 # Defines the base theme
 base theme: classy
 
 ckeditor_stylesheets:
   - dist/wysiwyg.css
+
+entity_print:
+  node:
+    resource_table: "themekit/pdf-styles"
 
 libraries:
   - core/Drupal
@@ -21,11 +25,11 @@ libraries-override:
 regions:
   header: Header
   help: Help
-  page_top: 'Page top'
-  page_bottom: 'Page bottom'
+  page_top: "Page top"
+  page_bottom: "Page bottom"
   highlighted: Highlighted
   featured: Featured
   content: Content
-  sidebar_first: 'Sidebar first'
-  sidebar_second: 'Sidebar second'
+  sidebar_first: "Sidebar first"
+  sidebar_second: "Sidebar second"
   footer: Footer

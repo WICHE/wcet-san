@@ -10,7 +10,6 @@
 
 .node--type-resource-table .copy-text {
   position: relative;
-  display: inline-block;
   max-width: 100%;
   color: #4a90e2;
   z-index: -1;
@@ -22,7 +21,6 @@
 
 .node--type-resource-table .field--name-body > table {
   text-align: left;
-  display: block;
   width: 100vw;
   max-width: 100%;
   position: relative;

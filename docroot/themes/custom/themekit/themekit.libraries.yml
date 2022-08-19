@@ -4,8 +4,8 @@
 ### - 02 - Themekit
 ### - 03 - Polyfills
 ### - 04 - Search
+### - 05 - PDF Styles
 ####
-
 
 ########################
 ### 01 - Fonts
@@ -14,11 +14,8 @@
 fonts:
   css:
     theme:
-      'https://fonts.googleapis.com/css?family=News+Cycle:400,700|Roboto:400,700': { type: external, minified: true }
-
-
-
-
+      "https://fonts.googleapis.com/css?family=News+Cycle:400,700|Roboto:400,700":
+        { type: external, minified: true }
 
 ########################
 ### 02 - Themekit
@@ -35,14 +32,10 @@ themekit:
       dist/style.css: {}
       dist/overrides.css: {}
   dependencies:
-      - core/drupal
-      - core/jquery
-      - core/modernizer
-      - themekit/babel-polyfill
-
-
-
-
+    - core/drupal
+    - core/jquery
+    - core/modernizer
+    - themekit/babel-polyfill
 
 ########################
 ### 03 - Polyfills
@@ -52,10 +45,6 @@ babel-polyfill:
   version: 1.x
   js:
     dist/polyfill.js: {}
-
-
-
-
 
 ########################
 ### 04 - Search
@@ -74,3 +63,13 @@ main_search_block:
     dist/search_main.js: {}
   dependencies:
     - themekit/babel-polyfill
+
+########################
+### 05 - PDF Styles
+########################
+
+pdf-styles:
+  version: VERSION
+  css:
+    theme:
+      css/pdf-style.css: {}

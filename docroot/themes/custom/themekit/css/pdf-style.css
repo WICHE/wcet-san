@@ -2,7 +2,6 @@
   position: relative;
   max-width: 194px;
   white-space: nowrap;
-  overflow-x: scroll;
   border: 2px solid #c3c5ca;
   border-radius: 8px;
   padding: 10px;
@@ -19,16 +18,6 @@
 
 .node--type-resource-table .copy-text-title {
   margin-top: 20px;
-}
-
-.node--type-resource-table .tooltip {
-  display: inline-block;
-  background-color: #575d70;
-  color: #c3c5ca;
-  padding: 0.3rem 0.5rem;
-  border-radius: 8px;
-  box-shadow: 0 0 0 1rem rgba(87, 93, 112, 0);
-  font-size: 14px;
 }
 
 .node--type-resource-table .field--name-body > table {
@@ -87,8 +76,6 @@
   > tbody
   > tr
   td:first-child {
-  position: sticky;
-  left: 0;
   background: inherit;
   border-bottom: 1px solid #c3c5ca;
 }
@@ -98,9 +85,7 @@
   text-decoration: none;
   cursor: pointer;
 }
-.node--type-resource-table .field--name-body > table > tbody a:hover {
-  text-decoration: underline;
-}
+
 .node--type-resource-table
   .field--name-body
   > table
@@ -125,28 +110,6 @@
   table {
   margin: 0;
   height: 100%;
-}
-.node--type-resource-table
-  .field--name-body
-  > table
-  > tbody
-  td.has-nested-table
-  table
-  tbody {
-  background-color: inherit;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.node--type-resource-table
-  .field--name-body
-  > table
-  > tbody
-  td.has-nested-table
-  table
-  tbody
-  tr {
-  display: flex;
 }
 .node--type-resource-table
   .field--name-body

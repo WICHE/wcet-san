@@ -11,9 +11,10 @@
 }
 
 .node--type-resource-table .field--name-body > table {
+  font-size: 14px;
+  font-weight: 400;
+  page-break-inside: auto;
   text-align: left;
-  width: 100vw;
-  max-width: 100%;
   position: relative;
   border-radius: 0;
   padding-top: 30px;

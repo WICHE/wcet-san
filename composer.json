@@ -143,7 +143,11 @@
             ]
         },
         "enable-patching": true,
-        "patches": {}
+        "patches": {
+            "drupal/entity_print": {
+                "orientation key reformat to effect orientation": "https://www.drupal.org/files/issues/2021-12-13/entity_print-default_size_and_orientation-3041514-17.patch"
+            }
+        }
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",

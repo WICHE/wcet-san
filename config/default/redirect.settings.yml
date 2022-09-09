@@ -1,6 +1,6 @@
 _core:
   default_config_hash: IxLwI-D9NeuZKfY2iz87l0NeM8LfBn7IVucsc6RG6l4
-auto_redirect: true
+auto_redirect: false
 default_status_code: 301
 passthrough_querystring: true
 warning: false

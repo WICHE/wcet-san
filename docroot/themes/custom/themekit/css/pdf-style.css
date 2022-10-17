@@ -10,7 +10,12 @@
   margin-bottom: 5px;
 }
 
+.node--type-resource-table .field--name-body > table > tbody > tr td:not(:last-child) {
+  border-right: 1px solid #c3c5ca;
+}
+
 .node--type-resource-table .field--name-body > table {
+  border-collapse: collapse;
   font-size: 14px;
   font-weight: 400;
   page-break-inside: auto;

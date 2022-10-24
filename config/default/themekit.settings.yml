@@ -5,7 +5,7 @@ features:
   favicon: 1
 logo:
   use_default: 0
-  path: 'public://SAN-Logo-2018-outlines-inverse_0_0.png'
+  path: 'public://SAN-logo-13_0.png'
 favicon:
   use_default: 0
   path: themes/custom/themekit/images/san-favicon.png

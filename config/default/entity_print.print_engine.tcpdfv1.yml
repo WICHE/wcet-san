@@ -1,8 +1,0 @@
-uuid: 50477598-eb5b-446e-a5cf-0a35f7cda0c4
-langcode: en
-status: true
-dependencies: {  }
-id: tcpdfv1
-settings:
-  default_paper_size: LETTER
-  default_paper_orientation: landscape

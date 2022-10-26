@@ -95,8 +95,7 @@
         "drupal/webform_views": "^5.0@beta",
         "drupal/entity_print": "^2.5",
         "drupal/config_ignore": "^3.0",
-        "drupal/config_filter": "^2.4",
-        "tecnickcom/tcpdf": "~6"
+        "drupal/config_filter": "^2.4"
     },
     "conflict": {
         "drupal/drupal": "*"

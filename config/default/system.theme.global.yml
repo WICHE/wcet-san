@@ -11,6 +11,6 @@ features:
   favicon: true
   node_user_picture: true
 logo:
-  path: 'public://SAN-Logo-2018-outlines-inverse_1.png'
+  path: 'public://SAN-logo-13.png'
   url: ''
   use_default: false

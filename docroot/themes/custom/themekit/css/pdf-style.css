@@ -15,7 +15,7 @@
 }
 
 .node--type-resource-table .field--name-body > table {
-  border-collapse: separate;
+  border-collapse: collapse;
   font-size: 14px;
   font-weight: 400;
   page-break-inside: auto;

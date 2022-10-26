@@ -11,7 +11,7 @@
 }
 
 .node--type-resource-table .field--name-body > table > tbody > tr td:not(:last-child) {
-  border-right: 1px solid #c3c5ca;
+  border: 2px solid #707070;
 }
 
 .node--type-resource-table .field--name-body > table {

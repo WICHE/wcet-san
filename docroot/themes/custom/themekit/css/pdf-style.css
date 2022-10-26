@@ -11,11 +11,11 @@
 }
 
 .node--type-resource-table .field--name-body > table > tbody > tr td:not(:last-child) {
-  border: 2px solid #707070;
+  border-right: 1px solid #707070;
 }
 
 .node--type-resource-table .field--name-body > table {
-  border-collapse: collapse;
+  border-collapse: separate;
   font-size: 14px;
   font-weight: 400;
   page-break-inside: auto;

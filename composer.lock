@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ec1ac98239772c68146d1b5acf2a1ae",
+    "content-hash": "1859c52cd31c5619441c439688070094",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3165,16 +3165,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "9.4.8",
+            "version": "9.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "a627d1b2a00f2cef0572e37b94dea298800541f4"
+                "reference": "5fa639a3ddf0241db08b270f429f9da91d06fdfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/a627d1b2a00f2cef0572e37b94dea298800541f4",
-                "reference": "a627d1b2a00f2cef0572e37b94dea298800541f4",
+                "url": "https://api.github.com/repos/drupal/core/zipball/5fa639a3ddf0241db08b270f429f9da91d06fdfc",
+                "reference": "5fa639a3ddf0241db08b270f429f9da91d06fdfc",
                 "shasum": ""
             },
             "require": {
@@ -3326,13 +3326,13 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/9.4.8"
+                "source": "https://github.com/drupal/core/tree/9.4.9"
             },
-            "time": "2022-10-06T15:57:08+00:00"
+            "time": "2022-12-07T13:36:57+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "9.4.8",
+            "version": "9.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -3376,22 +3376,22 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.4.8"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.4.9"
             },
             "time": "2022-06-19T16:14:23+00:00"
         },
         {
             "name": "drupal/core-recommended",
-            "version": "9.4.8",
+            "version": "9.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "684cc844f7b729286f5d62f1ee4b20ab12586502"
+                "reference": "20a9b373c4b3fc23a56d9d0a591a3c3b3415d433"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/684cc844f7b729286f5d62f1ee4b20ab12586502",
-                "reference": "684cc844f7b729286f5d62f1ee4b20ab12586502",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/20a9b373c4b3fc23a56d9d0a591a3c3b3415d433",
+                "reference": "20a9b373c4b3fc23a56d9d0a591a3c3b3415d433",
                 "shasum": ""
             },
             "require": {
@@ -3400,7 +3400,7 @@
                 "doctrine/annotations": "~1.13.2",
                 "doctrine/lexer": "~1.2.3",
                 "doctrine/reflection": "~1.2.3",
-                "drupal/core": "9.4.8",
+                "drupal/core": "9.4.9",
                 "egulias/email-validator": "~3.2",
                 "guzzlehttp/guzzle": "~6.5.8",
                 "guzzlehttp/promises": "~1.5.1",
@@ -3462,9 +3462,9 @@
             ],
             "description": "Core and its dependencies with known-compatible minor versions. Require this project INSTEAD OF drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-recommended/tree/9.4.8"
+                "source": "https://github.com/drupal/core-recommended/tree/9.4.9"
             },
-            "time": "2022-10-06T15:57:08+00:00"
+            "time": "2022-12-07T13:36:57+00:00"
         },
         {
             "name": "drupal/crop",
@@ -13795,7 +13795,7 @@
     "aliases": [
         {
             "package": "drupal/core",
-            "version": "9.4.8.0",
+            "version": "9.4.9.0",
             "alias": "8.9.999",
             "alias_normalized": "8.9.999.0"
         }

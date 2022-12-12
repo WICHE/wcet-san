@@ -86,6 +86,16 @@ elements: |-
     '#title': 'Name of the Membership (institution, system, organization, or group name)'
     '#title_display': invisible
     '#required': true
+  san_membership_type:
+    '#type': select
+    '#title': 'SAN Membership Type'
+    '#options':
+      office_only: 'Higher Ed. Office, State Portal Entities, Companies & Organisations * (Office Only)'
+      1: '1 Institution'
+      2_to_15: '2 - 15 Institutions'
+      16_more: '16+ Institutions'
+    '#select2': true
+    '#required': true
   singe_point_contact:
     '#type': fieldset
     '#title': 'Single Point of Contact for Billing'
@@ -572,7 +582,7 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: _default
+      to_mail: san-info@wiche.edu
       to_options: {  }
       bcc_mail: ''
       bcc_options: {  }

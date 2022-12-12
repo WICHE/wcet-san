@@ -15,53 +15,23 @@ base_table: search_api_index_index
 base_field: nid
 display:
   default:
-    display_plugin: default
     id: default
     display_title: Master
+    display_plugin: default
     position: 0
     display_options:
-      access:
-        type: none
-        options: {  }
-      cache:
-        type: tag
-        options: {  }
-      query:
-        type: views_query
-        options:
-          bypass_access: false
-          skip_access: false
-          preserve_facet_query_args: false
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        type: some
-        options:
-          items_per_page: 5
-          offset: 0
-      style:
-        type: default
-      row:
-        type: fields
+      title: asdf
       fields:
         created:
+          id: created
           table: search_api_index_index
           field: created
-          id: created
-          entity_type: null
-          entity_field: null
-          plugin_id: search_api_field
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: null
+          entity_field: null
+          plugin_id: search_api_field
           label: ''
           exclude: false
           alter:
@@ -126,14 +96,44 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-      filters: {  }
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 5
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: none
+        options: {  }
+      empty: {  }
       sorts: {  }
-      title: asdf
+      arguments: {  }
+      filters: {  }
+      style:
+        type: default
+      row:
+        type: fields
+      query:
+        type: search_api_query
+        options:
+          bypass_access: false
+          skip_access: false
+          preserve_facet_query_args: false
+      relationships: {  }
       header: {  }
       footer: {  }
-      empty: {  }
-      relationships: {  }
-      arguments: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -143,9 +143,9 @@ display:
       tags:
         - 'config:search_api.index.index'
   block_1:
-    display_plugin: block
     id: block_1
     display_title: Block
+    display_plugin: block
     position: 1
     display_options:
       display_extenders: {  }

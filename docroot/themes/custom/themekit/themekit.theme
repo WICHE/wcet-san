@@ -108,6 +108,15 @@ function themekit_preprocess_field(&$variables) {
 function themekit_preprocess_node_article(&$variables) {
 }
 
+/**
+ * Implements template_preprocess_node_resource_table().
+ */
+function themekit_preprocess_node_resource_table(&$variables) {
+  // If pdf display - strip change the text format to basic html to remove any inline styles for pdf generation
+  if($variables['view_mode'] === 'pdf') {
+    $variables['content']['body'][0]['#format'] = 'basic_html';
+  }
+}
 
 /**
  * Implements template_preprocess_media().

@@ -42,6 +42,11 @@
     .node--type-resource-table .field--name-body > table thead tr th {
       border-bottom: 1px solid #662d90;
       border-right: 1px solid #707070; }
+      .node--type-resource-table .field--name-body > table thead tr th a {
+        color: #fff;
+        text-decoration: underline; }
+      .node--type-resource-table .field--name-body > table thead tr th a::before {
+        border-color: #fff; }
     .node--type-resource-table .field--name-body > table thead tr:first-child th:first-child {
       position: sticky;
       left: 0;

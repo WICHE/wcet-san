@@ -25,6 +25,19 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_topic:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -10
+    region: content
 hidden:
   body: true
   entity_print_view_epub: true
@@ -32,7 +45,5 @@ hidden:
   entity_print_view_word_docx: true
   field_content_access: true
   field_intro_copy: true
-  field_topic: true
   langcode: true
-  links: true
   search_api_excerpt: true

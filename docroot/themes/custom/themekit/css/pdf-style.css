@@ -10,10 +10,6 @@
   margin-bottom: 5px;
 }
 
-.node--type-resource-table table {
-  word-break: break-word;
-}
-
 .node--type-resource-table table table {
   border-collapse: collapse;
 }
@@ -54,11 +50,6 @@
   border-right: 0.01em solid #ccc;
   border-top: 0;
   border-bottom: 0.01em solid #ccc;
-}
-
-.node--type-resource-table .field--name-body > table > tbody > tr > td:first-child,
-.node--type-resource-table .field--name-body > table > thead > tr > th:first-child {
-  word-break: initial;
 }
 
 .node--type-resource-table .field--name-body > table > tbody a {

@@ -10,6 +10,14 @@
   margin-bottom: 5px;
 }
 
+.node--type-resource-table table table {
+  border-collapse: collapse;
+}
+
+.node--type-resource-table table table tr:not(:last-child) td {
+  border-bottom: 0.01em solid #ccc;
+}
+
 .node--type-resource-table .field--name-body > table {
   border-collapse: collapse;
   font-size: 14px;

@@ -107,7 +107,8 @@
         }
 
         // first row cell sticky when overflow
-        td:first-child {
+        & > td:first-child {
+          z-index: 10;
           position: sticky;
           left: 0;
           background: inherit;

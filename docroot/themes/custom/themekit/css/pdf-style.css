@@ -16,6 +16,7 @@
 
 .node--type-resource-table table table tr:not(:last-child) td {
   border-bottom: 0.01em solid #ccc;
+  border-collapse: collapse;
 }
 
 .node--type-resource-table .field--name-body > table {

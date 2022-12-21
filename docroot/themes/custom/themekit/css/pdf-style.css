@@ -14,7 +14,10 @@
   border-bottom: 0.01em solid #ccc;
 }
 
-.node--type-resource-table table table,
+.node--type-resource-table table table {
+  border-collapse: collapse;
+}
+
 .node--type-resource-table .field--name-body > table {
   border-collapse: collapse;
   font-size: 14px;
@@ -56,9 +59,6 @@
   color: #1779ba;
   text-decoration: none;
   cursor: pointer;
-}
-
-.node--type-resource-table .field--name-body > table > tbody a[href*="mailto"] {
   word-wrap: break-word;
   max-width: 80%;
   display: block;

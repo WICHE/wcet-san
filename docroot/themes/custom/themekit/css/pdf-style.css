@@ -10,15 +10,11 @@
   margin-bottom: 5px;
 }
 
-.node--type-resource-table table table {
-  border-collapse: collapse;
-}
-
 .node--type-resource-table table table tr:not(:last-child) td {
   border-bottom: 0.01em solid #ccc;
-  border-collapse: collapse;
 }
 
+.node--type-resource-table table table,
 .node--type-resource-table .field--name-body > table {
   border-collapse: collapse;
   font-size: 14px;
@@ -28,10 +24,12 @@
   position: relative;
   padding-top: 30px;
 }
+
 .node--type-resource-table .field--name-body > table thead {
   background-color: #662d90;
   color: #fff;
 }
+
 .node--type-resource-table .field--name-body > table thead tr th a {
   color: #fff;
   text-decoration: underline;
@@ -58,6 +56,12 @@
   color: #1779ba;
   text-decoration: none;
   cursor: pointer;
+}
+
+.node--type-resource-table .field--name-body > table > tbody a[href*="mailto"] {
+  word-wrap: break-word;
+  max-width: 80%;
+  display: block;
 }
 
 .node--type-resource-table

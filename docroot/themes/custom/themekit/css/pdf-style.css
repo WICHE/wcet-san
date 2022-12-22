@@ -14,10 +14,6 @@
   border-bottom: 0.01em solid #ccc;
 }
 
-.node--type-resource-table table table tr:not(:last-child) {
-  border-bottom: 2px solid red;
-}
-
 .node--type-resource-table table table {
   border-collapse: collapse;
   width: 100%;
@@ -31,7 +27,6 @@
   text-align: left;
   position: relative;
   padding-top: 30px;
-  width: 90%;
 }
 
 .node--type-resource-table .field--name-body > table thead {

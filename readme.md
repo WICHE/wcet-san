@@ -1,45 +1,75 @@
-# WCET - SAN
+<img alt="Drupal Logo" src="https://www.drupal.org/files/Wordmark_blue_RGB.png" height="60px">
 
-## Git workflow
+Drupal is an open source content management platform supporting a variety of
+websites ranging from personal weblogs to large community-driven websites. For
+more information, visit the Drupal website, [Drupal.org][Drupal.org], and join
+the [Drupal community][Drupal community].
 
-Since this site is hosted with Amazee.io, we use git flow. The develop branch is deployed to the development environment and the master branch is deployed to the production environment. Deployment happens when either of these branches receive a push.
+## Contributing
 
-## Hosting
+Drupal is developed on [Drupal.org][Drupal.org], the home of the international
+Drupal community since 2001!
 
-* Platform: Amazee.io
-* Dev URL: http://portal.stateauthorization.org.develop.us2.compact.amazee.io/
-* Prod URL: https://wcetsan.wiche.edu
+[Drupal.org][Drupal.org] hosts Drupal's [GitLab repository][GitLab repository],
+its [issue queue][issue queue], and its [documentation][documentation]. Before
+you start working on code, be sure to search the [issue queue][issue queue] and
+create an issue if your aren't able to find an existing issue.
 
-### Shield credentials
+Every issue on Drupal.org automatically creates a new community-accessible fork
+that you can contribute to. Learn more about the code contribution process on
+the [Issue forks & merge requests page][issue forks].
 
-* Username: san
-* Password: 3ditsan
+## Usage
 
-## Config workflow
+For a brief introduction, see [USAGE.txt](/core/USAGE.txt). You can also find
+guides, API references, and more by visiting Drupal's [documentation
+page][documentation].
 
-This project uses CMI for all configuration changes. To make a configuration update, first, sync the production database to your local environment and export and commit any config changes from the production environment to the project repo. After that, make your new configuration changes on your local environment, export those changes and commit them to the project repo. Once you've finished push those changes to the remote environment and run `drush cim` to import all new configuration.
+You can quickly extend Drupal's core feature set by installing any of its
+[thousands of free and open source modules][modules]. With Drupal and its
+module ecosystem, you can often build most or all of what your project needs
+before writing a single line of code.
 
+## Changelog
 
-## Composer
+Drupal keeps detailed [change records][changelog]. You can search Drupal's
+changes for a record of every notable breaking change and new feature since
+2011.
 
-All packages in this project are managed using Composer - see composer.json for detailed information about each package. This project is built serverside, so none of the vendor directories are commited. Be sure to run `composer install` when you first download the site and `composer update` when you are pulling updates.
+## Security
 
+For a list of security announcements, see the [Security advisories
+page][Security advisories] (available as [an RSS feed][security RSS]). This
+page also describes how to subscribe to these announcements via email.
 
-## Local Setup
-**Requirements**
-- Pygmy `sudo gem install pygmy`
-- Docker for Mac
+For information about the Drupal security process, or to find out how to report
+a potential security issue to the Drupal security team, see the [Security team
+page][security team].
 
-1. From project root run `pygmy up`
-2. Inject custom SSH key if none was picked up `pygmy addkey [path/to/key]`
-3. Composer Docker containers `docker-compose up -d`
-3. Sometimes need to force recreate `docker-compose up -d --force-recreate`
-4. SSH into container `docker-compose exec cli sh`
-5. Composer install `composer install`
-3. Stop development by running `pygmy stop`
-4. Remove all containers by running `pygmy down`
-5. Check status and SSH keys by running `pygmy status`
+## Need a helping hand?
 
-Need to log into Amazee UI dashboard to add SSH keys and check on environment setups.
-May need to be added by Amazee support via Rocket Chat
-Solr dashboard http://localhost:32781/solr/#/
+Visit the [Support page][support] or browse [over a thousand Drupal
+providers][service providers] offering design, strategy, development, and
+hosting services.
+
+## Legal matters
+
+Know your rights when using Drupal by reading Drupal core's
+[license](/core/LICENSE.txt).
+
+Learn about the [Drupal trademark and logo policy here][trademark].
+
+[Drupal.org]: https://www.drupal.org
+[Drupal community]: https://www.drupal.org/community
+[GitLab repository]: https://git.drupalcode.org/project/drupal
+[issue queue]: https://www.drupal.org/project/issues/drupal
+[issue forks]: https://www.drupal.org/drupalorg/docs/gitlab-integration/issue-forks-merge-requests
+[documentation]: https://www.drupal.org/documentation
+[changelog]: https://www.drupal.org/list-changes/drupal
+[modules]: https://www.drupal.org/project/project_module
+[security advisories]: https://www.drupal.org/security
+[security RSS]: https://www.drupal.org/security/rss.xml
+[security team]: https://www.drupal.org/drupal-security-team
+[service providers]: https://www.drupal.org/drupal-services
+[support]: https://www.drupal.org/support
+[trademark]: https://www.drupal.com/trademark

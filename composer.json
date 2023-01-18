@@ -53,7 +53,7 @@
         "drupal/chosen": "^2.0",
         "drupal/environment_indicator": "^4.0",
         "drupal/field_tools": "dev-1.x",
-        "drupal/google_analytics": "^2.0",
+        "drupal/google_analytics": "^4.0",
         "drupal/ultimate_cron": "^2.0",
         "drupal/login_security": "^2.0",
         "drupal/markup": "^1.0",

@@ -9,9 +9,9 @@
  */
 
 // Config settings
-$config_directories = array(
-    CONFIG_SYNC_DIRECTORY => 'config/default',
-);
+// $config_directories = array(
+//     CONFIG_SYNC_DIRECTORY => '../config/default',
+// );
 
 // Set default paths to public, private and temp directories.
 $settings['file_public_path'] = 'sites/default/files';

@@ -10,7 +10,7 @@
 
 // Config settings
 $config_directories = array(
-    CONFIG_SYNC_DIRECTORY => '../config/default',
+    CONFIG_SYNC_DIRECTORY => 'config/default',
 );
 
 // Set default paths to public, private and temp directories.

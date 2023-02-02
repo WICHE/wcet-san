@@ -14,7 +14,7 @@ body {
   margin-bottom: 5px;
 }
 
-.node--type-resource-table table table tr:not(:last-child) td {
+.node--type-resource-table table table tr td {
   border-bottom: 0.01em solid #ccc;
 }
 

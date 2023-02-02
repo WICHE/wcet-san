@@ -358,3 +358,98 @@
     }
   }
 }
+
+.page-node-type-resource-table {
+  .node--type-resource-table {
+    // @include content-width(page);
+
+    display: flex;
+    flex-flow: row wrap;
+    flex-basis: auto;
+    justify-content: space-between;
+    margin-top: 77px;
+  }
+
+  .resource-info {
+    display: flex;
+    flex-flow: row wrap;
+    flex-basis: auto;
+    max-width: 100%;
+    font-size: 12px;
+    .field--name-field-event-type,
+    .field--name-field-resource-type {
+      margin-right: 8px;
+    }
+    .field--name-field-date,
+    .date-created {
+      color: #575d70;
+    }
+    .field--name-field-topic {
+      position: relative;
+      color: #575d70;
+      @media print, screen and(min-width: 48em) {
+        padding-left: 8px;
+        margin-left: 8px;
+        &:after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 1px;
+          height: 12px;
+          background-color: #575d70;
+          transform: translateY(-50%);
+        }
+      }
+      .field__item {
+        display: inline-block;
+        &:nth-last-of-type(1n + 2) {
+          &:after {
+            content: ',';
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+  .event-content,
+  .resources-content {
+    max-width: 100%;
+    @media print, screen and(min-width: 48em) {
+      padding-right: rem-calc(76);
+      width: 69%;
+    }
+  }
+  .event-details,
+  .resources-details {
+    margin-top: 28px;
+    @media print, screen and(min-width: 48em) {
+      width: 29%;
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+  .date {
+    + .date {
+      margin-top: 15px;
+    }
+  }
+  .field--name-field-p-resources {
+    .field__item {
+      margin-top: 40px;
+    }
+  }
+  .copy-text-title {
+    margin-top: 41px;
+  }
+  .tooltip {
+    display: inline-block;
+    background-color: #575d70;
+    color: #c3c5ca;
+    padding: .3rem .5rem;
+    border-radius: 8px;
+    animation: copy 2.5s infinite;
+    box-shadow: 0 0 0 1rem rgba(#575d70, 0);
+    font-size: 14px;
+  }
+}

@@ -96,6 +96,11 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
+  <div class="resource-info">
+    {{ rendered_content.field_resource_type }}
+    <span class="date-created">{{ createdDate }}</span>
+    {{ rendered_content.field_topic }}
+  </div>
   <div class="resource-table-content">
     <div class="resource-title-pretext">
       <h1{{ title_attributes }}>

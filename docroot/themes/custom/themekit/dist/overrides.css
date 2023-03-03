@@ -27,7 +27,8 @@
   box-shadow: 0 0 0 1rem rgba(87, 93, 112, 0);
   font-size: 14px; }
 
-.node--type-resource-table .field--name-body > table {
+.node--type-resource-table .field--name-body > table,
+.node--type-resource-table .field--name-body > .scrollable-wrapper > table {
   text-align: left;
   display: block;
   width: 100vw;
@@ -36,22 +37,28 @@
   overflow-x: auto;
   border-radius: 0;
   padding-top: 30px; }
-  .node--type-resource-table .field--name-body > table thead {
+  .node--type-resource-table .field--name-body > table thead,
+  .node--type-resource-table .field--name-body > .scrollable-wrapper > table thead {
     background: #662d90;
     color: #fff; }
-    .node--type-resource-table .field--name-body > table thead tr th {
+    .node--type-resource-table .field--name-body > table thead tr th,
+    .node--type-resource-table .field--name-body > .scrollable-wrapper > table thead tr th {
       border-bottom: 1px solid #662d90;
       border-right: 1px solid #707070; }
-      .node--type-resource-table .field--name-body > table thead tr th a {
+      .node--type-resource-table .field--name-body > table thead tr th a,
+      .node--type-resource-table .field--name-body > .scrollable-wrapper > table thead tr th a {
         color: #fff;
         text-decoration: underline; }
-      .node--type-resource-table .field--name-body > table thead tr th a::before {
+      .node--type-resource-table .field--name-body > table thead tr th a::before,
+      .node--type-resource-table .field--name-body > .scrollable-wrapper > table thead tr th a::before {
         border-color: #fff; }
-    .node--type-resource-table .field--name-body > table thead tr:first-child th:first-child {
+    .node--type-resource-table .field--name-body > table thead tr:first-child th:first-child,
+    .node--type-resource-table .field--name-body > .scrollable-wrapper > table thead tr:first-child th:first-child {
       position: sticky;
       left: 0;
       background: #662d90; }
-  .node--type-resource-table .field--name-body > table.scrolling thead tr:first-child th:first-child::after {
+  .node--type-resource-table .field--name-body > table.scrolling thead tr:first-child th:first-child::after,
+  .node--type-resource-table .field--name-body > .scrollable-wrapper > table.scrolling thead tr:first-child th:first-child::after {
     content: "";
     height: 100%;
     position: absolute;
@@ -59,7 +66,8 @@
     width: 7px;
     right: -6px;
     background-image: linear-gradient(to right, #000000a1, transparent); }
-  .node--type-resource-table .field--name-body > table.scrolling > tbody > tr > td:first-child::after {
+  .node--type-resource-table .field--name-body > table.scrolling > tbody > tr > td:first-child::after,
+  .node--type-resource-table .field--name-body > .scrollable-wrapper > table.scrolling > tbody > tr > td:first-child::after {
     content: "";
     height: 101%;
     position: absolute;
@@ -67,70 +75,90 @@
     width: 7px;
     right: -7px;
     background-image: linear-gradient(to right, #00000075, transparent); }
-  .node--type-resource-table .field--name-body > table > tbody > tr {
+  .node--type-resource-table .field--name-body > table > tbody > tr,
+  .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody > tr {
     border-bottom: 1px solid #c3c5ca; }
-    .node--type-resource-table .field--name-body > table > tbody > tr:nth-child(2n+1) {
+    .node--type-resource-table .field--name-body > table > tbody > tr:nth-child(2n+1),
+    .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody > tr:nth-child(2n+1) {
       background-color: #f7f7f8; }
-    .node--type-resource-table .field--name-body > table > tbody > tr:nth-child(2n+2) {
+    .node--type-resource-table .field--name-body > table > tbody > tr:nth-child(2n+2),
+    .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody > tr:nth-child(2n+2) {
       background-color: #fff; }
-    .node--type-resource-table .field--name-body > table > tbody > tr td:not(:last-child) {
+    .node--type-resource-table .field--name-body > table > tbody > tr td:not(:last-child),
+    .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody > tr td:not(:last-child) {
       border-right: 1px solid #c3c5ca; }
-    .node--type-resource-table .field--name-body > table > tbody > tr > td:first-child {
+    .node--type-resource-table .field--name-body > table > tbody > tr > td:first-child,
+    .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody > tr > td:first-child {
       z-index: 10;
       position: sticky;
       left: 0;
       background: inherit;
       border-bottom: 1px solid #c3c5ca; }
-  .node--type-resource-table .field--name-body > table > tbody a {
+  .node--type-resource-table .field--name-body > table > tbody a,
+  .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody a {
     line-height: inherit;
     color: #1779ba;
     text-decoration: none;
     cursor: pointer; }
-    .node--type-resource-table .field--name-body > table > tbody a:hover {
+    .node--type-resource-table .field--name-body > table > tbody a:hover,
+    .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody a:hover {
       text-decoration: underline; }
-  .node--type-resource-table .field--name-body > table > tbody td.has-nested-table {
+  .node--type-resource-table .field--name-body > table > tbody td.has-nested-table,
+  .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody td.has-nested-table {
     padding: 0;
     position: relative; }
-    .node--type-resource-table .field--name-body > table > tbody td.has-nested-table p:empty {
+    .node--type-resource-table .field--name-body > table > tbody td.has-nested-table p:empty,
+    .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody td.has-nested-table p:empty {
       background-color: red; }
-    .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table {
+    .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table,
+    .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody td.has-nested-table table {
       margin: 0;
       height: 100%; }
-      .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody {
+      .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody,
+      .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody td.has-nested-table table tbody {
         background-color: inherit;
         display: flex;
         flex-direction: column;
         height: 100%; }
-        .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr {
+        .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr,
+        .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody td.has-nested-table table tbody tr {
           display: flex; }
-          .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr td {
+          .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr td,
+          .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody td.has-nested-table table tbody tr td {
             border-bottom: 0; }
-        .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr:last-child {
+        .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr:last-child,
+        .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody td.has-nested-table table tbody tr:last-child {
           border-bottom: 0; }
-          .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr:last-child td {
+          .node--type-resource-table .field--name-body > table > tbody td.has-nested-table table tbody tr:last-child td,
+          .node--type-resource-table .field--name-body > .scrollable-wrapper > table > tbody td.has-nested-table table tbody tr:last-child td {
             border-bottom: 0; }
 
 .node--type-resource-table .show-scroll-hint {
   position: relative; }
   .node--type-resource-table .show-scroll-hint table.scrollable {
-    padding-top: 70px; }
-  .node--type-resource-table .show-scroll-hint .scroll-hint::before {
-    content: "Swipe screen";
-    width: auto;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-    top: 0;
-    background-repeat: no-repeat;
-    background-position: 5px 11px;
-    background-size: 30px;
-    background-image: url(aa4eafb749e07c68c3752eeb2a6df7e7.png);
-    padding-left: 40px;
-    font-size: 13px; }
+    cursor: -webkit-grab;
+    cursor: grab;
+    overflow: auto; }
+  .node--type-resource-table .show-scroll-hint .scroll-hint {
+    padding-bottom: 70px;
+    display: block; }
+    .node--type-resource-table .show-scroll-hint .scroll-hint::before {
+      content: "Swipe screen";
+      width: auto;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+      top: 0;
+      background-repeat: no-repeat;
+      background-position: 5px 11px;
+      background-size: 30px;
+      background-image: url(aa4eafb749e07c68c3752eeb2a6df7e7.png);
+      padding-left: 40px;
+      font-size: 13px; }
 
 .resource-id-417 {
   color: #8ba4d4; }

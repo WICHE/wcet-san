@@ -32,7 +32,8 @@
     font-size: 14px;
   }
 
-  .field--name-body > table {
+  .field--name-body > table,
+  .field--name-body > .scrollable-wrapper > table {
     text-align: left;
     display: block;
     width: 100vw;
@@ -172,25 +173,31 @@
   position: relative;
 
   table.scrollable {
-    padding-top: 70px;
+    cursor: grab;
+    overflow: auto;
   }
 
-  .scroll-hint::before {
-    content: "Swipe screen";
-    width: auto;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 0;
-    background-repeat: no-repeat;
-    background-position: 5px 11px;
-    background-size: 30px;
-    background-image: url("../images/swipe.png");
-    padding-left: 40px;
-    font-size: 13px;
+  .scroll-hint {
+    padding-bottom: 70px;
+    display: block;
+
+    &::before {
+      content: "Swipe screen";
+      width: auto;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      background-repeat: no-repeat;
+      background-position: 5px 11px;
+      background-size: 30px;
+      background-image: url("../images/swipe.png");
+      padding-left: 40px;
+      font-size: 13px;
+    }
   }
 }
 

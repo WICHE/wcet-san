@@ -1,1 +1,242 @@
-!function(e){var t={};function n(l){if(t[l])return t[l].exports;var a=t[l]={i:l,l:!1,exports:{}};return e[l].call(a.exports,a,a.exports,n),a.l=!0,a.exports}n.m=e,n.c=t,n.d=function(e,t,l){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:l})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var l=Object.create(null);if(n.r(l),Object.defineProperty(l,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var a in e)n.d(l,a,function(t){return e[t]}.bind(null,a));return l},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=0)}([function(e,t,n){"use strict";var l,a=n(1),r=(l=a)&&l.__esModule?l:{default:l};var u=(0,r.default)(".node--type-resource-table .field--name-body > table");if((0,r.default)(u).on("scroll",(function(){(0,r.default)(this).scrollLeft()>0?!(0,r.default)(this).hasClass("scrolling")&&(0,r.default)(this).addClass("scrolling"):(0,r.default)(this).hasClass("scrolling")&&(0,r.default)(this).removeClass("scrolling")})),!0===function(e){if(e.length>0){var t=(0,r.default)(e).find("thead")[0].clientWidth-25;return e[0].clientWidth<t}}(u)){(0,r.default)(u).addClass("scrollable");var i=document.createElement("span");(0,r.default)(i).addClass("scroll-hint"),(0,r.default)(u)[0].parentElement.classList.add("show-scroll-hint"),(0,r.default)(u)[0].parentElement.prepend(i)}u.find("> tbody > tr").map((function(e,t){var n=0,l=(0,r.default)(t).find("table");l.map((function(e,t){(0,r.default)(t)[0].parentElement.classList.add("has-nested-table"),n=(0,r.default)(t)[0].clientHeight>n?(0,r.default)(t)[0].clientHeight:n})),l.map((function(e,t){var l,a,u=(0,r.default)(t).find("tr"),i=[];u.map((function(e,t){i.push(t.clientHeight)})),a=Number(Math.abs(100/i.length).toPrecision(2)),u.map((function(e,t){t.style.flex="0 0 "+a+"%"})),l=Math.max.apply(Math,i)+5,n=l*i.length>n?l*i.length:n})),l.map((function(e,t){(0,r.default)(t)[0].parentElement.style.height=n+"px"}))}))},function(e,t){e.exports=jQuery}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./js/src/script_overrides.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./js/src/script_overrides.js":
+/*!************************************!*\
+  !*** ./js/src/script_overrides.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _jquery = __webpack_require__(/*! jquery */ "jquery");
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var tableElement = (0, _jquery2.default)(".node--type-resource-table .field--name-body > table");
+
+(0, _jquery2.default)(tableElement).on("scroll", function () {
+  if ((0, _jquery2.default)(this).scrollLeft() > 0) {
+    (0, _jquery2.default)(this).hasClass("scrolling") ? "" : (0, _jquery2.default)(this).addClass("scrolling");
+  } else {
+    (0, _jquery2.default)(this).hasClass("scrolling") ? (0, _jquery2.default)(this).removeClass("scrolling") : "";
+  }
+});
+
+function checkOverflow(el) {
+  // If node--type-resource-table is found
+  if (el.length > 0) {
+    var headerOverflow = (0, _jquery2.default)(el).find('thead')[0].clientWidth - 25;
+    var curOverflow = el[0].clientWidth;
+    var isOverflowing = curOverflow < headerOverflow;
+
+    return isOverflowing;
+  }
+}
+
+if (checkOverflow(tableElement) === true) {
+  (0, _jquery2.default)(tableElement).addClass("scrollable");
+  var scroll_hint = document.createElement("span");
+  (0, _jquery2.default)(scroll_hint).addClass("scroll-hint");
+  (0, _jquery2.default)(tableElement)[0].parentElement.classList.add("show-scroll-hint");
+  (0, _jquery2.default)(tableElement)[0].parentElement.prepend(scroll_hint);
+}
+
+var tableTopRows = tableElement.find("> tbody > tr");
+
+tableTopRows.map(function (key, row) {
+  var tallestTableHeight = 0;
+  var tables = (0, _jquery2.default)(row).find("table");
+
+  // Find the tallest table in the row and set the tallestTableHeight to be used for the row height
+  tables.map(function (key, table) {
+    (0, _jquery2.default)(table)[0].parentElement.classList.add("has-nested-table");
+    tallestTableHeight = (0, _jquery2.default)(table)[0].clientHeight > tallestTableHeight ? (0, _jquery2.default)(table)[0].clientHeight : tallestTableHeight;
+  });
+
+  // Here attempt to find in each row if there is a table that has a row that is larger than usual which will affect the alignment
+  tables.map(function (key, table) {
+    var rows = (0, _jquery2.default)(table).find("tr");
+    var rowHeights = [];
+    var outlierHeight = 0;
+    var flexRowRatio = 0;
+
+    rows.map(function (key, row) {
+      rowHeights.push(row.clientHeight);
+    });
+
+    // Set flex basis values
+    flexRowRatio = Number(Math.abs(100 / rowHeights.length).toPrecision(2));
+    rows.map(function (key, row) {
+      row.style.flex = "0 0 " + flexRowRatio + "%";
+    });
+
+    // Special case - if you find a table that has a taller cell than the table rows / amount of cells then recalculate entire base row height.
+    outlierHeight = Math.max.apply(Math, rowHeights) + 5;
+
+    // if there is a outlier (larger table row that forces out of its container) take it recalculate the tallestTableHeight based on that outlier multiplied by the amount of rows that table has - this will become the increased table height used instead to maintain row alignment throughout
+    tallestTableHeight = outlierHeight * rowHeights.length > tallestTableHeight ? outlierHeight * rowHeights.length : tallestTableHeight;
+  });
+
+  // Set all tds in the row that contains nested element to the tallest table
+  tables.map(function (key, table) {
+    (0, _jquery2.default)(table)[0].parentElement.style.height = tallestTableHeight + "px";
+  });
+});
+
+// Make table draggable for better ui
+var pos = { left: 0, x: 0 };
+
+var mouseDownHandler = function mouseDownHandler(e) {
+  // console.log("mousedown");
+  console.log((0, _jquery2.default)(tableElement)[0].clientLeft);
+
+  pos = {
+    // The current scroll
+    left: (0, _jquery2.default)(tableElement)[0].clientLeft,
+    // Get the current mouse position
+    x: e.clientX
+  };
+
+  // Change the cursor and prevent user from selecting the text
+  (0, _jquery2.default)(tableElement).css("cursor", "grabbing");
+  (0, _jquery2.default)(tableElement).css("user-select", "none");
+
+  (0, _jquery2.default)(tableElement).on('mousemove', mouseMoveHandler);
+  (0, _jquery2.default)(tableElement).on('mouseup', mouseUpHandler);
+};
+
+var mouseMoveHandler = function mouseMoveHandler(e) {
+  // console.log("mouse is moving");
+  // console.log(e);
+  // How far the mouse has been moved
+  var dx = e.clientX - pos.x;
+  // console.log("e.clientX:", e.clientX);
+  // console.log("pos.x:", pos.x);
+  // console.log("pos.left:", pos.left);
+  // console.log("dx:", dx);
+
+  // Scroll the element
+  console.log("calc", pos.left - dx);
+  (0, _jquery2.default)(tableElement).scrollLeft(pos.left - dx);
+};
+
+var mouseUpHandler = function mouseUpHandler() {
+  console.log("mouse up");
+
+  (0, _jquery2.default)(tableElement).off('mousemove');
+  (0, _jquery2.default)(tableElement).off('mouseup');
+
+  // Set some styling on mouse up
+  (0, _jquery2.default)(tableElement).css("cursor", "grab");
+  (0, _jquery2.default)(tableElement).css("user-select", "none");
+};
+
+(0, _jquery2.default)(tableElement).on('mousedown', mouseDownHandler);
+
+/***/ }),
+
+/***/ "jquery":
+/*!*************************!*\
+  !*** external "jQuery" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = jQuery;
+
+/***/ })
+
+/******/ });
+//# sourceMappingURL=script_overrides.js.map

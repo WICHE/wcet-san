@@ -1,7 +1,32 @@
 uuid: fa1f931d-123b-4642-8748-fbea32e9ed83
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.basic_html
+    - node.type.event
+    - node.type.landing_page
+    - node.type.page
+    - node.type.resource
+    - taxonomy.vocabulary.event_type
+    - taxonomy.vocabulary.institution
+    - taxonomy.vocabulary.membership
+    - taxonomy.vocabulary.resource_type
+    - taxonomy.vocabulary.topic
+  module:
+    - entity_browser
+    - file
+    - filter
+    - media
+    - node
+    - paragraphs_previewer
+    - path
+    - redirect
+    - sitemap
+    - system
+    - taxonomy
+    - toolbar
+    - wcet_access_control
 id: san_admin
 label: 'SAN Admin'
 weight: 4

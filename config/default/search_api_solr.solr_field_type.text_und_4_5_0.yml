@@ -57,9 +57,9 @@ field_type:
       filters:
         -
           class: solr.SynonymFilterFactory
+          ignoreCase: true
           synonyms: synonyms_und.txt
           expand: true
-          ignoreCase: true
         -
           class: solr.StopFilterFactory
           ignoreCase: true
@@ -130,16 +130,6 @@ solr_configs:
             -
               name: distanceMeasure
               VALUE: internal
-          float:
-            -
-              name: accuracy
-              VALUE: '0.5'
-            -
-              name: maxQueryFrequency
-              VALUE: '0.01'
-            -
-              name: thresholdTokenFrequency
-              VALUE: '0.01'
           int:
             -
               name: maxEdits
@@ -153,14 +143,22 @@ solr_configs:
             -
               name: minQueryLength
               VALUE: '4'
+          float:
+            -
+              name: accuracy
+              VALUE: '0.5'
+            -
+              name: maxQueryFrequency
+              VALUE: '0.01'
+            -
+              name: thresholdTokenFrequency
+              VALUE: '0.01'
           bool:
             -
               name: onlyMorePopular
               VALUE: 'true'
 text_files:
   stopwords: ''
-  synonyms: |
-    drupal, durpal
   protwords: ''
   accents: |
     # À => A
@@ -311,3 +309,5 @@ text_files:
     "\uFB05" => "st"
     # ﬆ => st
     "\uFB06" => "st"
+  synonyms: |
+    drupal, durpal

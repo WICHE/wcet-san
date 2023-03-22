@@ -71,3 +71,41 @@ tableTopRows.map(function (key, row) {
     $(table)[0].parentElement.style.height = `${tallestTableHeight}px`;
   });
 });
+
+
+// Make table draggable for better ui
+let pos = { left: 0, x: 0 };
+
+const mouseDownHandler = function (e) {
+  pos = {
+      // The current scroll
+      left: $(tableElement)[0].clientLeft,
+      // Get the current mouse position
+      x: e.clientX,
+  };
+
+  // Change the cursor and prevent user from selecting the text
+  $(tableElement).css("cursor", "grabbing");
+  $(tableElement).css("user-select", "none");
+
+  $(tableElement).on('mousemove', mouseMoveHandler);
+  $(tableElement).on('mouseup', mouseUpHandler);
+};
+
+const mouseMoveHandler = function (e) {
+  const dx = e.clientX - pos.x;
+
+  // Scroll the element
+  $(tableElement).scrollLeft(pos.left - dx);
+};
+
+const mouseUpHandler = function () {
+  $(tableElement).off('mousemove');
+  $(tableElement).off('mouseup');
+
+  // Set some styling on mouse up
+  $(tableElement).css("cursor", "grab");
+  $(tableElement).css("user-select", "none");
+};
+
+$(tableElement).on('mousedown', mouseDownHandler);

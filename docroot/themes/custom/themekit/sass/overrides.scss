@@ -1,3 +1,31 @@
+
+.page-node-type-resource-table .node--type-resource-table {
+  display: flex;
+  flex-flow: row wrap;
+  flex-basis: auto;
+  justify-content: space-between;
+  margin-top: 77px;
+
+  & > div {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+
+    &:not(.has-embed-table) {
+      max-width: 75rem;
+    }
+
+    &.has-embed-table {
+      max-width: 90rem;
+    }
+  }
+
+  .resource-info {
+    width: 100%;
+  }
+}
+
 .node--type-resource-table {
   .copy-text-wrapper {
     position: relative;

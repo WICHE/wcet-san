@@ -133,6 +133,10 @@ if (checkOverflow(tableElement) === true) {
   (0, _jquery2.default)(tableElement)[0].parentElement.prepend(scroll_hint);
 }
 
+if ((0, _jquery2.default)(tableElement) !== null) {
+  (0, _jquery2.default)(tableElement)[0].parentElement.classList.add("has-embed-table");
+}
+
 var tableTopRows = tableElement.find("> tbody > tr");
 
 tableTopRows.map(function (key, row) {
@@ -179,9 +183,6 @@ tableTopRows.map(function (key, row) {
 var pos = { left: 0, x: 0 };
 
 var mouseDownHandler = function mouseDownHandler(e) {
-  // console.log("mousedown");
-  console.log((0, _jquery2.default)(tableElement)[0].clientLeft);
-
   pos = {
     // The current scroll
     left: (0, _jquery2.default)(tableElement)[0].clientLeft,
@@ -198,23 +199,13 @@ var mouseDownHandler = function mouseDownHandler(e) {
 };
 
 var mouseMoveHandler = function mouseMoveHandler(e) {
-  // console.log("mouse is moving");
-  // console.log(e);
-  // How far the mouse has been moved
   var dx = e.clientX - pos.x;
-  // console.log("e.clientX:", e.clientX);
-  // console.log("pos.x:", pos.x);
-  // console.log("pos.left:", pos.left);
-  // console.log("dx:", dx);
 
   // Scroll the element
-  console.log("calc", pos.left - dx);
   (0, _jquery2.default)(tableElement).scrollLeft(pos.left - dx);
 };
 
 var mouseUpHandler = function mouseUpHandler() {
-  console.log("mouse up");
-
   (0, _jquery2.default)(tableElement).off('mousemove');
   (0, _jquery2.default)(tableElement).off('mouseup');
 

@@ -3973,8 +3973,7 @@ ul.primary {
 .page-node-type-event .node--type-event,
 .page-node-type-event .node--type-resource,
 .page-node-type-resource .node--type-event,
-.page-node-type-resource .node--type-resource,
-.page-node-type-resource-table .node--type-resource-table {
+.page-node-type-resource .node--type-resource {
   max-width: 75rem;
   margin-left: auto;
   margin-right: auto;

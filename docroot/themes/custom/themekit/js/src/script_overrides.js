@@ -30,6 +30,10 @@ if (checkOverflow(tableElement) === true) {
   $(tableElement)[0].parentElement.prepend(scroll_hint);
 }
 
+if ($(tableElement) !== null) {
+  $(tableElement)[0].parentElement.classList.add("has-embed-table");
+}
+
 const tableTopRows = tableElement.find("> tbody > tr");
 
 tableTopRows.map(function (key, row) {

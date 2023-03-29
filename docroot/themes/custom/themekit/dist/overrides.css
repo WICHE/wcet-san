@@ -1,8 +1,5 @@
 .page-node-type-resource-table .node--type-resource-table {
-  display: flex;
-  flex-flow: row wrap;
-  flex-basis: auto;
-  justify-content: space-between;
+  display: block;
   margin-top: 77px; }
   .page-node-type-resource-table .node--type-resource-table > div {
     margin-left: auto;

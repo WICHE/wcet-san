@@ -1,8 +1,8 @@
-
-.page-node-type-resource-table .node--type-resource-table {
+.node--type-resource-table {
   display: block;
   margin-top: 77px;
 
+  // Max width settings
   & > div {
     margin-left: auto;
     margin-right: auto;
@@ -21,9 +21,7 @@
   .resource-info {
     width: 100%;
   }
-}
 
-.node--type-resource-table {
   .copy-text-wrapper {
     position: relative;
     max-width: 194px;
@@ -392,16 +390,6 @@
 }
 
 .page-node-type-resource-table {
-  .node--type-resource-table {
-    // @include content-width(page);
-
-    display: flex;
-    flex-flow: row wrap;
-    flex-basis: auto;
-    justify-content: space-between;
-    margin-top: 77px;
-  }
-
   .resource-info {
     display: flex;
     flex-flow: row wrap;

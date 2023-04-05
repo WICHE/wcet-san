@@ -30,7 +30,7 @@ if (checkOverflow(tableElement) === true) {
   $(tableElement)[0].parentElement.prepend(scroll_hint);
 }
 
-if ($(tableElement) !== null) {
+if ($(tableElement).length > 0) {
   $(tableElement)[0].parentElement.classList.add("has-embed-table");
 }
 

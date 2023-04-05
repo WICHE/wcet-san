@@ -133,7 +133,7 @@ if (checkOverflow(tableElement) === true) {
   (0, _jquery2.default)(tableElement)[0].parentElement.prepend(scroll_hint);
 }
 
-if ((0, _jquery2.default)(tableElement) !== null) {
+if ((0, _jquery2.default)(tableElement).length > 0) {
   (0, _jquery2.default)(tableElement)[0].parentElement.classList.add("has-embed-table");
 }
 

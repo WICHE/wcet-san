@@ -190,10 +190,6 @@ var mouseDownHandler = function mouseDownHandler(e) {
     x: e.clientX
   };
 
-  // Change the cursor and prevent user from selecting the text
-  (0, _jquery2.default)(tableElement).css("cursor", "grabbing");
-  (0, _jquery2.default)(tableElement).css("user-select", "none");
-
   (0, _jquery2.default)(tableElement).on('mousemove', mouseMoveHandler);
   (0, _jquery2.default)(tableElement).on('mouseup', mouseUpHandler);
 };
@@ -208,10 +204,6 @@ var mouseMoveHandler = function mouseMoveHandler(e) {
 var mouseUpHandler = function mouseUpHandler() {
   (0, _jquery2.default)(tableElement).off('mousemove');
   (0, _jquery2.default)(tableElement).off('mouseup');
-
-  // Set some styling on mouse up
-  (0, _jquery2.default)(tableElement).css("cursor", "grab");
-  (0, _jquery2.default)(tableElement).css("user-select", "none");
 };
 
 (0, _jquery2.default)(tableElement).on('mousedown', mouseDownHandler);

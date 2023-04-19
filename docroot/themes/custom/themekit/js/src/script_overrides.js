@@ -88,10 +88,6 @@ const mouseDownHandler = function (e) {
       x: e.clientX,
   };
 
-  // Change the cursor and prevent user from selecting the text
-  $(tableElement).css("cursor", "grabbing");
-  $(tableElement).css("user-select", "none");
-
   $(tableElement).on('mousemove', mouseMoveHandler);
   $(tableElement).on('mouseup', mouseUpHandler);
 };
@@ -106,10 +102,6 @@ const mouseMoveHandler = function (e) {
 const mouseUpHandler = function () {
   $(tableElement).off('mousemove');
   $(tableElement).off('mouseup');
-
-  // Set some styling on mouse up
-  $(tableElement).css("cursor", "grab");
-  $(tableElement).css("user-select", "none");
 };
 
 $(tableElement).on('mousedown', mouseDownHandler);

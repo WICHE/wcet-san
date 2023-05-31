@@ -105,3 +105,71 @@ const mouseUpHandler = function () {
 };
 
 $(tableElement).on('mousedown', mouseDownHandler);
+
+/*
+  Close the dropdown menu nav once user's focus is out.
+ */
+const navDropdowns = document.querySelectorAll('.submenu.is-dropdown-submenu.first-sub');
+
+navDropdowns.forEach(function(dropdown) {
+  dropdown.addEventListener('focusout', function(event) {
+
+    // Use setTimeout to delay the check until after the focus has fully moved
+    setTimeout(function() {
+      const isFocusedOutsideMenu = !dropdown.contains(document.activeElement);
+
+      if (isFocusedOutsideMenu) {
+        dropdown.classList.toggle('js-dropdown-active');
+        dropdown.closest('.menu-item').classList.toggle('is-active');
+      }
+    }, 0);
+  });
+});
+
+/*
+  Prevent mobile nav from focusing while collapsed.
+ */
+const mainNav = document.querySelector('.menu--main');
+const hamburgerButton = document.querySelector('.hamburger .menu-button');
+
+function updateMenuInertness() {
+  (!mainNav.classList.contains('open') && window.innerWidth < 900)
+    ? mainNav.setAttribute('inert', '')
+    : mainNav.removeAttribute('inert');
+}
+
+function closeMobileNavOnFocusOut() {
+  // Use setTimeout to delay the check until after the focus has fully moved
+  window.innerWidth < 900 && setTimeout(function() {
+    const isFocusedOutsideMenu = !mainNav.contains(document.activeElement);
+
+    isFocusedOutsideMenu && hamburgerButton.click();
+  }, 0);
+}
+
+updateMenuInertness();
+
+mainNav.addEventListener('focusout', closeMobileNavOnFocusOut);
+window.addEventListener('resize', updateMenuInertness);
+hamburgerButton.addEventListener('click', updateMenuInertness);
+
+/*
+  Focus on error messages once page is loaded.
+ */
+window.addEventListener('load', function()  {
+  const drupalMessagesWrapper = document.querySelector('.drupal-messages-wrapper');
+
+  // If we have messages on the page-wait till focus appears (1s max) and refocus to message.
+  drupalMessagesWrapper && setTimeout(() => drupalMessagesWrapper.focus(), 1000);
+})
+
+/*
+  Operate the aria-attributes of the navigation correctly.
+ */
+window.addEventListener('load', function () {
+  const firstLvlNavLinks = document.querySelectorAll('.is-dropdown-submenu-parent:not(.is-submenu-item) > a');
+  const nestedNavs = document.querySelectorAll('.is-dropdown-submenu[role="menubar"]');
+
+  firstLvlNavLinks.forEach(nav =>  nav.setAttribute('aria-expanded', 'false'));
+  nestedNavs.forEach(nestedNav => nestedNav.setAttribute('role', 'menu'));
+})

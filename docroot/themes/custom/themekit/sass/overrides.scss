@@ -473,3 +473,23 @@
     font-size: 14px;
   }
 }
+
+@media print, screen and (min-width: 64em) {
+  .region-header .menu--util-navigation {
+    margin-right: 0;
+    width: 100%;
+  }
+}
+
+.paragraph--type--simple-card:focus {
+  display: none;
+}
+
+.paragraph--type--simple-card a:focus .heading{
+  outline: auto #e30c5e;
+}
+
+.hamburger .menu-button:focus {
+  outline: auto #e30c5e;
+  outline-offset: 10px;
+}

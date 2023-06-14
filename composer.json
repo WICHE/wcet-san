@@ -81,7 +81,7 @@
         "drupal/migrate_tools": "^5.0",
         "drupal/block_field": "^1.0",
         "drupal/migrate_source_csv": "^3.0",
-        "drupal/simple_sitemap": "^3.3",
+        "drupal/simple_sitemap": "^4.0",
         "drupal/token": "^1.7",
         "drupal/graphql": "^3.0",
         "drupal/graphql_search_api": "^1.1",

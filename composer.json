@@ -81,7 +81,7 @@
         "drupal/migrate_tools": "^5.0",
         "drupal/block_field": "^1.0",
         "drupal/migrate_source_csv": "^3.0",
-        "drupal/simple_sitemap": "^3.3",
+        "drupal/simple_sitemap": "^4.0",
         "drupal/token": "^1.7",
         "drupal/graphql": "^3.0",
         "drupal/graphql_search_api": "^1.1",
@@ -143,11 +143,7 @@
             ]
         },
         "enable-patching": true,
-        "patches": {
-            "drupal/entity_print": {
-                "orientation key reformat to effect orientation": "https://www.drupal.org/files/issues/2021-12-13/entity_print-default_size_and_orientation-3041514-17.patch"
-            }
-        }
+        "patches": {}
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",

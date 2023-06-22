@@ -79,29 +79,28 @@
  */
 #}
 
-{%
-set classes = [
-'node',
-'node--type-' ~ node.bundle|clean_class,
-node.isPromoted() ? 'node--promoted',
-node.isSticky() ? 'node--sticky',
-not node.isPublished() ? 'node--unpublished',
-view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-content.field_content_access|render ? node.bundle ~ '-' ~ content.field_content_access|render|striptags|trim|replace({' ':'-'})|lower,
-]
-%}
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  content.field_content_access|render ? node.bundle ~ '-' ~ content.field_content_access|render|striptags|trim|replace({' ':'-'})|lower,
+] %}
+
+{% set isPublic= content.field_content_access|render|striptags|trim == 'Public' ? true : false %}
 
 {% set rendered_content = content|without('') %}
 {% set createdDate = node.getCreatedTime|date('m.d.Y') %}
 
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
-
-  {{ rendered_content.field_resource_type }}
+  {{ rendered_content.field_resource_type|render|striptags|trim }}
   <span class="date-created">{{ createdDate }}</span>
 
   <h2{{ title_attributes }}>
-    <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    <a href="{{ url }}" rel="bookmark" {{ isPublic == false ? 'aria-label="Login required"' : '' }}>{{ label }}</a>
   </h2>
 
   <div{{ content_attributes.addClass('node__content') }}>

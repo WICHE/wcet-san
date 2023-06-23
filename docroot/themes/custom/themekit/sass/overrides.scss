@@ -481,15 +481,76 @@
   }
 }
 
+.paragraph--type--simple-card .heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .paragraph--type--simple-card:focus {
   display: none;
 }
 
 .paragraph--type--simple-card a:focus .heading{
-  outline: auto #e30c5e;
+  border: 2px solid #e30c5e;
+  border-radius: 10px;
 }
 
 .hamburger .menu-button:focus {
   outline: auto #e30c5e;
   outline-offset: 10px;
+}
+
+/*
+  Hide and show the search bar for the select lists.
+ */
+.select2-search--dropdown {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+
+  input {
+    margin: 4px 4px 4px 1rem;
+  }
+
+  &.searchable {
+    max-height: 999px;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.view-resources.view-display-id-page_events_past > .view-content article.resource-private, .view-resources.view-display-id-page_events > .view-content article.resource-private, .view-resources.view-display-id-page_resources > .view-content article.resource-private, .view-resources.view-display-id-block_past_events > .view-content article.resource-private, .view-resources.view-display-id-block_upcoming_events > .view-content article.resource-private, .view-resources.view-display-id-block_latest_resources > .view-content article.resource-private, .view-events.view-display-id-page_events_past > .view-content article.resource-private, .view-events.view-display-id-page_events > .view-content article.resource-private, .view-events.view-display-id-page_resources > .view-content article.resource-private, .view-events.view-display-id-block_past_events > .view-content article.resource-private, .view-events.view-display-id-block_upcoming_events > .view-content article.resource-private, .view-events.view-display-id-block_latest_resources > .view-content article.resource-private {
+  opacity: .75;
+}
+
+.share-url-btn {
+  cursor: pointer;
+  position: relative;
+  max-width: 12.125rem;
+  white-space: nowrap;
+  overflow-x: scroll;
+  border: 2px solid #c3c5ca;
+  border-radius: 8px;
+  padding: 0.625rem;
+  min-width: 100px;
+  color: #4a90e2;
+  transition: color .3s, border .3s;
+  font-weight: 900;
+
+  &.copied {
+    border-color: #06ad06;
+    color: #06ad06;
+  }
 }

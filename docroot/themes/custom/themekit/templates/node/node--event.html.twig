@@ -114,9 +114,11 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
       <div class="date"><b>{{ 'Start Date:'|t }}</b> {{ rendered_content.field_event_date[0]['#markup']|date('m.d.Y') }}</div>
       {{ rendered_content.field_p_resources }}
       <h5 class="copy-text-title">{{ 'Share via link'|t }}</h5>
-      <div class="copy-text-wrapper has-tip" data-clipboard-text="{{ site_url }}" data-tooltip aria-haspopup="true" tabindex="0" title="Copied" data-disable-hover="true" data-alignment="center" data-position="bottom" data-v-offset="8">
-        <span class="copy-text">{{ site_url }}</span>
-      </div>
+      <button class="share-url-btn" data-clipboard-text="{{ site_url }}">Copy link to clipboard</button>
+
+{#      <div class="copy-text-wrapper has-tip" data-clipboard-text="{{ site_url }}" data-tooltip aria-haspopup="true" tabindex="0" title="Copied" data-disable-hover="true" data-alignment="center" data-position="bottom" data-v-offset="8">#}
+{#        <span class="copy-text">{{ site_url }}</span>#}
+{#      </div>#}
     </div>
   </div>
 

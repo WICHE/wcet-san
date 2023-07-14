@@ -70,3 +70,5 @@ cloneable_entities:
   - entity_view_display
   - entity_view_mode
   - base_field_override
+  - simple_sitemap_type
+  - simple_sitemap

@@ -11,4 +11,6 @@ notification:
   emails:
     - sacha@workshoporange.co
     - kelly@workshoporange.co
+    - bron@workshoporange.co
+    - faridah@workshoporange.co
   threshold: security

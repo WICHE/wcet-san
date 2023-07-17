@@ -31,9 +31,13 @@ content:
       trim_suffix: ..
       wrap_output: false
       wrap_class: trimmed
-      more_link: true
-      more_class: more-link
-      more_text: More
+      more:
+        display_link: true
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
       summary_handler: trim
       trim_options:
         text: true
@@ -56,6 +60,9 @@ content:
     weight: 0
     region: content
 hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   field_event_date: true
   field_event_type: true
   field_featured: true

@@ -415,5 +415,17 @@
     border-color: #06ad06;
     color: #06ad06; }
 
+.view-resources.view-display-id-block_latest_resources > .view-content article p {
+  font-size: 1.125rem;
+  font-weight: bold;
+  line-height: 1.4375rem;
+  font-family: 'News Cycle',sans-serif;
+  color: #4a4a4a; }
+  .view-resources.view-display-id-block_latest_resources > .view-content article p a {
+    color: inherit;
+    transition: .3s ease color; }
+    .view-resources.view-display-id-block_latest_resources > .view-content article p a:hover {
+      color: #4a90e2; }
+
 
 /*# sourceMappingURL=overrides.css.map*/

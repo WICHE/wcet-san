@@ -99,9 +99,9 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
   {{ rendered_content.field_resource_type }}
   <span class="date-created">{{ createdDate }}</span>
 
-  <h2{{ title_attributes }}>
+  <p{{ title_attributes }}>
     <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-  </h2>
+  </p>
 
   <div{{ content_attributes.addClass('node__content') }}>
     {{ rendered_content.field_topic }}

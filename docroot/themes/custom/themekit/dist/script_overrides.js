@@ -351,15 +351,19 @@ window.addEventListener('load', function () {
 window.addEventListener('load', function () {
   var cards = document.querySelectorAll('.paragraph--type--simple-card');
   var header = document.querySelector('.paragraph--type--compound-header-content');
+  var thumbnails = document.querySelectorAll('.field--name-thumbnail');
 
   cards && cards.forEach(function (card) {
     return makeAltEmpty(card.querySelector('img'));
   });
   header && makeAltEmpty(header.querySelector('img'));
+  thumbnails && thumbnails.forEach(function (thumbnail) {
+    return makeAltEmpty(thumbnail.querySelector('img[alt="thumbnail"]'));
+  });
 });
 
 function makeAltEmpty(el) {
-  el.setAttribute('alt', '');
+  el && el.setAttribute('alt', '');
 }
 
 /*
@@ -367,6 +371,7 @@ function makeAltEmpty(el) {
  */
 document.querySelectorAll('a').forEach(function (a) {
   if (a.href.endsWith('.pdf')) {
+    a.setAttribute('data-content-type', 'pdf');
     a.innerHTML += ' (PDF)';
   }
 });
@@ -376,6 +381,7 @@ document.querySelectorAll('a').forEach(function (a) {
  */
 window.addEventListener('load', function () {
   var joinSanForm = document.querySelector('.webform-submission-join-san-form');
+  var loginForm = document.querySelector('.user-login-form');
 
   if (joinSanForm) {
     var fields = [{ name: 'first_name', autocomplete: 'given-name', selector: '[name^="full_name"][name$="[first]"]' }, { name: 'last_name', autocomplete: 'family-name', selector: '[name^="full_name"][name$="[last]"]' }, { name: 'job', autocomplete: 'organization-title', selector: '[name^="full_name"][name$="[degree]"]' }, { name: 'institution', autocomplete: 'organization', selector: '[name^="institution_organization"]' }, { name: 'address', autocomplete: 'street-address', selector: '[name^="address"][name$="[address]"]' }, { name: 'city', autocomplete: 'address-level2', selector: '[name^="address"][name$="[city]"]' }, { name: 'state', autocomplete: 'address-level1', selector: '[name^="address"][name$="[state_province]"]' }, { name: 'zip', autocomplete: 'postal-code', selector: '[name^=""][name$="[postal_code]"]' }, { name: 'country', autocomplete: 'country-name', selector: '[name^=""][name$="[country]"]' }, { name: 'email', autocomplete: 'email', selector: '[name^="contact_information"][name$="[email]"]' }, { name: 'phone_number', autocomplete: 'tel-national', selector: '[name^="contact_information"][name$="[phone]"]' }];
@@ -390,6 +396,11 @@ window.addEventListener('load', function () {
         el.setAttribute('autocomplete', autocomplete);
       });
     });
+  }
+
+  if (loginForm) {
+    loginForm.querySelector('input[name="name"]').setAttribute('autocomplete', 'username');
+    loginForm.querySelector('input[name="pass"]').setAttribute('autocomplete', 'current-password');
   }
 });
 
@@ -415,6 +426,57 @@ window.addEventListener('load', function () {
       if (event.key === 'Enter') {
         copyToClipboard();
       }
+    });
+  }
+});
+
+/*
+  Remove all the aria-invalids, where they're not necessary.
+
+  Note, it targets 'data-prevent-aria-invalid' elements only.
+ */
+window.addEventListener('load', function () {
+  var targetNodes = document.querySelectorAll('input[data-prevent-aria-invalid="true"]');
+  targetNodes && targetNodes.forEach(function (targetNode) {
+    return targetNode.removeAttribute('aria-invalid');
+  });
+});
+
+/*
+  Removing the redundant accordion attributes.
+ */
+window.addEventListener('load', function () {
+  var accordion = document.querySelector('.accordion');
+  var accordionItems = document.querySelectorAll('.accordion-item');
+
+  if (accordion) accordion.removeAttribute('role');
+
+  if (accordionItems.length) {
+    accordionItems.forEach(function (item) {
+      var trigger = item.querySelector('a[role="tab"]');
+      if (trigger) trigger.removeAttribute('role');
+
+      var content = item.querySelector('div[role="tabpanel"]');
+      if (content) content.removeAttribute('role');
+    });
+  }
+});
+
+/*
+  Add resource table heading vertical data-attr.
+ */
+window.addEventListener('load', function () {
+  var table = document.querySelector('.node--type-resource-table table');
+
+  if (table) {
+    var horizontalHeaders = table.querySelectorAll('tbody tr > th:first-child');
+    horizontalHeaders && horizontalHeaders.forEach(function (header) {
+      return header.setAttribute('scope', 'row');
+    });
+
+    var nestedTables = table.querySelectorAll('table');
+    nestedTables && nestedTables.forEach(function (table) {
+      return table.setAttribute('role', 'presentation');
     });
   }
 });

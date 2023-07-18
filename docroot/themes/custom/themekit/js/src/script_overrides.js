@@ -242,13 +242,15 @@ window.addEventListener('load', function () {
 window.addEventListener('load', () => {
   const cards = document.querySelectorAll('.paragraph--type--simple-card');
   const header = document.querySelector('.paragraph--type--compound-header-content')
+  const thumbnails = document.querySelectorAll('.field--name-thumbnail');
 
   cards && cards.forEach(card => makeAltEmpty(card.querySelector('img')))
   header && makeAltEmpty(header.querySelector('img'));
+  thumbnails && thumbnails.forEach(thumbnail => makeAltEmpty(thumbnail.querySelector('img[alt="thumbnail"]')))
 })
 
 function makeAltEmpty(el) {
-  el.setAttribute('alt', '');
+  el && el.setAttribute('alt', '');
 }
 
 /*
@@ -256,6 +258,7 @@ function makeAltEmpty(el) {
  */
 document.querySelectorAll('a').forEach(function (a) {
   if (a.href.endsWith('.pdf')) {
+    a.setAttribute('data-content-type', 'pdf');
     a.innerHTML += ' (PDF)';
   }
 });
@@ -265,6 +268,7 @@ document.querySelectorAll('a').forEach(function (a) {
  */
 window.addEventListener('load', () => {
   const joinSanForm = document.querySelector('.webform-submission-join-san-form');
+  const loginForm = document.querySelector('.user-login-form');
 
   if (joinSanForm) {
     const fields= [
@@ -289,6 +293,11 @@ window.addEventListener('load', () => {
         el.setAttribute('autocomplete', autocomplete);
       })
     })
+  }
+
+  if (loginForm) {
+    loginForm.querySelector('input[name="name"]').setAttribute('autocomplete', 'username');
+    loginForm.querySelector('input[name="pass"]').setAttribute('autocomplete', 'current-password');
   }
 })
 
@@ -317,5 +326,50 @@ window.addEventListener('load', () => {
         copyToClipboard();
       }
     });
+  }
+});
+
+/*
+  Remove all the aria-invalids, where they're not necessary.
+
+  Note, it targets 'data-prevent-aria-invalid' elements only.
+ */
+window.addEventListener('load', () => {
+  const targetNodes = document.querySelectorAll('input[data-prevent-aria-invalid="true"]');
+  targetNodes && targetNodes.forEach(targetNode => targetNode.removeAttribute('aria-invalid'));
+});
+
+/*
+  Removing the redundant accordion attributes.
+ */
+window.addEventListener('load', () => {
+  const accordion = document.querySelector('.accordion');
+  const accordionItems = document.querySelectorAll('.accordion-item');
+
+  if (accordion) accordion.removeAttribute('role');
+
+  if (accordionItems.length) {
+    accordionItems.forEach((item) => {
+      const trigger = item.querySelector('a[role="tab"]');
+      if (trigger) trigger.removeAttribute('role');
+
+      const content = item.querySelector('div[role="tabpanel"]');
+      if (content) content.removeAttribute('role');
+    });
+  }
+});
+
+/*
+  Add resource table heading vertical data-attr.
+ */
+window.addEventListener('load', () => {
+  const table = document.querySelector('.node--type-resource-table table');
+
+  if (table) {
+    const horizontalHeaders = table.querySelectorAll('tbody tr > th:first-child');
+    horizontalHeaders && horizontalHeaders.forEach(header => header.setAttribute('scope', 'row'));
+
+    const nestedTables = table.querySelectorAll('table');
+    nestedTables && nestedTables.forEach(table => table.setAttribute('role', 'presentation'));
   }
 });

@@ -110,7 +110,7 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
   </div>
   <div class="event-details">
     <div class="event-details-content">
-      <h5>{{ 'Details'|t }}</h5>
+      <h3>{{ 'Details'|t }}</h3>
       <div class="date"><b>{{ 'Start Date:'|t }}</b> {{ rendered_content.field_event_date[0]['#markup']|date('m.d.Y') }}</div>
       {{ rendered_content.field_p_resources }}
       <h5 class="copy-text-title">{{ 'Share via link'|t }}</h5>

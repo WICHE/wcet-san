@@ -436,3 +436,16 @@ function themekit_view_to_renderable_array($view_id, $view_display, $view_title 
 
   return $view_content;
 }
+
+
+/**
+ * Implements hook_form_FORM_ID_alter() for user_login_form.
+ */
+function themekit_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // Add an attribute to prevent the client-side validation.
+  foreach (['name', 'pass'] as $field_name) {
+    if (isset($form[$field_name]['#attributes'])) {
+      $form[$field_name]['#attributes']['data-prevent-aria-invalid'] = 'true';
+    }
+  }
+}

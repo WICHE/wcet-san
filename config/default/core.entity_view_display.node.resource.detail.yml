@@ -23,37 +23,44 @@ mode: detail
 content:
   body:
     type: smart_trim
-    weight: 2
-    region: content
     label: hidden
     settings:
       trim_length: 115
       trim_type: chars
       trim_suffix: ..
-      more_link: true
-      more_text: More
+      more:
+        display_link: true
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
       summary_handler: trim
       trim_options:
         text: true
-      more_class: more-link
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_resource_type:
     type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
     weight: 0
     region: content
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
   field_topic:
-    weight: 1
+    type: entity_reference_label
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 1
     region: content
 hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   field_content_access: true
   field_exclude_from_search: true
   field_meta_tags: true

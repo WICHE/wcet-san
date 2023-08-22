@@ -48,8 +48,8 @@ field_type:
           class: solr.LowerCaseFilterFactory
         -
           class: solr.SnowballPorterFilterFactory
-          language: English
           protected: protwords_en.txt
+          language: English
         -
           class: solr.RemoveDuplicatesTokenFilterFactory
     -
@@ -63,9 +63,9 @@ field_type:
       filters:
         -
           class: solr.SynonymGraphFilterFactory
+          ignoreCase: true
           synonyms: synonyms_en.txt
           expand: true
-          ignoreCase: true
         -
           class: solr.StopFilterFactory
           ignoreCase: true
@@ -88,8 +88,8 @@ field_type:
           class: solr.LowerCaseFilterFactory
         -
           class: solr.SnowballPorterFilterFactory
-          language: English
           protected: protwords_en.txt
+          language: English
         -
           class: solr.RemoveDuplicatesTokenFilterFactory
 unstemmed_field_type:
@@ -141,9 +141,9 @@ unstemmed_field_type:
       filters:
         -
           class: solr.SynonymGraphFilterFactory
+          ignoreCase: true
           synonyms: synonyms_en.txt
           expand: true
-          ignoreCase: true
         -
           class: solr.StopFilterFactory
           ignoreCase: true
@@ -286,8 +286,6 @@ text_files:
     was
     will
     with
-  synonyms: |
-    drupal, durpal
   protwords: ''
   accents: |
     # À => A
@@ -454,3 +452,5 @@ text_files:
     "\uFB05" => "st"
     # ﬆ => st
     "\uFB06" => "st"
+  synonyms: |
+    drupal, durpal

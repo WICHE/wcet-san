@@ -3,7 +3,7 @@ _core:
 langcode: en
 uuid: 759e3db9-47b9-4e7e-baa2-6b1a4e04a080
 name: 'State Authorization Network'
-mail: no-reply@elevatedthird.com
+mail: san-info@wiche.edu
 slogan: ''
 page:
   403: /node/77

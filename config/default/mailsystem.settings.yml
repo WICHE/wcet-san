@@ -1,11 +1,11 @@
-theme: themekit
-defaults:
-  sender: php_mail
-  formatter: swiftmailer
 _core:
   default_config_hash: IhwTepsVwtbtbcT5GzQKhCXDCRvbk3MNkWqPiuiZ10s
+theme: themekit
+defaults:
+  sender: swiftmailer
+  formatter: swiftmailer
 modules:
   swiftmailer:
     none:
-      formatter: swiftmailer
       sender: swiftmailer
+      formatter: swiftmailer

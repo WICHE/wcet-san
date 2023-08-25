@@ -58,7 +58,7 @@ view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
 {% set rendered_content = content|without('') %}
 
 <div{{ attributes.addClass(classes) }}>
-  <h2 class="title">{{ 'Latest Resources'|t }}</h2>
+  <h3 class="title">{{ 'Latest Resources'|t }}</h3>
   {{ view }}
   {% if(content.field_link|render) %}
     <div class="more-link">

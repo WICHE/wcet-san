@@ -6,13 +6,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 
 const entryPoints = {
-  polyfill: 'babel-polyfill',
-  themekit: './js/src/themekit.js',
+  // polyfill: 'babel-polyfill',
+  // themekit: './js/src/themekit.js',
   script_overrides: './js/src/script_overrides.js',
-  search_header: './js/src/search-header/search-header.jsx', // React component
-  search_main: './js/src/search-main/search-main.jsx', // React component
-  style: './sass/style.scss',
-  wysiwyg: './sass/wysiwyg.scss',
+  // search_header: './js/src/search-header/search-header.jsx', // React component
+  // search_main: './js/src/search-main/search-main.jsx', // React component
+  // style: './sass/style.scss',
+  // wysiwyg: './sass/wysiwyg.scss',
   overrides: './sass/overrides.scss',
 };
 

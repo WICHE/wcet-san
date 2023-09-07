@@ -382,6 +382,51 @@ document.querySelectorAll('a').forEach(function (a) {
 window.addEventListener('load', function () {
   var joinSanForm = document.querySelector('.webform-submission-join-san-form');
   var loginForm = document.querySelector('.user-login-form');
+  var formTable = joinSanForm && joinSanForm.querySelector('table');
+  var ariaLvlLi = document.querySelectorAll('li[aria-level]');
+  var summaryElements = document.querySelectorAll('summary');
+  var h3Elements = document.querySelectorAll('h3.form-required');
+
+  // Add role attr to 2-layout table.
+  formTable && formTable.setAttribute('role', 'presentation');
+
+  // Remove redundant attrs from listst.
+  ariaLvlLi && ariaLvlLi.forEach(function (li) {
+    return li.removeAttribute('aria-level');
+  });
+
+  // Summary elements operations.
+  summaryElements && summaryElements.forEach(function (summary) {
+    var detailsTitleLink = summary.querySelector('.details-title');
+
+    if (detailsTitleLink) {
+      var span = document.createElement('span');
+      span.innerHTML = detailsTitleLink.innerHTML;
+
+      // Replace the link with the span content
+      summary.replaceChild(span, detailsTitleLink);
+    }
+
+    summary.removeAttribute('aria-expanded');
+    summary.removeAttribute('tabindex');
+    summary.removeAttribute('role');
+    summary.removeAttribute('aria-pressed');
+  });
+
+  // Replace all the redundant h3s into labels.
+  h3Elements && h3Elements.forEach(function (h3) {
+    // Create a label element
+    var label = document.createElement('label');
+
+    // Copy the contents of h3 to the label
+    label.innerHTML = h3.innerHTML;
+
+    // Copy the class from h3 to label
+    label.className = h3.className;
+
+    // Replace the h3 with the label
+    h3.parentNode.replaceChild(label, h3);
+  });
 
   if (joinSanForm) {
     var fields = [{ name: 'first_name', autocomplete: 'given-name', selector: '[name^="full_name"][name$="[first]"]' }, { name: 'last_name', autocomplete: 'family-name', selector: '[name^="full_name"][name$="[last]"]' }, { name: 'job', autocomplete: 'organization-title', selector: '[name^="full_name"][name$="[degree]"]' }, { name: 'institution', autocomplete: 'organization', selector: '[name^="institution_organization"]' }, { name: 'address', autocomplete: 'street-address', selector: '[name^="address"][name$="[address]"]' }, { name: 'city', autocomplete: 'address-level2', selector: '[name^="address"][name$="[city]"]' }, { name: 'state', autocomplete: 'address-level1', selector: '[name^="address"][name$="[state_province]"]' }, { name: 'zip', autocomplete: 'postal-code', selector: '[name^=""][name$="[postal_code]"]' }, { name: 'country', autocomplete: 'country-name', selector: '[name^=""][name$="[country]"]' }, { name: 'email', autocomplete: 'email', selector: '[name^="contact_information"][name$="[email]"]' }, { name: 'phone_number', autocomplete: 'tel-national', selector: '[name^="contact_information"][name$="[phone]"]' }];
@@ -432,7 +477,6 @@ window.addEventListener('load', function () {
 
 /*
   Remove all the aria-invalids, where they're not necessary.
-
   Note, it targets 'data-prevent-aria-invalid' elements only.
  */
 window.addEventListener('load', function () {
@@ -479,6 +523,96 @@ window.addEventListener('load', function () {
       return table.setAttribute('role', 'presentation');
     });
   }
+});
+
+/*
+  Replace all the Thumbnails' alt text with its title if exist.
+ */
+window.addEventListener('load', function () {
+  var images = document.querySelectorAll('img[alt="Thumbnail"]');
+
+  images.forEach(function (img) {
+    if (img.hasAttribute('title')) {
+      img.setAttribute('alt', img.getAttribute('title'));
+    }
+  });
+});
+
+/*
+  Select2 attributes.
+ */
+window.addEventListener('load', function () {
+  var selects = document.querySelectorAll('.select2 .select2-selection__rendered');
+
+  (0, _jquery2.default)('.select2-selection__rendered').hover(function () {
+    (0, _jquery2.default)(this).removeAttr('title');
+  });
+
+  selects && selects.forEach(function (select) {
+    if (select.hasAttribute('title')) {
+      select.removeAttribute('title');
+    }
+  });
+});
+
+/*
+  Remove redundant pager attributes.
+ */
+window.addEventListener('load', function () {
+  var pagerItems = document.querySelectorAll('nav.pager .pager__item a');
+
+  pagerItems && pagerItems.forEach(function (item) {
+    if (item.hasAttribute('title')) {
+      item.removeAttribute('title');
+    }
+  });
+});
+
+/*
+  Hide the scroll down after 3s.
+ */
+window.addEventListener('load', function () {
+  var arrow = document.querySelector('.paragraph .view-more');
+
+  if (!arrow) return;
+
+  setTimeout(function () {
+    arrow.classList.add('transparent');
+  }, 3000);
+});
+
+/*
+  Remove attrs.
+ */
+window.addEventListener('load', function () {
+  var selectors = ['article', 'header', 'nav', 'main', 'footer'];
+
+  selectors.forEach(function (selector) {
+    var elements = document.querySelectorAll(selector);
+
+    elements.forEach(function (el) {
+      el.hasAttribute('role') && el.removeAttribute('role');
+    });
+  });
+});
+
+/*
+  Remove data attrs from navigation.
+ */
+window.addEventListener('load', function () {
+  var menus = document.querySelectorAll('ul.menu');
+  var menuItems = document.querySelectorAll('ul.menu .menu-item a');
+  var utilNav = document.querySelector('.menu--util-navigation');
+
+  utilNav && utilNav.removeAttribute('aria-labelledby');
+
+  menuItems && menuItems.forEach(function (el) {
+    el.removeAttribute('role');
+  });
+
+  menus && menus.forEach(function (element) {
+    element.removeAttribute('role');
+  });
 });
 
 /***/ }),

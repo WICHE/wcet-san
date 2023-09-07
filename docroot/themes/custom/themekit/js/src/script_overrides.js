@@ -269,6 +269,49 @@ document.querySelectorAll('a').forEach(function (a) {
 window.addEventListener('load', () => {
   const joinSanForm = document.querySelector('.webform-submission-join-san-form');
   const loginForm = document.querySelector('.user-login-form');
+  const formTable = joinSanForm && joinSanForm.querySelector('table');
+  const ariaLvlLi = document.querySelectorAll('li[aria-level]');
+  const summaryElements = document.querySelectorAll('summary');
+  const h3Elements = document.querySelectorAll('h3.form-required');
+
+  // Add role attr to 2-layout table.
+  formTable && formTable.setAttribute('role', 'presentation');
+
+  // Remove redundant attrs from listst.
+  ariaLvlLi && ariaLvlLi.forEach((li) => li.removeAttribute('aria-level'));
+
+  // Summary elements operations.
+  summaryElements && summaryElements.forEach(summary => {
+    const detailsTitleLink = summary.querySelector('.details-title');
+
+    if(detailsTitleLink) {
+      const span = document.createElement('span');
+      span.innerHTML = detailsTitleLink.innerHTML;
+
+      // Replace the link with the span content
+      summary.replaceChild(span, detailsTitleLink);
+    }
+
+    summary.removeAttribute('aria-expanded');
+    summary.removeAttribute('tabindex');
+    summary.removeAttribute('role');
+    summary.removeAttribute('aria-pressed');
+  });
+
+  // Replace all the redundant h3s into labels.
+  h3Elements && h3Elements.forEach(h3 => {
+    // Create a label element
+    const label = document.createElement('label');
+
+    // Copy the contents of h3 to the label
+    label.innerHTML = h3.innerHTML;
+
+    // Copy the class from h3 to label
+    label.className = h3.className;
+
+    // Replace the h3 with the label
+    h3.parentNode.replaceChild(label, h3);
+  });
 
   if (joinSanForm) {
     const fields= [
@@ -331,7 +374,6 @@ window.addEventListener('load', () => {
 
 /*
   Remove all the aria-invalids, where they're not necessary.
-
   Note, it targets 'data-prevent-aria-invalid' elements only.
  */
 window.addEventListener('load', () => {
@@ -372,4 +414,94 @@ window.addEventListener('load', () => {
     const nestedTables = table.querySelectorAll('table');
     nestedTables && nestedTables.forEach(table => table.setAttribute('role', 'presentation'));
   }
+});
+
+/*
+  Replace all the Thumbnails' alt text with its title if exist.
+ */
+window.addEventListener('load', () => {
+  const images = document.querySelectorAll('img[alt="Thumbnail"]');
+
+  images.forEach(function(img) {
+    if (img.hasAttribute('title')) {
+      img.setAttribute('alt', img.getAttribute('title'));
+    }
+  });
+});
+
+/*
+  Select2 attributes.
+ */
+window.addEventListener('load', () => {
+  const selects = document.querySelectorAll('.select2 .select2-selection__rendered');
+
+  $('.select2-selection__rendered').hover(function () {
+    $(this).removeAttr('title');
+  });
+
+  selects &&  selects.forEach(function(select) {
+    if (select.hasAttribute('title')) {
+      select.removeAttribute('title');
+    }
+  });
+});
+
+/*
+  Remove redundant pager attributes.
+ */
+window.addEventListener('load', () => {
+  const pagerItems = document.querySelectorAll('nav.pager .pager__item a');
+
+  pagerItems &&  pagerItems.forEach(function(item) {
+    if (item.hasAttribute('title')) {
+      item.removeAttribute('title');
+    }
+  });
+});
+
+/*
+  Hide the scroll down after 3s.
+ */
+window.addEventListener('load', () => {
+  const arrow = document.querySelector('.paragraph .view-more');
+
+  if (!arrow) return;
+
+  setTimeout(function () {
+    arrow.classList.add('transparent');
+  }, 3000);
+});
+
+/*
+  Remove attrs.
+ */
+window.addEventListener('load', () => {
+  const selectors = ['article', 'header', 'nav', 'main', 'footer'];
+
+  selectors.forEach(function(selector) {
+    const elements = document.querySelectorAll(selector);
+
+    elements.forEach(function(el) {
+      el.hasAttribute('role') && el.removeAttribute('role');
+    });
+  });
+});
+
+/*
+  Remove data attrs from navigation.
+ */
+window.addEventListener('load', () => {
+  const menus = document.querySelectorAll('ul.menu');
+  const menuItems = document.querySelectorAll('ul.menu .menu-item a');
+  const utilNav = document.querySelector('.menu--util-navigation');
+
+  utilNav && utilNav.removeAttribute('aria-labelledby');
+
+  menuItems && menuItems.forEach(function (el) {
+    el.removeAttribute('role');
+  });
+
+  menus && menus.forEach(function(element) {
+    element.removeAttribute('role');
+  });
 });

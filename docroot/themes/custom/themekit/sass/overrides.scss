@@ -616,3 +616,63 @@
 .event-details-content h3 {
   font-size: 0.875rem;
 }
+
+.region-footer .block-block-content {
+  font-size: 16px;
+}
+
+.region-footer .block-block-content#block-footerinfoleft {
+  grid-column: 1 / span 3;
+}
+
+
+.paragraph--type--compound-header-content .view-more {
+  transition: opacity .4s;
+
+  &.transparent {
+    opacity: 0;
+  }
+
+  .view-more-arrow {
+    animation: none;
+  }
+}
+
+.region-footer .footer-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.view-resources.view-display-id-page_events_past > .view-content article h2 a:hover,
+.view-resources.view-display-id-page_events > .view-content article h2 a:hover,
+.view-resources.view-display-id-page_resources > .view-content article h2 a:hover,
+.view-resources.view-display-id-block_past_events > .view-content article h2 a:hover,
+.view-resources.view-display-id-block_upcoming_events > .view-content article h2 a:hover,
+.view-resources.view-display-id-block_latest_resources > .view-content article h2 a:hover,
+.view-events.view-display-id-page_events_past > .view-content article h2 a:hover,
+.view-events.view-display-id-page_events > .view-content article h2 a:hover,
+.view-events.view-display-id-page_resources > .view-content article h2 a:hover,
+.view-events.view-display-id-block_past_events > .view-content article h2 a:hover,
+.view-events.view-display-id-block_upcoming_events > .view-content article h2 a:hover,
+.view-events.view-display-id-block_latest_resources > .view-content article h2 a:hover {
+  color: #225898;
+}
+
+.views-exposed-form input.form-submit:not([id*=reset]),
+li:hover > a, .region-header .menu--main > ul.menu > li.is-active > a,
+.paragraph--type--layout-two-column .field--name-field-link a,
+.paragraph--type--compound-header-content .paragraph--type--single-file.primary a,
+.paragraph--type--compound-header-content .paragraph--type--single-link.primary a {
+  background: #3171bb;
+}
+
+.hamburger .menu-button .menu-button-bar,
+.paragraph--type--compound-header-content .view-more .view-more-arrow:before {
+  background: #9ea0a4;
+}
+
+.pager__item a,
+.hamburger .menu-button.active .close-menu,
+.paragraph--type--compound-header-content .view-more span {
+  color: #9ea0a4;
+}

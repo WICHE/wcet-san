@@ -493,8 +493,7 @@
 .view-events.view-display-id-block_latest_resources > .view-content article h2 a:hover {
   color: #225898; }
 
-.views-exposed-form input.form-submit:not([id*=reset]),
-li:hover > a, .region-header .menu--main > ul.menu > li.is-active > a,
+.views-exposed-form input.form-submit:not([id*=reset]), .region-header .menu--main > ul.menu > li.is-active > a,
 .paragraph--type--layout-two-column .field--name-field-link a,
 .paragraph--type--compound-header-content .paragraph--type--single-file.primary a,
 .paragraph--type--compound-header-content .paragraph--type--single-link.primary a {

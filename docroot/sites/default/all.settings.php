@@ -40,3 +40,5 @@ $config['environment_indicator.indicator']['name'] = 'amazee.io ' . getenv('LAGO
 
 // Install profile settings
 $settings['install_profile'] = 'standard';
+
+$settings['config_exclude_modules'] = ['upgrade_rector', 'upgrade_status'];

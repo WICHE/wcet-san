@@ -1,7 +1,7 @@
 name: Themekit
 type: theme
 description: "A subtheme of Classy, built for Elevated Third."
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 # Defines the base theme
 base theme: classy
 

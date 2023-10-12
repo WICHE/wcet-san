@@ -1,7 +1,7 @@
 name: AdminKit
 type: theme
 description: 'Drupal admin sub-theme of the Adminimal Drupal admin theme with specific functional enhancements.'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 base theme: adminimal_theme
 
 libraries:

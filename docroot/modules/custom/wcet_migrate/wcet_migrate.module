@@ -27,6 +27,6 @@ function wcet_migrate_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_migration_plugins_alter().
  */
 function wcet_migrate_migration_plugins_alter(array &$migrations) {
-  $migrations['coordinators_main']['source']['path'] = drupal_get_path('module', 'wcet_migrate') . $migrations['coordinators_main']['source']['path'];
-  $migrations['coordinators_second']['source']['path'] = drupal_get_path('module', 'wcet_migrate') . $migrations['coordinators_second']['source']['path'];
+  $migrations['coordinators_main']['source']['path'] = \Drupal::service('extension.list.module')->getPath('wcet_migrate') . $migrations['coordinators_main']['source']['path'];
+  $migrations['coordinators_second']['source']['path'] = \Drupal::service('extension.list.module')->getPath('wcet_migrate') . $migrations['coordinators_second']['source']['path'];
 }

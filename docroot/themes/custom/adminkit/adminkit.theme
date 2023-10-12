@@ -30,10 +30,9 @@ function adminkit_preprocess_media__svg(&$variables) {
   $entity = $variables['elements']['#media'];
   $svg_entity = $entity->field_svg->entity;
 
-  $variables['svg_url'] = $svg_entity ? file_Create_url($svg_entity->getFileUri()) : '';
+  $variables['svg_url'] = $svg_entity ? \Drupal::service('file_url_generator')->generateAbsoluteString($svg_entity->getFileUri()) : '';
   $variables['svg_title'] = $svg_entity ? $svg_entity->label() : 'SVG Icon';
 }
-
 
 // @TODO: do I still want this to be here?
 /**
@@ -235,7 +234,7 @@ function adminkit_get_image_style_url(File $file, $image_style) {
   if ($image_style) {
     $url = ImageStyle::load($image_style)->buildUrl($uri);
   } else {
-    $url = file_create_url($uri);
+    $url = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
   }
   return $url;
 }

@@ -144,7 +144,17 @@
             ]
         },
         "enable-patching": true,
-        "patches": {}
+        "patches": {
+            "drupal/field_hidden": {
+                "d10_compatibility": "https://www.drupal.org/files/issues/2023-05-11/d10_compatibility-3287517-3.patch"
+            },
+            "drupal/csv_serialization": {
+                "d10_compatibility": "https://www.drupal.org/files/issues/2022-11-03/csv_serialization-3295036-5-d10_compat.patch"
+            },
+            "drupal/system_status": {
+                "d10_compatibility": "https://www.drupal.org/files/issues/2023-02-15/system_status-drupal_10_compatibility-3299281-7.patch"
+            }
+        }
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",

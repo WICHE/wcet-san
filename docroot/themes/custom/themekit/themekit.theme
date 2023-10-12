@@ -92,8 +92,7 @@ function themekit_preprocess_field(&$variables) {
     $file = $variables['element']['#object'];
     $file_entity = $file->field_file->entity;
     $file_uri = $file_entity->getFileUri();
-    $variables['file_url'] = file_create_url($file_uri);
-
+    $variables['file_url'] = \Drupal::service('file_url_generator')->generateAbsoluteString($file_uri);
     // Get File Parent Entity Name for twig template
     $file_name = $file->name->value;
     $variables['file_name'] = $file_name;
@@ -126,7 +125,8 @@ function themekit_preprocess_media__svg(&$variables) {
   if (!empty($variables['content']['field_svg'])) {
     $svg_file_entity = $variables['content']['field_svg']['0']['#file'];
     if (is_object($svg_file_entity) && method_exists($svg_file_entity, 'getFileUri')) {
-      $variables['svg_url'] = file_create_url($svg_file_entity->getFileUri());
+      $variables['svg_url'] = \Drupal::service('file_url_generator')->generateAbsoluteString($svg_file_entity->getFileUri());
+
     }
   }
 }
@@ -234,7 +234,7 @@ function themekit_preprocess_file_link(&$variables) {
   $options = array();
 
   $file_entity = ($file instanceof File) ? $file : File::load($file->fid);
-  $url = file_create_url($file_entity->getFileUri());
+  $url = \Drupal::service('file_url_generator')->generateAbsoluteString($file_entity->getFileUri());
   $mime_type = $file->getMimeType();
   $options['attributes']['type'] = $mime_type . '; length=' . $file->getSize();
   if (empty($variables['description'])) {
@@ -374,7 +374,7 @@ function themekit_get_image_style_url(File $file, $image_style) {
   if ($image_style) {
     $url = ImageStyle::load($image_style)->buildUrl($uri);
   } else {
-    $url = file_create_url($uri);
+    $url = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
   }
   return $url;
 }

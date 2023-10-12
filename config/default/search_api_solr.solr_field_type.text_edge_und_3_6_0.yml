@@ -22,7 +22,7 @@ field_type:
           class: solr.MappingCharFilterFactory
           mapping: accents_und.txt
       tokenizer:
-        class: solr.WhitespaceTokenizerFactory
+        class: solr.StandardTokenizerFactory
       filters:
         -
           class: solr.StopFilterFactory
@@ -58,7 +58,7 @@ field_type:
           class: solr.MappingCharFilterFactory
           mapping: accents_und.txt
       tokenizer:
-        class: solr.WhitespaceTokenizerFactory
+        class: solr.StandardTokenizerFactory
       filters:
         -
           class: solr.LengthFilterFactory
@@ -68,6 +68,7 @@ field_type:
           class: solr.LowerCaseFilterFactory
         -
           class: solr.RemoveDuplicatesTokenFilterFactory
+  storeOffsetsWithPositions: true
 unstemmed_field_type: null
 spellcheck_field_type: null
 collated_field_type: null

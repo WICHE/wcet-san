@@ -1,5 +1,5 @@
 name: E3 Google Tag
 type: module
 description: Custom Google Tag Manager implementation.
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 package: Custom

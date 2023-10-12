@@ -18,6 +18,8 @@ class LoadTest extends BrowserTestBase {
    * @var array
    */
   protected static $modules = ['e3_google_tag'];
+  protected $defaultTheme = 'stable';
+
 
   /**
    * A user with permission to administer site configuration.

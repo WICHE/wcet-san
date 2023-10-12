@@ -96,7 +96,8 @@
         "drupal/entity_print": "^2.5",
         "drupal/config_ignore": "^3.0",
         "drupal/config_filter": "^2.4",
-        "palantirnet/drupal-rector": "^0.15.1"
+        "palantirnet/drupal-rector": "^0.15.1",
+        "drupal/rdf": "^2.0"
     },
     "conflict": {
         "drupal/drupal": "*"

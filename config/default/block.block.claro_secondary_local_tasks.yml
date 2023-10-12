@@ -1,13 +1,13 @@
-uuid: 8e5251b1-c5fa-46fa-a065-4554da318e15
+uuid: e15ef2ee-f7a8-4091-a6e7-24ef776e0f1a
 langcode: en
 status: true
 dependencies:
   theme:
-    - adminkit
+    - claro
 _core:
-  default_config_hash: opr9CeHaCyAQlHZdAz3fjy5bjo7HH85gj6KDjtOmvyE
-id: adminkit_secondary_local_tasks
-theme: adminkit
+  default_config_hash: 2L0geP-ixCbCkEpW6BVF6H7vDUZN4ea07_Y9CociQm4
+id: claro_secondary_local_tasks
+theme: claro
 region: pre_content
 weight: 0
 provider: null

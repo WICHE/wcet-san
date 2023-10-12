@@ -1,15 +1,15 @@
-uuid: 58854b12-b518-4342-a2a6-396bc81ee563
+uuid: 4d55da06-a15a-4bf7-85a8-8a16da874611
 langcode: en
 status: true
 dependencies:
   module:
     - help
   theme:
-    - adminkit
+    - claro
 _core:
-  default_config_hash: H2NLNmja1CRXHbP2OsRg1XwBtRubqdzVMlp41w2z9pU
-id: adminkit_help
-theme: adminkit
+  default_config_hash: jccFSSVqV0WCDb6NtML1VWAWTtDbZ-zn5YgTRMgMrIM
+id: claro_help
+theme: claro
 region: help
 weight: 0
 provider: null

@@ -15,7 +15,7 @@
         "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
         "mikey179/vfsstream": "~1.2",
         "drupal/core-dev": "^9.5",
-        "drupal/upgrade_rector": "^1.0@alpha"
+        "drupal/upgrade_rector": "^2.0@alpha"
     },
     "require": {
         "composer/installers": "^1.0",
@@ -153,6 +153,12 @@
             },
             "drupal/system_status": {
                 "d10_compatibility": "https://www.drupal.org/files/issues/2023-02-15/system_status-drupal_10_compatibility-3299281-7.patch"
+            },
+            "drupal/adminimal_admin_toolbar": {
+                "d10_compatibility": "https://www.drupal.org/files/issues/2022-06-15/adminimal_admin_toolbar.1.x-dev.rector.patch"
+            },
+            "drupal/graphql_search_api": {
+                "d10_compatibility": "./patches/graqhql_search_api_d10_compatibility.patch"
             }
         }
     },

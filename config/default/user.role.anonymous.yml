@@ -18,13 +18,11 @@ label: 'Anonymous user'
 weight: 0
 is_admin: false
 permissions:
-  - 'access comments'
   - 'access content'
   - 'access site-wide contact form'
   - 'bypass graphql field security'
   - 'entity print access bundle resource_table'
   - 'execute graphql requests'
-  - 'search content'
   - 'use graphql explorer'
   - 'use text format restricted_html'
   - 'view media'

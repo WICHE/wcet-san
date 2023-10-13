@@ -151,7 +151,7 @@
                 "d10_compatibility": "https://www.drupal.org/files/issues/2023-02-15/system_status-drupal_10_compatibility-3299281-7.patch"
             },
             "drupal/graphql_search_api": {
-                "d10_compatibility": "/patches/graphql_search_api_d10_compatibility.patch"
+                "d10_compatibility": "./patches/graphql_search_api_d10_compatibility.patch"
             }
         },
         "drupal-lenient": {

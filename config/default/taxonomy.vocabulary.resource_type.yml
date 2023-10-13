@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Resource Type'
 vid: resource_type
-description: 'When adding a resource, select a term from this vocabulary to determine it''s type.'
+description: "When adding a resource, select a term from this vocabulary to determine it's type."
 weight: -8

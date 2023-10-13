@@ -464,7 +464,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'Sorry there doesn''t seem to be any results for your selection, please select another option.'
+            value: "Sorry there doesn't seem to be any results for your selection, please select another option."
             format: basic_html
           tokenize: false
       sorts:

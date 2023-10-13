@@ -211,7 +211,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Sender''s name'
+          label: "Sender's name"
           exclude: false
           alter:
             alter_text: false

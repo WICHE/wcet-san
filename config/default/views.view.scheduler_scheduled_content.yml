@@ -765,7 +765,7 @@ display:
         menu_name: admin
         weight: -10
       display_extenders: {  }
-      display_description: 'Overview of all scheduled content, as a tab on main ''content admin'' page'
+      display_description: "Overview of all scheduled content, as a tab on main 'content admin' page"
     display_plugin: page
     display_title: 'Content Overview'
     id: overview
@@ -799,7 +799,7 @@ display:
         menu_name: admin
         weight: -10
       display_extenders: {  }
-      display_description: 'Scheduled content tab on user profile, showing just that user''s scheduled content'
+      display_description: "Scheduled content tab on user profile, showing just that user's scheduled content"
       defaults:
         filters: true
         filter_groups: true

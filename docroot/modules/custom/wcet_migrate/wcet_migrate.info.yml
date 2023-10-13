@@ -1,7 +1,7 @@
 name: WCET Migrate
 type: module
 description: Migrations for WCET.
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 package: 'WCET|SAN'
 dependencies:
   - migrate

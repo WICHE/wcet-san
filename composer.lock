@@ -3437,17 +3437,17 @@
         },
         {
             "name": "drupal/field_hidden",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/field_hidden.git",
-                "reference": "2.0.0"
+                "reference": "2.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/field_hidden-2.0.0.zip",
-                "reference": "2.0.0",
-                "shasum": "db3931cff316ac940c5dd9db9f0eaf74c7acf9ab"
+                "url": "https://ftp.drupal.org/files/projects/field_hidden-2.1.0.zip",
+                "reference": "2.1.0",
+                "shasum": "27f790097f21a982edd088fbbf4477cf5d955bce"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10"
@@ -3455,8 +3455,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.0",
-                    "datestamp": "1598344371",
+                    "version": "2.1.0",
+                    "datestamp": "1697176599",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3475,6 +3475,14 @@
                 {
                     "name": "jacobfriis",
                     "homepage": "https://www.drupal.org/user/1558990"
+                },
+                {
+                    "name": "nginex",
+                    "homepage": "https://www.drupal.org/user/2822325"
+                },
+                {
+                    "name": "reszli",
+                    "homepage": "https://www.drupal.org/user/710368"
                 }
             ],
             "description": "Defines hidden element widgets for number and (plain)text field types.",

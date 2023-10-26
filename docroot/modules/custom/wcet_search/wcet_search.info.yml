@@ -1,5 +1,5 @@
 name: 'WCET|SAN Search'
 type: module
 description: 'Search blocks specific to WCET using Solr / Search API / GraphQL / React'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 package: 'WCET|SAN'

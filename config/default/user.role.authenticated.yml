@@ -19,16 +19,12 @@ label: 'Authenticated user'
 weight: 1
 is_admin: false
 permissions:
-  - 'access comments'
   - 'access content'
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'bypass graphql field security'
   - 'entity print access bundle resource_table'
   - 'execute graphql requests'
-  - 'post comments'
-  - 'search content'
-  - 'skip comment approval'
   - 'use graphql explorer'
   - 'use text format basic_html'
   - 'view media'

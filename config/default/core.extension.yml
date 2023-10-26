@@ -16,9 +16,8 @@ module:
   breakpoint: 0
   chosen: 0
   chosen_lib: 0
-  ckeditor: 0
+  ckeditor5: 0
   coffee: 0
-  color: 0
   config: 0
   config_filter: 0
   config_ignore: 0
@@ -116,7 +115,6 @@ module:
   twig_field_value: 0
   ultimate_cron: 0
   update: 0
-  upgrade_status: 0
   user: 0
   video_embed_field: 0
   video_embed_media: 0
@@ -138,7 +136,7 @@ theme:
   seven: 0
   adminimal_theme: 0
   themekit: 0
-  adminkit: 0
+  claro: 0
 _core:
   default_config_hash: m2GVq11UAOVuNgj8x0t5fMOPujpvQQ_zxLoaly1BMEU
 profile: standard

@@ -16,45 +16,45 @@ bundle: layout_two_column
 mode: default
 content:
   field_header:
+    type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_p_left_column:
     type: entity_reference_paragraphs
     weight: 3
+    region: content
     settings:
       title: Component
       title_plural: Components
-      edit_mode: preview
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: _none
     third_party_settings: {  }
-    region: content
   field_p_right_column:
     type: entity_reference_paragraphs
     weight: 4
+    region: content
     settings:
       title: Component
       title_plural: Components
-      edit_mode: preview
+      edit_mode: closed
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: _none
     third_party_settings: {  }
-    region: content
   field_subheader:
+    type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
 hidden:
   created: true
   status: true

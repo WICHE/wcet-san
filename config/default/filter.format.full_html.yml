@@ -59,22 +59,6 @@ filters:
     weight: -50
     settings:
       title: false
-  filter_url:
-    id: filter_url
-    provider: filter
-    status: false
-    weight: -41
-    settings:
-      filter_url_length: 72
-  media_embed:
-    id: media_embed
-    provider: media
-    status: false
-    weight: -39
-    settings:
-      default_view_mode: default
-      allowed_view_modes: {  }
-      allowed_media_types: {  }
   filter_autop:
     id: filter_autop
     provider: filter
@@ -93,3 +77,19 @@ filters:
     status: false
     weight: -40
     settings: {  }
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: false
+    weight: -41
+    settings:
+      filter_url_length: 72
+  media_embed:
+    id: media_embed
+    provider: media
+    status: false
+    weight: -39
+    settings:
+      default_view_mode: default
+      allowed_view_modes: {  }
+      allowed_media_types: {  }

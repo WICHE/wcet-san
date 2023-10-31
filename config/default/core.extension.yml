@@ -1,10 +1,11 @@
+_core:
+  default_config_hash: m2GVq11UAOVuNgj8x0t5fMOPujpvQQ_zxLoaly1BMEU
 module:
   action: 0
   address: 0
   admin_toolbar: 0
   admin_toolbar_search: 0
   admin_toolbar_tools: 0
-  adminimal_admin_toolbar: 0
   advagg: 0
   allowed_formats: 0
   backup_migrate: 0
@@ -137,6 +138,5 @@ theme:
   adminimal_theme: 0
   themekit: 0
   claro: 0
-_core:
-  default_config_hash: m2GVq11UAOVuNgj8x0t5fMOPujpvQQ_zxLoaly1BMEU
+  gin: 0
 profile: standard

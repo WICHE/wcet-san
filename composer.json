@@ -25,7 +25,6 @@
         "drupal/coffee": "^1.0",
         "drupal/admin_toolbar": "^3.4",
         "drupal/adminimal_theme": "^1.0",
-        "drupal/adminimal_admin_toolbar": "^1.1",
         "drupal/config_update": "^2.0",
         "drupal/contact_storage": "^1.0",
         "drupal/pathauto": "^1.0",

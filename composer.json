@@ -149,6 +149,9 @@
             },
             "drupal/graphql_search_api": {
                 "d10_compatibility": "./patches/graphql_search_api_d10_compatibility.patch"
+            },
+            "drupal/core": {
+                "ckeditor5tableResize": "https://www.drupal.org/files/issues/2023-07-11/3353010-21.patch"
             }
         },
         "drupal-lenient": {

@@ -66,6 +66,7 @@ permissions:
   - 'delete landing_page revisions'
   - 'delete media'
   - 'delete own event content'
+  - 'delete own files'
   - 'delete own landing_page content'
   - 'delete own page content'
   - 'delete own resource content'

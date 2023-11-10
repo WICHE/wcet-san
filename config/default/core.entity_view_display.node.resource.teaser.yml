@@ -46,6 +46,9 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   field_exclude_from_search: true
   field_link: true
   field_meta_tags: true

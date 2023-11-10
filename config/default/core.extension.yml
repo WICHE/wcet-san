@@ -87,6 +87,7 @@ module:
   path: 0
   path_alias: 0
   pathauto: 0
+  phpass: 0
   rdf: 0
   redirect: 0
   redirect_404: 0
@@ -103,7 +104,6 @@ module:
   simple_sitemap: 0
   sitemap: 0
   smart_trim: 0
-  swiftmailer: 0
   syslog: 0
   system: 0
   system_status: 0

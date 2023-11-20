@@ -16,7 +16,7 @@ use Drupal\user\Entity\User;
 function wcet_access_control_node_access(NodeInterface $node, $op, AccountInterface $account) {
   $type = $node->bundle();
   if ($op == 'view') {
-    if (($type === 'resource' || $type === 'event') && $node->get('field_content_access')->value === 'private') {
+    if (($type === 'resource' || $type === 'event' || $type === 'resource_table') && $node->get('field_content_access')->value === 'private') {
       if ($account->hasPermission('view private content')) {
         return AccessResult::allowed()->cachePerUser();
       } else {

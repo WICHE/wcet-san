@@ -95,7 +95,8 @@
         "drupal/classy": "^1.0",
         "drupal/gin_toolbar": "^1.0@rc",
         "drupal/gin": "^3.0@rc",
-        "drupal/linkit": "^6.1"
+        "drupal/linkit": "^6.1",
+        "drupal/symfony_mailer": "^1.4"
     },
     "conflict": {
         "drupal/drupal": "*"

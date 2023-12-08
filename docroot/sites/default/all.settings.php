@@ -42,3 +42,7 @@ $config['environment_indicator.indicator']['name'] = 'amazee.io ' . getenv('LAGO
 $settings['install_profile'] = 'standard';
 
 $settings['config_exclude_modules'] = ['upgrade_rector', 'upgrade_status'];
+
+$settings['mailer_sendmail_commands'] = [
+  ini_get('sendmail_path'),
+];

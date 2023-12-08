@@ -72,3 +72,5 @@ cloneable_entities:
   - base_field_override
   - simple_sitemap_type
   - simple_sitemap
+  - mailer_transport
+  - mailer_policy

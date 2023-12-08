@@ -44,5 +44,5 @@ $settings['install_profile'] = 'standard';
 $settings['config_exclude_modules'] = ['upgrade_rector', 'upgrade_status'];
 
 $settings['mailer_sendmail_commands'] = [
-  '/usr/sbin/sendmail -t -i',
+  ini_get('sendmail_path'),
 ];

@@ -13,27 +13,6 @@ name: 'Basic HTML'
 format: basic_html
 weight: 0
 filters:
-  filter_html:
-    id: filter_html
-    provider: filter
-    status: true
-    weight: -49
-    settings:
-      allowed_html: '<br> <p class="text-align-left text-align-center text-align-right text-align-justify"> <h2 id class="text-align-left text-align-center text-align-right text-align-justify"> <h3 id class="text-align-left text-align-center text-align-right text-align-justify"> <h4 id class="text-align-left text-align-center text-align-right text-align-justify"> <h5 id class="text-align-left text-align-center text-align-right text-align-justify"> <h6 id class="text-align-left text-align-center text-align-right text-align-justify"> <cite> <dl> <dt> <dd> <span id> <img src alt height width data-entity-type data-entity-uuid data-entity-substitution data-align data-caption> <drupal-entity data-* alt title> <blockquote cite> <ul type> <ol type start> <a hreflang accesskey id rel target title href data-entity-type data-entity-uuid data-entity-substitution> <strong> <em> <code> <sub> <sup> <li> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption>'
-      filter_html_help: false
-      filter_html_nofollow: false
-  filter_align:
-    id: filter_align
-    provider: filter
-    status: true
-    weight: -48
-    settings: {  }
-  filter_caption:
-    id: filter_caption
-    provider: filter
-    status: true
-    weight: -47
-    settings: {  }
   editor_file_reference:
     id: editor_file_reference
     provider: editor
@@ -46,25 +25,33 @@ filters:
     status: true
     weight: -45
     settings: {  }
-  linkit:
-    id: linkit
-    provider: linkit
+  filter_align:
+    id: filter_align
+    provider: filter
     status: true
-    weight: -50
-    settings:
-      title: false
+    weight: -48
+    settings: {  }
   filter_autop:
     id: filter_autop
     provider: filter
     status: false
     weight: -43
     settings: {  }
-  filter_htmlcorrector:
-    id: filter_htmlcorrector
+  filter_caption:
+    id: filter_caption
     provider: filter
-    status: false
-    weight: -40
+    status: true
+    weight: -47
     settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -49
+    settings:
+      allowed_html: '<br> <p class="text-align-left text-align-center text-align-right text-align-justify"> <h2 id class="text-align-left text-align-center text-align-right text-align-justify"> <h3 id class="text-align-left text-align-center text-align-right text-align-justify"> <h4 id class="text-align-left text-align-center text-align-right text-align-justify"> <h5 id class="text-align-left text-align-center text-align-right text-align-justify"> <h6 id class="text-align-left text-align-center text-align-right text-align-justify"> <cite> <dl> <dt> <dd> <span id> <img src alt height width data-entity-type data-entity-uuid data-entity-substitution data-align data-caption> <drupal-entity data-* alt title> <blockquote cite> <ul type> <ol type start> <a hreflang accesskey id rel target title href data-entity-type data-entity-uuid data-entity-substitution> <strong> <em> <code> <sub> <sup> <li> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption>'
+      filter_html_help: false
+      filter_html_nofollow: false
   filter_html_escape:
     id: filter_html_escape
     provider: filter
@@ -77,6 +64,18 @@ filters:
     status: false
     weight: -41
     settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: false
+    weight: -40
+    settings: {  }
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: -45
+    settings: {  }
   filter_url:
     id: filter_url
     provider: filter
@@ -84,6 +83,13 @@ filters:
     weight: -42
     settings:
       filter_url_length: 72
+  linkit:
+    id: linkit
+    provider: linkit
+    status: true
+    weight: -50
+    settings:
+      title: false
   media_embed:
     id: media_embed
     provider: media
@@ -93,9 +99,3 @@ filters:
       default_view_mode: default
       allowed_view_modes: {  }
       allowed_media_types: {  }
-  filter_image_lazy_load:
-    id: filter_image_lazy_load
-    provider: filter
-    status: true
-    weight: -45
-    settings: {  }

@@ -521,6 +521,7 @@ class SearchResults extends React.Component {
                   <option value="coordinator call">Coordinator Calls</option>
                   <option value="enewsletter">eNewsletters</option>
                   <option value="research">Research</option>
+                  <option value="research">Resource Table</option>
                   <option value="talking points (white papers)">Talking Points (white papers)</option>
                   <option value="past webinars, events &amp; podcasts">Past Webinars, Events & Podcasts</option>
                 </select>

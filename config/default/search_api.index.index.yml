@@ -3,21 +3,26 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
-    - field.storage.node.field_content_access
-    - field.storage.node.field_meta_description
     - field.storage.node.field_resource_type
     - field.storage.taxonomy_term.field_label_color
     - field.storage.taxonomy_term.field_slug
+    - field.storage.node.field_content_access
+    - field.storage.node.field_meta_description
+    - field.storage.node.body
     - field.storage.node.field_topic
     - search_api.server.solr
   module:
-    - node
+    - search_api_solr
     - taxonomy
+    - node
     - search_api
     - search_api_exclude_entity
 third_party_settings:
   search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    debug_finalize: false
     highlighter:
       maxAnalyzedChars: 51200
       fragmenter: gap
@@ -33,16 +38,31 @@ third_party_settings:
         requireFieldMatch: false
         snippets: 3
         fragsize: 0
-      _core:
-        default_config_hash: 914vBglS7nVnl8EUqBejfUPPRT6wnWYcOhMli6oL4jY
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
     term_modifiers:
       slop: 10000000
       fuzzy: 2
     advanced:
       index_prefix: ''
+      collection: ''
+      timezone: ''
     multilingual:
       limit_to_content_language: false
       include_language_independent: true
+      use_language_undefined_as_fallback_language: false
+      specific_languages:
+        en: '0'
+      use_universal_collation: false
 id: index
 name: index
 description: ''
@@ -189,22 +209,27 @@ datasource_settings:
         - landing_page
         - page
         - resource
+        - resource_table
     languages:
       default: true
       selected: {  }
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  auto_aggregated_fulltext_field: {  }
   content_access:
     weights:
       preprocess_query: -30
+  custom_value: {  }
   entity_status: {  }
+  entity_type: {  }
   highlight:
     weights:
       postprocess_query: 0
     prefix: '<strong>'
     suffix: '</strong>'
     excerpt: true
+    excerpt_always: false
     excerpt_length: 256
     exclude_fields:
       - rendered_item
@@ -249,6 +274,7 @@ processor_settings:
     fields:
       node:
         - field_exclude_from_search
+  solr_date_range: {  }
   type_boost:
     weights:
       preprocess_index: 0
@@ -264,4 +290,5 @@ tracker_settings:
 options:
   cron_limit: 50
   index_directly: false
+  track_changes_in_references: false
 server: solr

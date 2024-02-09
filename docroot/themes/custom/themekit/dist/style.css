@@ -2428,16 +2428,19 @@ ul.primary {
     font-size: 1.125rem; }
   #search-app--main .search-main--results .search-result--description {
     font-size: 0.75rem; }
+  #search-app--main .search-main--results .search-result.resource_table .search-result--info,
   #search-app--main .search-main--results .search-result.resource .search-result--info {
     display: flex;
     flex-flow: nowrap row;
     align-items: center; }
+  #search-app--main .search-main--results .search-result.resource_table .search-result--resource-type,
   #search-app--main .search-main--results .search-result.resource .search-result--resource-type {
     display: flex;
     flex-flow: nowrap row;
     align-items: center;
     margin-right: 8px;
     font-size: 0.625rem; }
+    #search-app--main .search-main--results .search-result.resource_table .search-result--resource-type:before,
     #search-app--main .search-main--results .search-result.resource .search-result--resource-type:before {
       content: '';
       display: block;
@@ -2445,9 +2448,11 @@ ul.primary {
       height: 4px;
       margin-right: 4px;
       border-radius: 50%; }
+  #search-app--main .search-main--results .search-result.resource_table .search-result--created,
   #search-app--main .search-main--results .search-result.resource .search-result--created {
     font-size: 0.75rem;
     color: #707070; }
+  #search-app--main .search-main--results .search-result.resource_table .search-result--topics,
   #search-app--main .search-main--results .search-result.resource .search-result--topics {
     font-size: 0.625rem;
     color: #707070; }

@@ -11,6 +11,7 @@ function ResultItem(props) {
   ;
   const classes =
     `search-result
+    ${ props.resource_type }
     ${ props.type }
     ${ props.color != null ? props.color : ''}
     ${ !isLoggedIn && access === 'private' ? 'private' : ''}`
@@ -23,7 +24,7 @@ function ResultItem(props) {
   return (
     <div className={ classes }>
       <a className="search-result--link" href={ url }>link</a>
-      { props.type === "resource" &&
+      { props.type === "resource" || props.type === "resource_table" &&
         <div className="search-result--info">
           <div className="search-result--resource-type">{ props.resource_type }</div>
           <div className="search-result--created">{ props.created }</div>

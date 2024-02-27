@@ -96,7 +96,7 @@
 
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
-  {{ rendered_content.field_resource_type|render|striptags|trim }}
+  {{ rendered_content.field_resource_type }}
   <span class="date-created">{{ createdDate }}</span>
 
   <h2{{ title_attributes }}>

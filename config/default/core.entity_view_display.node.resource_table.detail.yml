@@ -1,0 +1,74 @@
+uuid: 727d06b9-7cb2-48c8-95b2-f52f4b87c8ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.detail
+    - field.field.node.resource_table.body
+    - field.field.node.resource_table.field_content_access
+    - field.field.node.resource_table.field_intro_copy
+    - field.field.node.resource_table.field_resource_type
+    - field.field.node.resource_table.field_topic
+    - node.type.resource_table
+  module:
+    - entity_print
+    - smart_trim
+    - user
+third_party_settings:
+  entity_print:
+    pdf_label: 'Download PDF >'
+id: node.resource_table.detail
+targetEntityType: node
+bundle: resource_table
+mode: detail
+content:
+  field_intro_copy:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 115
+      trim_type: chars
+      trim_suffix: ''
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: true
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
+        token_browser: ''
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_resource_type:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_topic:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  body: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_content_access: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

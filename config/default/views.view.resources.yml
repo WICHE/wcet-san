@@ -442,6 +442,7 @@ display:
           operator: in
           value:
             resource: resource
+            resource_table: resource_table
           group: 1
           exposed: false
           expose:

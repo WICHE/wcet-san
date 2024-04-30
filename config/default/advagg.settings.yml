@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: LFpTzax3EkpWcr8wETN-b7cPB2y6qag7icW86Z-_iiY
 css:
   brotli: true
   combine_media: false
@@ -6,8 +8,8 @@ dns_prefetch: true
 path:
   convert:
     absolute_to_protocol_relative: true
-    force_https: false
     absolute: false
+    force_https: false
 cache_level: 2
 cron_frequency: 86400
 enabled: true
@@ -19,7 +21,5 @@ js:
   preserve_external: null
 skip_enabled_preprocess_check: false
 show_bypass_cookie_message: true
-symlinksifownermatch: false
-_core:
-  default_config_hash: LFpTzax3EkpWcr8wETN-b7cPB2y6qag7icW86Z-_iiY
 symlinks: false
+symlinksifownermatch: false

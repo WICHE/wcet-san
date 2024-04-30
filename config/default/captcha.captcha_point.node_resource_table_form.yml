@@ -1,0 +1,7 @@
+uuid: f7f522d7-5afa-4345-825f-bfb49f941c7e
+langcode: en
+status: false
+dependencies: {  }
+formId: node_resource_table_form
+captchaType: default
+label: node_resource_table_form

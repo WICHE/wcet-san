@@ -74,3 +74,4 @@ cloneable_entities:
   - simple_sitemap
   - mailer_transport
   - mailer_policy
+  - captcha_point

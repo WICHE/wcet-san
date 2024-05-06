@@ -95,7 +95,8 @@
         "drupal/gin_toolbar": "^1.0@rc",
         "drupal/gin": "^3.0@rc",
         "drupal/linkit": "^6.1",
-        "drupal/symfony_mailer": "^1.4"
+        "drupal/symfony_mailer": "^1.4",
+        "drupal/captcha": "^2.0"
     },
     "conflict": {
         "drupal/drupal": "*"

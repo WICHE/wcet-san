@@ -239,7 +239,7 @@ function themekit_preprocess_file_link(&$variables) {
   $options['attributes']['type'] = $mime_type . '; length=' . $file->getSize();
   if (empty($variables['description'])) {
     // Set title
-    $parent_media = $file->_referringItem->getEntity();
+    $parent_media = $file->_referringItem ? $file->_referringItem->getEntity() : [];
     $parent_paragraph = '';
     if (!empty($parent_media->_referringItem)) {
       $parent_paragraph = $parent_media->_referringItem->getEntity();

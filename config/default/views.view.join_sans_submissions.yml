@@ -1,13 +1,9 @@
-uuid: 1c4e8be6-a8bc-41e6-8667-3eb413bb26a0
+uuid: 97808f29-bf8d-4428-a4c9-35fb9f579724
 langcode: en
 status: true
 dependencies:
   module:
-    - csv_serialization
-    - rest
-    - serialization
     - user
-    - views_data_export
     - webform
     - webform_views
   enforced:
@@ -15,8 +11,8 @@ dependencies:
       - webform
 _core:
   default_config_hash: YPgxGC8TmLtfCOLGCCHJcdH2llA7QksUkdi1abhB7Ro
-id: join_san_submission_view
-label: 'Join SAN: Default'
+id: join_sans_submissions
+label: 'Join SAN: Submissions'
 module: views
 description: 'Default webform submissions views.'
 tag: ''
@@ -87,6 +83,73 @@ display:
           settings:
             thousand_separator: ''
             prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        in_draft:
+          id: in_draft
+          table: webform_submission
+          field: in_draft
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: in_draft
+          plugin_id: field
+          label: Draft
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: yes-no
+            format_custom_false: ''
+            format_custom_true: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -173,15 +236,17 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_join_san_name_of_the_membership_institution_system_organization_or_group_
-          field: webform_submission_value
+        remote_addr:
+          id: remote_addr
+          table: webform_submission
+          field: remote_addr
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Name of the Membership'
+          entity_type: webform_submission
+          entity_field: remote_addr
+          plugin_id: field
+          label: 'IP address'
           exclude: false
           alter:
             alter_text: false
@@ -222,540 +287,20 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_1:
-          id: webform_submission_value_1
-          table: webform_submission_field_join_san_full_name
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Single Point Contact'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_2:
-          id: webform_submission_value_2
-          table: webform_submission_field_join_san_institution_organization
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Institution / Organization'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_join_san_address
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: Address
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_4:
-          id: webform_submission_value_4
-          table: webform_submission_field_join_san_contact_information
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Contact Information'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_5:
-          id: webform_submission_value_5
-          table: webform_submission_field_join_san_group_type
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Membership Size'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_6:
-          id: webform_submission_value_6
-          table: webform_submission_field_join_san_institution
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: Institution
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_7:
-          id: webform_submission_value_7
-          table: webform_submission_field_join_san_upload
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: '> 5 Group type document'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: file
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_8:
-          id: webform_submission_value_8
-          table: webform_submission_field_join_san_coordinator_1
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Coordinator #1'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: fieldset
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_9:
-          id: webform_submission_value_9
-          table: webform_submission_field_join_san_coordinator_2
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Coordinator #2'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: fieldset
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_10:
-          id: webform_submission_value_10
-          table: webform_submission_field_join_san_coordinator_3
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Coordinator #3'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: fieldset
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         view_webform_submission:
           id: view_webform_submission
           table: webform_submission
@@ -841,9 +386,8 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
-        options:
-          perm: 'administer webform submission'
+        type: none
+        options: {  }
       cache:
         type: tag
         options: {  }
@@ -1059,889 +603,12 @@ display:
         - url
         - url.query_args
         - user
-        - user.permissions
       tags: {  }
-  data_export_1:
-    id: data_export_1
-    display_title: 'Data export'
-    display_plugin: data_export
-    position: 2
-    display_options:
-      fields:
-        sid:
-          id: sid
-          table: webform_submission
-          field: sid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: webform_submission
-          entity_field: sid
-          plugin_id: field
-          label: '#'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: number_integer
-          settings:
-            thousand_separator: ''
-            prefix_suffix: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        created:
-          id: created
-          table: webform_submission
-          field: created
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: webform_submission
-          entity_field: created
-          plugin_id: field
-          label: Created
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: timestamp
-          settings:
-            date_format: medium
-            custom_date_format: ''
-            timezone: ''
-            tooltip:
-              date_format: ''
-              custom_date_format: ''
-            time_diff:
-              enabled: false
-              future_format: '@interval hence'
-              past_format: '@interval ago'
-              granularity: 2
-              refresh: 60
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_join_san_name_of_the_membership_institution_system_organization_or_group_
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Name of the Membership'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_1:
-          id: webform_submission_value_1
-          table: webform_submission_field_join_san_full_name
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Single Point Contact'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_2:
-          id: webform_submission_value_2
-          table: webform_submission_field_join_san_institution_organization
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Institution / Organization'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_join_san_address
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: Address
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_4:
-          id: webform_submission_value_4
-          table: webform_submission_field_join_san_contact_information
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Contact Information'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_5:
-          id: webform_submission_value_5
-          table: webform_submission_field_join_san_group_type
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Membership Size'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_11:
-          id: webform_submission_value_11
-          table: webform_submission_field_join_san_san_membership_type
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'SAN Membership Type'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_6:
-          id: webform_submission_value_6
-          table: webform_submission_field_join_san_institution
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: Institution
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_7:
-          id: webform_submission_value_7
-          table: webform_submission_field_join_san_upload
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: '> 5 Group type document'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: file
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_8:
-          id: webform_submission_value_8
-          table: webform_submission_field_join_san_coordinator_1
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Coordinator #1'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: fieldset
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_9:
-          id: webform_submission_value_9
-          table: webform_submission_field_join_san_coordinator_2
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Coordinator #2'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: fieldset
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_10:
-          id: webform_submission_value_10
-          table: webform_submission_field_join_san_coordinator_3
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Coordinator #3'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: fieldset
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        view_webform_submission:
-          id: view_webform_submission
-          table: webform_submission
-          field: view_webform_submission
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: webform_submission
-          plugin_id: entity_link
-          label: Operations
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          text: view
-          output_url_as_text: false
-          absolute: false
-      style:
-        type: data_export
-        options:
-          formats:
-            csv: csv
-          csv_settings:
-            delimiter: ','
-            enclosure: '"'
-            escape_char: \
-            strip_tags: true
-            trim: true
-            encoding: utf8
-            utf8_bom: '0'
-            use_serializer_encode_only: false
-      defaults:
-        fields: false
-      display_extenders: {  }
-      path: export/join-san-submissions.csv
-      displays:
-        embed_default: embed_default
-        default: '0'
-        embed_1: '0'
-      filename: ''
-      automatic_download: false
-      store_in_public_file_directory: false
-      custom_redirect_path: false
-      redirect_to_display: none
-      include_query_params: false
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - request_format
-        - url
-        - user
-        - user.permissions
-      tags: {  }
-  embed_1:
-    id: embed_1
+  embed_administer:
+    id: embed_administer
     display_title: 'Embed: Administer'
     display_plugin: embed
-    position: 1
+    position: 2
     display_options:
       fields:
         webform_submission_bulk_form:
@@ -2147,7 +814,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Name of the Membership'
+          label: 'Name of the Membership (institution, system, organization, or group name)'
           exclude: false
           alter:
             alter_text: false
@@ -2200,7 +867,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Single Point Contact'
+          label: 'Full Name'
           exclude: false
           alter:
             alter_text: false
@@ -2457,8 +1124,8 @@ display:
           webform_multiple_value: true
           webform_multiple_delta: 0
           webform_check_access: 1
-        webform_submission_value_11:
-          id: webform_submission_value_11
+        webform_submission_value_6:
+          id: webform_submission_value_6
           table: webform_submission_field_join_san_san_membership_type
           field: webform_submission_value
           relationship: none
@@ -2510,8 +1177,8 @@ display:
           webform_multiple_value: true
           webform_multiple_delta: 0
           webform_check_access: 1
-        webform_submission_value_6:
-          id: webform_submission_value_6
+        webform_submission_value_7:
+          id: webform_submission_value_7
           table: webform_submission_field_join_san_institution
           field: webform_submission_value
           relationship: none
@@ -2563,15 +1230,15 @@ display:
           webform_multiple_value: true
           webform_multiple_delta: 0
           webform_check_access: 1
-        webform_submission_value_7:
-          id: webform_submission_value_7
+        webform_submission_value_8:
+          id: webform_submission_value_8
           table: webform_submission_field_join_san_upload
           field: webform_submission_value
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: '> 5 Group type document'
+          label: 'Download sample document and upload after completed'
           exclude: false
           alter:
             alter_text: false
@@ -2616,8 +1283,8 @@ display:
           webform_multiple_value: true
           webform_multiple_delta: 0
           webform_check_access: 1
-        webform_submission_value_8:
-          id: webform_submission_value_8
+        webform_submission_value_9:
+          id: webform_submission_value_9
           table: webform_submission_field_join_san_coordinator_1
           field: webform_submission_value
           relationship: none
@@ -2665,12 +1332,12 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          webform_element_format: fieldset
+          webform_element_format: details
           webform_multiple_value: true
           webform_multiple_delta: 0
           webform_check_access: 1
-        webform_submission_value_9:
-          id: webform_submission_value_9
+        webform_submission_value_10:
+          id: webform_submission_value_10
           table: webform_submission_field_join_san_coordinator_2
           field: webform_submission_value
           relationship: none
@@ -2718,12 +1385,12 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          webform_element_format: fieldset
+          webform_element_format: details
           webform_multiple_value: true
           webform_multiple_delta: 0
           webform_check_access: 1
-        webform_submission_value_10:
-          id: webform_submission_value_10
+        webform_submission_value_11:
+          id: webform_submission_value_11
           table: webform_submission_field_join_san_coordinator_3
           field: webform_submission_value
           relationship: none
@@ -2771,19 +1438,20 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          webform_element_format: fieldset
+          webform_element_format: details
           webform_multiple_value: true
           webform_multiple_delta: 0
           webform_check_access: 1
-        view_webform_submission:
-          id: view_webform_submission
+        operations:
+          id: operations
           table: webform_submission
-          field: view_webform_submission
+          field: operations
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: webform_submission
-          plugin_id: entity_link
+          entity_type: null
+          entity_field: null
+          plugin_id: entity_operations
           label: Operations
           exclude: false
           alter:
@@ -2825,33 +1493,191 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: view
-          output_url_as_text: false
-          absolute: false
+          destination: true
+      access:
+        type: perm
+        options:
+          perm: 'administer webform submission'
+      filters:
+        in_draft:
+          id: in_draft
+          table: webform_submission
+          field: in_draft
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: in_draft
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: 'Is draft'
+            description: ''
+            use_operator: false
+            operator: in_draft_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: in_draft
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        sticky:
+          id: sticky
+          table: webform_submission
+          field: sticky
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: sticky
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Sticky
+            description: ''
+            use_operator: false
+            operator: sticky_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: sticky
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        locked:
+          id: locked
+          table: webform_submission
+          field: locked
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: locked
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Locked
+            description: ''
+            use_operator: false
+            operator: locked_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: locked
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              demo_region: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: table
         options:
-          grouping:
-            -
-              field: webform_submission_value_1
-              rendered: true
-              rendered_strip: false
+          grouping: {  }
           row_class: ''
           default_row_class: true
           columns:
+            webform_submission_bulk_form: webform_submission_bulk_form
             sid: sid
+            in_draft: in_draft
+            sticky: sticky
+            locked: locked
             created: created
-            webform_submission_value: webform_submission_value
-            webform_submission_value_1: webform_submission_value_1
-            webform_submission_value_2: webform_submission_value_1
+            completed: completed
+            remote_addr: remote_addr
             view_webform_submission: view_webform_submission
-            webform_submission_value_3: webform_submission_value_1
-            webform_submission_value_4: webform_submission_value_1
+            edit_webform_submission: view_webform_submission
           default: created
           info:
+            webform_submission_bulk_form:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             sid:
               sortable: true
               default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            in_draft:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            sticky:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            locked:
+              sortable: true
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -2863,22 +1689,15 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            webform_submission_value:
-              sortable: false
+            completed:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            webform_submission_value_1:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_2:
-              sortable: false
+            remote_addr:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -2891,14 +1710,7 @@ display:
               separator: ' '
               empty_column: false
               responsive: ''
-            webform_submission_value_3:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_4:
+            edit_webform_submission:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -2919,12 +1731,13 @@ display:
           separator: ''
           hide_empty: false
       defaults:
+        access: false
         style: false
         row: false
         fields: false
-        filters: true
-        filter_groups: true
-      display_description: 'Display submissions.'
+        filters: false
+        filter_groups: false
+      display_description: 'Administer submissions.'
       display_extenders: {  }
     cache_metadata:
       max-age: 0
@@ -2942,6 +1755,91 @@ display:
     display_plugin: embed
     position: 1
     display_options:
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            sid: sid
+            in_draft: in_draft
+            created: created
+            remote_addr: remote_addr
+            view_webform_submission: view_webform_submission
+          default: created
+          info:
+            sid:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            in_draft:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            created:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            remote_addr:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            view_webform_submission:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ' '
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      defaults:
+        style: false
+        row: false
+        fields: true
+        filters: true
+        filter_groups: true
+      display_description: 'Display submissions.'
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+      tags: {  }
+  embed_manage:
+    id: embed_manage
+    display_title: 'Embed: Manage'
+    display_plugin: embed
+    position: 3
+    display_options:
       fields:
         webform_submission_bulk_form:
           id: webform_submission_bulk_form
@@ -2994,8 +1892,12 @@ display:
           empty_zero: false
           hide_alter_empty: true
           action_title: Action
-          include_exclude: exclude
-          selected_actions: {  }
+          include_exclude: include
+          selected_actions:
+            - webform_submission_make_lock_action
+            - webform_submission_make_sticky_action
+            - webform_submission_make_unlock_action
+            - webform_submission_make_unsticky_action
         sid:
           id: sid
           table: webform_submission
@@ -3052,6 +1954,207 @@ display:
           settings:
             thousand_separator: ''
             prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        in_draft:
+          id: in_draft
+          table: webform_submission
+          field: in_draft
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: in_draft
+          plugin_id: field
+          label: Draft
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: yes-no
+            format_custom_false: ''
+            format_custom_true: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        sticky:
+          id: sticky
+          table: webform_submission
+          field: sticky
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: sticky
+          plugin_id: field
+          label: Sticky
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: yes-no
+            format_custom_false: ''
+            format_custom_true: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        locked:
+          id: locked
+          table: webform_submission
+          field: locked
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: locked
+          plugin_id: field
+          label: Locked
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: yes-no
+            format_custom_false: ''
+            format_custom_true: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -3138,15 +2241,17 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_join_san_name_of_the_membership_institution_system_organization_or_group_
-          field: webform_submission_value
+        completed:
+          id: completed
+          table: webform_submission
+          field: completed
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Name of the Membership'
+          entity_type: webform_submission
+          entity_field: completed
+          plugin_id: field
+          label: Completed
           exclude: false
           alter:
             alter_text: false
@@ -3187,19 +2292,42 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_1:
-          id: webform_submission_value_1
-          table: webform_submission_field_join_san_full_name
-          field: webform_submission_value
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: medium
+            custom_date_format: ''
+            timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        remote_addr:
+          id: remote_addr
+          table: webform_submission
+          field: remote_addr
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Single Point Contact'
+          entity_type: webform_submission
+          entity_field: remote_addr
+          plugin_id: field
+          label: 'IP address'
           exclude: false
           alter:
             alter_text: false
@@ -3240,540 +2368,20 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_2:
-          id: webform_submission_value_2
-          table: webform_submission_field_join_san_institution_organization
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Institution / Organization'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_join_san_address
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: Address
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_4:
-          id: webform_submission_value_4
-          table: webform_submission_field_join_san_contact_information
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Contact Information'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_5:
-          id: webform_submission_value_5
-          table: webform_submission_field_join_san_group_type
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Membership Size'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_11:
-          id: webform_submission_value_11
-          table: webform_submission_field_join_san_san_membership_type
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'SAN Membership Type'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_6:
-          id: webform_submission_value_6
-          table: webform_submission_field_join_san_institution
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: Institution
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_7:
-          id: webform_submission_value_7
-          table: webform_submission_field_join_san_upload
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: '> 5 Group type document'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: file
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_8:
-          id: webform_submission_value_8
-          table: webform_submission_field_join_san_coordinator_1
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Coordinator #1'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: fieldset
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_9:
-          id: webform_submission_value_9
-          table: webform_submission_field_join_san_coordinator_2
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Coordinator #2'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: fieldset
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value_10:
-          id: webform_submission_value_10
-          table: webform_submission_field_join_san_coordinator_3
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Coordinator #3'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: fieldset
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         view_webform_submission:
           id: view_webform_submission
           table: webform_submission
@@ -3827,30 +2435,243 @@ display:
           text: view
           output_url_as_text: false
           absolute: false
+        edit_webform_submission:
+          id: edit_webform_submission
+          table: webform_submission
+          field: edit_webform_submission
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          plugin_id: entity_link_edit
+          label: Operations
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: edit
+          output_url_as_text: false
+          absolute: false
+      access:
+        type: perm
+        options:
+          perm: 'edit any webform submission'
+      filters:
+        in_draft:
+          id: in_draft
+          table: webform_submission
+          field: in_draft
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: in_draft
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: 'Is draft'
+            description: ''
+            use_operator: false
+            operator: in_draft_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: in_draft
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        sticky:
+          id: sticky
+          table: webform_submission
+          field: sticky
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: sticky
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Sticky
+            description: ''
+            use_operator: false
+            operator: sticky_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: sticky
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        locked:
+          id: locked
+          table: webform_submission
+          field: locked
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: locked
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Locked
+            description: ''
+            use_operator: false
+            operator: locked_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: locked
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              demo_region: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: table
         options:
-          grouping:
-            -
-              field: webform_submission_value_1
-              rendered: true
-              rendered_strip: false
+          grouping: {  }
           row_class: ''
           default_row_class: true
           columns:
+            webform_submission_bulk_form: webform_submission_bulk_form
             sid: sid
+            in_draft: in_draft
+            sticky: sticky
+            locked: locked
             created: created
-            webform_submission_value: webform_submission_value
-            webform_submission_value_1: webform_submission_value_1
-            webform_submission_value_2: webform_submission_value_1
+            completed: completed
+            remote_addr: remote_addr
             view_webform_submission: view_webform_submission
-            webform_submission_value_3: webform_submission_value_1
-            webform_submission_value_4: webform_submission_value_1
+            edit_webform_submission: view_webform_submission
           default: created
           info:
+            webform_submission_bulk_form:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             sid:
               sortable: true
               default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            in_draft:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            sticky:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            locked:
+              sortable: true
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -3862,22 +2683,15 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            webform_submission_value:
-              sortable: false
+            completed:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            webform_submission_value_1:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_2:
-              sortable: false
+            remote_addr:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -3890,14 +2704,7 @@ display:
               separator: ' '
               empty_column: false
               responsive: ''
-            webform_submission_value_3:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_4:
+            edit_webform_submission:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -3918,15 +2725,815 @@ display:
           separator: ''
           hide_empty: false
       defaults:
+        access: false
         style: false
         row: false
         fields: false
-        filters: true
-        filter_groups: true
-      display_description: 'Display submissions.'
+        filters: false
+        filter_groups: false
+      display_description: 'Manage submissions.'
       display_extenders: {  }
     cache_metadata:
       max-age: 0
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
+        - user.permissions
+      tags: {  }
+  embed_review:
+    id: embed_review
+    display_title: 'Embed: Review'
+    display_plugin: embed
+    position: 4
+    display_options:
+      fields:
+        sid:
+          id: sid
+          table: webform_submission
+          field: sid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: sid
+          plugin_id: field
+          label: '#'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        in_draft:
+          id: in_draft
+          table: webform_submission
+          field: in_draft
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: in_draft
+          plugin_id: field
+          label: Draft
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: yes-no
+            format_custom_false: ''
+            format_custom_true: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        sticky:
+          id: sticky
+          table: webform_submission
+          field: sticky
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: sticky
+          plugin_id: field
+          label: Sticky
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: yes-no
+            format_custom_false: ''
+            format_custom_true: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        locked:
+          id: locked
+          table: webform_submission
+          field: locked
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: locked
+          plugin_id: field
+          label: Locked
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: yes-no
+            format_custom_false: ''
+            format_custom_true: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        created:
+          id: created
+          table: webform_submission
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: created
+          plugin_id: field
+          label: Created
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: medium
+            custom_date_format: ''
+            timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        completed:
+          id: completed
+          table: webform_submission
+          field: completed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: completed
+          plugin_id: field
+          label: Completed
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: medium
+            custom_date_format: ''
+            timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        remote_addr:
+          id: remote_addr
+          table: webform_submission
+          field: remote_addr
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: remote_addr
+          plugin_id: field
+          label: 'IP address'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        view_webform_submission:
+          id: view_webform_submission
+          table: webform_submission
+          field: view_webform_submission
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          plugin_id: entity_link
+          label: Operations
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: view
+          output_url_as_text: false
+          absolute: false
+      access:
+        type: perm
+        options:
+          perm: 'view any webform submission'
+      filters:
+        in_draft:
+          id: in_draft
+          table: webform_submission
+          field: in_draft
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: in_draft
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: 'Is draft'
+            description: ''
+            use_operator: false
+            operator: in_draft_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: in_draft
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        sticky:
+          id: sticky
+          table: webform_submission
+          field: sticky
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: sticky
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Sticky
+            description: ''
+            use_operator: false
+            operator: sticky_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: sticky
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        locked:
+          id: locked
+          table: webform_submission
+          field: locked
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: webform_submission
+          entity_field: locked
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Locked
+            description: ''
+            use_operator: false
+            operator: locked_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: locked
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              demo_region: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            webform_submission_bulk_form: webform_submission_bulk_form
+            sid: sid
+            in_draft: in_draft
+            sticky: sticky
+            locked: locked
+            created: created
+            completed: completed
+            remote_addr: remote_addr
+            view_webform_submission: view_webform_submission
+            edit_webform_submission: view_webform_submission
+          default: created
+          info:
+            webform_submission_bulk_form:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            sid:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            in_draft:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            sticky:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            locked:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            created:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            completed:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            remote_addr:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            view_webform_submission:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ' '
+              empty_column: false
+              responsive: ''
+            edit_webform_submission:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      defaults:
+        access: false
+        style: false
+        row: false
+        fields: false
+        filters: false
+        filter_groups: false
+      display_description: 'Review submissions.'
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

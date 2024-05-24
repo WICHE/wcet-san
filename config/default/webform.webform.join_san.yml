@@ -443,7 +443,7 @@ settings:
   submission_views:
     join_san_submissions:
       title: 'Join SAN Submissions'
-      view: 'join_san_submission_view:embed_default'
+      view: 'join_sans_submissions:embed_administer'
       webform_routes:
         - entity.webform.results_submissions
   submission_views_replace: {  }

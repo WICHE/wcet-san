@@ -27,6 +27,7 @@ dependencies:
     - taxonomy
     - toolbar
     - wcet_access_control
+    - webform
 id: san_admin
 label: 'SAN Admin'
 weight: 4
@@ -62,6 +63,7 @@ permissions:
   - 'delete any media'
   - 'delete any page content'
   - 'delete any resource content'
+  - 'delete any webform submission'
   - 'delete event revisions'
   - 'delete landing_page revisions'
   - 'delete media'
@@ -70,6 +72,7 @@ permissions:
   - 'delete own landing_page content'
   - 'delete own page content'
   - 'delete own resource content'
+  - 'delete own webform submission'
   - 'delete page revisions'
   - 'delete resource revisions'
   - 'delete terms in event_type'
@@ -100,10 +103,12 @@ permissions:
   - 'use text format basic_html'
   - 'view all revisions'
   - 'view any paragraphs previewer'
+  - 'view any webform submission'
   - 'view event revisions'
   - 'view landing_page revisions'
   - 'view media'
   - 'view own unpublished content'
+  - 'view own webform submission'
   - 'view page revisions'
   - 'view private content'
   - 'view resource revisions'

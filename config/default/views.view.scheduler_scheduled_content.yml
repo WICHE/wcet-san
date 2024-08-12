@@ -43,6 +43,7 @@ display:
             next: 'next ›'
             first: '« first'
             last: 'last »'
+          pagination_heading_level: h4
       style:
         type: table
         options:
@@ -842,7 +843,8 @@ display:
           not: false
           entity_type: node
           entity_field: uid
-          plugin_id: numeric
+          plugin_id: entity_target_id
+          target_entity_type_id: user
       empty:
         area_text_custom:
           id: area_text_custom

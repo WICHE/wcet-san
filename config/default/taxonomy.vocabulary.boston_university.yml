@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Boston University'
 vid: boston_university
-description: ''
+description: null
 weight: 0
+new_revision: false

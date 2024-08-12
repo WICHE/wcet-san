@@ -6,3 +6,4 @@ name: Colors
 vid: colors
 description: 'Site-wide color settings'
 weight: 0
+new_revision: false

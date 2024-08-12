@@ -1,10 +1,10 @@
+_core:
+  default_config_hash: qZeaiLq06xBUfw-JNZtgetxUUMz-J8YCzw_LuhPrk2E
+langcode: en
 page_title: Sitemap
 message:
   value: ''
   format: restricted_html
-_core:
-  default_config_hash: qZeaiLq06xBUfw-JNZtgetxUUMz-J8YCzw_LuhPrk2E
-include_css: false
 plugins:
   frontpage:
     enabled: true
@@ -63,3 +63,4 @@ plugins:
       enable_rss: true
       rss_link: view.taxonomy_term.feed_1|arg_0
       rss_depth: 9
+include_css: false

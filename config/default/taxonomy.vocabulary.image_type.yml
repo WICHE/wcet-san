@@ -6,3 +6,4 @@ name: 'Image Type'
 vid: image_type
 description: 'Internal categorization used for image organization in the Media Library and Entity Browsers'
 weight: -2
+new_revision: false

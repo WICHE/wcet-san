@@ -6,3 +6,4 @@ name: 'SVG Type'
 vid: svg_type
 description: 'Internal categorization used for SVG organization in the Media Library and Entity Browsers'
 weight: -1
+new_revision: false

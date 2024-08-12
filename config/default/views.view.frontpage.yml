@@ -189,6 +189,7 @@ display:
             first: '« First'
             last: 'Last »'
           quantity: 9
+          pagination_heading_level: h4
       query:
         type: views_query
         options:

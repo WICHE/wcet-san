@@ -590,7 +590,7 @@ handlers:
       bcc_options: {  }
       cc_mail: ''
       cc_options: {  }
-      from_mail: '[webform_submission:values:contact_information:email:raw]'
+      from_mail: no-reply@wiche.edu
       from_options: {  }
       from_name: _default
       reply_to: ''

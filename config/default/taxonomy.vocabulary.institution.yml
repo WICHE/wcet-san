@@ -6,3 +6,4 @@ name: Institution
 vid: institution
 description: 'Institutions member users can be associated with.'
 weight: -6
+new_revision: false

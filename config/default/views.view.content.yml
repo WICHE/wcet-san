@@ -44,6 +44,7 @@ display:
             next: 'Next ›'
             first: '« First'
             last: 'Last »'
+          pagination_heading_level: h4
       style:
         type: table
         options:

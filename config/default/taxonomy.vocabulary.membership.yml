@@ -6,3 +6,4 @@ name: Membership
 vid: membership
 description: 'Memberships that member users can be associated with.'
 weight: -7
+new_revision: false

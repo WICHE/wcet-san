@@ -73,6 +73,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+          pagination_heading_level: h4
       style:
         type: default
       row:
@@ -702,7 +703,8 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
-          plugin_id: numeric
+          plugin_id: entity_target_id
+          target_entity_type_id: taxonomy_term
       sorts:
         field_event_date_value:
           id: field_event_date_value
@@ -976,7 +978,8 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
-          plugin_id: numeric
+          plugin_id: entity_target_id
+          target_entity_type_id: taxonomy_term
     cache_metadata:
       max-age: -1
       contexts:

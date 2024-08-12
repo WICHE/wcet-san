@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20ed55b1d665445b2a0ba7be599a1df8",
+    "content-hash": "06ccca0add6ed670974e00f62ea5717a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1793,26 +1793,29 @@
         },
         {
             "name": "drupal/allowed_formats",
-            "version": "2.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/allowed_formats.git",
-                "reference": "2.0.0"
+                "reference": "3.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/allowed_formats-2.0.0.zip",
-                "reference": "2.0.0",
-                "shasum": "ac6c6d398f303608ced7e9cd9d4556a728dc41f0"
+                "url": "https://ftp.drupal.org/files/projects/allowed_formats-3.0.1.zip",
+                "reference": "3.0.1",
+                "shasum": "9dfaed3ab8425ee94146914fdb492cefc6c6bb4d"
             },
             "require": {
-                "drupal/core": "^9.2 || ^10"
+                "drupal/core": "^10.1 || ^11"
+            },
+            "conflict": {
+                "drupal/core": "<10.1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.0",
-                    "datestamp": "1669170410",
+                    "version": "3.0.1",
+                    "datestamp": "1723158950",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1845,7 +1848,7 @@
                     "role": "Maintainer"
                 }
             ],
-            "description": "Limit which text formats are available for each field instance.",
+            "description": "Hides info about the selected text format. The 'allowed formats' functionality has been moved to core since Drupal 10.1.0.",
             "homepage": "https://www.drupal.org/project/allowed_formats",
             "support": {
                 "source": "http://cgit.drupalcode.org/allowed_formats",
@@ -4217,26 +4220,30 @@
         },
         {
             "name": "drupal/link_attributes",
-            "version": "1.14.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/link_attributes.git",
-                "reference": "8.x-1.14"
+                "reference": "2.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/link_attributes-8.x-1.14.zip",
-                "reference": "8.x-1.14",
-                "shasum": "fa4f27ecaed7e6b3c58c0adc679918a9beb7ded5"
+                "url": "https://ftp.drupal.org/files/projects/link_attributes-2.1.1.zip",
+                "reference": "2.1.1",
+                "shasum": "fc71571fc41adeda6b39ccefd3c8e21955c0d96f"
             },
             "require": {
-                "drupal/core": "^9 || ^10"
+                "drupal/core": "^9 || ^10 || ^11",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "drupal/linkit": "~6 || ~7"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.14",
-                    "datestamp": "1687393687",
+                    "version": "2.1.1",
+                    "datestamp": "1721366572",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5536,27 +5543,27 @@
         },
         {
             "name": "drupal/search_api_exclude_entity",
-            "version": "1.4.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/search_api_exclude_entity.git",
-                "reference": "8.x-1.4"
+                "reference": "2.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/search_api_exclude_entity-8.x-1.4.zip",
-                "reference": "8.x-1.4",
-                "shasum": "45ff2cca84918259fa673c6b80996f2335831650"
+                "url": "https://ftp.drupal.org/files/projects/search_api_exclude_entity-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "31622687d69b268b0299cfd0ea0b696c1ada48f4"
             },
             "require": {
-                "drupal/core": "^8 || ^9 || ^10",
+                "drupal/core": "^9 || ^10",
                 "drupal/search_api": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.4",
-                    "datestamp": "1673284559",
+                    "version": "2.0.0",
+                    "datestamp": "1674829940",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"

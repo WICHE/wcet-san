@@ -64,3 +64,4 @@ plugins:
       rss_link: view.taxonomy_term.feed_1|arg_0
       rss_depth: 9
 include_css: false
+path: sitemap

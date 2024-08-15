@@ -24,7 +24,7 @@ third_party_settings:
 name: Resource
 type: resource
 description: 'Resources can be documents, links or just plan text. The type of resource is determined by a select field once the resource has been created.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: false

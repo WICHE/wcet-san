@@ -6,3 +6,4 @@ name: 'Event Type'
 vid: event_type
 description: 'When creating an event, select a term from this vocabulary to determine its type.'
 weight: -9
+new_revision: false

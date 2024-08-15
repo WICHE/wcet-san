@@ -6,3 +6,4 @@ name: Topic
 vid: topic
 description: 'A general vocabulary of topics that can be used to classify any type of content on the site.'
 weight: -10
+new_revision: false

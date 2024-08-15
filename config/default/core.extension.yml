@@ -66,6 +66,7 @@ module:
   language: 0
   link: 0
   link_attributes: 0
+  link_attributes_menu_link_content: 0
   linkit: 0
   login_security: 0
   markup: 0

@@ -26,7 +26,7 @@ third_party_settings:
 name: 'Resource Table'
 type: resource_table
 description: 'Holds Resource Tables / Data Tables with pdf export functionality.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: true

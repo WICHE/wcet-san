@@ -28,7 +28,7 @@
         "drupal/config_update": "^2.0",
         "drupal/contact_storage": "^1.0",
         "drupal/pathauto": "^1.0",
-        "drupal/metatag": "^1.19",
+        "drupal/metatag": "^2.1",
         "drupal/redirect": "^1.0",
         "drupal/field_group": "^3.0",
         "drupal/paragraphs": "^1.12",
@@ -156,7 +156,11 @@
             }
         },
         "drupal-lenient": {
-            "allowed-list": ["drupal/system_status", "drupal/field_hidden", "drupal/graphql_search_api"]
+            "allowed-list": [
+                "drupal/system_status",
+                "drupal/field_hidden",
+                "drupal/graphql_search_api"
+            ]
         }
     },
     "scripts": {

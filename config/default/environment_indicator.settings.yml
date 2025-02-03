@@ -1,6 +1,8 @@
-git: true
+_core:
+  default_config_hash: fCKNhwk3kMAMOCP1SvJzVbKWCTy3iV8WbE3nw93sMe0
 toolbar_integration:
   - toolbar
 favicon: true
-_core:
-  default_config_hash: fCKNhwk3kMAMOCP1SvJzVbKWCTy3iV8WbE3nw93sMe0
+version_identifier: environment_indicator_current_release
+version_identifier_fallback: deployment_identifier
+git: true

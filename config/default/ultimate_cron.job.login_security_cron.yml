@@ -8,7 +8,7 @@ title: 'Default cron handler'
 id: login_security_cron
 weight: 0
 module: login_security
-callback: login_security_cron
+callback: 'login_security#cron'
 scheduler:
   id: simple
 launcher:

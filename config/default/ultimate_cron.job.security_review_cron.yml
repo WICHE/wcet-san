@@ -8,7 +8,7 @@ title: 'Default cron handler'
 id: security_review_cron
 weight: 0
 module: security_review
-callback: security_review_cron
+callback: 'security_review#cron'
 scheduler:
   id: simple
 launcher:

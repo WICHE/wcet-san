@@ -3,20 +3,19 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_resource_type
-    - field.storage.taxonomy_term.field_label_color
-    - field.storage.taxonomy_term.field_slug
+    - field.storage.node.body
     - field.storage.node.field_content_access
     - field.storage.node.field_meta_description
-    - field.storage.node.body
+    - field.storage.node.field_resource_type
     - field.storage.node.field_topic
+    - field.storage.taxonomy_term.field_label_color
+    - field.storage.taxonomy_term.field_slug
     - search_api.server.solr
   module:
+    - node
+    - search_api_exclude_entity
     - search_api_solr
     - taxonomy
-    - node
-    - search_api
-    - search_api_exclude_entity
 third_party_settings:
   search_api_solr:
     finalize: false

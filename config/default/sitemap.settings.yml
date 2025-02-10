@@ -2,29 +2,34 @@ _core:
   default_config_hash: qZeaiLq06xBUfw-JNZtgetxUUMz-J8YCzw_LuhPrk2E
 langcode: en
 page_title: Sitemap
+path: sitemap
 message:
   value: ''
   format: restricted_html
 plugins:
   frontpage:
+    base_plugin: frontpage
     enabled: true
     weight: -50
     settings:
       title: 'Front page'
       rss: /rss.xml
   'menu:main':
+    base_plugin: menu
     enabled: true
     weight: -50
     settings:
       title: 'Main navigation'
       show_disabled: false
   'menu:account':
+    base_plugin: menu
     enabled: false
     weight: -50
     settings:
       title: 'User account menu'
       show_disabled: false
   'menu:admin':
+    base_plugin: menu
     enabled: false
     weight: -50
     settings:
@@ -37,18 +42,21 @@ plugins:
       title: null
       show_disabled: false
   'menu:footer':
+    base_plugin: menu
     enabled: false
     weight: -50
     settings:
       title: Footer
       show_disabled: false
   'menu:tools':
+    base_plugin: menu
     enabled: false
     weight: -50
     settings:
       title: Tools
       show_disabled: false
   'vocabulary:tags':
+    base_plugin: vocabulary
     enabled: false
     weight: -50
     settings:
@@ -64,4 +72,3 @@ plugins:
       rss_link: view.taxonomy_term.feed_1|arg_0
       rss_depth: 9
 include_css: false
-path: sitemap

@@ -1,0 +1,24 @@
+uuid: 760e1823-76e0-4b3a-a162-d5ac50c1c6cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_data
+    - filter.format.full_html
+    - paragraphs.paragraphs_type.table_with_filters
+  module:
+    - text
+id: paragraph.table_with_filters.field_table_data
+field_name: field_table_data
+entity_type: paragraph
+bundle: table_with_filters
+label: 'Table Data'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

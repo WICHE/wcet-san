@@ -1,0 +1,10 @@
+uuid: 88f5a792-88a6-4e97-adfc-e232d41a1527
+langcode: en
+status: true
+dependencies: {  }
+id: table_with_filters
+label: 'Table with filters'
+icon_uuid: null
+icon_default: null
+description: 'Table with filters on header rows'
+behavior_plugins: {  }

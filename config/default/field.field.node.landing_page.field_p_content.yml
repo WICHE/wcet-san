@@ -13,6 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.summary_events
     - paragraphs.paragraphs_type.summary_past_events
     - paragraphs.paragraphs_type.summary_resources
+    - paragraphs.paragraphs_type.table_with_filters
   module:
     - entity_reference_revisions
 id: node.landing_page.field_p_content
@@ -37,6 +38,7 @@ settings:
       summary_events: summary_events
       summary_past_events: summary_past_events
       summary_resources: summary_resources
+      table_with_filters: table_with_filters
     negate: 0
     target_bundles_drag_drop:
       compound_card_row:
@@ -89,5 +91,8 @@ settings:
         enabled: true
       summary_resources:
         weight: -19
+        enabled: true
+      table_with_filters:
+        weight: 36
         enabled: true
 field_type: entity_reference_revisions

@@ -3,7 +3,7 @@ import $ from "jquery";
 
 $('.paragraph--type--table-with-filters table thead').append('<tr id="filterRow"></tr><tr id="searchRow"></tr>');
 
-  let columns = $(".paragraph--type--table-with-filters thead tr:first th").length;
+let columns = $(".paragraph--type--table-with-filters thead tr:first th").length;
             let filterRow = "";
             let searchRow = "";
             
@@ -32,20 +32,32 @@ $('.paragraph--type--table-with-filters table thead').append('<tr id="filterRow"
 
             populateFilters();
 
-            $('.column-search').on('keyup', function () {
-                let column = $(this).data('column');
-                let value = $(this).val().toLowerCase();
+            function filterTable() {
                 $('.paragraph--type--table-with-filters tbody tr').each(function () {
-                    let cell = $(this).find("td").eq(column).text().toLowerCase();
-                    $(this).toggle(cell.includes(value));
+                    let row = $(this);
+                    let showRow = true;
+                    
+                    $('.column-search').each(function () {
+                        let column = $(this).data('column');
+                        let value = $(this).val().toLowerCase();
+                        let cell = row.find("td").eq(column).text().toLowerCase();
+                        if (value && !cell.includes(value)) {
+                            showRow = false;
+                        }
+                    });
+                    
+                    $('.column-filter').each(function () {
+                        let column = $(this).data('column');
+                        let value = $(this).val();
+                        let cell = row.find("td").eq(column).text().trim();
+                        if (value && cell !== value) {
+                            showRow = false;
+                        }
+                    });
+                    
+                    row.toggle(showRow);
                 });
-            });
+            }
 
-            $('.column-filter').on('change', function () {
-                let column = $(this).data('column');
-                let value = $(this).val();
-                $('.paragraph--type--table-with-filters tbody tr').each(function () {
-                    let cell = $(this).find("td").eq(column).text().trim();
-                    $(this).toggle(value === "" || cell === value);
-                });
-            });
+            $('.column-search').on('keyup', filterTable);
+            $('.column-filter').on('change', filterTable);

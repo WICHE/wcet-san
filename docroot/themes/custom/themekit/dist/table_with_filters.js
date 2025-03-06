@@ -146,23 +146,35 @@ function populateFilters() {
 
 populateFilters();
 
-(0, _jquery2.default)('.column-search').on('keyup', function () {
-    var column = (0, _jquery2.default)(this).data('column');
-    var value = (0, _jquery2.default)(this).val().toLowerCase();
+function filterTable() {
     (0, _jquery2.default)('.paragraph--type--table-with-filters tbody tr').each(function () {
-        var cell = (0, _jquery2.default)(this).find("td").eq(column).text().toLowerCase();
-        (0, _jquery2.default)(this).toggle(cell.indexOf(value) !== -1);
-    });
-});
+        var row = (0, _jquery2.default)(this);
+        var showRow = true;
 
-(0, _jquery2.default)('.column-filter').on('change', function () {
-    var column = (0, _jquery2.default)(this).data('column');
-    var value = (0, _jquery2.default)(this).val();
-    (0, _jquery2.default)('.paragraph--type--table-with-filters tbody tr').each(function () {
-        var cell = (0, _jquery2.default)(this).find("td").eq(column).text().trim();
-        (0, _jquery2.default)(this).toggle(value === "" || cell === value);
+        (0, _jquery2.default)('.column-search').each(function () {
+            var column = (0, _jquery2.default)(this).data('column');
+            var value = (0, _jquery2.default)(this).val().toLowerCase();
+            var cell = row.find("td").eq(column).text().toLowerCase();
+            if (value && !(cell.indexOf(value) !== -1)) {
+                showRow = false;
+            }
+        });
+
+        (0, _jquery2.default)('.column-filter').each(function () {
+            var column = (0, _jquery2.default)(this).data('column');
+            var value = (0, _jquery2.default)(this).val();
+            var cell = row.find("td").eq(column).text().trim();
+            if (value && cell !== value) {
+                showRow = false;
+            }
+        });
+
+        row.toggle(showRow);
     });
-});
+}
+
+(0, _jquery2.default)('.column-search').on('keyup', filterTable);
+(0, _jquery2.default)('.column-filter').on('change', filterTable);
 
 /***/ }),
 

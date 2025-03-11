@@ -112,22 +112,25 @@ function _toConsumableArray(arr) {
     } else {
         return Array.from(arr);
     }
-} // Table with Filters JS
+}
 
-
-(0, _jquery2.default)('.paragraph--type--table-with-filters table thead').append('<tr id="filterRow"></tr><tr id="searchRow"></tr>');
+// Append a single filter row instead of two separate rows
+(0, _jquery2.default)('.paragraph--type--table-with-filters table thead').append('<tr id="filterRow"></tr>');
 
 var columns = (0, _jquery2.default)(".paragraph--type--table-with-filters thead tr:first th").length;
 var filterRow = "";
-var searchRow = "";
 
 for (var i = 0; i < columns; i++) {
-    filterRow += '<th><select class="column-filter" data-column="' + i + '"></select></th>';
-    searchRow += i === 0 ? '<th><input type="text" class="column-search" data-column="' + i + '" placeholder="Search"></th>' : "<th></th>";
+    if (i === 0) {
+        // First column has a search input instead of a dropdown
+        filterRow += '<th><input type="text" class="column-search" data-column="' + i + '" placeholder="Search"></th>';
+    } else {
+        // Other columns have dropdown filters
+        filterRow += '<th><select class="column-filter" data-column="' + i + '"></select></th>';
+    }
 }
 
 (0, _jquery2.default)('#filterRow').html(filterRow);
-(0, _jquery2.default)('#searchRow').html(searchRow);
 
 function populateFilters() {
     (0, _jquery2.default)('.column-filter').each(function () {

@@ -140,6 +140,7 @@ function populateFilters() {
         }).get())));
 
         var options = '<option value="">All</option>';
+        uniqueValues.sort(); // Sort dropdown values alphabetically
         uniqueValues.forEach(function (value) {
             options += '<option value="' + value + '">' + value + '</option>';
         });
@@ -147,7 +148,25 @@ function populateFilters() {
     });
 }
 
+// Function to sort table by column 1 (index 0)
+function sortTableByColumn1() {
+    var rows = (0, _jquery2.default)('.paragraph--type--table-with-filters tbody tr').get();
+
+    rows.sort(function (a, b) {
+        var A = (0, _jquery2.default)(a).find("td").eq(0).text().trim().toLowerCase();
+        var B = (0, _jquery2.default)(b).find("td").eq(0).text().trim().toLowerCase();
+        return A.localeCompare(B);
+    });
+
+    // Append rows in sorted order
+    _jquery2.default.each(rows, function (index, row) {
+        (0, _jquery2.default)('.paragraph--type--table-with-filters tbody').append(row);
+    });
+}
+
+// Populate filters and sort table initially
 populateFilters();
+sortTableByColumn1();
 
 function filterTable() {
     (0, _jquery2.default)('.paragraph--type--table-with-filters tbody tr').each(function () {
@@ -176,6 +195,7 @@ function filterTable() {
     });
 }
 
+// Event listeners
 (0, _jquery2.default)('.column-search').on('keyup', filterTable);
 (0, _jquery2.default)('.column-filter').on('change', filterTable);
 

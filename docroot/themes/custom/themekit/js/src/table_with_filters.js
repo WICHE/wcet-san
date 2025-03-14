@@ -26,6 +26,7 @@ function populateFilters() {
         }).get())];
 
         let options = '<option value="">All</option>';
+        uniqueValues.sort(); // Sort dropdown values alphabetically
         uniqueValues.forEach(value => {
             options += `<option value="${value}">${value}</option>`;
         });
@@ -33,7 +34,25 @@ function populateFilters() {
     });
 }
 
+// Function to sort table by column 1 (index 0)
+function sortTableByColumn1() {
+    let rows = $('.paragraph--type--table-with-filters tbody tr').get();
+
+    rows.sort((a, b) => {
+        let A = $(a).find("td").eq(0).text().trim().toLowerCase();
+        let B = $(b).find("td").eq(0).text().trim().toLowerCase();
+        return A.localeCompare(B);
+    });
+
+    // Append rows in sorted order
+    $.each(rows, function (index, row) {
+        $('.paragraph--type--table-with-filters tbody').append(row);
+    });
+}
+
+// Populate filters and sort table initially
 populateFilters();
+sortTableByColumn1();
 
 function filterTable() {
     $('.paragraph--type--table-with-filters tbody tr').each(function () {
@@ -62,5 +81,6 @@ function filterTable() {
     });
 }
 
+// Event listeners
 $('.column-search').on('keyup', filterTable);
 $('.column-filter').on('change', filterTable);

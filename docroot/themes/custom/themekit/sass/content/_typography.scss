@@ -12,12 +12,12 @@ h6,
   font-family: 'News Cycle', sans-serif;
   color: $dark-gray;
   font-weight: 700;
-  font-size: 32px;
-  
+
   .paragraph--type--simple-card & {
     color: $white;
     &.field--name-field-header {
-      color: $white;
+      color: $white; 
+      font-size: 32px !important;
     }
   }
 }

@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.single_file
     - paragraphs.paragraphs_type.single_image
     - paragraphs.paragraphs_type.single_link
+    - paragraphs.paragraphs_type.table_with_filters
   module:
     - entity_reference_revisions
 id: paragraph.layout_two_column.field_p_left_column
@@ -29,6 +30,7 @@ settings:
       single_file: single_file
       single_image: single_image
       single_link: single_link
+      table_with_filters: table_with_filters
     negate: 0
     target_bundles_drag_drop:
       compound_card_row:
@@ -76,7 +78,13 @@ settings:
       summary_events:
         weight: 31
         enabled: false
+      summary_past_events:
+        weight: 34
+        enabled: false
       summary_resources:
         weight: 32
         enabled: false
+      table_with_filters:
+        weight: 36
+        enabled: true
 field_type: entity_reference_revisions

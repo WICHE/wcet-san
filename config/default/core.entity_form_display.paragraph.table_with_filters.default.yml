@@ -1,0 +1,25 @@
+uuid: f707b2a6-aaa8-4f4b-b0e7-43357ca35882
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.table_with_filters.field_table_data
+    - paragraphs.paragraphs_type.table_with_filters
+  module:
+    - text
+id: paragraph.table_with_filters.default
+targetEntityType: paragraph
+bundle: table_with_filters
+mode: default
+content:
+  field_table_data:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

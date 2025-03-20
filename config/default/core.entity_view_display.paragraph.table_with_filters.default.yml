@@ -1,0 +1,26 @@
+uuid: 6af7f136-8e5e-4249-ad36-9e6fc7466474
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.table_with_filters.field_table_data
+    - paragraphs.paragraphs_type.table_with_filters
+  module:
+    - text
+id: paragraph.table_with_filters.default
+targetEntityType: paragraph
+bundle: table_with_filters
+mode: default
+content:
+  field_table_data:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true

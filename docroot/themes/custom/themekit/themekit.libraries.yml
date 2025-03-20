@@ -26,6 +26,7 @@ themekit:
   js:
     dist/themekit.js: {}
     dist/script_overrides.js: {}
+    dist/table_with_filters.js: {}
     dist/commons.js: {}
   css:
     theme:

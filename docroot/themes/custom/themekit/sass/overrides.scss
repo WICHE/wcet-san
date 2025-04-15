@@ -828,3 +828,16 @@
     font-size: 32px;
   }
 }
+
+
+  //grid-template-areas: 'branding' 'menu';
+  .block-system-branding-block {
+
+    // Site name logo
+    .site-name {
+
+      a {
+        background-image: url("../images/SAN-logo-1-white-25.jpg");
+      }
+    }
+  }

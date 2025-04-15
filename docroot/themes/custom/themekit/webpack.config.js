@@ -9,6 +9,7 @@ const entryPoints = {
   // polyfill: 'babel-polyfill',
   // themekit: './js/src/themekit.js',
   script_overrides: './js/src/script_overrides.js',
+  table_with_filters: './js/src/table_with_filters.js',
   // search_header: './js/src/search-header/search-header.jsx', // React component
   // search_main: './js/src/search-main/search-main.jsx', // React component
   // style: './sass/style.scss',

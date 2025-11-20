@@ -1250,7 +1250,7 @@ header {
     .region-header {
       display: grid;
       grid-template-rows: 50px 1fr;
-      grid-template-columns: 25% 48% 27%;
+      grid-template-columns: 25% 45% 30%;
       grid-template-areas: "logo search utils" "logo main-menu main-menu";
       max-height: 145px; } }
   .region-header .block-menu > ul.menu {

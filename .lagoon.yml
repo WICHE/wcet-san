@@ -13,10 +13,10 @@ tasks:
         command: cd docroot; drush -y updb --cache-clear=0
         service: cli
 
-    - run:
-        name: configuration import
-        command: cd docroot; drush cim -y
-        service: cli
+    # - run:
+    #     name: configuration import
+    #     command: cd docroot; drush cim -y
+    #     service: cli
     
     - run:
         name: second cache clear

@@ -1316,9 +1316,9 @@ header {
           font-size: 0.875rem; } }
       .region-header .menu--util-navigation ul.menu li a {
         margin-left: 6px; }
-      .region-header .menu--util-navigation ul.menu li:first-child a:after {
+      /* .region-header .menu--util-navigation ul.menu li:first-child a:after {
         width: 100%;
-        left: 0; }
+        left: 0; } */
       .region-header .menu--util-navigation ul.menu li a {
         color: #231f20;
         position: relative;

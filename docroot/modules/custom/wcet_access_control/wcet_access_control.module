@@ -17,13 +17,30 @@ function wcet_access_control_node_access(NodeInterface $node, $op, AccountInterf
   $type = $node->bundle();
   if ($op == 'view') {
     if (($type === 'resource' || $type === 'event' || $type === 'resource_table') && $node->get('field_content_access')->value === 'private') {
+      
+      // First check: if unpublished, defer to core permissions (don't override).
+      if (!$node->isPublished()) {
+        return AccessResult::neutral()
+          ->cachePerUser()
+          ->addCacheableDependency($node);
+      }
+      
+      // For published private content, check the custom permission.
       if ($account->hasPermission('view private content')) {
-        return AccessResult::allowed()->cachePerUser();
-      } else {
-        return AccessResult::forbidden()->cachePerUser();
+        return AccessResult::allowed()
+          ->cachePerUser()
+          ->addCacheableDependency($node);
+      }
+      else {
+        return AccessResult::forbidden()
+          ->cachePerUser()
+          ->addCacheableDependency($node);
       }
     }
   }
+  
+  // For all other cases, don't affect access.
+  return AccessResult::neutral();
 }
 
 /**

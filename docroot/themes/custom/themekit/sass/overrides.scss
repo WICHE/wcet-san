@@ -407,7 +407,7 @@
     .field--name-field-topic {
       position: relative;
       color: #575d70;
-      @media print, screen and(min-width: 48em) {
+      @media print, screen and (min-width: 48em) {
         padding-left: 8px;
         margin-left: 8px;
         &:after {
@@ -435,7 +435,7 @@
   .event-content,
   .resources-content {
     max-width: 100%;
-    @media print, screen and(min-width: 48em) {
+    @media print, screen and (min-width: 48em) {
       padding-right: rem-calc(76);
       width: 69%;
     }
@@ -443,7 +443,7 @@
   .event-details,
   .resources-details {
     margin-top: 28px;
-    @media print, screen and(min-width: 48em) {
+    @media print, screen and (min-width: 48em) {
       width: 29%;
       margin-top: 0;
       padding-top: 0;

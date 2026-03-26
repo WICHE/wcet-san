@@ -462,15 +462,15 @@ window.addEventListener('load', () => {
 /*
   Hide the scroll down after 3s.
  */
-window.addEventListener('load', () => {
-  const arrow = document.querySelector('.paragraph .view-more');
+// window.addEventListener('load', () => {
+//   const arrow = document.querySelector('.paragraph .view-more');
 
-  if (!arrow) return;
+//   if (!arrow) return;
 
-  setTimeout(function () {
-    arrow.classList.add('transparent');
-  }, 3000);
-});
+//   setTimeout(function () {
+//     arrow.classList.add('transparent');
+//   }, 3000);
+// });
 
 /*
   Remove attrs.

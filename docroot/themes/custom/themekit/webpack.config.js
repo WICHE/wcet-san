@@ -10,7 +10,7 @@ const entryPoints = {
   // themekit: './js/src/themekit.js',
   script_overrides: './js/src/script_overrides.js',
   table_with_filters: './js/src/table_with_filters.js',
-  // search_header: './js/src/search-header/search-header.jsx', // React component
+  search_header: './js/src/search-header/search-header.jsx', // React component
   // search_main: './js/src/search-main/search-main.jsx', // React component
   // style: './sass/style.scss',
   // wysiwyg: './sass/wysiwyg.scss',
@@ -136,6 +136,7 @@ module.exports = (env, argv) => {
           }, {
             loader: 'sass-loader',
             options: {
+              implementation: require('sass'),
               sassOptions: {
                 includePaths: [path.resolve(__dirname, './node_modules/foundation-sites/scss')],
               },

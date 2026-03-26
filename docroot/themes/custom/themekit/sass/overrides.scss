@@ -143,7 +143,7 @@
       a {
         line-height: inherit;
         color: #1779ba;
-        text-decoration: none;
+        text-decoration: underline;
         cursor: pointer;
 
         &:hover {
@@ -328,22 +328,22 @@
     font-weight: 600;
     appearance: none;
     margin: 1rem 0;
-    color: #4a90e2;
+    color: #2563eb;
     transition: 0.4s ease background, 0.4s ease color, 0.4s ease border;
     text-align: center;
     padding: 13px;
     min-width: 194px;
     border-radius: 8px;
     background: transparent;
-    border: 2px solid #4a90e2;
+    border: 2px solid #2563eb;
 
     &[value="Submit"] {
       color: #ffff;
-      background: #4a90e2;
+      background: #2563eb;
 
       &:hover {
         background: transparent;
-        color: #4a90e2;
+        color: #2563eb;
       }
     }
   }
@@ -407,7 +407,7 @@
     .field--name-field-topic {
       position: relative;
       color: #575d70;
-      @media print, screen and(min-width: 48em) {
+      @media print, screen and (min-width: 48em) {
         padding-left: 8px;
         margin-left: 8px;
         &:after {
@@ -435,7 +435,7 @@
   .event-content,
   .resources-content {
     max-width: 100%;
-    @media print, screen and(min-width: 48em) {
+    @media print, screen and (min-width: 48em) {
       padding-right: rem-calc(76);
       width: 69%;
     }
@@ -443,7 +443,7 @@
   .event-details,
   .resources-details {
     margin-top: 28px;
-    @media print, screen and(min-width: 48em) {
+    @media print, screen and (min-width: 48em) {
       width: 29%;
       margin-top: 0;
       padding-top: 0;
@@ -774,7 +774,7 @@
       a {
         line-height: inherit;
         color: #1779ba;
-        text-decoration: none;
+        text-decoration: underline;
         cursor: pointer;
 
         &:hover {

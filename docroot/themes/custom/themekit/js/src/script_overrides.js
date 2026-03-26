@@ -462,15 +462,15 @@ window.addEventListener('load', () => {
 /*
   Hide the scroll down after 3s.
  */
-window.addEventListener('load', () => {
-  const arrow = document.querySelector('.paragraph .view-more');
+// window.addEventListener('load', () => {
+//   const arrow = document.querySelector('.paragraph .view-more');
 
-  if (!arrow) return;
+//   if (!arrow) return;
 
-  setTimeout(function () {
-    arrow.classList.add('transparent');
-  }, 3000);
-});
+//   setTimeout(function () {
+//     arrow.classList.add('transparent');
+//   }, 3000);
+// });
 
 /*
   Remove attrs.
@@ -501,7 +501,55 @@ window.addEventListener('load', () => {
     el.removeAttribute('role');
   });
 
+  // Remove role="none" from menu <li> elements (added by Foundation dropdown JS)
+  const menuLis = document.querySelectorAll('ul.menu .menu-item');
+  menuLis && menuLis.forEach(function (li) {
+    li.removeAttribute('role');
+  });
+
   menus && menus.forEach(function(element) {
     element.removeAttribute('role');
+  });
+});
+
+/*
+  Add aria-label to select2 elements that lack an associated label.
+ */
+window.addEventListener('load', () => {
+  const select2Rendered = document.querySelectorAll('.select2-selection__rendered');
+
+  select2Rendered && select2Rendered.forEach(function (el) {
+    if (!el.getAttribute('aria-labelledby')) {
+      const text = el.textContent.trim();
+      if (text) {
+        el.closest('.select2-selection').setAttribute('aria-label', text);
+      }
+    }
+  });
+});
+
+/*
+  Remove empty heading elements (containing only whitespace/&nbsp;).
+ */
+window.addEventListener('load', () => {
+  const headings = document.querySelectorAll('h4');
+
+  headings && headings.forEach(function (heading) {
+    if (!heading.textContent.trim()) {
+      heading.remove();
+    }
+  });
+});
+
+/*
+  Remove empty links with no discernible name.
+ */
+window.addEventListener('load', () => {
+  const links = document.querySelectorAll('a');
+
+  links && links.forEach(function (link) {
+    if (!link.textContent.trim() && !link.getAttribute('aria-label') && !link.querySelector('img')) {
+      link.remove();
+    }
   });
 });

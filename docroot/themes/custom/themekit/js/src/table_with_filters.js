@@ -6,13 +6,18 @@ $('.paragraph--type--table-with-filters table thead').append('<tr id="filterRow"
 let columns = $(".paragraph--type--table-with-filters thead tr:first th").length;
 let filterRow = "";
 
+// Get column header texts for aria-labels
+let headerCells = $(".paragraph--type--table-with-filters thead tr:first th");
+
 for (let i = 0; i < columns; i++) {
+    let headerText = $(headerCells[i]).text().trim() || `Column ${i + 1}`;
+
     if (i === 0) {
         // First column has a search input instead of a dropdown
-        filterRow += `<th><input type="text" class="column-search" data-column="${i}" placeholder="Search"></th>`;
+        filterRow += `<th><input type="text" class="column-search" data-column="${i}" placeholder="Search" aria-label="Search ${headerText}"></th>`;
     } else {
         // Other columns have dropdown filters
-        filterRow += `<th><select class="column-filter" data-column="${i}"></select></th>`;
+        filterRow += `<th><select class="column-filter" data-column="${i}" aria-label="Filter ${headerText}"></select></th>`;
     }
 }
 

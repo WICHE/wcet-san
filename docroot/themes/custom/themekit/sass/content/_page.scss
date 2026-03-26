@@ -364,6 +364,8 @@
 .field--name-body,
 .field--name-field-body {
   a {
+    text-decoration: underline;
+
     &:hover {
       text-decoration: underline;
     }

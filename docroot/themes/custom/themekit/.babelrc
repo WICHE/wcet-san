@@ -3,5 +3,8 @@
     "babel-preset-env",
     "babel-preset-react"
   ],
-  "plugins": ["babel-plugin-array-includes"]
+  "plugins": [
+    "babel-plugin-array-includes",
+    "transform-class-properties"
+  ]
 }

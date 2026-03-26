@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override for field_header on compound_header_content paragraphs.
+ *
+ * Uses <h2> instead of the default <h3> for correct heading hierarchy.
+ *
+ * @see field--paragraph--field-header.html.twig
+ */
+#}
+{% set classes = [
+  'field',
+  'heading',
+  'field--name-' ~ field_name|clean_class,
+  'field--type-' ~ field_type|clean_class,
+  'field--label-' ~ label_display,
+] %}
+
+{% for item in items %}
+  <h2{{ attributes.addClass(classes, 'field__item') }}>{{ item.content }}</h2>
+{% endfor %}

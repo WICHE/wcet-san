@@ -37,7 +37,7 @@
     position: relative;
     display: inline-block;
     max-width: 100%;
-    color: #4a90e2;
+    color: #2563eb;
     z-index: -1;
   }
 
@@ -520,6 +520,17 @@
   }
 }
 
+.field--name-body,
+.field--name-field-body {
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      color: darken(#2563eb, 15%);
+    }
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -545,7 +556,7 @@
   border-radius: 8px;
   padding: 0.625rem;
   min-width: 100px;
-  color: #4a90e2;
+  color: #2563eb;
   transition: color .3s, border .3s;
   font-weight: 900;
 
@@ -567,7 +578,7 @@
     transition: .3s ease color;
 
     &:hover {
-      color: #4a90e2;
+      color: #2563eb;
     }
   }
 }

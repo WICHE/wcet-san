@@ -513,17 +513,31 @@ window.addEventListener('load', () => {
 });
 
 /*
-  Add aria-label to select2 elements that lack an associated label.
+  Add accessible names to select2 rendered spans that Lighthouse flags.
+  The span has role="textbox" so it needs its own aria-labelledby.
+  ID pattern: select2-{originalSelectId}-container
  */
 window.addEventListener('load', () => {
-  const select2Rendered = document.querySelectorAll('.select2-selection__rendered');
+  const select2Rendered = document.querySelectorAll('.select2-selection__rendered[role="textbox"]');
 
   select2Rendered && select2Rendered.forEach(function (el) {
-    if (!el.getAttribute('aria-labelledby')) {
-      const text = el.textContent.trim();
-      if (text) {
-        el.closest('.select2-selection').setAttribute('aria-label', text);
-      }
+    if (el.getAttribute('aria-labelledby') || el.getAttribute('aria-label')) return;
+
+    const id = el.getAttribute('id');
+    if (!id) return;
+
+    const match = id.match(/^select2-(.+)-container$/);
+    if (!match) return;
+
+    const selectId = match[1];
+
+    // Find label by for attribute or by id (existing a11y code sets label id = selectId)
+    const label = document.querySelector('label[for="' + selectId + '"]')
+      || document.getElementById(selectId);
+
+    if (label && label.tagName === 'LABEL') {
+      if (!label.id) label.id = selectId + '-label';
+      el.setAttribute('aria-labelledby', label.id);
     }
   });
 });

@@ -368,6 +368,7 @@
 
     &:hover {
       text-decoration: underline;
+      color: darken($san-blue, 15%);
     }
   }
   ul {

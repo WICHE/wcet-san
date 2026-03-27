@@ -206,7 +206,7 @@ ul.primary {
   background-image: none;
 
   &:before {
-    @extend %icon-base;
+    @include icon-base;
     font-size: 30px;
     margin-right: 10px;
   }

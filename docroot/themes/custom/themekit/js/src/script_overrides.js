@@ -549,7 +549,7 @@ window.addEventListener('load', () => {
   const headings = document.querySelectorAll('h4');
 
   headings && headings.forEach(function (heading) {
-    if (!heading.textContent.trim()) {
+    if (!heading.textContent.replace(/\u00A0/g, '').trim()) {
       heading.remove();
     }
   });
@@ -562,7 +562,7 @@ window.addEventListener('load', () => {
   const links = document.querySelectorAll('a');
 
   links && links.forEach(function (link) {
-    if (!link.textContent.trim() && !link.getAttribute('aria-label') && !link.querySelector('img')) {
+    if (!link.textContent.replace(/\u00A0/g, '').trim() && !link.getAttribute('aria-label') && !link.querySelector('img')) {
       link.remove();
     }
   });

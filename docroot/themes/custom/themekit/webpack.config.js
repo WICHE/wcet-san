@@ -12,7 +12,7 @@ const entryPoints = {
   table_with_filters: './js/src/table_with_filters.js',
   search_header: './js/src/search-header/search-header.jsx', // React component
   // search_main: './js/src/search-main/search-main.jsx', // React component
-  // style: './sass/style.scss',
+  style: './sass/style.scss',
   // wysiwyg: './sass/wysiwyg.scss',
   overrides: './sass/overrides.scss',
 };

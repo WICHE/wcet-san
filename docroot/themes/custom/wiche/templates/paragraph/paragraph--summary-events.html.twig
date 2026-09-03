@@ -1,0 +1,15 @@
+{#
+/**
+ * @file Events summary section — summary_events.
+ * Field: field_summary_topics (referenced items shown as media cards).
+ * Title has no field on this bundle, so it's a themeable default.
+ */
+#}
+<section{{ attributes.addClass('section', 'paragraph-summary', 'paragraph-summary--events') }}>
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-head__title">{{ 'Events'|t }}</h2>
+    </div>
+    <div class="card-grid summary-grid">{{ content.field_summary_topics }}</div>
+  </div>
+</section>

@@ -72,7 +72,6 @@
         "drupal/simple_sitemap": "^4.0",
         "drupal/token": "^1.7",
         "drupal/graphql": "^3.0",
-        "drupal/graphql_search_api": "^1.1",
         "drupal/search_api_exclude_entity": "^3.0",
         "drupal/media_entity_generic": "^1.1",
         "drupal/csv_serialization": "^4.0",
@@ -85,7 +84,6 @@
         "drupal/config_filter": "^2.4",
         "palantirnet/drupal-rector": "^0.15.1",
         "mglaman/composer-drupal-lenient": "^1.0",
-        "drupal/classy": "^1.0",
         "drupal/gin_toolbar": "^3.0",
         "drupal/gin": "^5.0",
         "drupal/linkit": "^7.0",
@@ -143,16 +141,10 @@
             ]
         },
         "enable-patching": true,
-        "patches": {
-            "drupal/graphql_search_api": {
-                "d10_compatibility": "./patches/graphql_search_api_d10_compatibility.patch"
-            }
-        },
+        "patches": {},
         "drupal-lenient": {
             "allowed-list": [
-                "drupal/field_hidden",
-                "drupal/graphql_search_api",
-                "drupal/classy"
+                "drupal/field_hidden"
             ]
         }
     },

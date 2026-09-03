@@ -1,0 +1,20 @@
+{#
+/**
+ * @file Generic content block — simple_content.
+ * Fields: field_header, field_subheader, field_body, field_link.
+ */
+#}
+<section{{ attributes.addClass('section', 'paragraph-content') }}>
+  <div class="wrap wrap--narrow flow-l">
+    {% if paragraph.field_header.value %}
+      <h2>{{ paragraph.field_header.value }}</h2>
+    {% endif %}
+    {% if paragraph.field_subheader.value %}
+      <p class="lead">{{ paragraph.field_subheader.value }}</p>
+    {% endif %}
+    {{ content.field_body }}
+    {% if content.field_link|render|trim %}
+      <div class="section-cta section-cta--start">{{ content.field_link }}</div>
+    {% endif %}
+  </div>
+</section>

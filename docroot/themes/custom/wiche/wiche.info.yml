@@ -13,6 +13,7 @@ libraries:
 # Block regions. Machine names mirror the old themekit theme so existing block
 # placements can be re-created 1:1 when we switch the default theme over.
 regions:
+  utility: 'Utility bar'
   header: Header
   primary_menu: 'Primary menu'
   breadcrumb: Breadcrumb
@@ -23,6 +24,6 @@ regions:
   content: Content
   sidebar_first: 'Sidebar first'
   sidebar_second: 'Sidebar second'
-  footer_top: 'Footer top'
-  footer: Footer
+  footer_top: 'Footer (light)'
+  footer: 'Footer (WCET dark band)'
   page_bottom: 'Page bottom'

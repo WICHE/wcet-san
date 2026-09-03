@@ -1,0 +1,38 @@
+{#
+/**
+ * @file wiche · menu--main.html.twig — the mega-menu markup.
+ *
+ * Top level renders as `.menu--main`; each submenu renders as `.menu-dropdown`
+ * so components.css can lay them out as hover/click dropdown panels.
+ * Add a `menu-dropdown--mega` + `--cols` treatment per item later for the
+ * multi-column panels (e.g. Compliance Topics).
+ */
+#}
+{% import _self as menus %}
+{{ menus.build(items, attributes, 0) }}
+
+{% macro build(items, attributes, level) %}
+  {% import _self as menus %}
+  {% if items %}
+    {% if level == 0 %}
+      <ul{{ attributes.addClass('menu', 'menu--main') }}>
+    {% else %}
+      <ul class="menu-dropdown">
+    {% endif %}
+    {% for item in items %}
+      {%
+        set classes = [
+          item.below ? 'has-dropdown',
+          item.in_active_trail ? 'is-active-trail',
+        ]|filter(v => v)
+      %}
+      <li{{ item.attributes.addClass(classes) }}>
+        {{ link(item.title, item.url) }}
+        {% if item.below %}
+          {{ menus.build(item.below, create_attribute(), level + 1) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

@@ -1,89 +1,281 @@
 /**
- * wiche · Components — reusable UI pieces. Tokens only.
- * Starter set: buttons, cards, primary nav, pills. Grow as paragraph types
- * and pages get built out.
+ * wiche · components.css — buttons, hero, cards, header/mega-menu, footer.
  */
 
-/* Buttons --------------------------------------------------------------- */
+/* ============================================================= Buttons === */
 .button,
-.wiche-button,
-a.button {
+.btn,
+a.btn,
+.field--type-link a.button {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2xs);
-  padding: var(--space-2xs) var(--space-m);
-  border-radius: var(--radius-pill);
-  border: 1px solid transparent;
-  background: var(--accent);
-  color: var(--accent-contrast);
+  justify-content: center;
+  gap: var(--sp-2);
+  font-family: var(--font-body);
   font-weight: 600;
-  line-height: 1.2;
-  text-decoration: none;
+  font-size: var(--fs-body);
+  line-height: 1;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--c-blue);
+  background: var(--c-blue);
+  color: #fff;
   cursor: pointer;
-  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  text-align: center;
 }
-.button:hover { background: var(--brand-700); color: var(--accent-contrast); }
-.button:active { transform: translateY(1px); }
-.button--ghost {
-  background: transparent;
-  color: var(--accent);
-  border-color: var(--line-strong);
+.button:hover, .btn:hover {
+  background: var(--c-blue-600); border-color: var(--c-blue-600);
+  color: #fff; text-decoration: none;
 }
-.button--ghost:hover { background: var(--brand-050); color: var(--brand-700); }
+.btn--outline, .button--outline, a.btn--outline {
+  background: transparent; color: var(--c-blue); border-color: var(--c-blue);
+}
+.btn--outline:hover, .button--outline:hover {
+  background: var(--c-blue); color: #fff;
+}
+.btn--on-dark { background: #fff; color: var(--c-blue); border-color: #fff; }
+.btn--on-dark:hover { background: var(--c-blue); color: #fff; border-color: #fff; }
+.btn--ghost {
+  background: transparent; border-color: transparent; color: var(--c-blue);
+  padding-inline: 0; font-weight: 700;
+}
+.btn--ghost:hover { color: var(--c-magenta); background: transparent; }
 
-/* Card ------------------------------------------------------------------ */
+/* ================================================================ Hero === */
+.hero { position: relative; background: var(--hero-gradient); color: #fff; overflow: hidden; }
+.hero__inner {
+  display: grid; align-items: center;
+  min-height: 320px; padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+}
+.hero__eyebrow {
+  font-size: var(--fs-body); font-weight: 400; letter-spacing: 0.01em;
+  margin-bottom: var(--sp-3); opacity: 0.95;
+}
+.hero__title {
+  color: #fff; font-weight: 400; margin: 0;
+  font-size: var(--fs-h2); max-width: 22ch; line-height: 1.3;
+}
+.hero__body { max-width: 46ch; margin-top: var(--sp-4); }
+.hero__actions { margin-top: var(--sp-6); display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+/* Half-image variant */
+.hero--split .hero__inner { grid-template-columns: 1fr 1fr; gap: 0; padding-right: 0; }
+.hero--split .hero__media { align-self: stretch; }
+.hero--split .hero__media img { width: 100%; height: 100%; object-fit: cover; }
+.hero--split .hero__copy { padding-right: var(--gutter); }
+/* Full-image variant */
+.hero--full .hero__bg { position: absolute; inset: 0; }
+.hero--full .hero__bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero--full::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(7,38,58,0.92) 0%, rgba(7,38,58,0.55) 60%, rgba(7,38,58,0.25) 100%);
+}
+.hero--full .hero__copy { position: relative; z-index: 2; }
+@media (max-width: 800px) {
+  .hero--split .hero__inner { grid-template-columns: 1fr; }
+  .hero--split .hero__media { display: none; }
+  .hero--split .hero__copy { padding-right: 0; }
+}
+
+/* =============================================================== Cards === */
 .card {
   background: var(--surface);
-  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: var(--space-m);
-  box-shadow: var(--shadow-1);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-6);
+  display: flex; flex-direction: column;
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
-.card__title { font-size: var(--step-1); margin-bottom: var(--space-2xs); }
-.card__meta { color: var(--ink-faint); font-size: var(--step--1); }
+.card:hover { box-shadow: var(--shadow-card-hover); }
+.card__title { font-size: var(--fs-h4); font-weight: 600; color: var(--c-heading); margin: 0 0 var(--sp-4); }
+.card__rule { border: 0; border-top: 1px solid var(--border-strong); margin: 0 0 var(--sp-4); }
+.card__body { color: var(--c-ink); margin-bottom: var(--sp-4); }
+.card__label { color: var(--c-magenta); font-weight: 600; font-size: var(--fs-sm); margin-bottom: var(--sp-5); }
+.card__cta { margin-top: auto; }
 
-/* A responsive card grid (used by summary_* and card_row paragraphs). */
-.card-grid {
-  display: grid;
-  gap: var(--space-m);
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+/* Media card (Events) — image, blue title, meta, outline CTA */
+.card--media { padding: 0; box-shadow: none; background: transparent; }
+.card--media .card__media { border-radius: var(--radius); overflow: hidden; margin-bottom: var(--sp-4); aspect-ratio: 16 / 10; }
+.card--media .card__media img { width: 100%; height: 100%; object-fit: cover; }
+.card--media .card__title { font-size: 1.25rem; color: var(--c-blue); }
+.card--media .card__title a { color: var(--c-blue); }
+.card--media .card__meta { color: var(--c-ink); margin-bottom: var(--sp-4); }
+.card--media .card__meta strong { color: var(--c-blue); }
+
+/* Overlay card (Resources) — image bg + dark gradient + white title + CTA */
+.card--overlay {
+  position: relative; padding: 0; overflow: hidden; border-radius: var(--radius);
+  min-height: 380px; box-shadow: none; justify-content: flex-end; color: #fff;
+}
+.card--overlay img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.card--overlay::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(7,34,53,0.15) 0%, rgba(7,34,53,0.85) 100%);
+}
+.card--overlay .card__inner { position: relative; z-index: 2; padding: var(--sp-5); }
+.card--overlay .card__title { color: #fff; font-size: 1.375rem; margin-bottom: var(--sp-4); }
+.card--overlay .btn { width: 100%; }
+
+/* Quick-links card — blue title, rule, "Read more" ghost link */
+.card--link .card__title { color: var(--c-blue); font-size: 1.25rem; }
+.card--link .card__rule { border-color: var(--c-blue); margin-top: auto; }
+
+/* ---- CTA field-links rendered as buttons in card/section contexts ------- */
+/* Content card ("Visit website") → outline button. */
+.card--cta .card__cta a,
+.card--media .card__cta a {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; padding: 0.75rem 1.5rem;
+  border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  color: var(--c-blue); background: transparent;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.card--cta .card__cta a:hover,
+.card--media .card__cta a:hover { background: var(--c-blue); color: #fff; text-decoration: none; }
+/* Quick-link card → ghost "Read more". */
+.card--link .card__cta a { color: var(--c-blue); font-weight: 700; }
+.card--link .card__cta a:hover { color: var(--c-magenta); text-decoration: none; }
+/* Overlay (Resources) card → white-on-dark button. */
+.card--overlay .card__cta a {
+  display: block; text-align: center; font-weight: 600; padding: 0.7rem 1rem;
+  border: 2px solid #fff; border-radius: var(--radius-sm); color: #fff; background: transparent;
+}
+.card--overlay .card__cta a:hover { background: #fff; color: var(--c-blue); text-decoration: none; }
+/* Section-level CTA ("View all updates") → filled blue button. */
+.section-cta a {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; padding: 0.85rem 1.75rem;
+  border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  background: var(--c-blue); color: #fff;
+}
+.section-cta a:hover { background: var(--c-blue-600); border-color: var(--c-blue-600); color: #fff; text-decoration: none; }
+.section-cta--start { justify-content: flex-start; }
+.section--dark .section-cta a { background: transparent; border-color: #fff; }
+.section--dark .section-cta a:hover { background: #fff; color: var(--c-blue); }
+
+/* =========================================================== Header ====== */
+/* Utility (tertiary) bar */
+.site-header__utility { background: var(--c-blue-tint); }
+.site-header__utility .wrap { display: flex; justify-content: flex-end; padding-block: 0.5rem; }
+.utility-nav { display: flex; gap: 0; align-items: center; list-style: none; margin: 0; padding: 0; }
+.utility-nav li { margin: 0; }
+.utility-nav li + li { border-left: 1px solid var(--c-hair); }
+.utility-nav a {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0 1rem; font-size: var(--fs-sm); color: var(--c-ink); font-weight: 400;
+}
+.utility-nav a:hover { color: var(--c-blue); text-decoration: none; }
+.utility-nav .is-strong a { font-weight: 700; }
+
+/* Main bar: logo + nav */
+.site-header__main { box-shadow: var(--shadow-header); background: #fff; }
+.site-header__main .wrap {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-6);
+  padding-block: 0.75rem;
+}
+.site-brand { display: inline-flex; align-items: center; }
+.site-brand img { max-height: 72px; width: auto; }
+
+/* Main navigation + mega menu */
+.main-nav > ul { display: flex; gap: clamp(1rem, 0.5rem + 2vw, 3.2rem); list-style: none; margin: 0; padding: 0; align-items: center; }
+.main-nav li { margin: 0; position: relative; }
+.main-nav > ul > li > a {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 1.1rem 0; font-size: var(--fs-body); font-weight: 500; color: var(--c-ink);
+  border-bottom: 3px solid transparent;
+}
+.main-nav > ul > li > a:hover,
+.main-nav > ul > li.is-open > a,
+.main-nav > ul > li > a.is-active {
+  color: var(--c-blue); text-decoration: none; border-bottom-color: var(--c-blue);
+}
+/* Dropdown / mega panel */
+.main-nav .menu-dropdown {
+  position: absolute; top: 100%; left: 0; min-width: 260px;
+  background: #fff; box-shadow: var(--shadow-card); border-radius: 0 0 var(--radius) var(--radius);
+  padding: var(--sp-6);
+  list-style: none; margin: 0;
+  opacity: 0; visibility: hidden; transform: translateY(6px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), visibility var(--dur);
+  z-index: 50;
+}
+.main-nav li.is-open > .menu-dropdown,
+.main-nav li:hover > .menu-dropdown,
+.main-nav li:focus-within > .menu-dropdown {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.main-nav .menu-dropdown li { margin-bottom: var(--sp-3); }
+.main-nav .menu-dropdown a { color: var(--c-ink); font-size: var(--fs-body); }
+.main-nav .menu-dropdown a:hover { color: var(--c-blue); }
+.main-nav .menu-dropdown a.is-active { color: var(--c-blue); font-weight: 600; }
+/* Multi-column mega variant (add .menu-dropdown--mega + set --cols) */
+.main-nav .menu-dropdown--mega {
+  display: grid; grid-template-columns: repeat(var(--cols, 2), minmax(180px, 1fr));
+  gap: var(--sp-6); min-width: 520px;
 }
 
-/* Pill / tag ------------------------------------------------------------ */
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3xs);
-  padding: 2px var(--space-2xs);
-  border-radius: var(--radius-pill);
-  background: var(--brand-050);
-  color: var(--brand-700);
-  font-size: var(--step--1);
-  font-weight: 600;
+/* Mobile nav toggle (hidden on desktop) */
+.nav-toggle { display: none; background: none; border: 0; font-size: 1.6rem; color: var(--c-blue); cursor: pointer; }
+
+@media (max-width: 1080px) {
+  .nav-toggle { display: inline-flex; }
+  .main-nav { position: absolute; left: 0; right: 0; top: 100%; background: #fff;
+    box-shadow: var(--shadow-header); display: none; padding: var(--sp-4) var(--gutter); }
+  .main-nav.is-open { display: block; }
+  .main-nav > ul { flex-direction: column; align-items: stretch; gap: 0; }
+  .main-nav > ul > li > a { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+  .main-nav .menu-dropdown { position: static; opacity: 1; visibility: visible; transform: none;
+    box-shadow: none; padding: var(--sp-3) 0 var(--sp-4) var(--sp-4); min-width: 0; display: block; }
+  .main-nav .menu-dropdown--mega { grid-template-columns: 1fr; min-width: 0; }
 }
 
-/* Primary navigation ---------------------------------------------------- */
-.primary-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-m); }
-.primary-nav a {
-  display: block;
-  padding: var(--space-2xs) 0;
-  color: var(--ink);
-  text-decoration: none;
-  font-weight: 600;
-}
-.primary-nav a:hover,
-.primary-nav a.is-active { color: var(--accent); }
+/* =========================================================== Footer ====== */
+.site-footer__top { background: var(--c-blue-tint); padding-block: var(--section-y); }
+.site-footer__brand img { max-height: 80px; margin-bottom: var(--sp-6); }
+.footer-cols { display: grid; grid-template-columns: repeat(4, 1fr) 1.2fr; gap: var(--sp-6); }
+@media (max-width: 900px) { .footer-cols { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .footer-cols { grid-template-columns: 1fr; } }
+.footer-col h2, .footer-col h3 { font-size: 1.125rem; font-weight: 600; color: var(--c-heading); margin: 0 0 var(--sp-4); }
+.footer-col ul { list-style: none; margin: 0; padding: 0; }
+.footer-col li { margin-bottom: var(--sp-3); }
+.footer-col a { color: var(--c-ink); font-size: var(--fs-body); }
+.footer-col a:hover { color: var(--c-blue); }
+.footer-contact address { font-style: normal; color: var(--c-ink); margin: var(--sp-3) 0 var(--sp-5); }
+.footer-contact a[href^="tel"] { text-decoration: underline; color: var(--c-ink); font-weight: 600; }
+.site-footer__disclaimer { color: var(--c-muted); font-size: var(--fs-sm); border-top: 1px solid var(--c-hair);
+  margin-top: var(--sp-7); padding-top: var(--sp-6); }
 
-/* Mobile nav toggle (wired in js/wiche.js). */
-.nav-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2xs);
-  border: 1px solid var(--line-strong);
-  background: var(--ground);
-  color: var(--ink);
-  border-radius: var(--radius-sm);
-  padding: var(--space-2xs) var(--space-xs);
-  cursor: pointer;
+.site-footer__wcet { background: var(--c-slate); color: #e9ecf1; padding-block: var(--section-y); }
+.site-footer__wcet a { color: #fff; text-decoration: underline; }
+.site-footer__wcet-logo img { max-height: 42px; margin-bottom: var(--sp-4); }
+.site-footer__bottom {
+  display: flex; flex-wrap: wrap; gap: var(--sp-5); justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.2); margin-top: var(--sp-6); padding-top: var(--sp-5);
+  font-size: var(--fs-sm);
 }
-@media (min-width: 48rem) { .nav-toggle { display: none; } }
+.site-footer__bottom nav ul { display: flex; gap: var(--sp-6); list-style: none; margin: 0; padding: 0; }
+
+/* --- Resilient region styling: make placed menu blocks look designed ----- */
+/* Utility bar: any menu block renders as the right-aligned pill row. */
+.site-header__utility .menu {
+  display: flex; align-items: center; list-style: none; margin: 0; padding: 0;
+}
+.site-header__utility .menu li + li { border-left: 1px solid var(--c-hair); }
+.site-header__utility .menu a {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0 1rem; font-size: var(--fs-sm); color: var(--c-ink); font-weight: 400;
+}
+.site-header__utility .menu a:hover { color: var(--c-blue); text-decoration: none; }
+
+/* Footer light band: each placed block becomes a link column. */
+.site-footer__top .block { margin: 0; }
+.site-footer__top .footer-cols > .block,
+.site-footer__top .block h2, .site-footer__top .block h3 {
+  font-size: 1.125rem; font-weight: 600; color: var(--c-heading);
+}
+.site-footer__top .block > h2, .site-footer__top .block > h3 { margin: 0 0 var(--sp-4); }
+.site-footer__top .menu { list-style: none; margin: 0; padding: 0; }
+.site-footer__top .menu li { margin-bottom: var(--sp-3); }
+.site-footer__top .menu a { color: var(--c-ink); font-size: var(--fs-body); }
+.site-footer__top .menu a:hover { color: var(--c-blue); }

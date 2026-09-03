@@ -1,0 +1,26 @@
+{#
+/**
+ * @file Card — simple_card.
+ * Fields: field_header (title), field_subheader (body), field_media_image,
+ * field_link (CTA). No image → text/CTA card (Federal Policy / Quick links);
+ * with image → media card.
+ */
+#}
+{% set has_image = paragraph.field_media_image is not empty %}
+{% set has_body = content.field_subheader|render|trim is not empty %}
+{% set variant = has_image ? 'card--media' : (has_body ? 'card--cta' : 'card--link') %}
+<article{{ attributes.addClass('card', variant) }}>
+  {% if has_image %}
+    <div class="card__media">{{ content.field_media_image }}</div>
+  {% endif %}
+  {% if paragraph.field_header.value %}
+    <h3 class="card__title">{{ paragraph.field_header.value }}</h3>
+    <hr class="card__rule">
+  {% endif %}
+  {% if has_body %}
+    <div class="card__body">{{ content.field_subheader }}</div>
+  {% endif %}
+  {% if content.field_link|render|trim %}
+    <div class="card__cta">{{ content.field_link }}</div>
+  {% endif %}
+</article>

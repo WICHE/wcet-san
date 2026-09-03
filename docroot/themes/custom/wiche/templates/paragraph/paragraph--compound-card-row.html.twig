@@ -1,0 +1,20 @@
+{#
+/**
+ * @file Card-row section — compound_card_row.
+ * Fields: field_header (section title), field_p_cards (simple_card items).
+ * Renders: centered section header + responsive card grid.
+ */
+#}
+{% set count = paragraph.field_p_cards|length %}
+<section{{ attributes.addClass('section', 'section--tint', 'paragraph-card-row') }}>
+  <div class="wrap">
+    {% if paragraph.field_header.value %}
+      <div class="section-head">
+        <h2 class="section-head__title">{{ paragraph.field_header.value }}</h2>
+      </div>
+    {% endif %}
+    <div class="card-grid{{ count == 4 ? ' card-grid--4' : (count == 2 ? ' card-grid--2') }}">
+      {{ content.field_p_cards }}
+    </div>
+  </div>
+</section>

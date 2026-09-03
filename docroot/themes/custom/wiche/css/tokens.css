@@ -1,101 +1,92 @@
 /**
- * wiche · Design tokens — THE art-direction surface.
- * ---------------------------------------------------------------------------
- * Everything visual (color, type, spacing, radius, shadow) is defined here as
- * CSS custom properties. Components in base/layout/components.css only ever
- * reference these tokens, never raw values — so restyling the whole site is a
- * matter of editing this one file.
+ * wiche · tokens.css — the single source of art-direction.
  *
- * The palette below is a deliberately NEUTRAL placeholder so the scaffold looks
- * intentional out of the box. Swap the --brand-* and font values for the real
- * WCET|SAN identity when the design direction lands.
+ * Derived from the Figma "Wiche-Refresh" design. Change the look of the whole
+ * site from here: colours, type, spacing, radius, shadows, buttons.
  */
 
 :root {
-  /* ---- Brand / accent (ART-DIRECT THESE) ------------------------------- */
-  --brand-600: #1f5f8b;      /* primary accent (links, buttons, focus)     */
-  --brand-700: #17496b;      /* accent hover / pressed                     */
-  --brand-050: #eaf1f7;      /* accent tint (soft backgrounds)             */
-  --accent:    var(--brand-600);
-  --accent-contrast: #ffffff;
+  /* ---- Brand palette (from Figma GLOBAL_VARS) ---------------------------- */
+  --c-blue: #1468A0;          /* primary brand blue */
+  --c-blue-600: #12608f;      /* hover / pressed */
+  --c-blue-navy: #07263A;     /* gradient end / deep navy */
+  --c-blue-tint: rgba(20, 104, 160, 0.10); /* section / utility / footer wash */
+  --c-blue-tint-2: rgba(20, 104, 160, 0.06);
+  --c-red: #DF1D20;           /* accent (alerts / emphasis) */
+  --c-magenta: #7C2A8E;       /* SAN mark + "external link" + link hover */
 
-  /* ---- Neutrals (biased slightly toward the brand hue, not pure grey) --- */
-  --ground:   #ffffff;       /* page background                            */
-  --surface:  #f7f9fb;       /* cards / raised areas                       */
-  --ink:      #14202b;       /* body text                                 */
-  --ink-soft: #4a5b69;       /* secondary text                            */
-  --ink-faint:#7b8a97;       /* captions / meta                           */
-  --line:     #dde5ec;       /* hairline borders                          */
-  --line-strong: #c4d0da;
+  --c-ink: #4A4A4A;           /* body copy */
+  --c-ink-strong: #2f2f31;    /* strong headings */
+  --c-heading: #414042;       /* section headings */
+  --c-muted: #6b6b6b;         /* secondary text */
+  --c-hair: #AFA9A0;          /* hairlines on tinted grounds */
+  --c-slate: #4b4f5e;         /* dark footer band */
+  --c-white: #ffffff;
 
-  /* ---- Semantic (status) — separate from the brand accent -------------- */
-  --good: #1a7a53;
-  --warn: #9a5b0c;
-  --crit: #b0271c;
+  /* ---- Semantic surfaces ------------------------------------------------ */
+  --bg: #ffffff;
+  --bg-tint: #e8eff5;         /* solid equivalent of the blue wash */
+  --bg-dark: #0e2233;         /* dark "Resources" band */
+  --surface: #ffffff;         /* cards */
+  --border: #e2e6ea;
+  --border-strong: #ccd4dc;
+  --text: var(--c-ink);
+  --heading: var(--c-heading);
+  --link: var(--c-blue);
+  --link-hover: var(--c-magenta);
 
-  /* ---- Typography (ART-DIRECT THE FAMILIES) ---------------------------- */
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-display: var(--font-sans);   /* swap for a display face later      */
-  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+  /* Hero gradient (left brand-blue → deep navy) */
+  --hero-gradient: linear-gradient(90deg, #1468A0 0%, #12608f 50%, #07263A 100%);
 
-  /* Modular type scale (1.20 minor third). Reference --step-N, not px.     */
-  --step--1: 0.833rem;
-  --step-0:  1rem;          /* body */
-  --step-1:  1.20rem;
-  --step-2:  1.44rem;
-  --step-3:  1.73rem;
-  --step-4:  2.07rem;
-  --step-5:  2.49rem;       /* hero */
-  --leading: 1.6;
-  --leading-tight: 1.15;
-  --measure: 68ch;          /* readable line length */
+  /* ---- Typography ------------------------------------------------------- */
+  --font-body: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-head: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-ui:   "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* ---- Spacing scale (8px base) ---------------------------------------- */
-  --space-3xs: 0.25rem;
-  --space-2xs: 0.5rem;
-  --space-xs:  0.75rem;
-  --space-s:   1rem;
-  --space-m:   1.5rem;
-  --space-l:   2rem;
-  --space-xl:  3rem;
-  --space-2xl: 4.5rem;
+  --fs-display: clamp(2rem, 1.4rem + 2vw, 2.5rem);   /* 32→40 h1 / section titles */
+  --fs-h2:      clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem);
+  --fs-h3:      clamp(1.5rem, 1.25rem + 0.8vw, 1.75rem); /* 24→28 */
+  --fs-h4:      1.5rem;    /* 24 card titles */
+  --fs-lead:    clamp(1.25rem, 1.05rem + 0.6vw, 2rem);  /* 20→32 */
+  --fs-body:    1rem;     /* 16 */
+  --fs-sm:      0.875rem; /* 14 labels / utility */
 
-  /* ---- Shape / depth --------------------------------------------------- */
-  --radius:    10px;
-  --radius-sm: 6px;
-  --radius-pill: 999px;
-  --shadow-1: 0 1px 2px rgba(20, 32, 43, .06), 0 4px 14px -8px rgba(20, 32, 43, .22);
-  --shadow-2: 0 8px 30px -12px rgba(20, 32, 43, .30);
+  --lh-tight: 1.2;
+  --lh-head: 1.25;
+  --lh-body: 1.6;
 
-  /* ---- Layout widths --------------------------------------------------- */
-  --width-page: 1200px;     /* max content shell */
-  --width-prose: 46rem;     /* long-form reading column */
-  --gutter: clamp(1rem, 4vw, 2.5rem);
+  /* ---- Spacing scale ---------------------------------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 2.5rem;
+  --sp-8: 3rem;
+  --sp-9: 4rem;
+  --sp-10: 5rem;
 
-  /* ---- Motion (respected only if user allows it) ----------------------- */
-  --ease: cubic-bezier(.2, .6, .2, 1);
+  /* Section vertical rhythm + horizontal gutter */
+  --section-y: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+  --gutter: clamp(1rem, 0.3rem + 3vw, 8.5rem); /* up to 136px like the design */
+  --wrap-max: 1320px;
+
+  /* ---- Radius & shadows ------------------------------------------------- */
+  --radius: 6px;
+  --radius-sm: 4px;
+  --radius-lg: 10px;
+  --shadow-header: 0 4px 4px rgba(0, 0, 0, 0.10);
+  --shadow-card: 0 0 6px 6px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 6px 18px -6px rgba(20, 104, 160, 0.35);
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
   --dur: 180ms;
 }
 
-/* Dark palette — kept token-level so components never special-case a theme.
-   Tune these alongside the light values when art-directing. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --brand-600: #6db3e6;
-    --brand-700: #92c8f0;
-    --brand-050: #12263a;
-    --accent-contrast: #0b1620;
-    --ground:   #0e1620;
-    --surface:  #16212d;
-    --ink:      #e7eef4;
-    --ink-soft: #9fb0bd;
-    --ink-faint:#6f8090;
-    --line:     #26333f;
-    --line-strong: #33444f;
-    --good: #4bc396;
-    --warn: #e0a44a;
-    --crit: #ef7b6e;
-    --shadow-1: 0 1px 2px rgba(0,0,0,.4), 0 6px 18px -10px rgba(0,0,0,.7);
-    --shadow-2: 0 10px 34px -14px rgba(0,0,0,.75);
-  }
-}
+/*
+ * The Figma design is a single, committed light look, so wiche is single-theme.
+ * Colours are all defined explicitly above (never only inside a media/theme
+ * block), so the page holds up on any host ground.
+ */

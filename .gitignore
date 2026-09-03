@@ -96,3 +96,5 @@ docroot/**/.gitattributes
 /update.php
 /web.config
 /autoload_runtime.php
+# Figma reference renders (local only)
+/.figma-refs/

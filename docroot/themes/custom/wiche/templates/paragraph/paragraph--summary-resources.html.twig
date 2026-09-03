@@ -1,0 +1,17 @@
+{#
+/**
+ * @file Resources summary section — summary_resources (dark band).
+ * Fields: field_summary_topics (image-overlay cards), field_link (View all).
+ */
+#}
+<section{{ attributes.addClass('section', 'section--dark', 'paragraph-summary', 'paragraph-summary--resources') }}>
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-head__title">{{ 'Resources'|t }}</h2>
+    </div>
+    <div class="card-grid card-grid--4 summary-grid summary-grid--overlay">{{ content.field_summary_topics }}</div>
+    {% if content.field_link|render|trim %}
+      <div class="section-cta">{{ content.field_link }}</div>
+    {% endif %}
+  </div>
+</section>

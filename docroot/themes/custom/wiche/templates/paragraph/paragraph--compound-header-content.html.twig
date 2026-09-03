@@ -1,0 +1,30 @@
+{#
+/**
+ * @file Hero / page-intro — compound_header_content.
+ * Fields: field_subheader (eyebrow), field_header (title),
+ * field_subheader_as_h1 (bool), field_media_image (hero image),
+ * field_p_secondary_content (extra paragraphs / actions).
+ */
+#}
+{% set has_image = paragraph.field_media_image is not empty %}
+{% set is_h1 = paragraph.field_subheader_as_h1.value %}
+<section{{ attributes.addClass('hero', has_image ? 'hero--split') }}>
+  <div class="wrap hero__inner">
+    <div class="hero__copy">
+      {% if paragraph.field_subheader.value %}
+        <p class="hero__eyebrow">{{ paragraph.field_subheader.value }}</p>
+      {% endif %}
+      {% if is_h1 %}
+        <h1 class="hero__title">{{ paragraph.field_header.value }}</h1>
+      {% else %}
+        <p class="hero__title">{{ paragraph.field_header.value }}</p>
+      {% endif %}
+      {% if content.field_p_secondary_content|render|trim %}
+        <div class="hero__body flow-l">{{ content.field_p_secondary_content }}</div>
+      {% endif %}
+    </div>
+    {% if has_image %}
+      <div class="hero__media">{{ content.field_media_image }}</div>
+    {% endif %}
+  </div>
+</section>

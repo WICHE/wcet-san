@@ -1,0 +1,15 @@
+{#
+/**
+ * @file Base paragraph wrapper for wiche.
+ * Type-specific templates (paragraph--{type}.html.twig) override this fully.
+ * Everything else renders cleanly and contained here.
+ */
+#}
+{% set contained = paragraph.bundle() starts with 'single_' or paragraph.bundle() in ['simple_faq', 'compound_faq_section', 'reference_block', 'table_with_filters'] %}
+<div{{ attributes.addClass('paragraph', 'paragraph--' ~ paragraph.bundle()|clean_class) }}>
+  {% if contained %}
+    <div class="wrap wrap--narrow">{{ content }}</div>
+  {% else %}
+    {{ content }}
+  {% endif %}
+</div>

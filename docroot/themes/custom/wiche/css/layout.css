@@ -1,69 +1,87 @@
 /**
- * wiche · Layout — the page shell, regions, and content grid. Tokens only.
+ * wiche · layout.css — page shell, containers, sections, header/footer scaffolding.
  */
 
-/* Centered page shell with a consistent gutter. */
-.wiche-shell,
-.page-wrap > * > .region,
-.layout-container {
-  width: 100%;
-}
+.page-wrap { display: flex; flex-direction: column; min-height: 100vh; }
+.page-main { flex: 1 0 auto; }
 
-/* A reusable centered container. */
+/* Centered content container (matches the design's 1320 content / 136 gutter) */
 .wrap {
-  width: min(100% - (var(--gutter) * 2), var(--width-page));
+  width: 100%;
+  max-width: var(--wrap-max);
   margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.wrap--wide { max-width: 1560px; }
+.wrap--narrow { max-width: 820px; }
+
+/* A page "section" band: vertical rhythm + optional ground colour */
+.section { padding-block: var(--section-y); }
+.section--tint { background: var(--bg-tint); }
+.section--dark { background: var(--bg-dark); color: #e8eef4; }
+.section--dark h2, .section--dark h3 { color: #fff; }
+
+/* Centered section header (title + optional intro), used across home sections */
+.section-head { text-align: center; margin-bottom: var(--sp-8); }
+.section-head__title { margin: 0; }
+.section-head--rule .section-head__title {
+  display: inline-block;
+  padding-bottom: var(--sp-3);
+  border-bottom: 2px solid currentColor;
+}
+.section-head__intro {
+  max-width: 60ch; margin: var(--sp-3) auto 0; color: var(--c-muted);
 }
 
-/* Skip link. */
-.skip-link { position: absolute; left: -999px; }
-.skip-link:focus { left: var(--space-s); top: var(--space-s); z-index: 100; background: var(--ground); padding: var(--space-2xs) var(--space-s); }
+/* Card grids. These wrap a Drupal field, so we "unwrap" the .field / .field__items
+ * containers with display:contents to let each .field__item become a grid cell. */
+.card-grid, .summary-grid { display: grid; gap: var(--sp-5); grid-template-columns: repeat(3, 1fr); }
+.card-grid--4, .summary-grid--overlay { grid-template-columns: repeat(4, 1fr); }
+.card-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.card-grid > .field,
+.card-grid > .field > .field__items,
+.summary-grid > .field,
+.summary-grid > .field > .field__items { display: contents; }
+.card-grid .field__item,
+.summary-grid .field__item { display: flex; min-width: 0; }
+.card-grid .field__item > * ,
+.summary-grid .field__item > * { flex: 1 1 auto; }
+@media (max-width: 960px) { .card-grid, .card-grid--4, .summary-grid, .summary-grid--overlay { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .card-grid, .card-grid--4, .card-grid--2, .summary-grid, .summary-grid--overlay { grid-template-columns: 1fr; } }
 
-/* Header ---------------------------------------------------------------- */
-.site-header {
-  border-bottom: 1px solid var(--line);
-  background: var(--ground);
-}
-.site-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-m);
-  padding-block: var(--space-s);
+/* Front page: stack paragraph sections with no gaps (each owns its padding). */
+.path-frontpage .region-content > .field > .field__items > .field__item + .field__item { margin-top: 0; }
+
+/* Two-column paragraph */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-8); }
+@media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+.section-head--left { text-align: left; }
+.section-head--left .section-head__intro { margin-inline: 0; }
+.lead { font-size: var(--fs-lead); color: var(--c-muted); font-weight: 400; }
+
+/* Section-level centered CTA below a grid */
+.section-cta { display: flex; justify-content: center; margin-top: var(--sp-8); }
+
+/* Vertical flow utility */
+.flow-l > * + * { margin-top: var(--sp-5); }
+
+/* -- Main content region + optional sidebars -- */
+.page-main__grid { display: grid; gap: var(--sp-8); padding-block: var(--section-y); }
+.page-main__grid.has-sidebar-first { grid-template-columns: 300px 1fr; }
+.page-main__grid.has-sidebar-second { grid-template-columns: 1fr 300px; }
+.page-main__grid.has-both { grid-template-columns: 260px 1fr 260px; }
+@media (max-width: 900px) {
+  .page-main__grid.has-sidebar-first,
+  .page-main__grid.has-sidebar-second,
+  .page-main__grid.has-both { grid-template-columns: 1fr; }
 }
 
-/* Main layout: content + optional sidebars, single column on small screens. */
-.page-main {
-  padding-block: var(--space-xl);
-}
-.page-main__grid {
-  display: grid;
-  gap: var(--space-xl);
-  grid-template-columns: 1fr;
-}
-@media (min-width: 60rem) {
-  .page-main__grid.has-sidebar-first  { grid-template-columns: 18rem 1fr; }
-  .page-main__grid.has-sidebar-second { grid-template-columns: 1fr 18rem; }
-  .page-main__grid.has-both           { grid-template-columns: 16rem 1fr 16rem; }
-}
+/* The front page (paragraph sections) runs full-bleed, no content padding box */
+.path-frontpage .page-main__grid { display: block; padding-block: 0; }
+.path-frontpage .page-main .wrap { max-width: none; padding: 0; }
 
-/* Long-form content sets a comfortable measure but media can break out. */
-.prose > * { margin-inline: auto; }
-.prose > *:not(figure):not(.full-bleed) { max-width: var(--width-prose); }
+/* -- Site header shell -- */
+.site-header { position: relative; z-index: 40; background: var(--c-white); }
 
-/* Highlighted / featured full-width bands. */
-.region-highlighted, .region-featured { padding-block: var(--space-l); }
-
-/* Footer ---------------------------------------------------------------- */
-.site-footer {
-  margin-top: var(--space-2xl);
-  background: var(--surface);
-  border-top: 1px solid var(--line);
-  padding-block: var(--space-xl);
-  color: var(--ink-soft);
-}
-.site-footer a { color: var(--ink); }
-
-/* Utility: stack with consistent rhythm. */
-.flow > * + * { margin-top: var(--space-s); }
-.flow-l > * + * { margin-top: var(--space-l); }
+/* -- Footer shell -- */
+.site-footer { flex-shrink: 0; }

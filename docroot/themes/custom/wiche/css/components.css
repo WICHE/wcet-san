@@ -1,0 +1,89 @@
+/**
+ * wiche · Components — reusable UI pieces. Tokens only.
+ * Starter set: buttons, cards, primary nav, pills. Grow as paragraph types
+ * and pages get built out.
+ */
+
+/* Buttons --------------------------------------------------------------- */
+.button,
+.wiche-button,
+a.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-m);
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.button:hover { background: var(--brand-700); color: var(--accent-contrast); }
+.button:active { transform: translateY(1px); }
+.button--ghost {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--line-strong);
+}
+.button--ghost:hover { background: var(--brand-050); color: var(--brand-700); }
+
+/* Card ------------------------------------------------------------------ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-m);
+  box-shadow: var(--shadow-1);
+}
+.card__title { font-size: var(--step-1); margin-bottom: var(--space-2xs); }
+.card__meta { color: var(--ink-faint); font-size: var(--step--1); }
+
+/* A responsive card grid (used by summary_* and card_row paragraphs). */
+.card-grid {
+  display: grid;
+  gap: var(--space-m);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+}
+
+/* Pill / tag ------------------------------------------------------------ */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  padding: 2px var(--space-2xs);
+  border-radius: var(--radius-pill);
+  background: var(--brand-050);
+  color: var(--brand-700);
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+/* Primary navigation ---------------------------------------------------- */
+.primary-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-m); }
+.primary-nav a {
+  display: block;
+  padding: var(--space-2xs) 0;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+.primary-nav a:hover,
+.primary-nav a.is-active { color: var(--accent); }
+
+/* Mobile nav toggle (wired in js/wiche.js). */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  border: 1px solid var(--line-strong);
+  background: var(--ground);
+  color: var(--ink);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2xs) var(--space-xs);
+  cursor: pointer;
+}
+@media (min-width: 48rem) { .nav-toggle { display: none; } }

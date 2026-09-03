@@ -1,0 +1,101 @@
+/**
+ * wiche · Design tokens — THE art-direction surface.
+ * ---------------------------------------------------------------------------
+ * Everything visual (color, type, spacing, radius, shadow) is defined here as
+ * CSS custom properties. Components in base/layout/components.css only ever
+ * reference these tokens, never raw values — so restyling the whole site is a
+ * matter of editing this one file.
+ *
+ * The palette below is a deliberately NEUTRAL placeholder so the scaffold looks
+ * intentional out of the box. Swap the --brand-* and font values for the real
+ * WCET|SAN identity when the design direction lands.
+ */
+
+:root {
+  /* ---- Brand / accent (ART-DIRECT THESE) ------------------------------- */
+  --brand-600: #1f5f8b;      /* primary accent (links, buttons, focus)     */
+  --brand-700: #17496b;      /* accent hover / pressed                     */
+  --brand-050: #eaf1f7;      /* accent tint (soft backgrounds)             */
+  --accent:    var(--brand-600);
+  --accent-contrast: #ffffff;
+
+  /* ---- Neutrals (biased slightly toward the brand hue, not pure grey) --- */
+  --ground:   #ffffff;       /* page background                            */
+  --surface:  #f7f9fb;       /* cards / raised areas                       */
+  --ink:      #14202b;       /* body text                                 */
+  --ink-soft: #4a5b69;       /* secondary text                            */
+  --ink-faint:#7b8a97;       /* captions / meta                           */
+  --line:     #dde5ec;       /* hairline borders                          */
+  --line-strong: #c4d0da;
+
+  /* ---- Semantic (status) — separate from the brand accent -------------- */
+  --good: #1a7a53;
+  --warn: #9a5b0c;
+  --crit: #b0271c;
+
+  /* ---- Typography (ART-DIRECT THE FAMILIES) ---------------------------- */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: var(--font-sans);   /* swap for a display face later      */
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+
+  /* Modular type scale (1.20 minor third). Reference --step-N, not px.     */
+  --step--1: 0.833rem;
+  --step-0:  1rem;          /* body */
+  --step-1:  1.20rem;
+  --step-2:  1.44rem;
+  --step-3:  1.73rem;
+  --step-4:  2.07rem;
+  --step-5:  2.49rem;       /* hero */
+  --leading: 1.6;
+  --leading-tight: 1.15;
+  --measure: 68ch;          /* readable line length */
+
+  /* ---- Spacing scale (8px base) ---------------------------------------- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   2rem;
+  --space-xl:  3rem;
+  --space-2xl: 4.5rem;
+
+  /* ---- Shape / depth --------------------------------------------------- */
+  --radius:    10px;
+  --radius-sm: 6px;
+  --radius-pill: 999px;
+  --shadow-1: 0 1px 2px rgba(20, 32, 43, .06), 0 4px 14px -8px rgba(20, 32, 43, .22);
+  --shadow-2: 0 8px 30px -12px rgba(20, 32, 43, .30);
+
+  /* ---- Layout widths --------------------------------------------------- */
+  --width-page: 1200px;     /* max content shell */
+  --width-prose: 46rem;     /* long-form reading column */
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+
+  /* ---- Motion (respected only if user allows it) ----------------------- */
+  --ease: cubic-bezier(.2, .6, .2, 1);
+  --dur: 180ms;
+}
+
+/* Dark palette — kept token-level so components never special-case a theme.
+   Tune these alongside the light values when art-directing. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand-600: #6db3e6;
+    --brand-700: #92c8f0;
+    --brand-050: #12263a;
+    --accent-contrast: #0b1620;
+    --ground:   #0e1620;
+    --surface:  #16212d;
+    --ink:      #e7eef4;
+    --ink-soft: #9fb0bd;
+    --ink-faint:#6f8090;
+    --line:     #26333f;
+    --line-strong: #33444f;
+    --good: #4bc396;
+    --warn: #e0a44a;
+    --crit: #ef7b6e;
+    --shadow-1: 0 1px 2px rgba(0,0,0,.4), 0 6px 18px -10px rgba(0,0,0,.7);
+    --shadow-2: 0 10px 34px -14px rgba(0,0,0,.75);
+  }
+}

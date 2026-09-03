@@ -40,7 +40,7 @@ class CoordinatorMembership extends EntityGenerate {
   /**
    * {@inheritdoc}
    */
-  protected function entity($value) {
+  protected function entity($value): array {
     $entity_values = parent::entity($value);
 
     // Set Compact value from the csv.

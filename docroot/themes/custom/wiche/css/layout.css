@@ -1,0 +1,69 @@
+/**
+ * wiche · Layout — the page shell, regions, and content grid. Tokens only.
+ */
+
+/* Centered page shell with a consistent gutter. */
+.wiche-shell,
+.page-wrap > * > .region,
+.layout-container {
+  width: 100%;
+}
+
+/* A reusable centered container. */
+.wrap {
+  width: min(100% - (var(--gutter) * 2), var(--width-page));
+  margin-inline: auto;
+}
+
+/* Skip link. */
+.skip-link { position: absolute; left: -999px; }
+.skip-link:focus { left: var(--space-s); top: var(--space-s); z-index: 100; background: var(--ground); padding: var(--space-2xs) var(--space-s); }
+
+/* Header ---------------------------------------------------------------- */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--ground);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding-block: var(--space-s);
+}
+
+/* Main layout: content + optional sidebars, single column on small screens. */
+.page-main {
+  padding-block: var(--space-xl);
+}
+.page-main__grid {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 60rem) {
+  .page-main__grid.has-sidebar-first  { grid-template-columns: 18rem 1fr; }
+  .page-main__grid.has-sidebar-second { grid-template-columns: 1fr 18rem; }
+  .page-main__grid.has-both           { grid-template-columns: 16rem 1fr 16rem; }
+}
+
+/* Long-form content sets a comfortable measure but media can break out. */
+.prose > * { margin-inline: auto; }
+.prose > *:not(figure):not(.full-bleed) { max-width: var(--width-prose); }
+
+/* Highlighted / featured full-width bands. */
+.region-highlighted, .region-featured { padding-block: var(--space-l); }
+
+/* Footer ---------------------------------------------------------------- */
+.site-footer {
+  margin-top: var(--space-2xl);
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  padding-block: var(--space-xl);
+  color: var(--ink-soft);
+}
+.site-footer a { color: var(--ink); }
+
+/* Utility: stack with consistent rhythm. */
+.flow > * + * { margin-top: var(--space-s); }
+.flow-l > * + * { margin-top: var(--space-l); }

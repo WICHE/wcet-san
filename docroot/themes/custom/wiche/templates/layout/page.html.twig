@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * wiche · page.html.twig — the region layout.
+ *
+ * Clean, semantic markup. Region variables come from wiche.info.yml.
+ * Blocks are placed into these regions at /admin/structure/block (per theme).
+ */
+#}
+<div class="page-wrap">
+
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <div class="site-header__brand">
+        {{ page.header }}
+      </div>
+      {% if page.primary_menu %}
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" data-nav-toggle>
+          <span class="visually-hidden">Menu</span>☰
+        </button>
+        <nav class="primary-nav" id="primary-nav" aria-label="{{ 'Primary navigation'|t }}">
+          {{ page.primary_menu }}
+        </nav>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if page.breadcrumb %}
+    <div class="region-breadcrumb"><div class="wrap">{{ page.breadcrumb }}</div></div>
+  {% endif %}
+
+  {% if page.highlighted %}
+    <div class="region-highlighted"><div class="wrap">{{ page.highlighted }}</div></div>
+  {% endif %}
+
+  {% if page.featured %}
+    <div class="region-featured"><div class="wrap">{{ page.featured }}</div></div>
+  {% endif %}
+
+  <main class="page-main" role="main">
+    <a id="main-content" tabindex="-1"></a>
+    <div class="wrap">
+      {% set sidebar_first = page.sidebar_first %}
+      {% set sidebar_second = page.sidebar_second %}
+      {%
+        set grid_classes = [
+          'page-main__grid',
+          sidebar_first and sidebar_second ? 'has-both',
+          sidebar_first and not sidebar_second ? 'has-sidebar-first',
+          sidebar_second and not sidebar_first ? 'has-sidebar-second',
+        ]|filter(v => v)|join(' ')
+      %}
+      <div class="{{ grid_classes }}">
+
+        {% if sidebar_first %}
+          <aside class="region-sidebar region-sidebar-first" role="complementary">{{ sidebar_first }}</aside>
+        {% endif %}
+
+        <div class="region-content">
+          {{ page.help }}
+          {{ page.content }}
+        </div>
+
+        {% if sidebar_second %}
+          <aside class="region-sidebar region-sidebar-second" role="complementary">{{ sidebar_second }}</aside>
+        {% endif %}
+
+      </div>
+    </div>
+  </main>
+
+  {% if page.footer_top or page.footer %}
+    <footer class="site-footer" role="contentinfo">
+      <div class="wrap flow-l">
+        {{ page.footer_top }}
+        {{ page.footer }}
+      </div>
+    </footer>
+  {% endif %}
+
+</div>

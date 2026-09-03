@@ -1,0 +1,24 @@
+# Global library, attached on every page (see wiche.info.yml `libraries`).
+# Build-less: plain CSS with custom properties + a little vanilla JS. No webpack.
+global:
+  version: VERSION
+  css:
+    # SMACSS-ish ordering: base loads before layout before component/theme.
+    base:
+      css/tokens.css: {}
+      css/base.css: {}
+    layout:
+      css/layout.css: {}
+    component:
+      css/components.css: {}
+  js:
+    js/wiche.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+# Optional: attach only where a Google font is wanted, once art-direction picks one.
+# fonts:
+#   css:
+#     theme:
+#       'https://fonts.googleapis.com/css2?family=...&display=swap': { type: external }

@@ -1,0 +1,72 @@
+name: wcetsan
+recipe: drupal10
+config:
+  webroot: docroot
+  # PHP 8.3 carries both phases: Drupal 10.6 supports it, Drupal 11 requires it.
+  php: '8.3'
+  # Mirror prod: nginx in front of php-fpm (Lagoon runs nginx-php-persistent).
+  via: nginx
+  # Prod (Lagoon dbaas) is MySQL 8.0 — the dumps use MySQL-only collations
+  # (utf8mb4_0900_ai_ci), so match the engine locally. D11 supports MySQL 8.0+.
+  database: mysql:8.0
+  # Use the project's own composer-installed Drush (pinned ^12.4.3), not a global one.
+  drush: false
+  # Flip to true (and `lando rebuild`) when you need step debugging.
+  xdebug: false
+
+# ---------------------------------------------------------------------------
+# This project's docroot/sites/default/settings.php reads ALL of its DB / Solr /
+# host / hash-salt settings from environment variables, but only inside
+# `if (getenv('LAGOON'))` guards. So instead of adding a settings.local.php, we
+# let Lando pretend to be Lagoon: we export LAGOON + the same MARIADB_* / SOLR_*
+# vars Lagoon exports, pointed at Lando's own services. Result: the site boots
+# locally through the exact same code path it uses in production, with no edits
+# to committed code.
+# ---------------------------------------------------------------------------
+services:
+  appserver:
+    overrides:
+      environment:
+        # Truthy => activates every `if (getenv('LAGOON'))` block in settings.php.
+        LAGOON: 'enabled'
+        # Loads sites/default/local.settings.php|services.yml if present (none
+        # exist, so this is a safe no-op) and labels the environment indicator.
+        LAGOON_ENVIRONMENT_TYPE: 'local'
+        LAGOON_PROJECT: 'wcetsan-wiche-edu'
+        # --- Database (matches the `database` service creds below) ---
+        MARIADB_HOST: 'database'
+        MARIADB_DATABASE: 'drupal'
+        MARIADB_USERNAME: 'drupal'
+        MARIADB_PASSWORD: 'drupal'
+        # --- Solr (matches the `solr` service below) ---
+        SOLR_HOST: 'solr'
+        SOLR_CORE: 'wcet'
+        # --- Misc ---
+        HASH_SALT: 'wcetsan-local-development-hash-salt'
+        DRUSH_OPTIONS_URI: 'https://wcetsan.lndo.site'
+
+  # Re-declare the recipe's database service to pin explicit credentials so the
+  # MARIADB_* env vars above always match, regardless of recipe defaults.
+  # MySQL 8.0 matches prod (Lagoon dbaas) so dumps import without collation errors.
+  database:
+    type: mysql:8.0
+    creds:
+      user: drupal
+      password: drupal
+      database: drupal
+
+  # Solr for search_api_solr. Core name `wcet` matches SOLR_CORE / prod.
+  # NOTE: prod runs Solr 7.7; we use 8 locally (Lando-supported, D11-friendly,
+  # and search_api_solr auto-detects the version). The site boots fine without
+  # Solr — indexing needs the search_api_solr config-set pushed to the core,
+  # which we'll wire up after the DB import.
+  solr:
+    type: solr:8
+    core: wcet
+    portforward: true
+
+tooling:
+  # Route `lando drush` to the site-local Drush that composer.lock pins.
+  drush:
+    service: appserver
+    cmd: /app/vendor/bin/drush

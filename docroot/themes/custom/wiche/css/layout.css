@@ -38,10 +38,17 @@
 .card-grid, .summary-grid { display: grid; gap: var(--sp-5); grid-template-columns: repeat(3, 1fr); }
 .card-grid--4, .summary-grid--overlay { grid-template-columns: repeat(4, 1fr); }
 .card-grid--2 { grid-template-columns: repeat(2, 1fr); }
+/* The paragraph reference field renders through wrapper divs (classed .field /
+ * .field__items OR classless <div>s depending on formatter). Unwrap them all so
+ * each card/item becomes a direct grid child. */
 .card-grid > .field,
 .card-grid > .field > .field__items,
+.card-grid > div:not([class]),
+.card-grid > div:not([class]) > div:not([class]),
 .summary-grid > .field,
-.summary-grid > .field > .field__items { display: contents; }
+.summary-grid > .field > .field__items,
+.summary-grid > div:not([class]),
+.summary-grid > div:not([class]) > div:not([class]) { display: contents; }
 .card-grid .field__item,
 .summary-grid .field__item { display: flex; min-width: 0; }
 .card-grid .field__item > * ,

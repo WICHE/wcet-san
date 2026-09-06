@@ -57,8 +57,26 @@ a.btn,
   color: #fff; font-weight: 400; margin: 0;
   font-size: var(--fs-h2); max-width: 22ch; line-height: 1.3;
 }
-.hero__body { max-width: 46ch; margin-top: var(--sp-4); }
+.hero__body { max-width: 52ch; margin-top: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3); align-items: flex-start; }
 .hero__actions { margin-top: var(--sp-6); display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+/* Everything in the hero sits on the blue gradient → light text. */
+.hero, .hero a, .hero p, .hero h1, .hero h2 { color: #fff; }
+.hero .field, .hero .field__item, .hero .paragraph, .hero .paragraph-link { margin: 0; }
+
+/* ---- single_link paragraph styles (primary/secondary/plain) ------------ */
+.link-style--primary a, .link-style--secondary a {
+  display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
+  padding: 0.75rem 1.5rem; border-radius: var(--radius-sm); border: 2px solid var(--c-blue); text-decoration: none;
+}
+.link-style--primary a { background: var(--c-blue); color: #fff; }
+.link-style--primary a:hover { background: var(--c-blue-600); border-color: var(--c-blue-600); color: #fff; }
+.link-style--secondary a { background: transparent; color: var(--c-blue); }
+.link-style--secondary a:hover { background: var(--c-blue); color: #fff; }
+/* On the hero's dark gradient, invert the button colours. */
+.hero .link-style--primary a { background: #fff; color: var(--c-blue); border-color: #fff; }
+.hero .link-style--primary a:hover { background: transparent; color: #fff; }
+.hero .link-style--secondary a { border-color: #fff; color: #fff; background: transparent; }
+.hero .link-style--secondary a:hover { background: #fff; color: var(--c-blue); }
 /* Half-image variant */
 .hero--split .hero__inner { grid-template-columns: 1fr 1fr; gap: 0; padding-right: 0; }
 .hero--split .hero__media { align-self: stretch; }
@@ -177,17 +195,25 @@ a.btn,
 .site-brand { display: inline-flex; align-items: center; }
 .site-brand img { max-height: 72px; width: auto; }
 
-/* Main navigation + mega menu */
-.main-nav > ul { display: flex; gap: clamp(1rem, 0.5rem + 2vw, 3.2rem); list-style: none; margin: 0; padding: 0; align-items: center; }
-.main-nav li { margin: 0; position: relative; }
-.main-nav > ul > li > a {
+/* Main navigation + mega menu.
+ * The menu <ul> is wrapped by Drupal block markup (div.block > nav > ul.menu--main),
+ * so selectors are descendant-based, not direct-child. */
+.main-nav, .main-nav > div, .main-nav nav, .main-nav .block { margin: 0; }
+.main-nav h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.main-nav ul.menu--main {
+  display: flex; gap: clamp(1rem, 0.5rem + 2vw, 3.2rem);
+  list-style: none; margin: 0; padding: 0; align-items: center;
+}
+.main-nav ul.menu--main > li { margin: 0; position: relative; list-style: none; }
+.main-nav ul.menu--main > li > a {
   display: inline-flex; align-items: center; gap: 0.35rem;
   padding: 1.1rem 0; font-size: var(--fs-body); font-weight: 500; color: var(--c-ink);
-  border-bottom: 3px solid transparent;
+  border-bottom: 3px solid transparent; white-space: nowrap;
 }
-.main-nav > ul > li > a:hover,
-.main-nav > ul > li.is-open > a,
-.main-nav > ul > li > a.is-active {
+.main-nav ul.menu--main > li > a:hover,
+.main-nav ul.menu--main > li.is-open > a,
+.main-nav ul.menu--main > li.has-dropdown:hover > a,
+.main-nav ul.menu--main > li > a.is-active {
   color: var(--c-blue); text-decoration: none; border-bottom-color: var(--c-blue);
 }
 /* Dropdown / mega panel */
@@ -223,8 +249,9 @@ a.btn,
   .main-nav { position: absolute; left: 0; right: 0; top: 100%; background: #fff;
     box-shadow: var(--shadow-header); display: none; padding: var(--sp-4) var(--gutter); }
   .main-nav.is-open { display: block; }
-  .main-nav > ul { flex-direction: column; align-items: stretch; gap: 0; }
-  .main-nav > ul > li > a { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+  .main-nav ul.menu--main { flex-direction: column; align-items: stretch; gap: 0; }
+  .main-nav ul.menu--main > li { position: static; }
+  .main-nav ul.menu--main > li > a { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
   .main-nav .menu-dropdown { position: static; opacity: 1; visibility: visible; transform: none;
     box-shadow: none; padding: var(--sp-3) 0 var(--sp-4) var(--sp-4); min-width: 0; display: block; }
   .main-nav .menu-dropdown--mega { grid-template-columns: 1fr; min-width: 0; }
@@ -257,16 +284,19 @@ a.btn,
 .site-footer__bottom nav ul { display: flex; gap: var(--sp-6); list-style: none; margin: 0; padding: 0; }
 
 /* --- Resilient region styling: make placed menu blocks look designed ----- */
-/* Utility bar: any menu block renders as the right-aligned pill row. */
-.site-header__utility .menu {
-  display: flex; align-items: center; list-style: none; margin: 0; padding: 0;
+/* Utility bar: the menu block renders <nav><ul><li> (no .menu class on the ul). */
+.site-header__utility .block, .site-header__utility nav { margin: 0; }
+.site-header__utility h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.site-header__utility ul {
+  display: flex; align-items: center; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; justify-content: flex-end;
 }
-.site-header__utility .menu li + li { border-left: 1px solid var(--c-hair); }
-.site-header__utility .menu a {
+.site-header__utility li { margin: 0; }
+.site-header__utility li + li { border-left: 1px solid var(--c-hair); }
+.site-header__utility a {
   display: inline-flex; align-items: center; gap: 0.4rem;
   padding: 0 1rem; font-size: var(--fs-sm); color: var(--c-ink); font-weight: 400;
 }
-.site-header__utility .menu a:hover { color: var(--c-blue); text-decoration: none; }
+.site-header__utility a:hover { color: var(--c-blue); text-decoration: none; }
 
 /* Footer light band: each placed block becomes a link column. */
 .site-footer__top .block { margin: 0; }

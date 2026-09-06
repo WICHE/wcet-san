@@ -1,7 +1,13 @@
 /**
  * wiche · base.css — resets + element defaults + typography.
  * All values reference tokens.css.
+ *
+ * Wrapped in a cascade layer so Drupal's own (unlayered) chrome CSS — admin
+ * toolbar, contextual links, off-canvas, dialogs — ALWAYS wins over these
+ * generic element rules, regardless of source order. Component/layout rules
+ * (our own classes) stay unlayered so they still override this base.
  */
+@layer wiche-base {
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -91,3 +97,5 @@ blockquote {
   clip: auto; overflow: visible;
   margin: 0;
 }
+
+} /* end @layer wiche-base */

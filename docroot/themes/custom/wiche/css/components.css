@@ -390,3 +390,20 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .footer-col a:hover { color: var(--c-blue); }
 .footer-contact address { font-style: normal; margin: var(--sp-3) 0 var(--sp-5); color: var(--c-ink); }
 .footer-contact a[href^="tel"] { text-decoration: underline; font-weight: 600; color: var(--c-ink); }
+
+/* ============================ Design-spec refinements (2026-09-06) ======== */
+/* Button text colour must win over container link-colour rules (e.g. the grey
+ * .footer-col a colour was overriding the footer "Join SAN" button's white). */
+.footer-col a.button, .footer-col a.button:hover { color: #fff; }
+.section a.button, .region-content a.button { color: #fff; }
+
+/* Accordion (spec 161:2043): default grey, rollover = blue text, selected =
+ * blue filled bar + white text + left blue accent on the open content. */
+.faq-item > summary:hover { color: var(--c-blue); }
+.faq-item[open] > summary,
+.faq-item[open] > summary:hover { color: #fff; }
+.faq-item[open] .faq-item__a { border-left: 3px solid var(--c-blue); }
+
+/* Hero split (spec 154:1209): the copy half is SOLID brand blue, image on the
+ * right; only the "solid colour" variant uses the blue→navy gradient. */
+.hero--split { background: var(--c-blue); }

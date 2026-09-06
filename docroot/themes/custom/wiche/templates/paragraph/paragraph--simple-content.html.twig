@@ -2,19 +2,28 @@
 /**
  * @file Generic content block — simple_content.
  * Fields: field_header, field_subheader, field_body, field_link.
+ * If there's a link and no body, render as a full-width CTA banner
+ * (e.g. "Join SAN and Become a Member"); otherwise a readable content block.
  */
 #}
-<section{{ attributes.addClass('section', 'paragraph-content') }}>
-  <div class="wrap wrap--narrow flow-l">
-    {% if paragraph.field_header.value %}
-      <h2>{{ paragraph.field_header.value }}</h2>
-    {% endif %}
-    {% if paragraph.field_subheader.value %}
-      <p class="lead">{{ paragraph.field_subheader.value }}</p>
-    {% endif %}
-    {{ content.field_body }}
-    {% if content.field_link|render|trim %}
-      <div class="section-cta section-cta--start">{{ content.field_link }}</div>
-    {% endif %}
-  </div>
-</section>
+{% set has_body = content.field_body|render|trim is not empty %}
+{% set has_link = content.field_link|render|trim is not empty %}
+{% if has_link and not has_body %}
+  <section{{ attributes.addClass('section', 'paragraph-cta') }}>
+    <div class="wrap">
+      <div class="cta-banner">
+        <h2>{{ paragraph.field_header.value }}</h2>
+        <div class="cta-banner__action">{{ content.field_link }}</div>
+      </div>
+    </div>
+  </section>
+{% else %}
+  <section{{ attributes.addClass('section', 'paragraph-content') }}>
+    <div class="wrap wrap--narrow flow-l">
+      {% if paragraph.field_header.value %}<h2>{{ paragraph.field_header.value }}</h2>{% endif %}
+      {% if paragraph.field_subheader.value %}<p class="lead">{{ paragraph.field_subheader.value }}</p>{% endif %}
+      {{ content.field_body }}
+      {% if has_link %}<div class="section-cta section-cta--start">{{ content.field_link }}</div>{% endif %}
+    </div>
+  </section>
+{% endif %}

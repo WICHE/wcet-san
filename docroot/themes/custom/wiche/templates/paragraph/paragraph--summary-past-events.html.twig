@@ -1,0 +1,11 @@
+{#
+/**
+ * @file Past events summary — summary_past_events. Field: field_summary_topics.
+ */
+#}
+<section{{ attributes.addClass('section', 'paragraph-summary', 'paragraph-summary--events') }}>
+  <div class="wrap">
+    <div class="section-head"><h2 class="section-head__title">{{ 'Past Events'|t }}</h2></div>
+    <div class="card-grid summary-grid">{{ content.field_summary_topics }}</div>
+  </div>
+</section>

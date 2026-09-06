@@ -309,3 +309,84 @@ a.btn,
 .site-footer__top .menu li { margin-bottom: var(--sp-3); }
 .site-footer__top .menu a { color: var(--c-ink); font-size: var(--fs-body); }
 .site-footer__top .menu a:hover { color: var(--c-blue); }
+
+/* ============================================ Admin-UI guard ============= */
+/* Keep wiche's generic element styles out of Drupal's chrome (toolbar,
+ * contextual links, off-canvas). :where() keeps these at zero added
+ * specificity so they only override wiche's own bare-element rules, never
+ * Drupal's higher-specificity admin CSS. */
+:where(#toolbar-administration, .contextual, .contextual-links, #drupal-off-canvas) a { text-decoration: none; }
+:where(#toolbar-administration, .contextual, .contextual-links, #drupal-off-canvas) a:hover { text-decoration: none; color: inherit; }
+:where(#toolbar-administration, .contextual, .contextual-links, #drupal-off-canvas) :is(ul, ol, li) { margin: 0; padding: 0; list-style: none; }
+:where(#toolbar-administration, .contextual, .contextual-links, #drupal-off-canvas, .ui-dialog) :is(strong, b) { color: inherit; }
+/* Contextual "pencil" region must not be clipped by our overflow/rounding. */
+.contextual-region { position: relative; }
+.hero, .card--overlay { } /* overflow set locally; contextual sits inside */
+
+/* ================================================= Drupal chrome ========= */
+.region-breadcrumb { padding-block: var(--sp-4); }
+.breadcrumb, .region-breadcrumb ol, .region-breadcrumb ul { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; margin: 0; padding: 0; font-size: var(--fs-sm); color: var(--c-muted); }
+.breadcrumb li + li::before, .region-breadcrumb li + li::before { content: "/"; margin-right: var(--sp-2); color: var(--c-hair); }
+.region-highlighted .messages { margin-block: var(--sp-4); }
+nav.tabs, .tabs { margin-bottom: var(--sp-5); }
+.tabs__tab, .tabs > ul > li { list-style: none; }
+
+/* =============================================== FAQ / accordion ========= */
+.paragraph-faq .accordion { border-top: 1px solid var(--border); }
+.faq-item { border-bottom: 1px solid var(--border); background: #fff; }
+.faq-item > summary, .faq-item__q {
+  cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;
+  gap: var(--sp-4); padding: var(--sp-4) var(--sp-5); font-weight: 600; color: var(--c-heading); font-size: 1.125rem;
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary::after { content: "+"; font-size: 1.6rem; line-height: 1; color: var(--c-blue); font-weight: 400; }
+.faq-item[open] > summary { background: var(--c-blue); color: #fff; }
+.faq-item[open] > summary::after { content: "\2212"; color: #fff; }
+.faq-item__a { padding: var(--sp-5); }
+.faq-item__a a { color: var(--c-blue); text-decoration: underline; }
+
+/* =============================================== CTA banner ============== */
+.cta-banner {
+  background: var(--hero-gradient); color: #fff; border-radius: var(--radius);
+  padding: clamp(2rem, 1rem + 3vw, 3.5rem);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-6); flex-wrap: wrap;
+}
+.cta-banner h2, .cta-banner h3 { color: #fff; margin: 0; max-width: 20ch; }
+.cta-banner a { display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
+  padding: 0.85rem 1.75rem; border: 2px solid #fff; border-radius: var(--radius-sm); color: #fff; white-space: nowrap; }
+.cta-banner a:hover { background: #fff; color: var(--c-blue); text-decoration: none; }
+
+/* =============================================== Media / figure ========== */
+.paragraph--single_image img, .paragraph--single_video iframe, .media img { border-radius: var(--radius); }
+.paragraph--single_video .field { position: relative; }
+.paragraph--single_video iframe, .paragraph--single_video video { width: 100%; aspect-ratio: 16/9; height: auto; }
+figure { margin: 0; }
+figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--sp-2); }
+/* Logo card (SAN Essentials etc.): small logo + title inline */
+.card--media .card__media--logo { aspect-ratio: auto; margin-bottom: var(--sp-4); }
+.card--media .card__media--logo img { width: auto; max-height: 44px; }
+
+/* File download link */
+.paragraph--single_file a, .field--type-file a { display: inline-flex; align-items: center; gap: var(--sp-2); color: var(--c-blue); font-weight: 600; }
+
+/* =============================================== Table ==================== */
+.paragraph-table { overflow-x: auto; }
+.paragraph-table table, table.responsive-enabled, .region-content table { width: 100%; border-collapse: collapse; font-size: var(--fs-body); }
+.region-content th { text-align: left; background: var(--c-blue-tint); color: var(--c-heading); font-weight: 600; padding: var(--sp-3) var(--sp-4); border-bottom: 2px solid var(--c-blue); }
+.region-content td { padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border); }
+.region-content tr:nth-child(even) td { background: var(--c-blue-tint-2); }
+
+/* =============================================== Footer columns ========== */
+/* A custom footer block renders 5 link columns + a contact column. */
+.footer-cols { display: grid; grid-template-columns: repeat(4, 1fr) 1.3fr; gap: var(--sp-7) var(--sp-6); }
+@media (max-width: 900px) { .footer-cols { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .footer-cols { grid-template-columns: 1fr; } }
+.footer-col h2, .footer-col h3, .footer-col strong.footer-col__title {
+  display: block; font-size: 1.125rem; font-weight: 600; color: var(--c-heading); margin: 0 0 var(--sp-4);
+}
+.footer-col ul { list-style: none; margin: 0; padding: 0; }
+.footer-col li { margin-bottom: var(--sp-3); }
+.footer-col a { color: var(--c-ink); font-size: var(--fs-body); }
+.footer-col a:hover { color: var(--c-blue); }
+.footer-contact address { font-style: normal; margin: var(--sp-3) 0 var(--sp-5); color: var(--c-ink); }
+.footer-contact a[href^="tel"] { text-decoration: underline; font-weight: 600; color: var(--c-ink); }

@@ -1,6 +1,6 @@
 # WCET · SAN — Drupal 11 upgrade & theme refresh — Progress report
 
-_Last updated: 2026-09-06 · branch `feature/refresh`_
+_Last updated: 2026-09-07 · branch `feature/refresh`_
 
 ## TL;DR
 The site is **fully upgraded to Drupal 11.4.5** and running the **new `wiche` theme**
@@ -27,7 +27,7 @@ a few **content-model tweaks** and two page templates.
 | 5 · Content teaser wiring | ✅ Done (theme side) | 601 resources → article cards; event + topic teasers wired |
 | 5 · Config export | ⏳ Next | Theme switch + block placements are DB-only; capture into `config/default` |
 | 5 · Content-model tweaks | ⏳ Next | Topic/event image fields, un-hide summary field, `/resources/all` CAPTCHA |
-| 5 · Page templates | ⏳ Todo | Resource overview (184:5646), article page (53:499) |
+| 5 · Page templates | ✅ Done | Resource overview (184:5646) + article/resource full page (53:499) built & verified vs real content |
 
 ## The `wiche` theme
 Build-less Drupal 11 theme (base `stable9`, CSS custom properties + vanilla JS, no webpack).
@@ -48,7 +48,9 @@ Build-less Drupal 11 theme (base `stable9`, CSS custom properties + vanilla JS, 
 ## Remaining work
 1. ✅ **`drush cex`** — done; `config/default` now matches the running site.
 2. ✅ **Content-model tweaks** — done: un-hid `field_summary_topics` (Resources/Events sections populate); added `field_image` to `topic` + `event`; **disabled the global CAPTCHA** (see note below) so `/resources/all` shows the article grid.
-3. ⏳ **Page templates** — resource overview (184:5646), article page (53:499). _In progress._
+3. ✅ **Page templates** — done:
+   - **Resource overview** (`/resources/all`) — `views-view-unformatted--resources--page-resources.html.twig` lays the resource teasers out in the 3-up card grid; the exposed Types/Topics filters are styled as a filter bar; the duplicate generic "All Resources" page title is hidden (the view's own "Resource Library" header is the H1). Route-scoped via a `route--…` body class from `wiche_preprocess_html`.
+   - **Article / resource full page** — `node--resource--full.html.twig`: meta line (category · date · topics), blue H1, optional prose body, then a **"Downloads & links"** panel. _Note:_ the design (53:499) shows a prose article + sidebar, but the real content model is different — **275/290 resources are link/file collections** (`field_p_resources` = `single_link` + `single_file`) and only 2 use `field_p_content` prose — so the template leads with the links/files panel and shows prose only when present. Full-node pages hide the page-title block (they render their own H1).
 4. ⏳ **Footer links** — placeholders (`#`) are acceptable for now; wire to real menus later.
 
 ### Content still needed (authoring, on the client side)

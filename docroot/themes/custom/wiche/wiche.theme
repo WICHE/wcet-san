@@ -16,7 +16,24 @@ declare(strict_types=1);
  * Adds a hook for future body-level classes (theme variants, etc.).
  */
 function wiche_preprocess_html(array &$variables): void {
-  // Placeholder for art-direction: e.g. a data-theme attribute or body class.
+  // Tag the <body> with the node bundle on canonical node pages so component
+  // CSS can adapt (e.g. the resource/event full templates render their own H1,
+  // so the page-title block is hidden on those pages — see components.css).
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    $variables['attributes']['class'][] = 'page-node';
+    $variables['attributes']['class'][] = 'page-node-type-' . $node->bundle();
+  }
+
+  // A stable, route-based body class so listing pages (e.g. the resources view)
+  // can be styled without depending on the view's dynamic dom-id class.
+  $route = \Drupal::routeMatch()->getRouteName();
+  if ($route !== NULL) {
+    // Normalise separators (dots + underscores) to hyphens so the class is
+    // predictable, e.g. view.resources.page_resources → view-resources-page-resources.
+    $slug = \Drupal\Component\Utility\Html::cleanCssIdentifier(str_replace(['.', '_'], '-', $route));
+    $variables['attributes']['class'][] = 'route--' . $slug;
+  }
 }
 
 /**

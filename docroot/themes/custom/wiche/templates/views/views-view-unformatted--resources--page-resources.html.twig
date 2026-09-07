@@ -1,0 +1,19 @@
+{#
+/**
+ * @file Resources listing rows → responsive card grid (Figma 184:5646).
+ *
+ * The resources view outputs unformatted rows; each row is a resource rendered
+ * in its teaser view mode (node--resource--teaser → .card--article). Wrapping
+ * the rows in .card-grid lays the cards out 3-up (responsive) instead of stacked.
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+<div class="card-grid card-grid--resources">
+  {% for row in rows %}
+    <div{{ row.attributes.addClass('views-row') }}>
+      {{- row.content -}}
+    </div>
+  {% endfor %}
+</div>

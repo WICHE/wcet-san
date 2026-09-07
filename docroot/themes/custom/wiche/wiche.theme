@@ -37,6 +37,57 @@ function wiche_preprocess_html(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ *
+ * On a full resource page (the article page, Figma 53:499) build a small
+ * "More {topic} Resources" related list — other published resources that share
+ * this resource's primary topic — so the template can render the related-cards
+ * section beneath the article. Also exposes the primary topic label for the
+ * section heading.
+ */
+function wiche_preprocess_node(array &$variables): void {
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof \Drupal\node\NodeInterface) {
+    return;
+  }
+  if ($node->bundle() !== 'resource' || ($variables['view_mode'] ?? '') !== 'full') {
+    return;
+  }
+
+  $variables['related_resources'] = [];
+  $variables['related_topic'] = NULL;
+
+  if (!$node->hasField('field_topic') || $node->get('field_topic')->isEmpty()) {
+    return;
+  }
+  $tids = array_column($node->get('field_topic')->getValue(), 'target_id');
+
+  // Primary topic label for the heading.
+  $term = \Drupal\taxonomy\Entity\Term::load(reset($tids));
+  if ($term !== NULL) {
+    $variables['related_topic'] = $term->label();
+  }
+
+  $ids = \Drupal::entityQuery('node')
+    ->accessCheck(TRUE)
+    ->condition('type', 'resource')
+    ->condition('status', 1)
+    ->condition('field_topic', $tids, 'IN')
+    ->condition('nid', $node->id(), '<>')
+    ->sort('created', 'DESC')
+    ->range(0, 2)
+    ->execute();
+  if (!$ids) {
+    return;
+  }
+
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+  foreach (\Drupal\node\Entity\Node::loadMultiple($ids) as $related) {
+    $variables['related_resources'][] = $view_builder->view($related, 'teaser');
+  }
+}
+
+/**
  * Implements hook_theme_suggestions_paragraph_alter().
  *
  * Lets each paragraph type have a template like

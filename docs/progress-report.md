@@ -28,6 +28,8 @@ a few **content-model tweaks** and two page templates.
 | 5 · Config export | ⏳ Next | Theme switch + block placements are DB-only; capture into `config/default` |
 | 5 · Content-model tweaks | ⏳ Next | Topic/event image fields, un-hide summary field, `/resources/all` CAPTCHA |
 | 5 · Page templates | ✅ Done | Resource overview (184:5646) + article/resource full page (53:499) built & verified vs real content |
+| 5 · Design QA vs Figma | ✅ Done | Hero, cards, accordion, CTA, footer, article page all reviewed against Figma frames & fixed; see below |
+| 6 · Content readiness | ⏳ In progress | All content types author-ready; images + menus + footer links are the remaining content tasks |
 
 ## The `wiche` theme
 Build-less Drupal 11 theme (base `stable9`, CSS custom properties + vanilla JS, no webpack).
@@ -50,12 +52,46 @@ Build-less Drupal 11 theme (base `stable9`, CSS custom properties + vanilla JS, 
 2. ✅ **Content-model tweaks** — done: un-hid `field_summary_topics` (Resources/Events sections populate); added `field_image` to `topic` + `event`; **disabled the global CAPTCHA** (see note below) so `/resources/all` shows the article grid.
 3. ✅ **Page templates** — done:
    - **Resource overview** (`/resources/all`) — `views-view-unformatted--resources--page-resources.html.twig` lays the resource teasers out in the 3-up card grid; the exposed Types/Topics filters are styled as a filter bar; the duplicate generic "All Resources" page title is hidden (the view's own "Resource Library" header is the H1). Route-scoped via a `route--…` body class from `wiche_preprocess_html`.
-   - **Article / resource full page** — `node--resource--full.html.twig`: meta line (category · date · topics), blue H1, optional prose body, then a **"Downloads & links"** panel. _Note:_ the design (53:499) shows a prose article + sidebar, but the real content model is different — **275/290 resources are link/file collections** (`field_p_resources` = `single_link` + `single_file`) and only 2 use `field_p_content` prose — so the template leads with the links/files panel and shows prose only when present. Full-node pages hide the page-title block (they render their own H1).
-4. ⏳ **Footer links** — placeholders (`#`) are acceptable for now; wire to real menus later.
+   - **Article / resource full page** — `node--resource--full.html.twig`. Rebuilt to the Figma layout (53:499): **two columns** when the resource has prose (`field_p_content` via a `simple_content` paragraph) — article body (left) + a **"Quick links"** sidebar (right) from `field_p_resources` — plus a **"More {topic} Resources"** related-cards section (`wiche_preprocess_node`) with a "See all resources" button. Link/file-only resources (**275/290**, no prose) keep the single-column **"Downloads & links"** panel; `has_body` uses `striptags` so an empty layout paragraph doesn't falsely trigger the split. Full-node pages hide the page-title block by id (`#block-wiche-pagetitle`).
+4. ⏳ **Footer links** — placeholders (`#`); wire to real menus (content).
+
+## Design QA vs Figma (2026-09-07)
+Reviewed each built component/page against its Figma frame (renders in `.figma-refs/qa/`, gitignored):
+
+| Design | Node | Verdict |
+| --- | --- | --- |
+| Hero (solid / half-image / full-image) | 154:1209 | ✅ Matches — blue→navy gradient, eyebrow, left copy |
+| Cards — single CTA (bg + no-bg) | 154:1663 | ✅ Matches — title · rule · body · outline/filled CTA |
+| Accordion (default / hover / open) | 161:2043 | ✅ Matches — blue open bar, white text, left accent |
+| CTA banner | 26:32 | ✅ Matches — gradient band + outline button |
+| Footer (light 5-col + dark WCET band) | 53:499 | ✅ Structure matches (headings/links are content) |
+| Article page (2-col + Quick links + related) | 53:499 | ✅ Rebuilt to match |
+| Resource overview | 184:5646 | ✅ Card grid + filter bar |
+
+**Gaps that are content, not theme** (need client input / authoring — see below):
+- **Navigation IA** — main nav (currently *State Authorization 101 · About SAN · Membership · Events · Resources*, 40 links) and the utility bar (missing *Search*) don't match the design's IA (*Home · Our Network · Learning Center · Compliance Topics · Events · Join SAN*). Restructuring the real 40-link menu is a client IA decision, not done unilaterally.
+- **Footer** menu links are `#` placeholders.
+- **Topic / event images** not yet uploaded.
+- Card "*External link" magenta note + per-card button fill are driven by paragraph fields (author choices), not the theme.
+
+## Content readiness (for client authoring)
+All content types are **author-ready** — editors can create everything from the node forms:
+
+| Type | Author fields | Notes |
+| --- | --- | --- |
+| Resource | title, resource_type, topic, content_access, `field_p_content` (prose via `simple_content`), `field_p_resources` (links/files) | Demo article **node 815** (`DEMO: 15 Years…`) is a ready template |
+| Event | title, event_date, event_type, topic, **field_image**, featured, resources | Image field in the form → image-topped cards |
+| Landing Page | `field_p_header`, `field_p_content` (paragraphs) | Demo landing **node 814** |
+| Basic page | title, body | |
+| Resource Table | title, resource_type, topic, intro copy | |
+| Topic (term) | name, **field_image** | Image → overlay Resource cards |
+
+**Demo content** (created to validate designs / act as templates; delete before launch if unwanted): landing node **814** (`/wiche-design-demo`), article node **815**.
 
 ### Content still needed (authoring, on the client side)
 - Upload an **image per topic** (`field_image`) → Resources cards become the image-overlay design (theme already renders them when present).
 - Upload an **image per event** (`field_image`) → image-topped event cards.
+- Decide the **navigation IA** (see Design QA gaps) and wire the **footer** links.
 
 ### ⚠️ CAPTCHA note (changed 2026-09-06)
 `captcha.settings: enable_globally` was **`1`** (CAPTCHA on **every** form, including

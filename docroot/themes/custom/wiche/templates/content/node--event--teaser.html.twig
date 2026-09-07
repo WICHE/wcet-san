@@ -1,0 +1,18 @@
+{#
+/**
+ * @file Event teaser → event card (Events section).
+ * event node: field_event_date, field_topic. (No image field on events yet —
+ * add one to the event type to get the image-topped event cards from the design.)
+ */
+#}
+{% set has_image = content.field_media_image is defined and (content.field_media_image|render|trim is not empty) %}
+<article{{ attributes.addClass('card', 'card--media', 'card--event') }}>
+  {% if has_image %}
+    <div class="card__media">{{ content.field_media_image }}</div>
+  {% endif %}
+  <h3 class="card__title"><a href="{{ url }}">{{ label }}</a></h3>
+  {% if node.field_event_date.value %}
+    <div class="card__meta"><strong>{{ 'Date:'|t }}</strong> {{ node.field_event_date.value|date('F j, Y') }}</div>
+  {% endif %}
+  <div class="card__cta"><a href="{{ url }}">{{ 'Learn more'|t }}</a></div>
+</article>

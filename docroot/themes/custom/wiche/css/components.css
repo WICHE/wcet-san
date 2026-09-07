@@ -322,14 +322,34 @@ a.btn,
 /* Contextual "pencil" region must not be clipped by our overflow/rounding. */
 .contextual-region { position: relative; }
 .hero, .card--overlay { } /* overflow set locally; contextual sits inside */
+/* Keep contextual-link dropdowns collapsed until their trigger opens them.
+ * Re-asserted at theme level (specificity 0,3,0 + theme load order) so the
+ * collapse holds even where core's base `.contextual-links{display:none}` is
+ * overridden — otherwise the whole link list sits open on the page. */
+.contextual-region .contextual .contextual-links { display: none; }
+.contextual-region .contextual.open .contextual-links { display: block; }
 
 /* ================================================= Drupal chrome ========= */
 .region-breadcrumb { padding-block: var(--sp-4); }
 .breadcrumb, .region-breadcrumb ol, .region-breadcrumb ul { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; margin: 0; padding: 0; font-size: var(--fs-sm); color: var(--c-muted); }
 .breadcrumb li + li::before, .region-breadcrumb li + li::before { content: "/"; margin-right: var(--sp-2); color: var(--c-hair); }
 .region-highlighted .messages { margin-block: var(--sp-4); }
-nav.tabs, .tabs { margin-bottom: var(--sp-5); }
-.tabs__tab, .tabs > ul > li { list-style: none; }
+
+/* Local task tabs (View / Edit / Delete / Revisions) — editors only.
+ * stable9 outputs a classless <ul> here, so style it off the block id. Renders
+ * as a neat row of pill options rather than a bare bullet list. */
+#block-wiche-tabs { margin: 0 0 var(--sp-6); }
+#block-wiche-tabs > ul { display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  list-style: none; margin: 0; padding: 0; }
+#block-wiche-tabs li { margin: 0; }
+#block-wiche-tabs a { display: inline-block; padding: 0.4rem 0.95rem; line-height: 1.4;
+  border: 1px solid var(--border-strong); border-radius: 999px; background: #fff;
+  color: var(--c-blue); font-weight: 600; font-size: var(--fs-sm); text-decoration: none; }
+#block-wiche-tabs a:hover { background: var(--c-blue-tint); text-decoration: none; }
+#block-wiche-tabs a.is-active,
+#block-wiche-tabs li.is-active > a { background: var(--c-blue); border-color: var(--c-blue); color: #fff; }
+/* secondary tabs (if any) sit just under the primary row */
+#block-wiche-tabs > ul + h2 { margin-top: var(--sp-4); }
 
 /* =============================================== FAQ / accordion ========= */
 .paragraph-faq .accordion { border-top: 1px solid var(--border); }

@@ -5,10 +5,11 @@
  * add one to the event type to get the image-topped event cards from the design.)
  */
 #}
-{% set has_image = content.field_media_image is defined and (content.field_media_image|render|trim is not empty) %}
+{% set img = node.field_image.entity %}
+{% set has_image = img is not null %}
 <article{{ attributes.addClass('card', 'card--media', 'card--event') }}>
   {% if has_image %}
-    <div class="card__media">{{ content.field_media_image }}</div>
+    <div class="card__media"><img src="{{ file_url(img.uri.value) }}" alt="{{ node.field_image.alt }}" loading="lazy"></div>
   {% endif %}
   <h3 class="card__title"><a href="{{ url }}">{{ label }}</a></h3>
   {% if node.field_event_date.value %}

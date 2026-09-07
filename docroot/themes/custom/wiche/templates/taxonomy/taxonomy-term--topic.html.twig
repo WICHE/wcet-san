@@ -6,9 +6,10 @@
  * get the full image-overlay cards from the design (then set has_image below).
  */
 #}
-{% set has_image = content.field_media_image is defined and (content.field_media_image|render|trim is not empty) %}
+{% set img = term.field_image.entity %}
+{% set has_image = img is not null %}
 <a href="{{ url }}"{{ attributes.addClass('topic-card', has_image ? 'card--overlay' : 'topic-card--plain') }}>
-  {% if has_image %}{{ content.field_media_image }}{% endif %}
+  {% if has_image %}<img src="{{ file_url(img.uri.value) }}" alt="{{ term.field_image.alt }}" loading="lazy">{% endif %}
   <span class="topic-card__inner">
     <span class="topic-card__title">{{ name }}</span>
     <span class="topic-card__cta">{{ 'Learn more'|t }}</span>

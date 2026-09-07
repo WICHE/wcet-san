@@ -45,11 +45,30 @@ Build-less Drupal 11 theme (base `stable9`, CSS custom properties + vanilla JS, 
 - `topic` terms have no fields (name only). `summary_resources`/`summary_events` reference topic terms via `field_summary_topics`, which is **hidden in the paragraph display** (old site likely used a custom formatter) → those home sections render empty until re-enabled.
 - The `resources` view lists at `/resources/all` (teaser mode) but its exposed filter is **CAPTCHA-gated**.
 
-## Remaining work (recommended order)
-1. **`drush cex`** — capture the theme switch, block/footer placements, and teaser wiring into `config/default` (deploy-readiness). Review the diff before committing.
-2. **Content-model tweaks** — add image field to `topic` (Resources overlay cards) and `event` (image event cards); un-hide `field_summary_topics` in the summary displays; reconsider the `/resources/all` CAPTCHA.
-3. **Page templates** — resource overview, article page.
-4. **Footer links** — wire the placeholder columns to real menus.
+## Remaining work
+1. ✅ **`drush cex`** — done; `config/default` now matches the running site.
+2. ✅ **Content-model tweaks** — done: un-hid `field_summary_topics` (Resources/Events sections populate); added `field_image` to `topic` + `event`; **disabled the global CAPTCHA** (see note below) so `/resources/all` shows the article grid.
+3. ⏳ **Page templates** — resource overview (184:5646), article page (53:499). _In progress._
+4. ⏳ **Footer links** — placeholders (`#`) are acceptable for now; wire to real menus later.
+
+### Content still needed (authoring, on the client side)
+- Upload an **image per topic** (`field_image`) → Resources cards become the image-overlay design (theme already renders them when present).
+- Upload an **image per event** (`field_image`) → image-topped event cards.
+
+### ⚠️ CAPTCHA note (changed 2026-09-06)
+`captcha.settings: enable_globally` was **`1`** (CAPTCHA on **every** form, including
+Views exposed filters — which blocked the `/resources/all` article grid from
+rendering). Set to **`0`** so CAPTCHA now applies only to explicitly-enabled
+captcha points. **Before launch**, decide which forms need CAPTCHA (login,
+register, password reset, contact, node create) and enable those points at
+`/admin/config/people/captcha` — or re-enable `enable_globally` and instead
+exempt only the exposed-filter forms.
+
+### Known issue
+Some existing entity **view displays have a broken component** (`getConfigDependencyName()
+on null`, a leftover from a removed module) that throws when the display is
+re-saved. Worked around by rendering `field_image` directly in the templates;
+worth cleaning up (find the null component and remove it) during config tidy-up.
 
 ## How to run / verify
 ```bash

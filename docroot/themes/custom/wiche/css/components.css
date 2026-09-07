@@ -430,3 +430,20 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .topic-card.card--overlay .topic-card__inner { position: relative; z-index: 2; padding: var(--sp-5); color: #fff; }
 .topic-card.card--overlay .topic-card__title { color: #fff; }
 .topic-card.card--overlay .topic-card__cta { color: #fff; }
+
+/* ===================================== Article teaser card (170:3555) ===== */
+/* For article/resource node teasers in "Latest Resources" grids. */
+.card--article { position: relative; background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow-card); padding: var(--sp-6);
+  display: flex; flex-direction: column; }
+.card--article .card--article__label { color: var(--c-magenta); font-weight: 600; font-size: var(--fs-sm); }
+.card--article .card--article__date { color: var(--c-muted); font-size: var(--fs-sm); margin-bottom: var(--sp-3); }
+.card--article .card--article__lock { position: absolute; top: var(--sp-5); right: var(--sp-5); color: var(--c-ink); }
+.card--article .card--article__rule { border: 0; border-top: 1px solid var(--border-strong); margin: 0 0 var(--sp-4); }
+.card--article .card--article__title { font-size: 1.125rem; font-weight: 700; color: var(--c-heading); margin: 0 0 var(--sp-4); }
+.card--article .card--article__tags { color: var(--c-muted); font-size: var(--fs-sm); margin-bottom: var(--sp-5); }
+.card--article .card__cta { margin-top: auto; text-align: center; }
+.card--article .card__cta a { display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; padding: 0.7rem 2rem; border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  color: var(--c-blue); background: transparent; }
+.card--article .card__cta a:hover { background: var(--c-blue); color: #fff; text-decoration: none; }

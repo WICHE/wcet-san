@@ -94,6 +94,7 @@ content:
     region: content
     settings:
       field_label: 'Yes, exclude this entity from the search indexes.'
+      use_details_container: true
     third_party_settings: {  }
   field_meta_description:
     type: text_textarea

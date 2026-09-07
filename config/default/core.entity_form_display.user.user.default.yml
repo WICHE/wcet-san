@@ -30,7 +30,7 @@ content:
   field_address:
     weight: 4
     settings:
-      default_country: null
+      wrapper_type: details
     third_party_settings: {  }
     type: address_default
     region: content

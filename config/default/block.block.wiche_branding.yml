@@ -1,0 +1,23 @@
+uuid: 66bbeefe-404b-4791-858c-bdc0e745c7fc
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - wiche
+id: wiche_branding
+theme: wiche
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: Branding
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

@@ -1,0 +1,20 @@
+uuid: 173043f8-ff86-4f13-9df8-4e6529ed5218
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - wiche
+id: wiche_breadcrumb
+theme: wiche
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumb
+  label_display: '0'
+  provider: system
+visibility: {  }

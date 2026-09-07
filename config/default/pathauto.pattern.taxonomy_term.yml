@@ -2,13 +2,18 @@ uuid: bbcf61c6-d899-4565-aef7-998e4e2af928
 langcode: en
 status: true
 dependencies:
+  config:
+    - taxonomy.vocabulary.event_type
+    - taxonomy.vocabulary.institution
+    - taxonomy.vocabulary.membership
+    - taxonomy.vocabulary.resource_type
+    - taxonomy.vocabulary.topic
   module:
-    - ctools
     - taxonomy
 id: taxonomy_term
 label: 'Taxonomy term'
 type: 'canonical_entities:taxonomy_term'
-pattern: '[term:name]'
+pattern: '/[term:name]'
 selection_criteria:
   4a850fa2-9bd8-49db-888e-bd613847d61f:
     id: 'entity_bundle:taxonomy_term'
@@ -21,7 +26,6 @@ selection_criteria:
     negate: false
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 4a850fa2-9bd8-49db-888e-bd613847d61f
 selection_logic: and
 weight: -5
 relationships: {  }

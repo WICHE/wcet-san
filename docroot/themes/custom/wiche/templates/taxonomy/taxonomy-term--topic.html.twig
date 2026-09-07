@@ -1,0 +1,16 @@
+{#
+/**
+ * @file topic term as a summary card (Events / Resources grids).
+ * Topic terms currently have no image field, so this renders a tinted card
+ * with the topic name + link. Add an image field to the topic vocabulary to
+ * get the full image-overlay cards from the design (then set has_image below).
+ */
+#}
+{% set has_image = content.field_media_image is defined and (content.field_media_image|render|trim is not empty) %}
+<a href="{{ url }}"{{ attributes.addClass('topic-card', has_image ? 'card--overlay' : 'topic-card--plain') }}>
+  {% if has_image %}{{ content.field_media_image }}{% endif %}
+  <span class="topic-card__inner">
+    <span class="topic-card__title">{{ name }}</span>
+    <span class="topic-card__cta">{{ 'Learn more'|t }}</span>
+  </span>
+</a>

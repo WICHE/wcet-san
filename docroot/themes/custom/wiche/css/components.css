@@ -407,3 +407,26 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 /* Hero split (spec 154:1209): the copy half is SOLID brand blue, image on the
  * right; only the "solid colour" variant uses the blue→navy gradient. */
 .hero--split { background: var(--c-blue); }
+
+/* ===================================== Mega-menu multi-column (item 3) ==== */
+/* Dropdowns with many items (e.g. Compliance Topics) flow into two columns,
+ * matching the wide mega-menu panel; short menus stay single-column. */
+.main-nav ul.menu--main > li.has-dropdown > .menu-dropdown:has(> li:nth-child(7)) {
+  columns: 2 200px;
+  column-gap: var(--sp-7);
+  min-width: 480px;
+}
+.main-nav .menu-dropdown > li { break-inside: avoid; }
+
+/* ===================================== Topic summary cards (item 1) ======= */
+.topic-card { display: flex; border-radius: var(--radius); overflow: hidden; text-decoration: none; min-height: 220px; box-shadow: var(--shadow-card); }
+.topic-card:hover { text-decoration: none; box-shadow: var(--shadow-card-hover); }
+.topic-card--plain { background: var(--c-blue-tint); align-items: flex-end; padding: var(--sp-5); }
+.topic-card--plain .topic-card__title { color: var(--c-blue); font-weight: 600; font-size: 1.25rem; }
+.topic-card__inner { display: flex; flex-direction: column; gap: var(--sp-3); }
+.topic-card__cta { color: var(--c-blue); font-weight: 700; font-size: var(--fs-sm); }
+.topic-card--plain:hover .topic-card__cta { color: var(--c-magenta); }
+/* Overlay variant (topic with an image) inherits .card--overlay look. */
+.topic-card.card--overlay .topic-card__inner { position: relative; z-index: 2; padding: var(--sp-5); color: #fff; }
+.topic-card.card--overlay .topic-card__title { color: #fff; }
+.topic-card.card--overlay .topic-card__cta { color: #fff; }

@@ -7,7 +7,6 @@ dependencies:
     - field.storage.user.field_last_name
     - field.storage.user.field_phone_number
     - field.storage.user.field_user_membership
-    - system.menu.main
     - taxonomy.vocabulary.membership
     - user.role.administrator
     - user.role.coordinator
@@ -824,7 +823,7 @@ display:
       display_extenders: {  }
       path: membership/coordinator-list
       menu:
-        type: normal
+        type: none
         title: 'Coordinator List'
         description: 'Coordinator List'
         weight: -49

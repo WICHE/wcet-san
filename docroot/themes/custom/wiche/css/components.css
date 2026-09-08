@@ -488,7 +488,9 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
    stable9 outputs the page-title block as a bare <div id="block-wiche-pagetitle">
    (no class), so target it by id, scoped to resource/event node pages. */
 .page-node-type-resource #block-wiche-pagetitle,
-.page-node-type-event #block-wiche-pagetitle { display: none; }
+.page-node-type-event #block-wiche-pagetitle,
+/* landing pages lead with a hero (field_p_header) that carries the H1 */
+.page-node-type-landing_page #block-wiche-pagetitle { display: none; }
 
 /* single-column widths (link-only resources) */
 .resource-article:not(.resource-article--split) .resource-article__head,

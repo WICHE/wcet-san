@@ -133,7 +133,6 @@ module:
   paragraphs: 11
   standard: 1000
 theme:
-  stable: 0
   claro: 0
   gin: 0
   stable9: 0

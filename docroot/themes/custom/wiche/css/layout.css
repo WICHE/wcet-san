@@ -83,9 +83,24 @@
   .page-main__grid.has-both { grid-template-columns: 1fr; }
 }
 
-/* The front page (paragraph sections) runs full-bleed, no content padding box */
-.path-frontpage .page-main__grid { display: block; padding-block: 0; }
-.path-frontpage .page-main .wrap { max-width: none; padding: 0; }
+/* Section-based pages (front page + landing pages) drop the content padding box
+   so their sections sit flush; sections themselves run full-bleed (below). */
+.path-frontpage .page-main__grid,
+.page-node-type-landing_page .page-main__grid { display: block; padding-block: 0; }
+
+/* Full-bleed component backgrounds: the hero + every section band stretch to the
+   full viewport width while their inner .wrap keeps the CONTENT within the
+   1320 container. Works inside the centered content wrap on any page. */
+.hero,
+.section { margin-inline: calc(50% - 50vw); }
+/* …but only top-level bands: sections nested inside the hero (secondary content),
+   a two-column layout, an article, etc. stay in normal flow. */
+.hero .section,
+.section .section,
+.resource-article .section,
+.quick-links .section { margin-inline: 0; }
+/* absorb the scrollbar-width the 50vw math adds, so no horizontal scroll */
+.page-main { overflow-x: clip; }
 
 /* -- Site header shell -- */
 .site-header { position: relative; z-index: 40; background: var(--c-white); }

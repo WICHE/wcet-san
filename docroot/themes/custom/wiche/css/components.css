@@ -47,15 +47,17 @@ a.btn,
 .hero { position: relative; background: var(--hero-gradient); color: #fff; overflow: hidden; }
 .hero__inner {
   display: grid; align-items: center;
-  min-height: 320px; padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+  min-height: 404px; padding-block: clamp(3rem, 1.5rem + 4vw, 6.25rem);
 }
+.hero__copy { max-width: 640px; }
 .hero__eyebrow {
-  font-size: var(--fs-body); font-weight: 400; letter-spacing: 0.01em;
-  margin-bottom: var(--sp-3); opacity: 0.95;
+  font-size: var(--fs-body); font-weight: 400; letter-spacing: 0.05em;
+  margin-bottom: var(--sp-5); opacity: 1;
 }
+/* Design "M - Desktop heading - Regular": Roboto 400, 32/40 (not bold/40px+). */
 .hero__title {
   color: #fff; font-weight: 400; margin: 0;
-  font-size: var(--fs-h2); max-width: 22ch; line-height: 1.3;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); line-height: 1.25; max-width: none;
 }
 .hero__body { max-width: 52ch; margin-top: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3); align-items: flex-start; }
 .hero__actions { margin-top: var(--sp-6); display: flex; gap: var(--sp-4); flex-wrap: wrap; }

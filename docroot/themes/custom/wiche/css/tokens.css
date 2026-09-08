@@ -36,7 +36,7 @@
   --link-hover: var(--c-magenta);
 
   /* Hero gradient (left brand-blue → deep navy) */
-  --hero-gradient: linear-gradient(90deg, #1468A0 0%, #12608f 50%, #07263A 100%);
+  --hero-gradient: linear-gradient(90deg, #136196 49%, #061F30 100%);
 
   /* ---- Typography ------------------------------------------------------- */
   --font-body: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;

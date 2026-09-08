@@ -170,10 +170,19 @@ if ($view) {
   }
 }
 
-// --- Purge stale menu_tree rows left by deleted links, then rebuild so the
-//     rendered tree matches the entities exactly. ---
+// --- Rebuild the menu tree so it matches the entities exactly. ---
+// Truncate clears stale rows left by the deleted links; rebuild() re-adds
+// routed + static links. But a bare rebuild DROPS menu_link_content links whose
+// URI is external, entity: or route: (e.g. Policy Tracker, Contact Us, Login) —
+// so re-save every link afterwards to restore their menu_tree row, or those
+// items silently vanish from the rendered menu.
 \Drupal::database()->truncate('menu_tree')->execute();
 \Drupal::service('plugin.manager.menu.link')->rebuild();
+foreach (['util-navigation', 'main'] as $mn) {
+  foreach ($storage->loadByProperties(['menu_name' => $mn]) as $link) {
+    $link->save();
+  }
+}
 
 echo "rebuilt main (" . count($MAIN) . " top-level) + util-navigation (" . count($UTIL) . ")\n";
 echo "DONE\n";

@@ -20,6 +20,7 @@ drush php:script scripts/<name>.php      # or: lando drush php:script scripts/<n
 | `membership-page.php` | `/membership` landing page rebuilt to design 72:1528. Backs up prior content to `public://`. | ✅ resolves by alias |
 | `demo-landing.php` | `/wiche-design-demo` component showcase (landing page). | ✅ delete-by-title |
 | `demo-article.php` | The "DEMO: 15 Years…" article (two-column resource template). | ✅ delete-by-title |
+| `search-setup.php` | Frees `/search` (unpublishes prod's old React search landing) so the search view owns it. Reindex after: `drush search-api:index index`. | ✅ |
 
 ---
 
@@ -54,6 +55,8 @@ lando drush php:script scripts/nav-menu.php
 lando drush php:script scripts/membership-page.php
 lando drush php:script scripts/demo-landing.php     # optional (demo/template)
 lando drush php:script scripts/demo-article.php     # optional (demo/template)
+lando drush php:script scripts/search-setup.php     # free /search for the search view
+lando drush search-api:index index                  # build the DB search index
 lando drush cr
 
 # 5. Verify

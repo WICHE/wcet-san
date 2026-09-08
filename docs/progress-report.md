@@ -68,11 +68,33 @@ Reviewed each built component/page against its Figma frame (renders in `.figma-r
 | Article page (2-col + Quick links + related) | 53:499 | ✅ Rebuilt to match |
 | Resource overview | 184:5646 | ✅ Card grid + filter bar |
 
-**Gaps that are content, not theme** (need client input / authoring — see below):
-- **Navigation IA** — main nav (currently *State Authorization 101 · About SAN · Membership · Events · Resources*, 40 links) and the utility bar (missing *Search*) don't match the design's IA (*Home · Our Network · Learning Center · Compliance Topics · Events · Join SAN*). Restructuring the real 40-link menu is a client IA decision, not done unilaterally.
+**Navigation IA** — ✅ restructured to the design (177:4303). Main nav is now the six
+designed top-level items (Home · Our Network · Learning Center · Compliance Topics ·
+Events · Join SAN), each with its mega-menu, and the utility bar is Search · Policy
+Tracker · Contact Us · Login. Menu links are **content, not config**, so
+[`scripts/nav-menu.php`](../scripts/nav-menu.php) is the reproducible deploy artifact —
+run it per environment (`drush php:script scripts/nav-menu.php`). It backs up existing
+links, is idempotent, and purges stale `menu_tree` rows. Items with no page yet point at
+their section landing page (search `TODO` in the script); known externals use real URLs.
+
+**Membership overview** (`/membership`, node 25) — ✅ rebuilt to the design (72:1528):
+half-image hero → "Quick links" 3-card band → "Join SAN" (Step 1/2/3) → CTA banner →
+"SAN Benefits at a Glance" → "Membership Fee Structure", from the existing paragraph
+components. Built by [`.figma-refs/build-membership.php`](../.figma-refs/build-membership.php)
+(gitignored); the node's previous content is backed up to `public://`. **Body copy is
+transcribed from the mockup — proofread emails / phones / dates before launch.**
+
+**Remaining content gaps** (need client input / authoring):
 - **Footer** menu links are `#` placeholders.
 - **Topic / event images** not yet uploaded.
+- Nav `TODO` placeholder items (e.g. SAN Essentials, WCET Job Posts, external resources) need real target URLs.
 - Card "*External link" magenta note + per-card button fill are driven by paragraph fields (author choices), not the theme.
+
+### Menu gotchas (for whoever runs the nav script on prod)
+- Menu links are **content** — `drush cex` does not capture them; re-run `scripts/nav-menu.php` on each environment.
+- Deleting menu links leaves **stale `menu_tree` rows**; the script truncates + rebuilds the tree to clear them.
+- `route:<nolink>` and external links **don't appear in `menuTree()->load()` (drush) queries** but **do render in the menu block** — verify against the rendered page, not the drush tree dump.
+- The page-title block is `<div id="block-wiche-pagetitle">` (no class) — hidden by **id**, scoped to resource / event / landing_page node pages (they render their own H1).
 
 ## Content readiness (for client authoring)
 All content types are **author-ready** — editors can create everything from the node forms:

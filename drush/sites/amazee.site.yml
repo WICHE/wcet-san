@@ -1,5 +1,5 @@
 dev:
-  host: ssh.lagoon.amazeeio.cloud
+  host: ssh.us2.amazee.io
   options:
     backup-dir: /tmp
     command-specific:
@@ -10,7 +10,7 @@ dev:
   ssh:
     options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'
 master:
-  host: ssh.lagoon.amazeeio.cloud
+  host: ssh.us2.amazee.io
   options:
     backup-dir: /tmp
     command-specific:

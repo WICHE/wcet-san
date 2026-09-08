@@ -1,5 +1,15 @@
+# Lagoon / amazee.io Drush site aliases.
+#
+# The SSH host + port are taken from the Lagoon-injected env vars
+# (LAGOON_CONFIG_SSH_HOST / LAGOON_CONFIG_SSH_PORT) rather than hardcoded, so
+# cross-environment drush works from inside a pod — where the reachable endpoint
+# and port differ from the public portal (e.g. port 22, not 32222). Drush
+# interpolates ${env.*} in alias files. These aliases are intended to run from
+# within a Lagoon environment (where those vars are set).
+#
+# Aliases: @amazee.master (prod), @amazee.dev.
 dev:
-  host: ssh.amazee.io
+  host: ${env.LAGOON_CONFIG_SSH_HOST}
   options:
     backup-dir: /tmp
     command-specific:
@@ -8,9 +18,9 @@ dev:
   root: /app/docroot
   user: wcetsan-wiche-edu-develop
   ssh:
-    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'
+    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${env.LAGOON_CONFIG_SSH_PORT}'
 master:
-  host: ssh.amazee.io
+  host: ${env.LAGOON_CONFIG_SSH_HOST}
   options:
     backup-dir: /tmp
     command-specific:
@@ -19,4 +29,4 @@ master:
   root: /app/docroot
   user: wcetsan-wiche-edu-master
   ssh:
-    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'
+    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${env.LAGOON_CONFIG_SSH_PORT}'

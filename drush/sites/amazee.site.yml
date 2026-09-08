@@ -20,16 +20,3 @@ master:
   user: wcetsan-wiche-edu-master
   ssh:
     options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'
-# Working environment. Lagoon sanitises the branch name feature/refresh → the
-# environment/SSH-user segment "feature-refresh". Alias: @amazee.feature-refresh
-feature-refresh:
-  host: ssh.us2.amazee.io
-  options:
-    backup-dir: /tmp
-    command-specific:
-      sql-sync:
-        no-ordered-dump: true
-  root: /app/docroot
-  user: wcetsan-wiche-edu-feature-refresh
-  ssh:
-    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 32222'

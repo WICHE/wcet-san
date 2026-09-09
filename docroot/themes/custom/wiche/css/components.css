@@ -123,19 +123,24 @@ a.btn,
 .card--media .card__meta { color: var(--c-ink); margin-bottom: var(--sp-4); }
 .card--media .card__meta strong { color: var(--c-blue); }
 
-/* Overlay card (Resources) — image bg + dark gradient + white title + CTA */
+/* Portrait image-overlay tile (Figma 170:2329) — image bg + bottom gradient +
+   white title + "Learn more" button. Shared look with .topic-card so image
+   simple_cards ("Topic Areas") and topic tiles are identical. */
 .card--overlay {
   position: relative; padding: 0; overflow: hidden; border-radius: var(--radius);
-  min-height: 380px; box-shadow: none; justify-content: flex-end; color: #fff;
+  min-height: 380px; box-shadow: var(--shadow-card); display: flex; align-items: flex-end; color: #fff;
+  background: var(--c-blue-navy); /* fallback if the image is slow/missing */
 }
+.card--overlay .field, .card--overlay .field__item { display: contents; }
 .card--overlay img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .card--overlay::after {
   content: ""; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, rgba(7,34,53,0.15) 0%, rgba(7,34,53,0.85) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.78) 100%);
 }
-.card--overlay .card__inner { position: relative; z-index: 2; padding: var(--sp-5); }
-.card--overlay .card__title { color: #fff; font-size: 1.375rem; margin-bottom: var(--sp-4); }
-.card--overlay .btn { width: 100%; }
+.card--overlay .card__inner { position: relative; z-index: 2; display: flex; flex-direction: column;
+  align-items: flex-start; gap: var(--sp-4); padding: var(--sp-6); width: 100%; }
+.card--overlay .card__title { color: #fff; font-size: 1.375rem; line-height: 1.25; margin: 0; }
+.card--overlay .card__body { color: #fff; font-size: var(--fs-sm); }
 
 /* Quick-links card — blue title, rule, "Read more" ghost link */
 .card--link .card__title { color: var(--c-blue); font-size: 1.25rem; }
@@ -156,9 +161,9 @@ a.btn,
 /* Quick-link card → ghost "Read more". */
 .card--link .card__cta a { color: var(--c-blue); font-weight: 700; }
 .card--link .card__cta a:hover { color: var(--c-magenta); text-decoration: none; }
-/* Overlay (Resources) card → white-on-dark button. */
+/* Overlay tile → white outline "Learn more" button (matches .topic-card). */
 .card--overlay .card__cta a {
-  display: block; text-align: center; font-weight: 600; padding: 0.7rem 1rem;
+  display: inline-block; font-weight: 600; font-size: var(--fs-sm); padding: 0.5rem 1.4rem;
   border: 2px solid #fff; border-radius: var(--radius-sm); color: #fff; background: transparent;
 }
 .card--overlay .card__cta a:hover { background: #fff; color: var(--c-blue); text-decoration: none; }

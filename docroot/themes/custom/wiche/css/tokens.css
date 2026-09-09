@@ -68,7 +68,7 @@
   --sp-10: 5rem;
 
   /* Section vertical rhythm + horizontal gutter */
-  --section-y: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+  --section-y: clamp(2.5rem, 1.5rem + 3vw, 5rem); /* up to 80px like the design */
   --gutter: clamp(1rem, 0.3rem + 3vw, 8.5rem); /* up to 136px like the design */
   --wrap-max: 1320px;
 

@@ -47,7 +47,7 @@ a.btn,
 .hero { position: relative; background: var(--hero-gradient); color: #fff; overflow: hidden; }
 .hero__inner {
   display: grid; align-items: center;
-  min-height: 404px; padding-block: clamp(3rem, 1.5rem + 4vw, 6.25rem);
+  min-height: 404px; padding-block: clamp(2rem, 1rem + 2.5vw, 4rem);
 }
 .hero__copy { max-width: 640px; }
 .hero__eyebrow {
@@ -441,17 +441,30 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .main-nav .menu-dropdown > li { break-inside: avoid; }
 
 /* ===================================== Topic summary cards (item 1) ======= */
-.topic-card { display: flex; border-radius: var(--radius); overflow: hidden; text-decoration: none; min-height: 220px; box-shadow: var(--shadow-card); }
+/* Portrait image-overlay tiles (Figma 170:2329): the photo fills the tile and a
+   dark gradient anchors a white title + "Learn more" button at the bottom. */
+.topic-card { position: relative; display: flex; align-items: flex-end;
+  min-height: 380px; border-radius: var(--radius); overflow: hidden;
+  text-decoration: none; box-shadow: var(--shadow-card); }
 .topic-card:hover { text-decoration: none; box-shadow: var(--shadow-card-hover); }
-.topic-card--plain { background: var(--c-blue-tint); align-items: flex-end; padding: var(--sp-5); }
-.topic-card--plain .topic-card__title { color: var(--c-blue); font-weight: 600; font-size: 1.25rem; }
-.topic-card__inner { display: flex; flex-direction: column; gap: var(--sp-3); }
-.topic-card__cta { color: var(--c-blue); font-weight: 700; font-size: var(--fs-sm); }
-.topic-card--plain:hover .topic-card__cta { color: var(--c-magenta); }
-/* Overlay variant (topic with an image) inherits .card--overlay look. */
-.topic-card.card--overlay .topic-card__inner { position: relative; z-index: 2; padding: var(--sp-5); color: #fff; }
-.topic-card.card--overlay .topic-card__title { color: #fff; }
-.topic-card.card--overlay .topic-card__cta { color: #fff; }
+.topic-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.topic-card::after { content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.78) 100%); }
+.topic-card__inner { position: relative; z-index: 2; display: flex; flex-direction: column;
+  align-items: flex-start; gap: var(--sp-4); padding: var(--sp-6); width: 100%; }
+.topic-card__title { color: #fff; font-weight: 600; font-size: 1.375rem; line-height: 1.25; }
+.topic-card__cta { display: inline-block; color: #fff; font-weight: 600; font-size: var(--fs-sm);
+  padding: 0.5rem 1.4rem; border: 2px solid #fff; border-radius: var(--radius-sm); }
+.topic-card:hover .topic-card__cta { background: #fff; color: var(--c-blue); }
+/* Plain fallback until a topic image is uploaded: tinted portrait tile. */
+.topic-card--plain { background: var(--c-blue-tint); }
+.topic-card--plain::after { display: none; }
+.topic-card--plain .topic-card__title { color: var(--c-blue); }
+.topic-card--plain .topic-card__cta { color: var(--c-blue); border-color: var(--c-blue); }
+.topic-card--plain:hover .topic-card__cta { background: var(--c-blue); color: #fff; }
+/* Summary section: centered blue title, 30px tile gap (Figma 170:2329). */
+.paragraph-summary .section-head__title { color: var(--c-blue); }
+.summary-grid--overlay { gap: var(--sp-6); }
 
 /* ===================================== Article teaser card (170:3555) ===== */
 /* For article/resource node teasers in "Latest Resources" grids. */

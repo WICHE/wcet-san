@@ -71,13 +71,15 @@ $MAIN = [
     ['Beyond Reciprocity', TODO],
     ['Student Complaints', 'internal:/resources/student-complaints'],
     ['Other Higher Education Issues', 'internal:/resources/other-higher-education-issues'],
-    // Second column in the design: external resources (client to supply exact URLs).
-    ['External Resources', TODO],
-    ['NC-SARA Website', 'https://www.nc-sara.org/'],
-    ['U.S. Department of Education', 'https://www.ed.gov/'],
-    ['USDE Knowledge Center', TODO],
-    ['State Authorization Guide', TODO],
-    ['NASASPS', 'https://www.nasasps.org/'],
+    // Right column in the design: "External Resources" with its own links nested
+    // beneath it, so the mega-menu renders them as a second column.
+    ['External Resources', TODO, [
+      ['NC-SARA Website', 'https://www.nc-sara.org/'],
+      ['U.S. Department of Education', 'https://www.ed.gov/'],
+      ['USDE Knowledge Center', TODO],
+      ['State Authorization Guide', TODO],
+      ['NASASPS', 'https://www.nasasps.org/'],
+    ]],
   ]],
 
   ['Events', 'internal:/events', [
@@ -146,16 +148,22 @@ foreach ($UTIL as $entry) {
   $make($entry[0], $entry[1], 'util-navigation', NULL, $w++);
 }
 
-$w = 0;
-foreach ($MAIN as $top) {
-  [$title, $uri, $children] = $top + [2 => []];
-  $parent = $make($title, $uri, 'main', NULL, $w++);
+// Recursively create a menu item and its descendants. A TODO uri falls back to
+// the nearest ancestor's real URL as a working placeholder.
+$make_tree = function (array $item, ?string $parent, int $weight, string $fallback_uri) use ($make, &$make_tree) {
+  [$title, $uri, $children] = $item + [1 => TODO, 2 => []];
+  $resolved = $uri === TODO ? $fallback_uri : $uri;
+  $node = $make($title, $resolved, 'main', $parent, $weight);
+  $ref = 'menu_link_content:' . $node->uuid();
   $cw = 0;
   foreach ($children as $child) {
-    // Placeholder children link to their section's landing page for now.
-    $child_uri = $child[1] === TODO ? $uri : $child[1];
-    $make($child[0], $child_uri, 'main', 'menu_link_content:' . $parent->uuid(), $cw++);
+    $make_tree($child, $ref, $cw++, $resolved);
   }
+};
+
+$w = 0;
+foreach ($MAIN as $top) {
+  $make_tree($top, NULL, $w++, $top[1] ?? 'internal:/');
 }
 
 // --- The coordinator_list view adds its own link to the main menu; take it out

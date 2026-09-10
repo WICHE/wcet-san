@@ -2,37 +2,47 @@
 /**
  * @file wiche · menu--main.html.twig — the mega-menu markup.
  *
- * Top level renders as `.menu--main`; each submenu renders as `.menu-dropdown`
- * so components.css can lay them out as hover/click dropdown panels.
- * Add a `menu-dropdown--mega` + `--cols` treatment per item later for the
- * multi-column panels (e.g. Compliance Topics).
+ * Top level → `.menu--main`. Each item's submenu → `.menu-dropdown`, laid out as
+ * columns: all direct (link-only) children go in one column, and any child that
+ * itself has children (e.g. "External Resources") becomes an extra column with a
+ * heading — so Compliance Topics renders topics on the left and External
+ * Resources on the right, per Figma 26:323.
  */
 #}
 {% import _self as menus %}
-{{ menus.build(items, attributes, 0) }}
 
-{% macro build(items, attributes, level) %}
-  {% import _self as menus %}
-  {% if items %}
-    {% if level == 0 %}
-      <ul{{ attributes.addClass('menu', 'menu--main') }}>
-    {% else %}
-      <ul class="menu-dropdown">
+<ul{{ attributes.addClass('menu', 'menu--main') }}>
+  {% for item in items %}
+    {% set classes = [item.below ? 'has-dropdown', item.in_active_trail ? 'is-active-trail']|filter(v => v) %}
+    <li{{ item.attributes.addClass(classes) }}>
+      {{ link(item.title, item.url) }}
+      {% if item.below %}{{ menus.dropdown(item.below) }}{% endif %}
+    </li>
+  {% endfor %}
+</ul>
+
+{% macro dropdown(items) %}
+  {% set plain = items|filter(i => i.below is empty) %}
+  {% set groups = items|filter(i => i.below is not empty) %}
+  <ul class="menu-dropdown{{ groups is not empty ? ' menu-dropdown--mega' }}">
+    {% if plain is not empty %}
+      <li class="menu-dropdown__col">
+        <ul class="menu-dropdown__list">
+          {% for item in plain %}
+            <li{{ item.attributes }}>{{ link(item.title, item.url) }}</li>
+          {% endfor %}
+        </ul>
+      </li>
     {% endif %}
-    {% for item in items %}
-      {%
-        set classes = [
-          item.below ? 'has-dropdown',
-          item.in_active_trail ? 'is-active-trail',
-        ]|filter(v => v)
-      %}
-      <li{{ item.attributes.addClass(classes) }}>
-        {{ link(item.title, item.url) }}
-        {% if item.below %}
-          {{ menus.build(item.below, create_attribute(), level + 1) }}
-        {% endif %}
+    {% for group in groups %}
+      <li class="menu-dropdown__col menu-dropdown__group">
+        <span class="menu-dropdown__heading">{{ group.title }}</span>
+        <ul class="menu-dropdown__list">
+          {% for sub in group.below %}
+            <li{{ sub.attributes }}>{{ link(sub.title, sub.url) }}</li>
+          {% endfor %}
+        </ul>
       </li>
     {% endfor %}
-    </ul>
-  {% endif %}
+  </ul>
 {% endmacro %}

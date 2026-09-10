@@ -225,27 +225,41 @@ a.btn,
 }
 /* Dropdown / mega panel */
 .main-nav .menu-dropdown {
-  position: absolute; top: 100%; left: 0; min-width: 260px;
+  position: absolute; top: 100%; left: 0;
   background: #fff; box-shadow: var(--shadow-card); border-radius: 0 0 var(--radius) var(--radius);
-  padding: var(--sp-6);
-  list-style: none; margin: 0;
+  padding: var(--sp-4); margin: 0; list-style: none;
+  display: flex; gap: var(--sp-8);
   opacity: 0; visibility: hidden; transform: translateY(6px);
   transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), visibility var(--dur);
   z-index: 50;
 }
+/* Mega dropdown is wide; anchor it to the trigger's right edge so the second
+   (External Resources) column never runs off-screen — matches Figma 26:323. */
+.main-nav .menu-dropdown--mega { min-width: 560px; left: auto; right: 0; }
 .main-nav li.is-open > .menu-dropdown,
 .main-nav li:hover > .menu-dropdown,
 .main-nav li:focus-within > .menu-dropdown {
   opacity: 1; visibility: visible; transform: translateY(0);
 }
-.main-nav .menu-dropdown li { margin-bottom: var(--sp-3); }
-.main-nav .menu-dropdown a { color: var(--c-ink); font-size: var(--fs-body); }
-.main-nav .menu-dropdown a:hover { color: var(--c-blue); }
-.main-nav .menu-dropdown a.is-active { color: var(--c-blue); font-weight: 600; }
-/* Multi-column mega variant (add .menu-dropdown--mega + set --cols) */
-.main-nav .menu-dropdown--mega {
-  display: grid; grid-template-columns: repeat(var(--cols, 2), minmax(180px, 1fr));
-  gap: var(--sp-6); min-width: 520px;
+.main-nav .menu-dropdown__col { min-width: 200px; }
+.main-nav .menu-dropdown__list { list-style: none; margin: 0; padding: 0; }
+.main-nav .menu-dropdown__list li { margin: 0; }
+.main-nav .menu-dropdown__list a {
+  display: block; color: var(--c-ink); font-size: var(--fs-body); white-space: nowrap;
+  padding: 0.5rem 0.75rem; border-radius: var(--radius-sm);
+}
+.main-nav .menu-dropdown__list a:hover { background: var(--c-blue-tint); color: var(--c-blue); }
+.main-nav .menu-dropdown__list a.is-active { color: var(--c-blue); font-weight: 600; }
+/* External-resources column: blue "External Resources*" heading + note.
+   The links themselves stay dark like the topic column (Figma 26:323). */
+.main-nav .menu-dropdown__heading {
+  display: block; color: var(--c-blue); font-weight: 700; font-size: var(--fs-body);
+  padding: 0.5rem 0.75rem;
+}
+.main-nav .menu-dropdown__heading::after { content: "*"; }
+.main-nav .menu-dropdown__group::after {
+  content: "* Opens external links"; display: block;
+  color: var(--c-blue); font-style: italic; font-size: var(--fs-sm); padding: var(--sp-3) 0.75rem 0;
 }
 
 /* Mobile nav toggle (hidden on desktop) */
@@ -260,8 +274,9 @@ a.btn,
   .main-nav ul.menu--main > li { position: static; }
   .main-nav ul.menu--main > li > a { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
   .main-nav .menu-dropdown { position: static; opacity: 1; visibility: visible; transform: none;
-    box-shadow: none; padding: var(--sp-3) 0 var(--sp-4) var(--sp-4); min-width: 0; display: block; }
-  .main-nav .menu-dropdown--mega { grid-template-columns: 1fr; min-width: 0; }
+    box-shadow: none; padding: var(--sp-3) 0 var(--sp-4) var(--sp-4); min-width: 0;
+    flex-direction: column; gap: var(--sp-4); }
+  .main-nav .menu-dropdown__list a { white-space: normal; }
 }
 
 /* =========================================================== Footer ====== */
@@ -434,16 +449,6 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 /* Hero split (spec 154:1209): the copy half is SOLID brand blue, image on the
  * right; only the "solid colour" variant uses the blue→navy gradient. */
 .hero--split { background: var(--c-blue); }
-
-/* ===================================== Mega-menu multi-column (item 3) ==== */
-/* Dropdowns with many items (e.g. Compliance Topics) flow into two columns,
- * matching the wide mega-menu panel; short menus stay single-column. */
-.main-nav ul.menu--main > li.has-dropdown > .menu-dropdown:has(> li:nth-child(7)) {
-  columns: 2 200px;
-  column-gap: var(--sp-7);
-  min-width: 480px;
-}
-.main-nav .menu-dropdown > li { break-inside: avoid; }
 
 /* ===================================== Topic summary cards (item 1) ======= */
 /* Portrait image-overlay tiles (Figma 170:2329): the photo fills the tile and a

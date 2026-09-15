@@ -73,10 +73,12 @@
 .flow-l > * + * { margin-top: var(--sp-5); }
 
 /* -- Main content region + optional sidebars -- */
+/* 12-column proportions (Figma 154:1685): the main content spans 8/12 with a
+   4/12 sidebar; two sidebars give 3 + 6 + 3. Collapses to one column ≤900px. */
 .page-main__grid { display: grid; gap: var(--sp-8); padding-block: var(--section-y); }
-.page-main__grid.has-sidebar-first { grid-template-columns: 300px 1fr; }
-.page-main__grid.has-sidebar-second { grid-template-columns: 1fr 300px; }
-.page-main__grid.has-both { grid-template-columns: 260px 1fr 260px; }
+.page-main__grid.has-sidebar-first { grid-template-columns: 4fr 8fr; }
+.page-main__grid.has-sidebar-second { grid-template-columns: 8fr 4fr; }
+.page-main__grid.has-both { grid-template-columns: 3fr 6fr 3fr; }
 @media (max-width: 900px) {
   .page-main__grid.has-sidebar-first,
   .page-main__grid.has-sidebar-second,

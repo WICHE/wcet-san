@@ -141,7 +141,11 @@ a.btn,
    simple_cards ("Topic Areas") and topic tiles are identical. */
 .card--overlay {
   position: relative; padding: 0; overflow: hidden; border-radius: var(--radius);
-  min-height: 380px; box-shadow: var(--shadow-card); display: flex; align-items: flex-end; color: #fff;
+  min-height: 380px; box-shadow: var(--shadow-card); color: #fff;
+  /* column flex (inherited from .card) → push content to the BOTTOM with
+     justify-content; align-items:stretch keeps the title/CTA left + full-width.
+     (align-items:flex-end here would right-align, not bottom.) */
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch;
   background: var(--c-blue-navy); /* fallback if the image is slow/missing */
 }
 .card--overlay .field, .card--overlay .field__item { display: contents; }
@@ -152,7 +156,7 @@ a.btn,
 }
 .card--overlay .card__inner { position: relative; z-index: 2; display: flex; flex-direction: column;
   align-items: flex-start; gap: var(--sp-4); padding: var(--sp-6); width: 100%; }
-.card--overlay .card__title { color: #fff; font-size: 1.375rem; line-height: 1.25; margin: 0; }
+.card--overlay .card__title { color: #fff; font-size: 1.5rem; line-height: 1.33; margin: 0; font-weight: 500; }
 .card--overlay .card__body { color: #fff; font-size: var(--fs-sm); }
 
 /* Quick-links card — blue title, rule, "Read more" ghost link */

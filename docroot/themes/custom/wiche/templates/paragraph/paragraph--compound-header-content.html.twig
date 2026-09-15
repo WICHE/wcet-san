@@ -1,14 +1,24 @@
 {#
 /**
- * @file Hero / page-intro — compound_header_content.
+ * @file Hero / page-intro — compound_header_content (Figma 41:431).
  * Fields: field_subheader (eyebrow), field_header (title),
  * field_subheader_as_h1 (bool), field_media_image (hero image),
- * field_p_secondary_content (extra paragraphs / actions).
+ * field_hero_full_bleed (bool), field_p_secondary_content (extra paragraphs).
+ *
+ * Three variants, matching the design:
+ *   • no image                       → solid colour + copy (blue→navy gradient)
+ *   • image                          → half-page image (.hero--split)
+ *   • image + "full-width background" → full-bleed image behind copy (.hero--full)
  */
 #}
 {% set has_image = paragraph.field_media_image is not empty %}
+{% set is_full = has_image and paragraph.field_hero_full_bleed.value %}
 {% set is_h1 = paragraph.field_subheader_as_h1.value %}
-<section{{ attributes.addClass('hero', has_image ? 'hero--split') }}>
+{% set variant = is_full ? 'hero--full' : (has_image ? 'hero--split' : '') %}
+<section{{ attributes.addClass('hero', variant) }}>
+  {% if is_full %}
+    <div class="hero__bg">{{ content.field_media_image }}</div>
+  {% endif %}
   <div class="wrap hero__inner">
     <div class="hero__copy">
       {% if paragraph.field_subheader.value %}
@@ -23,7 +33,7 @@
         <div class="hero__body flow-l">{{ content.field_p_secondary_content }}</div>
       {% endif %}
     </div>
-    {% if has_image %}
+    {% if has_image and not is_full %}
       <div class="hero__media">{{ content.field_media_image }}</div>
     {% endif %}
   </div>

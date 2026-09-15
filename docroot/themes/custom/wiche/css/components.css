@@ -64,6 +64,14 @@ a.btn,
 /* Everything in the hero sits on the blue gradient → light text. */
 .hero, .hero a, .hero p, .hero h1, .hero h2 { color: #fff; }
 .hero .field, .hero .field__item, .hero .paragraph, .hero .paragraph-link { margin: 0; }
+/* field_p_secondary_content children render as full-blown <section> blocks
+   (section padding + narrow wrap). Inside the hero that reads as broken stacked
+   sections, so strip the page-section chrome and let them flow as hero copy. */
+.hero__body .section { padding: 0; margin: 0; background: none; }
+.hero__body .section .wrap,
+.hero__body .wrap, .hero__body .wrap--narrow { max-width: none; width: auto; margin: 0; padding: 0; }
+.hero__body .section-head { text-align: left; margin: 0 0 var(--sp-2); }
+.hero__body .section-head__title { font-size: var(--fs-h4); }
 
 /* ---- single_link paragraph styles (primary/secondary/plain) ------------ */
 .link-style--primary a, .link-style--secondary a {
@@ -79,18 +87,23 @@ a.btn,
 .hero .link-style--primary a:hover { background: transparent; color: #fff; }
 .hero .link-style--secondary a { border-color: #fff; color: #fff; background: transparent; }
 .hero .link-style--secondary a:hover { background: #fff; color: var(--c-blue); }
-/* Half-image variant */
+/* Half-image variant (Figma 41:431 "Half page image"): blue copy panel + the
+   image filling the right half. The <img> sits inside Drupal's (classless)
+   field/media wrappers, so height:100% can't resolve against them — position it
+   absolutely inside the stretched media column so it always fills, no gaps. */
 .hero--split .hero__inner { grid-template-columns: 1fr 1fr; gap: 0; padding-right: 0; }
-.hero--split .hero__media { align-self: stretch; }
-.hero--split .hero__media img { width: 100%; height: 100%; object-fit: cover; }
+.hero--split .hero__media { align-self: stretch; position: relative; min-height: 260px; }
+.hero--split .hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero--split .hero__copy { padding-right: var(--gutter); }
-/* Full-image variant */
-.hero--full .hero__bg { position: absolute; inset: 0; }
-.hero--full .hero__bg img { width: 100%; height: 100%; object-fit: cover; }
+/* Full-image variant (Figma 41:431 "Full page image"): image full-bleed behind
+   the copy with a left→right dark scrim. Same absolute-fill technique. */
+.hero--full .hero__bg { position: absolute; inset: 0; z-index: 0; }
+.hero--full .hero__bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero--full::after {
-  content: ""; position: absolute; inset: 0;
+  content: ""; position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(90deg, rgba(7,38,58,0.92) 0%, rgba(7,38,58,0.55) 60%, rgba(7,38,58,0.25) 100%);
 }
+.hero--full .hero__inner,
 .hero--full .hero__copy { position: relative; z-index: 2; }
 @media (max-width: 800px) {
   .hero--split .hero__inner { grid-template-columns: 1fr; }

@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.image
     - field.field.paragraph.compound_header_content.field_header
+    - field.field.paragraph.compound_header_content.field_hero_full_bleed
     - field.field.paragraph.compound_header_content.field_media_image
     - field.field.paragraph.compound_header_content.field_p_secondary_content
     - field.field.paragraph.compound_header_content.field_subheader
@@ -19,30 +20,38 @@ bundle: compound_header_content
 mode: default
 content:
   field_header:
+    type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+  field_hero_full_bleed:
+    type: boolean_checkbox
+    weight: 4
     region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_media_image:
+    type: entity_browser_entity_reference
     weight: 3
+    region: content
     settings:
       entity_browser: image
       field_widget_display: rendered_entity
+      field_widget_edit: false
       field_widget_remove: true
       open: true
-      selection_mode: selection_append
       field_widget_display_settings:
         view_mode: form_preview
-      field_widget_edit: false
+      selection_mode: selection_append
     third_party_settings: {  }
-    type: entity_browser_entity_reference
-    region: content
   field_p_secondary_content:
     type: entity_reference_paragraphs
-    weight: 4
+    weight: 5
+    region: content
     settings:
       title: Component
       title_plural: Components
@@ -51,22 +60,21 @@ content:
       form_display_mode: default
       default_paragraph_type: _none
     third_party_settings: {  }
-    region: content
   field_subheader:
+    type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_subheader_as_h1:
+    type: boolean_checkbox
     weight: 2
+    region: content
     settings:
       display_label: true
     third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
 hidden:
   created: true
   status: true

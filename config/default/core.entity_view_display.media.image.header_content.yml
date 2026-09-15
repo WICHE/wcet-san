@@ -18,15 +18,15 @@ mode: header_content
 content:
   field_image:
     type: image
-    weight: 0
-    region: content
     label: hidden
     settings:
-      image_style: header_content
       image_link: ''
+      image_style: header_content
       image_loading:
-        attribute: lazy
+        attribute: eager
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   created: true
   entity_print_view_epub: true

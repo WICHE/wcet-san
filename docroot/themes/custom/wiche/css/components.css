@@ -256,6 +256,11 @@ a.btn,
 /* Mega dropdown is wide; anchor it to the trigger's right edge so the second
    (External Resources) column never runs off-screen — matches Figma 26:323. */
 .main-nav .menu-dropdown--mega { min-width: 560px; left: auto; right: 0; }
+/* The two right-most items open past the viewport edge on laptop widths (and,
+   because the panels exist even while hidden, they force horizontal page
+   scroll). Anchor them to the right so they open leftward and stay on-screen —
+   matches Figma 26:323 where the right-side menus align to the header edge. */
+.main-nav ul.menu--main > li:nth-last-child(-n+2) > .menu-dropdown { left: auto; right: 0; }
 .main-nav li.is-open > .menu-dropdown,
 .main-nav li:hover > .menu-dropdown,
 .main-nav li:focus-within > .menu-dropdown {

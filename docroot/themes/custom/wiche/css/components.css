@@ -459,9 +459,10 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .faq-item[open] > summary:hover { color: #fff; }
 .faq-item[open] .faq-item__a { border-left: 3px solid var(--c-blue); }
 
-/* Hero split (spec 154:1209): the copy half is SOLID brand blue, image on the
- * right; only the "solid colour" variant uses the blue→navy gradient. */
-.hero--split { background: var(--c-blue); }
+/* Hero split (Figma 41:431 "Half page image"): the SAME blue→navy gradient as
+ * the solid variant runs full-width; the image covers the right (dark) half, so
+ * the copy half reads as the gradient's light end (#136196). Inherit the base
+ * .hero gradient — no solid-colour override. */
 
 /* ===================================== Topic summary cards (item 1) ======= */
 /* Portrait image-overlay tiles (Figma 170:2329): the photo fills the tile and a

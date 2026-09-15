@@ -5,6 +5,21 @@
 ((Drupal, once) => {
   'use strict';
 
+  const MOBILE = '(hover: none), (max-width: 1080px)';
+
+  const closeOverlay = (nav) => {
+    nav.classList.remove('is-open');
+    const toggle = document.querySelector('[data-nav-toggle]');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('is-nav-open');
+    // reset any drilled-in submenu so it reopens at the top level
+    nav.querySelectorAll('li.is-open').forEach((li) => {
+      li.classList.remove('is-open');
+      const t = li.querySelector(':scope > a');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    });
+  };
+
   // --- Mobile nav open/close --------------------------------------------
   Drupal.behaviors.wicheNavToggle = {
     attach(context) {
@@ -14,6 +29,79 @@
         btn.addEventListener('click', () => {
           const open = nav.classList.toggle('is-open');
           btn.setAttribute('aria-expanded', String(open));
+          document.body.classList.toggle('is-nav-open', open);
+          if (!open) closeOverlay(nav);
+        });
+      });
+    },
+  };
+
+  // --- Mobile drill-down chrome (Figma 28:1954) -------------------------
+  // Injects the overlay top strip (search + close), a sticky footer CTA, a
+  // "Back" bar per submenu, and clones the utility links into the list foot.
+  Drupal.behaviors.wicheMobileNav = {
+    attach(context) {
+      once('wiche-mobile-nav', '.main-nav', context).forEach((nav) => {
+        const searchIcon =
+          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" ' +
+          'stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
+          '<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+
+        // Top strip: search + close.
+        const top = document.createElement('div');
+        top.className = 'mobile-nav__top';
+        top.innerHTML =
+          '<a class="mobile-nav__search" href="/search" aria-label="' +
+          Drupal.t('Search') + '">' + searchIcon + '</a>' +
+          '<span class="divider" aria-hidden="true"></span>' +
+          '<button type="button" class="mobile-nav__close" aria-label="' +
+          Drupal.t('Close menu') + '">✕</button>';
+        nav.insertBefore(top, nav.firstChild);
+        top.querySelector('.mobile-nav__close')
+          .addEventListener('click', () => closeOverlay(nav));
+
+        // A "Back" bar at the top of every submenu panel.
+        nav.querySelectorAll('ul.menu--main > li.has-dropdown').forEach((li) => {
+          const dd = li.querySelector(':scope > .menu-dropdown');
+          const trigger = li.querySelector(':scope > a');
+          if (!dd || !trigger) return;
+          const back = document.createElement('button');
+          back.type = 'button';
+          back.className = 'menu-dropdown__back';
+          back.textContent = trigger.textContent.trim();
+          back.addEventListener('click', () => {
+            li.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+          });
+          dd.insertBefore(back, dd.firstChild);
+        });
+
+        // Clone the utility links (Policy Tracker, Contact us, Login) into the
+        // foot of the top-level list — Search already lives in the top strip.
+        const mainUl = nav.querySelector('ul.menu--main');
+        const util = document.querySelector(
+          '.site-header__utility .utility-nav ul, .site-header__utility ul',
+        );
+        if (mainUl && util) {
+          util.querySelectorAll(':scope > li').forEach((li) => {
+            const link = li.querySelector('a');
+            if (!link || /\/search(\b|$)/.test(link.getAttribute('href') || '')) return;
+            const clone = li.cloneNode(true);
+            clone.className = 'mobile-nav__util';
+            mainUl.appendChild(clone);
+          });
+        }
+
+        // Sticky footer CTA.
+        const cta = document.createElement('div');
+        cta.className = 'mobile-nav__cta';
+        cta.innerHTML =
+          '<a href="/membership">' + Drupal.t('Join SAN / Login') + '</a>';
+        nav.appendChild(cta);
+
+        // Escape closes the overlay.
+        nav.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeOverlay(nav);
         });
       });
     },
@@ -24,7 +112,7 @@
     attach(context) {
       const items = once(
         'wiche-mega',
-        '.main-nav > ul > li:has(.menu-dropdown)',
+        '.main-nav ul.menu--main > li.has-dropdown',
         context,
       );
 
@@ -44,11 +132,10 @@
         trigger.setAttribute('aria-haspopup', 'true');
         trigger.setAttribute('aria-expanded', 'false');
 
-        // On touch / when the target is the parent link, toggle instead of navigate.
+        // On touch / mobile, the parent link drills into its submenu instead
+        // of navigating; on desktop it stays a normal link (CSS hover opens).
         trigger.addEventListener('click', (e) => {
-          // Let real navigation happen on desktop hover users via keyboard Enter;
-          // here we toggle the panel for touch + click users.
-          if (window.matchMedia('(hover: none), (max-width: 1080px)').matches) {
+          if (window.matchMedia(MOBILE).matches) {
             e.preventDefault();
             const open = !li.classList.contains('is-open');
             closeAll(li);
@@ -67,7 +154,7 @@
         });
       });
 
-      // Click outside closes any open panel.
+      // Click outside closes any open panel (desktop).
       once('wiche-mega-doc', 'body', context).forEach((body) => {
         body.addEventListener('click', (e) => {
           if (!e.target.closest('.main-nav')) closeAll(null);

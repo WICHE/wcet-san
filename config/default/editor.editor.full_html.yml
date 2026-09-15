@@ -31,6 +31,8 @@ settings:
       - heading
       - codeBlock
       - '|'
+      - style
+      - '|'
       - sourceEditing
   plugins:
     ckeditor5_codeBlock:
@@ -94,6 +96,11 @@ settings:
       multiBlock: true
     ckeditor5_sourceEditing:
       allowed_tags: {  }
+    ckeditor5_style:
+      styles:
+        -
+          label: 'Blue text'
+          element: '<span class="text-blue">'
     linkit_extension:
       linkit_enabled: false
 image_upload:

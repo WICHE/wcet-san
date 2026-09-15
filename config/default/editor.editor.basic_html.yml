@@ -28,6 +28,8 @@ settings:
       - heading
       - insertTable
       - '|'
+      - style
+      - '|'
       - sourceEditing
       - '|'
       - alignment
@@ -69,6 +71,11 @@ settings:
         - '<h5 id>'
         - '<h6 id>'
         - '<a hreflang accesskey id rel target title>'
+    ckeditor5_style:
+      styles:
+        -
+          label: 'Blue text'
+          element: '<span class="text-blue">'
     linkit_extension:
       linkit_enabled: true
       linkit_profile: default

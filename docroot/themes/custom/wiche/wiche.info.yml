@@ -10,6 +10,11 @@ base theme: stable9
 libraries:
   - wiche/global
 
+# Styles loaded inside CKEditor 5 so authored content (e.g. the "Blue text"
+# style) previews the same as it renders on the page.
+ckeditor5-stylesheets:
+  - css/editor.css
+
 # Block regions. Machine names mirror the old themekit theme so existing block
 # placements can be re-created 1:1 when we switch the default theme over.
 regions:

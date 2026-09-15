@@ -1,0 +1,7 @@
+/**
+ * @file editor.css — styles loaded INSIDE CKEditor 5 (ckeditor5-stylesheets).
+ * Keep in sync with the matching front-end rules so authored content previews
+ * the way it renders on the page. Editor CSS has no theme custom properties,
+ * so use literal values here.
+ */
+.text-blue { color: #1468A0; }

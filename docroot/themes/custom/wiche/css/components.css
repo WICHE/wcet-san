@@ -657,3 +657,8 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 /* result count + pager spacing */
 .route--view-search-page-1 .view-header { color: var(--c-muted); font-size: var(--fs-sm); margin-bottom: var(--sp-4); }
 .route--view-search-page-1 .pager { margin-top: var(--sp-7); }
+
+/* ============================================ Rich-text authoring helpers === */
+/* "Blue text" style from the CKEditor Style dropdown. Mirror in css/editor.css
+   so it previews in the editor. */
+.text-blue { color: var(--c-blue); }

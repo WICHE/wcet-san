@@ -1,0 +1,9 @@
+{#
+/**
+ * @file Spacer — adds author-controlled vertical space between components.
+ * Field: field_spacer_size (small | medium | large). Renders nothing but the
+ * gap itself; heights live in components.css (.spacer--*).
+ */
+#}
+{% set size = paragraph.field_spacer_size.value|default('medium') %}
+<div{{ attributes.addClass('spacer', 'spacer--' ~ size) }} aria-hidden="true"></div>

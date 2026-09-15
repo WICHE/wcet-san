@@ -662,3 +662,10 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 /* "Blue text" style from the CKEditor Style dropdown. Mirror in css/editor.css
    so it previews in the editor. */
 .text-blue { color: var(--c-blue); }
+
+/* ==================================================== Spacer paragraph === */
+/* Author-droppable vertical gap between components (field_spacer_size). */
+.spacer { width: 100%; }
+.spacer--small  { height: clamp(1rem, 0.5rem + 1.5vw, 1.75rem); }
+.spacer--medium { height: clamp(2rem, 1rem + 2.5vw, 3.5rem); }
+.spacer--large  { height: clamp(3.5rem, 2rem + 4vw, 6.5rem); }

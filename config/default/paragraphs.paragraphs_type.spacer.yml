@@ -1,0 +1,10 @@
+uuid: 908cd0b4-0531-4a51-b979-8ec7fd5c4ca7
+langcode: en
+status: true
+dependencies: {  }
+id: spacer
+label: Spacer
+icon_uuid: null
+icon_default: null
+description: 'Adds empty vertical space between components. Pick a height.'
+behavior_plugins: {  }

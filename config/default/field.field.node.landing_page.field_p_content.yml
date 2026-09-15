@@ -10,6 +10,7 @@ dependencies:
     - paragraphs.paragraphs_type.layout_two_column
     - paragraphs.paragraphs_type.reference_block
     - paragraphs.paragraphs_type.simple_content
+    - paragraphs.paragraphs_type.spacer
     - paragraphs.paragraphs_type.summary_events
     - paragraphs.paragraphs_type.summary_past_events
     - paragraphs.paragraphs_type.summary_resources
@@ -39,6 +40,7 @@ settings:
       summary_past_events: summary_past_events
       summary_resources: summary_resources
       table_with_filters: table_with_filters
+      spacer: spacer
     negate: 0
     target_bundles_drag_drop:
       compound_card_row:
@@ -83,6 +85,9 @@ settings:
       single_video:
         weight: -27
         enabled: false
+      spacer:
+        weight: 37
+        enabled: true
       summary_events:
         weight: -21
         enabled: true

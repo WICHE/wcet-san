@@ -1,0 +1,21 @@
+uuid: 5ad0265f-2a45-44ce-9579-e81ba9647145
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.spacer.field_spacer_size
+    - paragraphs.paragraphs_type.spacer
+id: paragraph.spacer.default
+targetEntityType: paragraph
+bundle: spacer
+mode: default
+content:
+  field_spacer_size:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

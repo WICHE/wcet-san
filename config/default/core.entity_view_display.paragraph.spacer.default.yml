@@ -1,0 +1,18 @@
+uuid: 855334fd-a23e-4688-9880-f265f7c8d911
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.spacer.field_spacer_size
+    - paragraphs.paragraphs_type.spacer
+id: paragraph.spacer.default
+targetEntityType: paragraph
+bundle: spacer
+mode: default
+content: {  }
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_spacer_size: true
+  search_api_excerpt: true

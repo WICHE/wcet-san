@@ -150,6 +150,14 @@ a.btn,
 }
 .card--overlay .field, .card--overlay .field__item { display: contents; }
 .card--overlay img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+/* For logged-in editors, Drupal wraps rendered media in a position:relative
+   .contextual-region (contextual links). That would become the containing block
+   for our absolutely-positioned fill images and collapse them to zero height —
+   so keep it out of the positioning chain inside every image tile/hero. */
+.hero__media .contextual-region,
+.hero__bg .contextual-region,
+.card--overlay .contextual-region,
+.topic-card .contextual-region { position: static; }
 .card--overlay::after {
   content: ""; position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.78) 100%);

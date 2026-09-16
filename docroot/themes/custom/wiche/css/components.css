@@ -618,6 +618,32 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .card--article__tags .field__item { color: var(--c-muted); font-size: var(--fs-sm); }
 .card--article__tags a { color: var(--c-muted); text-decoration: none; }
 
+/* Equal-height cards in view-based grids (e.g. /resources/all): the grid
+   stretches each .views-row to the tallest in the row — make the card fill that
+   height so every card matches and the "Read more" buttons line up. */
+.card-grid .views-row { display: flex; }
+.card-grid .views-row > * { flex: 1 1 auto; }
+
+/* ============================================================== Pager ===== */
+/* Neat centred row of page buttons; current page is a filled button. */
+.pager { margin-top: var(--sp-8); }
+.pager__items { display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: var(--sp-2); list-style: none; margin: 0; padding: 0; }
+.pager__item { margin: 0; }
+.pager__item a {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 2.5rem; height: 2.5rem; padding: 0 0.85rem;
+  border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+  background: #fff; color: var(--c-blue); font-weight: 600; text-decoration: none;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.pager__item a:hover { background: var(--c-blue-tint); border-color: var(--c-blue); color: var(--c-blue); text-decoration: none; }
+.pager__item.is-active a,
+.pager__item a[aria-current="page"] { background: var(--c-blue); border-color: var(--c-blue); color: #fff; }
+.pager__item--previous a, .pager__item--next a,
+.pager__item--first a, .pager__item--last a { font-weight: 700; }
+.pager__item.is-active { pointer-events: none; }
+
 /* Topic cards on the dark Resources band: readable without images (white title
  * on a subtle translucent card). Upgrades to image-overlay when topics get an
  * image field. */

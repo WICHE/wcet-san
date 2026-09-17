@@ -91,10 +91,14 @@ a.btn,
    image filling the right half. The <img> sits inside Drupal's (classless)
    field/media wrappers, so height:100% can't resolve against them — position it
    absolutely inside the stretched media column so it always fills, no gaps. */
-.hero--split .hero__inner { grid-template-columns: 1fr 1fr; gap: 0; padding-right: 0; }
-.hero--split .hero__media { align-self: stretch; position: relative; min-height: 260px; }
+/* 50/50 split. The image fills the FULL hero height (top-to-bottom, no blue gap)
+   and the right half to the container edge — so the inner drops its vertical
+   padding and the copy carries its own instead (Figma 154:1209: image is y:0,
+   height 404, i.e. the whole hero). */
+.hero--split .hero__inner { grid-template-columns: 1fr 1fr; gap: 0; padding-right: 0; padding-block: 0; }
+.hero--split .hero__copy { padding-right: var(--gutter); padding-block: clamp(2.5rem, 1.5rem + 3vw, 5rem); }
+.hero--split .hero__media { align-self: stretch; position: relative; min-height: 100%; }
 .hero--split .hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.hero--split .hero__copy { padding-right: var(--gutter); }
 /* Full-image variant (Figma 41:431 "Full page image"): image full-bleed behind
    the copy with a left→right dark scrim. Same absolute-fill technique. */
 .hero--full .hero__bg { position: absolute; inset: 0; z-index: 0; }

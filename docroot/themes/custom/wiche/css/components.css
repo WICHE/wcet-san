@@ -87,17 +87,19 @@ a.btn,
 .hero .link-style--primary a:hover { background: transparent; color: #fff; }
 .hero .link-style--secondary a { border-color: #fff; color: #fff; background: transparent; }
 .hero .link-style--secondary a:hover { background: #fff; color: var(--c-blue); }
-/* Half-image variant (Figma 41:431 "Half page image"): blue copy panel + the
-   image filling the right half. The <img> sits inside Drupal's (classless)
-   field/media wrappers, so height:100% can't resolve against them — position it
-   absolutely inside the stretched media column so it always fills, no gaps. */
-/* 50/50 split. The image fills the FULL hero height (top-to-bottom, no blue gap)
-   and the right half to the container edge — so the inner drops its vertical
-   padding and the copy carries its own instead (Figma 154:1209: image is y:0,
-   height 404, i.e. the whole hero). */
-.hero--split .hero__inner { grid-template-columns: 1fr 1fr; gap: 0; padding-right: 0; padding-block: 0; }
-.hero--split .hero__copy { padding-right: var(--gutter); padding-block: clamp(2.5rem, 1.5rem + 3vw, 5rem); }
-.hero--split .hero__media { align-self: stretch; position: relative; min-height: 100%; }
+/* Half-image variant (Figma 154:1209 + client "max page width 1920"): the copy
+   stays in the page content column on the LEFT, while the image fills the right
+   half and BLEEDS to the hero's right edge (the hero/bands cap at 1920, so the
+   image runs to the page edge up to 1920). The image fills the full hero height.
+   Below 800px it stacks under the copy instead of hiding. */
+.hero--split .hero__inner { grid-template-columns: 1fr; padding-block: 0; }
+.hero--split .hero__copy {
+  max-width: 50%; padding-right: var(--sp-6);
+  padding-block: clamp(2.5rem, 1.5rem + 3vw, 5rem);
+}
+.hero--split .hero__media {
+  position: absolute; top: 0; right: 0; bottom: 0; width: min(50vw, 960px);
+}
 .hero--split .hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* Full-image variant (Figma 41:431 "Full page image"): image full-bleed behind
    the copy with a left→right dark scrim. Same absolute-fill technique. */
@@ -110,9 +112,12 @@ a.btn,
 .hero--full .hero__inner,
 .hero--full .hero__copy { position: relative; z-index: 2; }
 @media (max-width: 800px) {
-  .hero--split .hero__inner { grid-template-columns: 1fr; }
-  .hero--split .hero__media { display: none; }
-  .hero--split .hero__copy { padding-right: 0; }
+  /* Stack: copy first, then a full-width image band under it (not hidden). */
+  .hero--split .hero__copy { max-width: none; padding-right: 0; }
+  .hero--split .hero__media {
+    position: relative; inset: auto; width: auto; min-height: 220px;
+    margin-inline: calc(-1 * var(--gutter));
+  }
 }
 
 /* =============================================================== Cards === */

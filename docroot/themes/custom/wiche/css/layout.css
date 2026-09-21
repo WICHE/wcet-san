@@ -92,10 +92,11 @@
 .page-node-type-landing_page .page-main__grid { display: block; padding-block: 0; }
 
 /* Full-bleed component backgrounds: the hero + every section band stretch to the
-   full viewport width while their inner .wrap keeps the CONTENT within the
-   1320 container. Works inside the centered content wrap on any page. */
+   full viewport width (capped at a 1920 max page width) while their inner .wrap
+   keeps the CONTENT within the 1320 container. Below 1920 this is identical to a
+   plain full-bleed; above it, bands stay 1920 centered. */
 .hero,
-.section { margin-inline: calc(50% - 50vw); }
+.section { margin-inline: calc(50% - min(50vw, 960px)); }
 /* …but only top-level bands: sections nested inside the hero (secondary content),
    a two-column layout, an article, etc. stay in normal flow. */
 .hero .section,

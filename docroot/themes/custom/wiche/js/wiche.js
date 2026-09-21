@@ -144,6 +144,12 @@
           }
         });
 
+        // Desktop: hovering an item closes any other panel left open (e.g. a
+        // stray is-open from a touch tap) so two dropdowns never overlap.
+        li.addEventListener('mouseenter', () => {
+          if (window.matchMedia('(hover: hover) and (min-width: 1081px)').matches) closeAll(li);
+        });
+
         // Escape closes and returns focus to the trigger.
         li.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') {

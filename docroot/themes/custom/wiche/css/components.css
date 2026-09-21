@@ -276,16 +276,27 @@ a.btn,
 }
 .main-nav ul.menu--main > li { margin: 0; position: relative; list-style: none; }
 .main-nav ul.menu--main > li > a {
-  display: inline-flex; align-items: center; gap: 0.35rem;
+  position: relative; display: inline-flex; align-items: center; gap: 0.35rem;
   padding: 1.1rem 0; font-size: var(--fs-body); font-weight: 500; color: var(--c-ink);
-  border-bottom: 3px solid transparent; white-space: nowrap;
+  white-space: nowrap;
 }
+/* Underline sits just below the title (not at the bar bottom). */
+.main-nav ul.menu--main > li > a::after {
+  content: ""; position: absolute; left: 0; right: 0; top: calc(100% - 1.1rem + 7px);
+  height: 3px; border-radius: 2px; background: transparent;
+}
+/* Active section + hover → SAN purple (a.is-active = current page; li in the
+   active section carries .is-active-trail — highlight that too). */
 .main-nav ul.menu--main > li > a:hover,
 .main-nav ul.menu--main > li.is-open > a,
 .main-nav ul.menu--main > li.has-dropdown:hover > a,
-.main-nav ul.menu--main > li > a.is-active {
-  color: var(--c-blue); text-decoration: none; border-bottom-color: var(--c-blue);
-}
+.main-nav ul.menu--main > li > a.is-active,
+.main-nav ul.menu--main > li.is-active-trail > a { color: var(--c-magenta); text-decoration: none; }
+.main-nav ul.menu--main > li > a:hover::after,
+.main-nav ul.menu--main > li.is-open > a::after,
+.main-nav ul.menu--main > li.has-dropdown:hover > a::after,
+.main-nav ul.menu--main > li > a.is-active::after,
+.main-nav ul.menu--main > li.is-active-trail > a::after { background: var(--c-magenta); }
 /* Dropdown / mega panel */
 .main-nav .menu-dropdown {
   position: absolute; top: 100%; left: 0;
@@ -304,8 +315,11 @@ a.btn,
   .main-nav .menu-dropdown--mega { min-width: 560px; left: auto; right: 0; }
   /* The two right-most items open past the viewport edge on laptop widths (and,
      because the panels exist even while hidden, they force horizontal page
-     scroll). Anchor them to the right so they open leftward and stay on-screen. */
-  .main-nav ul.menu--main > li:nth-last-child(-n+2) > .menu-dropdown { left: auto; right: 0; }
+     scroll). Anchor them to the right so they open leftward and stay on-screen.
+     NB: the mobile-nav JS clones the utility links into this same <ul>, so count
+     only the real menu items (":not(.mobile-nav__util)") — otherwise the hidden
+     Login/Contact clones become the "last 2" and Events/Join SAN overflow. */
+  .main-nav ul.menu--main > li:nth-last-child(-n+2 of :not(.mobile-nav__util)) > .menu-dropdown { left: auto; right: 0; }
 }
 .main-nav li.is-open > .menu-dropdown,
 .main-nav li:hover > .menu-dropdown,
@@ -320,7 +334,7 @@ a.btn,
   padding: 0.5rem 0.75rem; border-radius: var(--radius-sm);
 }
 .main-nav .menu-dropdown__list a:hover { background: var(--c-blue-tint); color: var(--c-blue); }
-.main-nav .menu-dropdown__list a.is-active { color: var(--c-blue); font-weight: 600; }
+.main-nav .menu-dropdown__list a.is-active { color: var(--c-magenta); font-weight: 600; }
 /* External-resources column: blue "External Resources*" heading + note.
    The links themselves stay dark like the topic column (Figma 26:323). */
 .main-nav .menu-dropdown__heading {

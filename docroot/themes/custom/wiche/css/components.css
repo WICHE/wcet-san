@@ -350,28 +350,30 @@ a.btn,
 /* Mobile nav toggle (hidden on desktop) */
 .nav-toggle { display: none; background: none; border: 0; font-size: 1.6rem; color: var(--c-blue); cursor: pointer; }
 
-/* Mobile-menu chrome injected by wiche.js (top strip, footer CTA, submenu back
-   bars, cloned utility links). Present in the DOM at all widths but only shown
-   inside the mobile overlay below. */
-.mobile-nav__top, .mobile-nav__cta, .menu-dropdown__back, .mobile-nav__util { display: none; }
+/* Mobile-menu chrome injected by wiche.js (top strip, submenu back bars, and the
+   bottom block that holds the tertiary links + CTA). In the DOM at all widths
+   but only shown inside the mobile overlay below. */
+.mobile-nav__top, .mobile-nav__bottom, .menu-dropdown__back { display: none; }
 
 /* ---- Mobile full-screen drill-down menu (Figma 28:1954) ----------------- */
 @media (max-width: 1080px) {
   .nav-toggle { display: inline-flex; }
   body.is-nav-open { overflow: hidden; }
+  /* The tertiary bar moves into the hamburger menu on mobile — hide the
+     duplicate that otherwise sits at the top of the header. */
+  .site-header__utility { display: none; }
 
-  /* The nav becomes a full-screen white overlay. */
-  .main-nav {
-    position: fixed; inset: 0; z-index: 1000; background: #fff;
-    display: none; overflow-y: auto; padding: 0;
-  }
-  .main-nav.is-open { display: block; }
+  /* Full-screen overlay as a column: top strip · scrolling list · bottom block
+     (tertiary links + CTA). */
+  .main-nav { position: fixed; inset: 0; z-index: 1000; background: #fff; display: none; padding: 0; }
+  .main-nav.is-open { display: flex; flex-direction: column; }
+  .main-nav > div:not([class]) { flex: 1 1 auto; overflow-y: auto; min-height: 0; }
 
-  /* Top strip: search + close, fixed so it persists across drill-down. */
+  /* Top strip: search + close. */
   .mobile-nav__top {
     display: flex; align-items: center; justify-content: flex-end; gap: var(--sp-5);
-    position: fixed; top: 0; left: 0; right: 0; height: 60px; padding: 0 20px;
-    background: #fff; border-bottom: 1px solid var(--c-blue); z-index: 1020;
+    flex: 0 0 auto; height: 60px; padding: 0 20px;
+    background: #fff; border-bottom: 1px solid var(--c-blue);
   }
   .mobile-nav__search, .mobile-nav__close {
     background: none; border: 0; color: var(--c-ink); cursor: pointer;
@@ -381,26 +383,26 @@ a.btn,
 
   /* Top-level list. */
   .main-nav ul.menu--main {
-    flex-direction: column; align-items: stretch; gap: 0;
-    padding: 60px 24px 96px;               /* clear the fixed top strip + footer CTA */
+    flex-direction: column; align-items: stretch; gap: 0; padding: 8px 24px 24px;
   }
   .main-nav ul.menu--main > li { position: static; border-bottom: 1px solid var(--border); }
   .main-nav ul.menu--main > li > a {
     display: flex; align-items: center; justify-content: space-between;
     padding: 16px 0; font-size: 20px; line-height: 1.3; color: #414042; font-weight: 400;
-    border-bottom: 0;                      /* drop the desktop active underline */
   }
+  .main-nav ul.menu--main > li > a::after { display: none; }   /* not the desktop underline */
   .main-nav ul.menu--main > li.has-dropdown > a::after {
-    content: "\203A"; color: var(--c-blue); font-size: 1.7rem; line-height: 1; margin-left: var(--sp-4);
+    content: "\203A"; display: inline; position: static; inset: auto; height: auto; background: none;
+    color: var(--c-blue); font-size: 1.7rem; line-height: 1; margin-left: var(--sp-4);
   }
   .main-nav ul.menu--main > li > a:hover { color: var(--c-blue); }
 
-  /* Submenu = off-canvas panel that slides in over the list. */
+  /* Submenu = off-canvas panel that slides in over everything. */
   .main-nav .menu-dropdown {
     position: fixed; top: 60px; left: 0; right: 0; bottom: 0; z-index: 1010;
     background: #fff; display: block; opacity: 1; visibility: hidden;
     transform: translateX(100%); transition: transform .28s var(--ease), visibility .28s;
-    overflow-y: auto; padding: 0 0 96px; margin: 0; box-shadow: none; min-width: 0; gap: 0;
+    overflow-y: auto; padding: 0 0 24px; margin: 0; box-shadow: none; min-width: 0; gap: 0;
   }
   .main-nav li.is-open > .menu-dropdown { visibility: visible; transform: translateX(0); }
 
@@ -423,16 +425,14 @@ a.btn,
   .main-nav .menu-dropdown__list a:hover { background: none; color: var(--c-blue); }
   .main-nav .menu-dropdown__group::after { display: none; }
 
-  /* Cloned utility links (Policy Tracker, Contact us, Login) at the list foot. */
-  .mobile-nav__util { display: block; }
-  .mobile-nav__util a { display: block; padding: 16px 0; font-size: 20px; color: #414042; }
-
-  /* Footer CTA pinned to the bottom. */
-  .mobile-nav__cta {
-    display: flex; justify-content: center; align-items: center;
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 1020;
-    padding: 14px 20px; background: var(--c-blue-tint);
-  }
+  /* Bottom block: tertiary links (smaller, tinted) + the CTA button — sits at
+     the foot of the overlay on a light-blue band (Figma). */
+  .mobile-nav__bottom { display: block; flex: 0 0 auto; background: var(--c-blue-tint); }
+  .mobile-nav__tertiary { list-style: none; margin: 0; padding: 10px 24px; }
+  .mobile-nav__tertiary li { margin: 0; }
+  .mobile-nav__tertiary a { display: block; padding: 8px 0; font-size: 15px; color: #414042; text-decoration: none; }
+  .mobile-nav__tertiary a:hover { color: var(--c-blue); }
+  .mobile-nav__cta { display: flex; justify-content: center; align-items: center; padding: 8px 20px 22px; }
   .mobile-nav__cta a {
     display: inline-flex; align-items: center; justify-content: center; min-width: 213px;
     background: var(--c-blue); color: #fff; font-weight: 600; font-size: 12px;

@@ -76,28 +76,32 @@
           dd.insertBefore(back, dd.firstChild);
         });
 
-        // Clone the utility links (Policy Tracker, Contact us, Login) into the
-        // foot of the top-level list — Search already lives in the top strip.
-        const mainUl = nav.querySelector('ul.menu--main');
+        // Bottom block (light-blue): the tertiary links + the "Join SAN / Login"
+        // CTA. The utility bar is hidden on mobile, so its links (except Search,
+        // which is in the top strip) live here as a smaller, tinted list.
+        const bottom = document.createElement('div');
+        bottom.className = 'mobile-nav__bottom';
         const util = document.querySelector(
           '.site-header__utility .utility-nav ul, .site-header__utility ul',
         );
-        if (mainUl && util) {
+        if (util) {
+          const list = document.createElement('ul');
+          list.className = 'mobile-nav__tertiary';
           util.querySelectorAll(':scope > li').forEach((li) => {
             const link = li.querySelector('a');
             if (!link || /\/search(\b|$)/.test(link.getAttribute('href') || '')) return;
-            const clone = li.cloneNode(true);
-            clone.className = 'mobile-nav__util';
-            mainUl.appendChild(clone);
+            const item = document.createElement('li');
+            item.appendChild(link.cloneNode(true));
+            list.appendChild(item);
           });
+          if (list.children.length) bottom.appendChild(list);
         }
-
-        // Sticky footer CTA.
         const cta = document.createElement('div');
         cta.className = 'mobile-nav__cta';
         cta.innerHTML =
           '<a href="/membership">' + Drupal.t('Join SAN / Login') + '</a>';
-        nav.appendChild(cta);
+        bottom.appendChild(cta);
+        nav.appendChild(bottom);
 
         // Escape closes the overlay.
         nav.addEventListener('keydown', (e) => {

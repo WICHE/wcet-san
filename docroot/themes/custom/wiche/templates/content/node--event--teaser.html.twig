@@ -1,15 +1,20 @@
 {#
 /**
- * @file Event teaser → event card (Events section).
- * event node: field_event_date, field_topic. (No image field on events yet —
- * add one to the event type to get the image-topped event cards from the design.)
+ * @file Event teaser → event card (Events listings).
+ * Fields: field_event_date, field_topic, field_image (optional).
+ *
+ * A self-contained card: optional image on top, then title, date and a
+ * "Learn more" button pinned to the bottom (so cards in a row match height).
+ * Most events have no image — the card must still look complete without one,
+ * so we only output the media box when field_image is actually set.
  */
 #}
-{% set img = node.field_image.entity %}
-{% set has_image = img is not null %}
-<article{{ attributes.addClass('card', 'card--media', 'card--event') }}>
+{% set has_image = node.field_image is not empty %}
+<article{{ attributes.addClass('card', 'card--event') }}>
   {% if has_image %}
-    <div class="card__media"><img src="{{ file_url(img.uri.value) }}" alt="{{ node.field_image.alt }}" loading="lazy"></div>
+    <div class="card__media">
+      <img src="{{ file_url(node.field_image.entity.uri.value) }}" alt="{{ node.field_image.alt }}" loading="lazy">
+    </div>
   {% endif %}
   <h3 class="card__title"><a href="{{ url }}">{{ label }}</a></h3>
   {% if node.field_event_date.value %}

@@ -140,6 +140,26 @@ a.btn,
 .card--media .card__meta { color: var(--c-ink); margin-bottom: var(--sp-4); }
 .card--media .card__meta strong { color: var(--c-blue); }
 
+/* Event card — a self-contained card (base .card box: bg, border, padding).
+   Optional image bleeds to the top edge; title/date and a "Learn more" button
+   pinned to the bottom so cards in a row line up. Most events have no image, so
+   it must read as a complete card without one. */
+.card--event .card__media { margin: calc(-1 * var(--sp-6)) calc(-1 * var(--sp-6)) var(--sp-5);
+  border-radius: var(--radius) var(--radius) 0 0; overflow: hidden; aspect-ratio: 16 / 10; }
+.card--event .card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card--event .card__title { font-size: 1.25rem; color: var(--c-blue); margin: 0 0 var(--sp-3); }
+.card--event .card__title a { color: var(--c-blue); }
+.card--event .card__title a:hover { color: var(--c-blue-600); }
+.card--event .card__meta { color: var(--c-ink); margin-bottom: var(--sp-5); }
+.card--event .card__meta strong { color: var(--c-blue); }
+.card--event .card__cta { margin-top: auto; }
+.card--event .card__cta a {
+  display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
+  padding: 0.7rem 1.6rem; border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  color: var(--c-blue); background: transparent;
+}
+.card--event .card__cta a:hover { background: var(--c-blue); color: #fff; text-decoration: none; }
+
 /* Portrait image-overlay tile (Figma 170:2329) — image bg + bottom gradient +
    white title + "Learn more" button. Shared look with .topic-card so image
    simple_cards ("Topic Areas") and topic tiles are identical. */

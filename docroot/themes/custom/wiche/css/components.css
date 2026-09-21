@@ -140,22 +140,24 @@ a.btn,
 .card--media .card__meta { color: var(--c-ink); margin-bottom: var(--sp-4); }
 .card--media .card__meta strong { color: var(--c-blue); }
 
-/* Event card — a self-contained card (base .card box: bg, border, padding).
-   Optional image bleeds to the top edge; title/date and a "Learn more" button
-   pinned to the bottom so cards in a row line up. Most events have no image, so
-   it must read as a complete card without one. */
-.card--event .card__media { margin: calc(-1 * var(--sp-6)) calc(-1 * var(--sp-6)) var(--sp-5);
-  border-radius: var(--radius) var(--radius) 0 0; overflow: hidden; aspect-ratio: 16 / 10; }
+/* Event card (Figma 157:2644) — image-led, borderless: a square image on top,
+   then a blue title, date line(s) and a "Learn more" button pinned to the
+   bottom so cards in a row line up. Sits directly on the section background
+   (no card box). */
+.card--event { background: transparent; box-shadow: none; border: 0; padding: 0; }
+.card--event .card__media { aspect-ratio: 16 / 10; overflow: hidden; margin: 0 0 var(--sp-4);
+  background: var(--c-blue-tint); }
 .card--event .card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.card--event .card__title { font-size: 1.25rem; color: var(--c-blue); margin: 0 0 var(--sp-3); }
+.card--event .card__title { font-size: 1.125rem; font-weight: 600; color: var(--c-blue);
+  line-height: 1.3; margin: 0 0 var(--sp-3); }
 .card--event .card__title a { color: var(--c-blue); }
 .card--event .card__title a:hover { color: var(--c-blue-600); }
-.card--event .card__meta { color: var(--c-ink); margin-bottom: var(--sp-5); }
-.card--event .card__meta strong { color: var(--c-blue); }
-.card--event .card__cta { margin-top: auto; }
+.card--event .card__meta { color: var(--c-ink); font-size: var(--fs-sm); line-height: 1.5; margin-bottom: var(--sp-2); }
+.card--event .card__meta strong { color: var(--c-ink); }
+.card--event .card__cta { margin-top: auto; padding-top: var(--sp-4); }
 .card--event .card__cta a {
   display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
-  padding: 0.7rem 1.6rem; border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  padding: 0.6rem 1.5rem; border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
   color: var(--c-blue); background: transparent;
 }
 .card--event .card__cta a:hover { background: var(--c-blue); color: #fff; text-decoration: none; }

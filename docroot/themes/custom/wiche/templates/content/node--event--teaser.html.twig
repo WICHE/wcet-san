@@ -18,7 +18,7 @@
   {% endif %}
   <h3 class="card__title"><a href="{{ url }}">{{ label }}</a></h3>
   {% if node.field_event_date.value %}
-    <div class="card__meta"><strong>{{ 'Date:'|t }}</strong> {{ node.field_event_date.value|date('F j, Y') }}</div>
+    <div class="card__meta"><strong>{{ 'Dates:'|t }}</strong> {{ node.field_event_date.value|date('F j, Y') }}</div>
   {% endif %}
   <div class="card__cta"><a href="{{ url }}">{{ 'Learn more'|t }}</a></div>
 </article>

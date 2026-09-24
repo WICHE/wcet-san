@@ -20,6 +20,41 @@
     });
   };
 
+  // --- Sticky header: hide on scroll-down, show on scroll-up -------------
+  Drupal.behaviors.wicheStickyHeader = {
+    attach(context) {
+      once('wiche-sticky-header', 'body', context).forEach(() => {
+        const header = document.querySelector('.site-header');
+        if (!header) return;
+        let lastY = window.scrollY;
+        let ticking = false;
+        const REVEAL_THRESHOLD = header.offsetHeight; // don't hide until scrolled past the header itself
+
+        const onScroll = () => {
+          const y = window.scrollY;
+          // Never hide while the mobile drill-down overlay is open, or before
+          // the user has scrolled past the header's own height.
+          if (!document.body.classList.contains('is-nav-open')) {
+            if (y > lastY && y > REVEAL_THRESHOLD) {
+              header.classList.add('site-header--hidden');
+            } else if (y < lastY) {
+              header.classList.remove('site-header--hidden');
+            }
+          }
+          lastY = y;
+          ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+          }
+        }, { passive: true });
+      });
+    },
+  };
+
   // --- Mobile nav open/close --------------------------------------------
   Drupal.behaviors.wicheNavToggle = {
     attach(context) {

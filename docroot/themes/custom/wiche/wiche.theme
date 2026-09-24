@@ -88,6 +88,29 @@ function wiche_preprocess_node(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for node.html.twig (landing pages).
+ *
+ * Landing pages carry a hero (compound_header_content) as their first
+ * paragraph. The design (Figma 35:1632) puts the breadcrumb trail directly
+ * BELOW the hero rather than above the whole page like every other content
+ * type. Render the same breadcrumb block here so
+ * node--landing-page--full.html.twig can place it right after the hero; the
+ * block's normal top-of-page position is hidden on landing pages via CSS
+ * (.page-node-type-landing-page .region-breadcrumb) so it never shows twice.
+ */
+function wiche_preprocess_node__landing_page(array &$variables): void {
+  if (($variables['view_mode'] ?? '') !== 'full') {
+    return;
+  }
+  $block = \Drupal::entityTypeManager()->getStorage('block')->load('wiche_breadcrumb');
+  if ($block) {
+    $variables['post_hero_breadcrumb'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+}
+
+/**
  * Implements hook_theme_suggestions_paragraph_alter().
  *
  * Lets each paragraph type have a template like

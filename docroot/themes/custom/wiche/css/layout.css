@@ -107,7 +107,13 @@
 .page-main { overflow-x: clip; }
 
 /* -- Site header shell -- */
-.site-header { position: relative; z-index: 40; background: var(--c-white); }
+/* Sticky header: stays pinned to the top; wiche.js toggles .site-header--hidden
+   to slide it away on scroll-down and bring it back on scroll-up (a class on
+   <html> disables the slide while the mobile menu is open or before JS boots,
+   so the header never gets stuck off-screen). */
+.site-header { position: sticky; top: 0; z-index: 40; background: var(--c-white);
+  transition: transform var(--dur) var(--ease); }
+.site-header--hidden { transform: translateY(-100%); }
 
 /* -- Footer shell -- */
 .site-footer { flex-shrink: 0; }

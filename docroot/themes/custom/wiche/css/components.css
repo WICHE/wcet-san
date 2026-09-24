@@ -3,6 +3,11 @@
  */
 
 /* ============================================================= Buttons === */
+/* Button height system: 48px standard, 42px on picture cards (image-topped
+   tiles — see --btn-h-picture usages below). box-sizing:border-box (base.css)
+   means height already includes border/padding, so zero the vertical padding
+   and let align-items:center do the vertical centering. */
+:root { --btn-h: 48px; --btn-h-picture: 42px; }
 .button,
 .btn,
 a.btn,
@@ -15,7 +20,8 @@ a.btn,
   font-weight: 600;
   font-size: var(--fs-body);
   line-height: 1;
-  padding: 0.85rem 1.75rem;
+  height: var(--btn-h);
+  padding: 0 1.75rem;
   border-radius: var(--radius-sm);
   border: 2px solid var(--c-blue);
   background: var(--c-blue);
@@ -25,9 +31,11 @@ a.btn,
               border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
   text-align: center;
 }
+/* Solid button hover -> outline (client feedback): the filled button becomes a
+   blue outline on hover, rather than just darkening. */
 .button:hover, .btn:hover {
-  background: var(--c-blue-600); border-color: var(--c-blue-600);
-  color: #fff; text-decoration: none;
+  background: transparent; border-color: var(--c-blue);
+  color: var(--c-blue); text-decoration: none;
 }
 .btn--outline, .button--outline, a.btn--outline {
   background: transparent; color: var(--c-blue); border-color: var(--c-blue);
@@ -76,10 +84,11 @@ a.btn,
 /* ---- single_link paragraph styles (primary/secondary/plain) ------------ */
 .link-style--primary a, .link-style--secondary a {
   display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
-  padding: 0.75rem 1.5rem; border-radius: var(--radius-sm); border: 2px solid var(--c-blue); text-decoration: none;
+  height: var(--btn-h); padding: 0 1.5rem; border-radius: var(--radius-sm); border: 2px solid var(--c-blue); text-decoration: none;
 }
 .link-style--primary a { background: var(--c-blue); color: #fff; }
-.link-style--primary a:hover { background: var(--c-blue-600); border-color: var(--c-blue-600); color: #fff; }
+/* Solid -> outline on hover (same rule as the base button system). */
+.link-style--primary a:hover { background: transparent; color: var(--c-blue); }
 .link-style--secondary a { background: transparent; color: var(--c-blue); }
 .link-style--secondary a:hover { background: var(--c-blue); color: #fff; }
 /* On the hero's dark gradient, invert the button colours. */
@@ -163,7 +172,7 @@ a.btn,
 .card--event .card__cta { margin-top: auto; padding-top: var(--sp-4); }
 .card--event .card__cta a {
   display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
-  padding: 0.6rem 1.5rem; border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  height: var(--btn-h-picture); padding: 0 1.5rem; border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
   color: var(--c-blue); background: transparent;
 }
 .card--event .card__cta a:hover { background: var(--c-blue); color: #fff; text-decoration: none; }
@@ -172,7 +181,8 @@ a.btn,
    white title + "Learn more" button. Shared look with .topic-card so image
    simple_cards ("Topic Areas") and topic tiles are identical. */
 .card--overlay {
-  position: relative; padding: 0; overflow: hidden; border-radius: var(--radius);
+  /* Sharp corners on image cards (rounded is reserved for non-image cards). */
+  position: relative; padding: 0; overflow: hidden; border-radius: 0;
   min-height: 380px; box-shadow: var(--shadow-card); color: #fff;
   /* column flex (inherited from .card) → push content to the BOTTOM with
      justify-content; align-items:stretch keeps the title/CTA left + full-width.
@@ -199,9 +209,18 @@ a.btn,
 .card--overlay .card__title { color: #fff; font-size: 1.5rem; line-height: 1.33; margin: 0; font-weight: 500; }
 .card--overlay .card__body { color: #fff; font-size: var(--fs-sm); }
 
-/* Quick-links card — blue title, rule, "Read more" ghost link */
+/* Quick-links card — blue title, rule, "Read more" ghost link. Cards in a row
+   stretch to equal height (CSS Grid default) so a 2-line title doesn't throw
+   off its neighbours; extra bottom margin on the rule gives the title/CTA
+   breathing room instead of sitting right on top of each other. */
 .card--link .card__title { color: var(--c-blue); font-size: 1.25rem; }
-.card--link .card__rule { border-color: var(--c-blue); margin-top: auto; }
+.card--link .card__rule { border-color: var(--c-blue); margin-top: auto; margin-bottom: var(--sp-5); }
+
+/* Content/CTA card — don't stretch to the row's tallest card (that forced a
+   uniform tall box and pushed the button too far from the body copy); size to
+   its own content instead, with a fixed 30px gap above the button. */
+.card--cta { align-self: start; }
+.card--cta .card__cta { margin-top: 1.875rem; }
 
 /* ---- CTA field-links rendered as buttons in card/section contexts ------- */
 /* Content card ("Visit website") → outline button. */
@@ -218,20 +237,23 @@ a.btn,
 /* Quick-link card → ghost "Read more". */
 .card--link .card__cta a { color: var(--c-blue); font-weight: 700; }
 .card--link .card__cta a:hover { color: var(--c-magenta); text-decoration: none; }
-/* Overlay tile → white outline "Learn more" button (matches .topic-card). */
+/* Overlay tile → white outline "Learn more" button (matches .topic-card).
+   Picture-card CTAs use the smaller 42px height. */
 .card--overlay .card__cta a {
-  display: inline-block; font-weight: 600; font-size: var(--fs-sm); padding: 0.5rem 1.4rem;
+  display: inline-flex; align-items: center; font-weight: 600; font-size: var(--fs-sm);
+  height: var(--btn-h-picture); padding: 0 1.4rem;
   border: 2px solid #fff; border-radius: var(--radius-sm); color: #fff; background: transparent;
 }
 .card--overlay .card__cta a:hover { background: #fff; color: var(--c-blue); text-decoration: none; }
 /* Section-level CTA ("View all updates") → filled blue button. */
 .section-cta a {
   display: inline-flex; align-items: center; justify-content: center;
-  font-weight: 600; padding: 0.85rem 1.75rem;
+  font-weight: 600; height: var(--btn-h); padding: 0 1.75rem;
   border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
   background: var(--c-blue); color: #fff;
 }
-.section-cta a:hover { background: var(--c-blue-600); border-color: var(--c-blue-600); color: #fff; text-decoration: none; }
+/* Solid -> outline on hover. */
+.section-cta a:hover { background: transparent; border-color: var(--c-blue); color: var(--c-blue); text-decoration: none; }
 .section-cta--start { justify-content: flex-start; }
 .section--dark .section-cta a { background: transparent; border-color: #fff; }
 .section--dark .section-cta a:hover { background: #fff; color: var(--c-blue); }
@@ -518,6 +540,12 @@ a.btn,
 .region-breadcrumb { padding-block: var(--sp-4); }
 .breadcrumb, .region-breadcrumb ol, .region-breadcrumb ul { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; margin: 0; padding: 0; font-size: var(--fs-sm); color: var(--c-muted); }
 .breadcrumb li + li::before, .region-breadcrumb li + li::before { content: "/"; margin-right: var(--sp-2); color: var(--c-hair); }
+/* Landing pages (Figma 35:1632): breadcrumbs sit below the hero, not above the
+   whole page — hide the normal top-of-page block there;
+   node--landing-page--full.html.twig renders the same block again right after
+   the hero (.region-breadcrumb--post-hero). */
+.page-node-type-landing_page .region-breadcrumb:not(.region-breadcrumb--post-hero) { display: none; }
+.region-breadcrumb--post-hero { padding-block: var(--sp-5) var(--sp-2); }
 .region-highlighted .messages { margin-block: var(--sp-4); }
 
 /* Local task tabs (View / Edit / Delete / Revisions) — editors only.
@@ -552,13 +580,15 @@ a.btn,
 
 /* =============================================== CTA banner ============== */
 .cta-banner {
-  background: var(--hero-gradient); color: #fff; border-radius: var(--radius);
+  /* Client feedback: square corners on the banner itself (buttons keep their
+     own small radius below). */
+  background: var(--hero-gradient); color: #fff; border-radius: 0;
   padding: clamp(2rem, 1rem + 3vw, 3.5rem);
   display: flex; align-items: center; justify-content: space-between; gap: var(--sp-6); flex-wrap: wrap;
 }
-.cta-banner h2, .cta-banner h3 { color: #fff; margin: 0; max-width: 20ch; }
+.cta-banner h2, .cta-banner h3 { color: #fff; margin: 0; max-width: 20ch; font-weight: 400; }
 .cta-banner a { display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
-  padding: 0.85rem 1.75rem; border: 2px solid #fff; border-radius: var(--radius-sm); color: #fff; white-space: nowrap; }
+  height: var(--btn-h); padding: 0 1.75rem; border: 2px solid #fff; border-radius: var(--radius-sm); color: #fff; white-space: nowrap; }
 .cta-banner a:hover { background: #fff; color: var(--c-blue); text-decoration: none; }
 
 /* =============================================== Media / figure ========== */
@@ -617,18 +647,21 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 /* ===================================== Topic summary cards (item 1) ======= */
 /* Portrait image-overlay tiles (Figma 170:2329): the photo fills the tile and a
    dark gradient anchors a white title + "Learn more" button at the bottom. */
+/* Sharp corners on image cards; a fixed portrait aspect-ratio (not min-height)
+   keeps the same rectangle shape at every column width — a fixed height alone
+   let the tile go square once mobile's 1-column layout widened the card. */
 .topic-card { position: relative; display: flex; align-items: flex-end;
-  min-height: 380px; border-radius: var(--radius); overflow: hidden;
+  aspect-ratio: 299 / 409; min-height: 260px; border-radius: 0; overflow: hidden;
   text-decoration: none; box-shadow: var(--shadow-card); }
 .topic-card:hover { text-decoration: none; box-shadow: var(--shadow-card-hover); }
 .topic-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .topic-card::after { content: ""; position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.78) 100%); }
 .topic-card__inner { position: relative; z-index: 2; display: flex; flex-direction: column;
-  align-items: flex-start; gap: var(--sp-4); padding: var(--sp-6); width: 100%; }
+  align-items: flex-start; gap: 1.25rem; padding: var(--sp-6); width: 100%; }
 .topic-card__title { color: #fff; font-weight: 600; font-size: 1.375rem; line-height: 1.25; }
-.topic-card__cta { display: inline-block; color: #fff; font-weight: 600; font-size: var(--fs-sm);
-  padding: 0.5rem 1.4rem; border: 2px solid #fff; border-radius: var(--radius-sm); }
+.topic-card__cta { display: inline-flex; align-items: center; color: #fff; font-weight: 600; font-size: var(--fs-sm);
+  height: var(--btn-h-picture); padding: 0 1.4rem; border: 2px solid #fff; border-radius: var(--radius-sm); }
 .topic-card:hover .topic-card__cta { background: #fff; color: var(--c-blue); }
 /* Plain fallback until a topic image is uploaded: tinted portrait tile. */
 .topic-card--plain { background: var(--c-blue-tint); }
@@ -649,11 +682,12 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .card--article .card--article__date { color: var(--c-muted); font-size: var(--fs-sm); margin-bottom: var(--sp-3); }
 .card--article .card--article__lock { position: absolute; top: var(--sp-5); right: var(--sp-5); color: var(--c-ink); }
 .card--article .card--article__rule { border: 0; border-top: 1px solid var(--border-strong); margin: 0 0 var(--sp-4); }
-.card--article .card--article__title { font-size: 1.125rem; font-weight: 700; color: var(--c-heading); margin: 0 0 var(--sp-4); }
-.card--article .card--article__tags { color: var(--c-muted); font-size: var(--fs-sm); margin-bottom: var(--sp-5); }
+/* Client feedback: headings black (#4A4A4A) and Regular weight, not bold. */
+.card--article .card--article__title { font-size: 1.125rem; font-weight: 400; color: var(--c-ink); margin: 0 0 var(--sp-4); }
+.card--article .card--article__tags { color: var(--c-ink); font-size: var(--fs-sm); margin-bottom: var(--sp-5); }
 .card--article .card__cta { margin-top: auto; text-align: center; }
 .card--article .card__cta a { display: inline-flex; align-items: center; justify-content: center;
-  font-weight: 600; padding: 0.7rem 2rem; border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  font-weight: 600; height: var(--btn-h); padding: 0 2rem; border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
   color: var(--c-blue); background: transparent; }
 .card--article .card__cta a:hover { background: var(--c-blue); color: #fff; text-decoration: none; }
 
@@ -661,8 +695,8 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .card--article__label .field, .card--article__tags .field { margin: 0; }
 .card--article__label, .card--article__label * { display: inline; }
 .card--article__label a { color: inherit; text-decoration: none; font-weight: 600; }
-.card--article__tags .field__item { color: var(--c-muted); font-size: var(--fs-sm); }
-.card--article__tags a { color: var(--c-muted); text-decoration: none; }
+.card--article__tags .field__item { color: var(--c-ink); font-size: var(--fs-sm); }
+.card--article__tags a { color: var(--c-ink); text-decoration: none; }
 
 /* Equal-height cards in view-based grids (e.g. /resources/all): the grid
    stretches each .views-row to the tallest in the row — make the card fill that

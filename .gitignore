@@ -98,3 +98,6 @@ docroot/**/.gitattributes
 /autoload_runtime.php
 # Figma reference renders (local only)
 /.figma-refs/
+
+# Local DB exports (never commit dumps)
+db-exports/

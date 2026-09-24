@@ -145,20 +145,21 @@ a.btn,
 .card--media .card__meta { color: var(--c-ink); margin-bottom: var(--sp-4); }
 .card--media .card__meta strong { color: var(--c-blue); }
 
-/* Event card (Figma 157:2644) — image-led, borderless: a square image on top,
-   then a blue title, date line(s) and a "Learn more" button pinned to the
-   bottom so cards in a row line up. Sits directly on the section background
-   (no card box). */
+/* Event card (Figma 157:2644, verified via node inspection) — image-led,
+   borderless: a square-corner image on top (410:326 ≈ 1.26:1), then a blue
+   20px title, "Dates:"/"Time:" line(s) with blue bold labels, and a "Learn
+   more" outline button pinned to the bottom so cards in a row line up. Sits
+   directly on the section background (no card box, no radius, no shadow). */
 .card--event { background: transparent; box-shadow: none; border: 0; padding: 0; }
-.card--event .card__media { aspect-ratio: 16 / 10; overflow: hidden; margin: 0 0 var(--sp-4);
+.card--event .card__media { aspect-ratio: 410 / 326; overflow: hidden; margin: 0 0 var(--sp-4);
   background: var(--c-blue-tint); }
 .card--event .card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.card--event .card__title { font-size: 1.125rem; font-weight: 600; color: var(--c-blue);
-  line-height: 1.3; margin: 0 0 var(--sp-3); }
+.card--event .card__title { font-size: 1.25rem; font-weight: 600; color: var(--c-blue);
+  line-height: 1.4; margin: 0 0 var(--sp-3); }
 .card--event .card__title a { color: var(--c-blue); }
 .card--event .card__title a:hover { color: var(--c-blue-600); }
-.card--event .card__meta { color: var(--c-ink); font-size: var(--fs-sm); line-height: 1.5; margin-bottom: var(--sp-2); }
-.card--event .card__meta strong { color: var(--c-ink); }
+.card--event .card__meta { color: var(--c-ink); font-size: var(--fs-body); line-height: 1.5; margin-bottom: var(--sp-2); }
+.card--event .card__meta strong { color: var(--c-blue); font-weight: 600; }
 .card--event .card__cta { margin-top: auto; padding-top: var(--sp-4); }
 .card--event .card__cta a {
   display: inline-flex; align-items: center; justify-content: center; font-weight: 600;

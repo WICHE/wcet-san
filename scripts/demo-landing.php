@@ -10,6 +10,8 @@
  *   • Hero (compound_header_content): solid colour, half-image, full-bleed image
  *   • Cards (simple_card): image-overlay tile, content/CTA card, quick-link card
  *   • compound_card_row on white AND on a tinted band
+ *   • Quick links cards — long-copy, no-button variant (Figma 170:2692)
+ *   • Event cards — real .card--event markup with images + Dates/Time (Figma 157:2644)
  *   • Topic tiles + Events + Past events (summary_*)
  *   • simple_content block + CTA banner
  *   • layout_two_column with nested single_image / single_link / single_file
@@ -35,6 +37,36 @@ function wp(string $type, array $fields): array {
   $p = Paragraph::create(['type' => $type] + $fields);
   $p->save();
   return ['target_id' => $p->id(), 'target_revision_id' => $p->getRevisionId()];
+}
+
+/** Styled image-derivative URL for a media:image entity, for raw-HTML demo blocks. */
+function media_image_url(int $mid, string $style = 'large'): string {
+  $media = \Drupal::entityTypeManager()->getStorage('media')->load($mid);
+  if (!$media || !$media->hasField('field_image') || $media->get('field_image')->isEmpty()) {
+    return '';
+  }
+  $file = $media->get('field_image')->entity;
+  if (!$file) {
+    return '';
+  }
+  $style_entity = \Drupal::entityTypeManager()->getStorage('image_style')->load($style);
+  return $style_entity
+    ? $style_entity->buildUrl($file->getFileUri())
+    : \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+}
+
+/**
+ * Raw markup for one .card--event (matches node--event--teaser.html.twig
+ * exactly, plus a Time line — the live field_event_date is date-only, so this
+ * demo-only Time line shows the full design intent; see the runbook note).
+ */
+function event_card(string $title, string $img_url, string $dates, string $time): string {
+  return '<article class="card card--event">'
+    . '<div class="card__media"><img src="' . $img_url . '" alt="" loading="eager"></div>'
+    . '<h3 class="card__title"><a href="#">' . $title . '</a></h3>'
+    . '<div class="card__meta"><strong>Dates:</strong> ' . $dates . '<br><strong>Time:</strong> ' . $time . '</div>'
+    . '<div class="card__cta"><a href="#">Learn more</a></div>'
+    . '</article>';
 }
 
 /** A purple QC section label (single_text_area with inline styles — demo only). */
@@ -130,13 +162,76 @@ $c[] = wp('compound_card_row', [
   ],
 ]);
 
+// ===================================================== CARDS — quick links (long copy) ===
+// Figma 170:2692 "Card - Quick links": white shadow card, header + divider rule
+// + a longer paragraph of body copy, usually with NO button — this is the
+// existing .card--cta look (simple_card, no image, has body); a card only gets
+// its CTA row if field_link is set, so leaving it empty already reproduces the
+// no-button variant. Body copy trimmed to fit field_subheader's 255-char cap
+// (shared with 3 other bundles — see the note in the runbook, not widened here).
+$c[] = label('Cards — Quick links, long copy (header + body, no button) · Figma 170:2692');
+$c[] = wp('compound_card_row', [
+  'field_header' => 'Quick Links',
+  'field_p_cards' => [
+    wp('simple_card', [
+      'field_header' => 'Member links',
+      'field_subheader' => 'Are you new to State Authorization? Start with State Authorization 101! Scroll down for the 9 Key Areas, or use the Resources menu. SAN Coordinators: see the Membership Coordinator Welcome Information.',
+    ]),
+    wp('simple_card', [
+      'field_header' => 'Comms Platform for SAN',
+      'field_subheader' => 'SAN member updates and discussions happen on MIX, including the monthly eNewsletters (SAN News & Announcements, Newsletters tab) and the Member-Only Community. See the MIX Rules of Use and Etiquette.',
+    ]),
+    wp('simple_card', [
+      'field_header' => 'Other helpful links',
+      'field_subheader' => 'NC-SARA Website. U.S. Department of Education Knowledge Center (notices, Dear Colleague Letters, FSA Handbook). WCET Frontiers articles. WCET Job Posts. Follow SAN on LinkedIn.',
+    ]),
+  ],
+]);
+
 // ===================================================== SUMMARIES =============
 $c[] = label('Topic tiles — summary_resources');
 $c[] = wp('summary_resources', ['field_summary_topics' => $topics, 'field_link' => ['uri' => 'internal:/resources/all', 'title' => 'View all resources']]);
-$c[] = label('Upcoming events — summary_events');
+$c[] = label('Topic tiles — summary_events (site\'s "Events" topic browser, not event cards)');
 $c[] = wp('summary_events', ['field_summary_topics' => $topics, 'field_link' => ['uri' => 'internal:/events', 'title' => 'View all events']]);
 $c[] = label('Past events — summary_past_events');
 $c[] = wp('summary_past_events', ['field_summary_topics' => $topics, 'field_link' => ['uri' => 'internal:/events/past', 'title' => 'View past events']]);
+
+// ===================================================== EVENT CARDS ===========
+// Figma 157:2644 "Card - Events": the ACTUAL event listing card
+// (node--event--teaser.html.twig / .card--event) — image-led, borderless,
+// blue title, bold "Dates:"/"Time:" labels, "Learn more" button. Raw markup
+// here matches the real template 1:1; live events use only "Dates:" (see the
+// runbook note — field_event_date has no time component).
+$c[] = label('Event cards — real .card--event markup, verified vs Figma 157:2644');
+$c[] = wp('single_text_area', [
+  'field_text_area' => [
+    'value' => '<section class="section section--tint"><div class="wrap">'
+      . '<div class="section-head"><h2 class="section-head__title">Events</h2></div>'
+      . '<div class="card-grid card-grid--resources">'
+      . '<div class="views-row">' . event_card(
+        "SAN's Summer Webinar Series – Registration is Open (SAN Member Exclusive)!",
+        media_image_url($img[0]),
+        'June 16–18, 2026 (you may register for one, two, or all three sessions of the series)',
+        '2:30 – 4:00 PM (Eastern time)'
+      ) . '</div>'
+      . '<div class="views-row">' . event_card(
+        'WCET and SAN Webinar - Understanding Recent Federal Department of Education Policy and Practice Updates',
+        media_image_url($img[1]),
+        'July 15, 2026',
+        '2 PM – 3 PM (Eastern time)'
+      ) . '</div>'
+      . '<div class="views-row">' . event_card(
+        'Open Forum',
+        media_image_url($img[2]),
+        '2nd Tuesday of each month. July 14, 2026!',
+        '10 AM Alaska, 11 AM PT, Noon MT, 1 PM CT, 2 PM ET'
+      ) . '</div>'
+      . '</div>'
+      . '<div class="section-cta"><a href="#" class="btn">View all updates</a></div>'
+      . '</div></section>',
+    'format' => 'full_html',
+  ],
+]);
 
 // ===================================================== CONTENT + CTA =========
 $c[] = label('Content block — simple_content (header + subheader + body)');
@@ -243,7 +338,8 @@ $node->save();
 
 echo 'DEMO_NODE_ID=' . $node->id() . "\n";
 echo 'url: ' . $node->toUrl()->toString() . "\n";
-echo "components: hero×3, image/CTA/quick-link cards, topic tiles, events, past events,\n";
+echo "components: hero×3, image/CTA/quick-link cards, quick-links long-copy cards,\n";
+echo "event cards, topic tiles, events, past events,\n";
 echo "content, CTA banner, two-column, link styles×3, image/video/file singles,\n";
 echo "rich text + blue text, accordion, table, spacers×3, grid reference\n";
 echo "DONE\n";

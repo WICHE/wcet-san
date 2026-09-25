@@ -160,6 +160,10 @@ a.btn,
    more" outline button pinned to the bottom so cards in a row line up. Sits
    directly on the section background (no card box, no radius, no shadow). */
 .card--event { background: transparent; box-shadow: none; border: 0; padding: 0; }
+/* No hover shadow on the block itself — the card has no visible box (no bg,
+   no border), so the base .card:hover shadow just looked like a stray glitch
+   floating around nothing. The title/button still get their own hover state. */
+.card--event:hover { box-shadow: none; }
 .card--event .card__media { aspect-ratio: 410 / 326; overflow: hidden; margin: 0 0 var(--sp-4);
   background: var(--c-blue-tint); }
 .card--event .card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }

@@ -21,6 +21,7 @@ drush php:script scripts/<name>.php      # or: lando drush php:script scripts/<n
 | `demo-landing.php` | `/wiche-design-demo` component showcase (landing page). | ✅ delete-by-title |
 | `demo-article.php` | The "DEMO: 15 Years…" article (two-column resource template). | ✅ delete-by-title |
 | `search-setup.php` | Frees `/search` (unpublishes prod's old React search landing) so the search view owns it. Reindex after: `drush search-api:index index`. | ✅ |
+| `content-fixes.php` | Small, targeted content-VALUE corrections that config export can't carry (each fix checks before writing). Re-run any time; growing list of one-off fixes. | ✅ |
 
 ---
 

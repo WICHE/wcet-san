@@ -111,6 +111,79 @@ function wiche_preprocess_node__landing_page(array &$variables): void {
 }
 
 /**
+ * Query event nodes for a summary_events / summary_past_events paragraph.
+ *
+ * These bundles carry field_summary_topics (optional filter) — if set, only
+ * events sharing one of those topics are shown; otherwise (or if the filter
+ * matches nothing) the N most relevant events by date are shown unfiltered,
+ * so the section is never left empty. $upcoming selects field_event_date >=
+ * today (ascending) vs. < today (descending, most recent first).
+ */
+function _wiche_query_summary_events(\Drupal\paragraphs\ParagraphInterface $paragraph, bool $upcoming, int $limit = 3): array {
+  $today = date('Y-m-d');
+  $tids = [];
+  if ($paragraph->hasField('field_summary_topics') && !$paragraph->get('field_summary_topics')->isEmpty()) {
+    $tids = array_column($paragraph->get('field_summary_topics')->getValue(), 'target_id');
+  }
+
+  $build_query = function () use ($today, $upcoming, $limit, $tids) {
+    $query = \Drupal::entityQuery('node')
+      ->accessCheck(TRUE)
+      ->condition('type', 'event')
+      ->condition('status', 1)
+      ->range(0, $limit);
+    if ($upcoming) {
+      $query->condition('field_event_date', $today, '>=')->sort('field_event_date', 'ASC');
+    }
+    else {
+      $query->condition('field_event_date', $today, '<')->sort('field_event_date', 'DESC');
+    }
+    if ($tids) {
+      $query->condition('field_topic', $tids, 'IN');
+    }
+    return $query->execute();
+  };
+
+  $ids = $build_query();
+  if (!$ids && $tids) {
+    // No events matched the selected topics — fall back to unfiltered.
+    $tids = [];
+    $ids = $build_query();
+  }
+  if (!$ids) {
+    return [];
+  }
+
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+  $teasers = [];
+  foreach (\Drupal\node\Entity\Node::loadMultiple($ids) as $event) {
+    $teasers[] = $view_builder->view($event, 'teaser');
+  }
+  return $teasers;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--summary-events.html.twig.
+ *
+ * Figma 157:2644 — the site's ONLY event-card style is .card--event (see
+ * node--event--teaser.html.twig). This bundle used to render topic tiles
+ * under an "Events" heading, which looked like a second, incorrect event
+ * style; it now queries real upcoming events instead.
+ */
+function wiche_preprocess_paragraph__summary_events(array &$variables): void {
+  $variables['events'] = _wiche_query_summary_events($variables['paragraph'], TRUE);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--summary-past-events.html.twig.
+ *
+ * Same fix as summary_events, querying past events (date < today, DESC).
+ */
+function wiche_preprocess_paragraph__summary_past_events(array &$variables): void {
+  $variables['events'] = _wiche_query_summary_events($variables['paragraph'], FALSE);
+}
+
+/**
  * Implements hook_theme_suggestions_paragraph_alter().
  *
  * Lets each paragraph type have a template like

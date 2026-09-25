@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.summary_events.field_link
     - field.field.paragraph.summary_events.field_summary_topics
     - paragraphs.paragraphs_type.summary_events
 id: paragraph.summary_events.preview
@@ -20,4 +21,8 @@ content:
     weight: 0
     region: content
 hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_link: true
   search_api_excerpt: true

@@ -3,13 +3,28 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.summary_events.field_link
     - field.field.paragraph.summary_events.field_summary_topics
     - paragraphs.paragraphs_type.summary_events
+  module:
+    - link
 id: paragraph.summary_events.default
 targetEntityType: paragraph
 bundle: summary_events
 mode: default
 content:
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 10
+    region: content
   field_summary_topics:
     type: entity_reference_entity_view
     label: hidden

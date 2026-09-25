@@ -3,19 +3,30 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.summary_past_events.field_link
     - field.field.paragraph.summary_past_events.field_summary_topics
     - paragraphs.paragraphs_type.summary_past_events
+  module:
+    - link
 id: paragraph.summary_past_events.default
 targetEntityType: paragraph
 bundle: summary_past_events
 mode: default
 content:
+  field_link:
+    type: link_default
+    weight: 10
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
   field_summary_topics:
+    type: options_select
     weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
 hidden:
   created: true
   status: true

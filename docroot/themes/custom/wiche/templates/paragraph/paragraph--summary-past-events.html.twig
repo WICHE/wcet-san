@@ -1,11 +1,23 @@
 {#
 /**
- * @file Past events summary — summary_past_events. Field: field_summary_topics.
+ * @file Past events summary — summary_past_events (Figma 157:2644, same card
+ * style as summary_events). Fields: field_summary_topics (optional topic
+ * filter), field_link (View past events). `events` is built in
+ * wiche_preprocess_paragraph__summary_past_events().
  */
 #}
 <section{{ attributes.addClass('section', 'section--tint', 'paragraph-summary', 'paragraph-summary--events') }}>
   <div class="wrap">
     <div class="section-head"><h2 class="section-head__title">{{ 'Past Events'|t }}</h2></div>
-    <div class="card-grid card-grid--4 summary-grid summary-grid--overlay">{{ content.field_summary_topics }}</div>
+    {% if events %}
+      <div class="card-grid card-grid--resources">
+        {% for event in events %}
+          <div class="views-row">{{ event }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% if content.field_link|render|trim %}
+      <div class="section-cta">{{ content.field_link }}</div>
+    {% endif %}
   </div>
 </section>

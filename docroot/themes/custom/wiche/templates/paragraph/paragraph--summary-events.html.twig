@@ -1,8 +1,10 @@
 {#
 /**
- * @file Events summary section — summary_events.
- * Field: field_summary_topics (referenced items shown as media cards).
- * Title has no field on this bundle, so it's a themeable default.
+ * @file Events summary section — summary_events (Figma 157:2644).
+ * Fields: field_summary_topics (optional topic filter), field_link (View all).
+ * `events` (rendered .card--event teasers) is built in
+ * wiche_preprocess_paragraph__summary_events() — this is the site's ONLY
+ * event-card style; do not render topic tiles here.
  */
 #}
 <section{{ attributes.addClass('section', 'section--tint', 'paragraph-summary', 'paragraph-summary--events') }}>
@@ -10,6 +12,15 @@
     <div class="section-head">
       <h2 class="section-head__title">{{ 'Events'|t }}</h2>
     </div>
-    <div class="card-grid card-grid--4 summary-grid summary-grid--overlay">{{ content.field_summary_topics }}</div>
+    {% if events %}
+      <div class="card-grid card-grid--resources">
+        {% for event in events %}
+          <div class="views-row">{{ event }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% if content.field_link|render|trim %}
+      <div class="section-cta">{{ content.field_link }}</div>
+    {% endif %}
   </div>
 </section>

@@ -11,20 +11,21 @@
  *   • Cards (simple_card): image-overlay tile, content/CTA card, quick-link card
  *   • compound_card_row on white AND on a tinted band
  *   • Quick links cards — long-copy, no-button variant (Figma 170:2692)
- *   • Event cards — real .card--event markup with images + Dates/Time (Figma 157:2644)
- *   • Topic tiles + Events + Past events (summary_*)
+ *   • Topic tiles (summary_resources) + real Events / Past events cards
+ *     (summary_events / summary_past_events, Figma 157:2644 — the site's only
+ *     event-card style, no topic tiles under "Events" anymore)
  *   • simple_content block + CTA banner
  *   • layout_two_column with nested single_image / single_link / single_file
  *   • single_link styles: primary, secondary, tertiary
- *   • single_image, single_video, single_file
+ *   • single_image, single_video, single_file, single_svg
  *   • Rich text incl. the "Blue text" style
  *   • Accordion (compound_faq_section / simple_faq)
  *   • table_with_filters
+ *   • Reference block — reference_block (embeds a block plugin)
  *   • Spacer: small / medium / large
  *   • Grid reference (8/12 content) — Figma 154:1685
  *
- * Not shown: single_svg (needs an SVG media entity) and reference_block (embeds
- * an arbitrary block; no styling of its own).
+ * Every one of the 19 paragraph bundles has an example on this page.
  *
  * Idempotent (delete-by-title). Run: drush php:script scripts/demo-landing.php
  */
@@ -37,36 +38,6 @@ function wp(string $type, array $fields): array {
   $p = Paragraph::create(['type' => $type] + $fields);
   $p->save();
   return ['target_id' => $p->id(), 'target_revision_id' => $p->getRevisionId()];
-}
-
-/** Styled image-derivative URL for a media:image entity, for raw-HTML demo blocks. */
-function media_image_url(int $mid, string $style = 'large'): string {
-  $media = \Drupal::entityTypeManager()->getStorage('media')->load($mid);
-  if (!$media || !$media->hasField('field_image') || $media->get('field_image')->isEmpty()) {
-    return '';
-  }
-  $file = $media->get('field_image')->entity;
-  if (!$file) {
-    return '';
-  }
-  $style_entity = \Drupal::entityTypeManager()->getStorage('image_style')->load($style);
-  return $style_entity
-    ? $style_entity->buildUrl($file->getFileUri())
-    : \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
-}
-
-/**
- * Raw markup for one .card--event (matches node--event--teaser.html.twig
- * exactly, plus a Time line — the live field_event_date is date-only, so this
- * demo-only Time line shows the full design intent; see the runbook note).
- */
-function event_card(string $title, string $img_url, string $dates, string $time): string {
-  return '<article class="card card--event">'
-    . '<div class="card__media"><img src="' . $img_url . '" alt="" loading="eager"></div>'
-    . '<h3 class="card__title"><a href="#">' . $title . '</a></h3>'
-    . '<div class="card__meta"><strong>Dates:</strong> ' . $dates . '<br><strong>Time:</strong> ' . $time . '</div>'
-    . '<div class="card__cta"><a href="#">Learn more</a></div>'
-    . '</article>';
 }
 
 /** A purple QC section label (single_text_area with inline styles — demo only). */
@@ -102,6 +73,33 @@ $img = [1, 2, 3, 4, 5, 6];            // image media ids
 $file_media = 17;                     // file media
 $video_media = 18;                    // video media
 $topics = [['target_id' => 614], ['target_id' => 6], ['target_id' => 1], ['target_id' => 4]];
+
+// Demo-only SVG media (create-if-missing by name, so this stays idempotent
+// without leaving orphaned files behind on repeat runs).
+$svg_media_id = NULL;
+$existing_svg = \Drupal::entityTypeManager()->getStorage('media')
+  ->loadByProperties(['bundle' => 'svg', 'name' => 'Demo SVG icon']);
+if ($existing_svg) {
+  $svg_media_id = reset($existing_svg)->id();
+}
+else {
+  $svg_contents = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">'
+    . '<circle cx="24" cy="24" r="22" fill="#1468A0"/>'
+    . '<path d="M14 25l7 7 13-15" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
+    . '</svg>';
+  $dir = 'public://svg';
+  \Drupal::service('file_system')->prepareDirectory($dir, \Drupal\Core\File\FileSystemInterface::CREATE_DIRECTORY);
+  $file = \Drupal::service('file.repository')->writeData($svg_contents, $dir . '/demo-icon.svg', \Drupal\Core\File\FileExists::Replace);
+  $file->setPermanent();
+  $file->save();
+  $svg_media = \Drupal\media\Entity\Media::create([
+    'bundle' => 'svg',
+    'name' => 'Demo SVG icon',
+    'field_svg' => ['target_id' => $file->id()],
+  ]);
+  $svg_media->save();
+  $svg_media_id = $svg_media->id();
+}
 
 // ---- Page header: Hero variant A — solid colour + copy (no image) ----------
 $hero = wp('compound_header_content', [
@@ -189,49 +187,19 @@ $c[] = wp('compound_card_row', [
 ]);
 
 // ===================================================== SUMMARIES =============
-$c[] = label('Topic tiles — summary_resources');
+$c[] = label('Topic tiles — summary_resources (Figma 170:2329 — topics, by design)');
 $c[] = wp('summary_resources', ['field_summary_topics' => $topics, 'field_link' => ['uri' => 'internal:/resources/all', 'title' => 'View all resources']]);
-$c[] = label('Topic tiles — summary_events (site\'s "Events" topic browser, not event cards)');
-$c[] = wp('summary_events', ['field_summary_topics' => $topics, 'field_link' => ['uri' => 'internal:/events', 'title' => 'View all events']]);
-$c[] = label('Past events — summary_past_events');
-$c[] = wp('summary_past_events', ['field_summary_topics' => $topics, 'field_link' => ['uri' => 'internal:/events/past', 'title' => 'View past events']]);
-
-// ===================================================== EVENT CARDS ===========
-// Figma 157:2644 "Card - Events": the ACTUAL event listing card
-// (node--event--teaser.html.twig / .card--event) — image-led, borderless,
-// blue title, bold "Dates:"/"Time:" labels, "Learn more" button. Raw markup
-// here matches the real template 1:1; live events use only "Dates:" (see the
-// runbook note — field_event_date has no time component).
-$c[] = label('Event cards — real .card--event markup, verified vs Figma 157:2644');
-$c[] = wp('single_text_area', [
-  'field_text_area' => [
-    'value' => '<section class="section section--tint"><div class="wrap">'
-      . '<div class="section-head"><h2 class="section-head__title">Events</h2></div>'
-      . '<div class="card-grid card-grid--resources">'
-      . '<div class="views-row">' . event_card(
-        "SAN's Summer Webinar Series – Registration is Open (SAN Member Exclusive)!",
-        media_image_url($img[0]),
-        'June 16–18, 2026 (you may register for one, two, or all three sessions of the series)',
-        '2:30 – 4:00 PM (Eastern time)'
-      ) . '</div>'
-      . '<div class="views-row">' . event_card(
-        'WCET and SAN Webinar - Understanding Recent Federal Department of Education Policy and Practice Updates',
-        media_image_url($img[1]),
-        'July 15, 2026',
-        '2 PM – 3 PM (Eastern time)'
-      ) . '</div>'
-      . '<div class="views-row">' . event_card(
-        'Open Forum',
-        media_image_url($img[2]),
-        '2nd Tuesday of each month. July 14, 2026!',
-        '10 AM Alaska, 11 AM PT, Noon MT, 1 PM CT, 2 PM ET'
-      ) . '</div>'
-      . '</div>'
-      . '<div class="section-cta"><a href="#" class="btn">View all updates</a></div>'
-      . '</div></section>',
-    'format' => 'full_html',
-  ],
-]);
+// Events / Past events: summary_events and summary_past_events used to render
+// topic tiles under an "Events" heading — a second, incorrect "event" look
+// next to the real one. Figma 157:2644 (confirmed against the live homepage
+// frame, 26:32) is the ONLY event-card style on the site: both bundles now
+// query real event nodes (wiche_preprocess_paragraph__summary_events[/_past])
+// and render them as .card--event, same as /events/upcoming and /events/past.
+// No topic filter here, so each shows the nearest/most-recent real events.
+$c[] = label('Events — real .card--event cards, verified vs Figma 157:2644 + homepage 26:32');
+$c[] = wp('summary_events', ['field_link' => ['uri' => 'internal:/events', 'title' => 'View all events']]);
+$c[] = label('Past events — same .card--event style');
+$c[] = wp('summary_past_events', ['field_link' => ['uri' => 'internal:/events/past', 'title' => 'View past events']]);
 
 // ===================================================== CONTENT + CTA =========
 $c[] = label('Content block — simple_content (header + subheader + body)');
@@ -268,10 +236,11 @@ $c[] = wp('single_link', ['field_link' => ['uri' => 'internal:/resources', 'titl
 $c[] = wp('single_link', ['field_link' => ['uri' => 'internal:/events', 'title' => 'Tertiary link'], 'field_link_style' => 'tertiary']);
 
 // ===================================================== MEDIA SINGLES =========
-$c[] = label('Media singles — single_image, single_video, single_file');
+$c[] = label('Media singles — single_image, single_video, single_file, single_svg');
 $c[] = wp('single_image', ['field_media_image' => ['target_id' => $img[1]]]);
 $c[] = wp('single_video', ['field_media_video' => ['target_id' => $video_media]]);
 $c[] = wp('single_file', ['field_header' => 'Download: sample document', 'field_media_file' => ['target_id' => $file_media], 'field_link_style' => 'secondary']);
+$c[] = wp('single_svg', ['field_svg' => ['target_id' => $svg_media_id]]);
 
 // ===================================================== RICH TEXT + BLUE ======
 $c[] = label('Rich text + "Blue text" style — single_text_area');
@@ -299,6 +268,24 @@ $c[] = wp('compound_faq_section', [
 $c[] = label('Table with filters — table_with_filters');
 $c[] = wp('table_with_filters', [
   'field_table_data' => ['value' => '<table><thead><tr><th>State</th><th>SARA member</th><th>Notes</th></tr></thead><tbody><tr><td>Colorado</td><td>Yes</td><td>—</td></tr><tr><td>California</td><td>No</td><td>Non-SARA requirements apply</td></tr><tr><td>Texas</td><td>Yes</td><td>—</td></tr></tbody></table>', 'format' => 'full_html'],
+]);
+
+// ===================================================== REFERENCE BLOCK =======
+// reference_block embeds an arbitrary configured block; it has no styling of
+// its own (whatever the referenced block renders is what shows). Uses a
+// harmless core block here purely to prove the paragraph mechanism works —
+// swap in a real custom block when one exists.
+$c[] = label('Reference block — reference_block (embeds a block plugin, no styling of its own)');
+$c[] = wp('reference_block', [
+  'field_block' => [
+    'plugin_id' => 'system_powered_by_block',
+    'settings' => [
+      'id' => 'system_powered_by_block',
+      'label' => 'Reference block demo (Powered by Drupal)',
+      'label_display' => '1',
+      'provider' => 'system',
+    ],
+  ],
 ]);
 
 // ===================================================== SPACERS ===============
@@ -339,7 +326,7 @@ $node->save();
 echo 'DEMO_NODE_ID=' . $node->id() . "\n";
 echo 'url: ' . $node->toUrl()->toString() . "\n";
 echo "components: hero×3, image/CTA/quick-link cards, quick-links long-copy cards,\n";
-echo "event cards, topic tiles, events, past events,\n";
+echo "topic tiles, real event cards (events + past events),\n";
 echo "content, CTA banner, two-column, link styles×3, image/video/file singles,\n";
 echo "rich text + blue text, accordion, table, spacers×3, grid reference\n";
 echo "DONE\n";

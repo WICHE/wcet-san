@@ -607,6 +607,12 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 
 /* File download link */
 .paragraph--single_file a, .field--type-file a { display: inline-flex; align-items: center; gap: var(--sp-2); color: var(--c-blue); font-weight: 600; }
+/* Core's file-size text ("(6.22 KB)") is a plain sibling right after the
+   filename/button with no spacing of its own — give it breathing room,
+   especially now the link renders as a button (background/border/height). */
+.paragraph--single_file .file + span, .field--type-file .file + span {
+  margin-left: var(--sp-3); color: var(--c-muted); font-size: var(--fs-sm);
+}
 
 /* =============================================== Table ==================== */
 .paragraph-table { overflow-x: auto; }

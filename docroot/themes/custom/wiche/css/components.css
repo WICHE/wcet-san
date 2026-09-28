@@ -958,3 +958,76 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .spacer--small  { height: clamp(1rem, 0.5rem + 1.5vw, 1.75rem); }
 .spacer--medium { height: clamp(2rem, 1rem + 2.5vw, 3.5rem); }
 .spacer--large  { height: clamp(3.5rem, 2rem + 4vw, 6.5rem); }
+
+/* ============================================================ /sitemap === */
+/* The Sitemap module (contrib) renders plain nested <ul>s with no theme hooks
+ * of our own — styled entirely by structure, per the client's reference
+ * (nc-sara.org/sitemap/): one card per top-level menu section, card header =
+ * the section link, card body = its flat link list. Markup (sitemap.module):
+ *   .sitemap
+ *     .sitemap-item.sitemap-item--frontpage > h2 + div > a, a (RSS)
+ *     .sitemap-item.sitemap-item--menu-main > h2 + div > ul > li[.leaf|.expanded]
+ *       > a|span (title) + ul > li > a|span ... (repeats per nesting depth)
+ * A menu item content editors set to Drupal's <nolink> renders as a bare
+ * <span> instead of <a> (see menu--main.html.twig) — every selector below
+ * matches both so a dropdown-only section still gets a styled card heading. */
+.route--sitemap-page .sitemap-item--frontpage {
+  display: flex; align-items: center; gap: var(--sp-4);
+  margin-bottom: var(--sp-6); padding-bottom: var(--sp-5); border-bottom: 1px solid var(--border);
+}
+.route--sitemap-page .sitemap-item--frontpage > h2 {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.route--sitemap-page .sitemap-item--frontpage > div { display: flex; align-items: center; gap: var(--sp-3); }
+.route--sitemap-page .sitemap-item--frontpage a { color: var(--c-blue); font-weight: 600; text-decoration: none; }
+.route--sitemap-page .sitemap-item--frontpage a:hover { text-decoration: underline; }
+.route--sitemap-page .sitemap-item--frontpage img { display: block; }
+
+.route--sitemap-page .sitemap-item--menu-main > h2 {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+/* Card grid: one cell per top-level menu item. */
+.route--sitemap-page .sitemap-item--menu-main > div > ul {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-6) var(--sp-5);
+  list-style: none; margin: 0; padding: 0;
+}
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li {
+  background: var(--bg-tint); border: 1px solid var(--border); border-radius: var(--radius);
+  list-style: none; overflow: hidden;
+}
+/* Card header = the section's own link (or a <span> when it's <nolink>). */
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li > a,
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li > span {
+  display: block; padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border);
+  font-family: var(--font-head); font-size: var(--fs-h4); font-weight: 600;
+  color: var(--c-blue); text-decoration: none;
+}
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li > a:hover { color: var(--c-blue-600); text-decoration: underline; }
+/* A leaf item (no children, e.g. Home) has no card body — drop the header's
+   divider so it doesn't look like an empty card. */
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li.leaf > a,
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li.leaf > span { border-bottom: 0; }
+/* Card body: the section's own links, flattened. */
+.route--sitemap-page .sitemap-item--menu-main ul ul {
+  list-style: none; margin: 0; padding: var(--sp-3) var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-2);
+}
+.route--sitemap-page .sitemap-item--menu-main ul ul li { margin: 0; }
+.route--sitemap-page .sitemap-item--menu-main ul ul a,
+.route--sitemap-page .sitemap-item--menu-main ul ul span {
+  display: inline-block; color: var(--c-ink); font-size: var(--fs-sm); text-decoration: underline; text-decoration-color: var(--border-strong);
+}
+.route--sitemap-page .sitemap-item--menu-main ul ul a:hover { color: var(--c-magenta); text-decoration-color: currentColor; }
+/* A third nesting level (e.g. Compliance Topics → External Resources → links)
+   reads as a sub-group within the card: its own heading + a further indent. */
+.route--sitemap-page .sitemap-item--menu-main ul ul span:has(+ ul),
+.route--sitemap-page .sitemap-item--menu-main ul ul > li > a:has(+ ul) {
+  color: var(--c-ink-strong); font-weight: 600; text-decoration: none;
+}
+.route--sitemap-page .sitemap-item--menu-main ul ul ul { padding: var(--sp-2) 0 0 var(--sp-4); }
+
+@media (max-width: 1100px) {
+  .route--sitemap-page .sitemap-item--menu-main > div > ul { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .route--sitemap-page .sitemap-item--menu-main > div > ul { grid-template-columns: 1fr; }
+}

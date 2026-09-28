@@ -55,6 +55,10 @@ ul, ol { margin: 0 0 var(--sp-4); padding-left: 1.25rem; }
 li { margin-bottom: var(--sp-2); }
 
 strong, b { font-weight: 700; color: var(--c-ink-strong); }
+/* Editors often bold their link text (e.g. "Follow Us on LinkedIn - **SAN**")
+   — an explicit color on strong/b otherwise wins over the inherited link
+   color, so bolded link text goes dark instead of staying blue/underlined. */
+a strong, a b { color: inherit; }
 
 hr {
   border: 0;

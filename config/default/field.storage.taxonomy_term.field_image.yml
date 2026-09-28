@@ -1,27 +1,17 @@
-uuid: 04bf9215-6232-4884-836d-bdbb91cffe80
+uuid: 90d28c43-a084-4b90-a4d2-52311c8de554
 langcode: en
 status: true
 dependencies:
   module:
-    - file
-    - image
+    - media
     - taxonomy
 id: taxonomy_term.field_image
 field_name: field_image
 entity_type: taxonomy_term
-type: image
+type: entity_reference
 settings:
-  target_type: file
-  display_field: false
-  display_default: true
-  uri_scheme: public
-  default_image:
-    uuid: null
-    alt: ''
-    title: ''
-    width: null
-    height: null
-module: image
+  target_type: media
+module: core
 locked: false
 cardinality: 1
 translatable: true

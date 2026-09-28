@@ -4,10 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.topic.field_image
-    - image.style.large
     - taxonomy.vocabulary.topic
   module:
-    - image
     - text
 id: taxonomy_term.topic.default
 targetEntityType: taxonomy_term
@@ -22,13 +20,11 @@ content:
     weight: 0
     region: content
   field_image:
-    type: image
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      image_link: ''
-      image_style: large
-      image_loading:
-        attribute: lazy
+      view_mode: teaser
+      link: false
     third_party_settings: {  }
     weight: 0
     region: content

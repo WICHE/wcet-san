@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image
     - field.field.taxonomy_term.topic.field_image
-    - image.style.thumbnail
     - taxonomy.vocabulary.topic
   module:
-    - image
+    - entity_browser
     - path
     - text
 id: taxonomy_term.topic.default
@@ -24,12 +24,19 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_image:
-    type: image_image
+    type: entity_browser_entity_reference
     weight: 10
     region: content
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      entity_browser: image
+      field_widget_display: rendered_entity
+      field_widget_edit: false
+      field_widget_remove: true
+      field_widget_replace: false
+      open: true
+      field_widget_display_settings:
+        view_mode: form_preview
+      selection_mode: selection_append
     third_party_settings: {  }
   langcode:
     type: language_select

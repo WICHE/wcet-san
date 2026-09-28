@@ -806,50 +806,69 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .resource-article__related { margin-top: var(--sp-9); }
 .resource-article__related-title { color: var(--c-blue); font-size: var(--fs-h2); margin: 0 0 var(--sp-6); }
 
-/* ===================================== Listing pages (resources + events) === */
-/* Resource overview (184:5646) and the events listings (/events/upcoming,
-   /events/past) all share this look: each view carries its own header, so
-   hide the generic page-title block to avoid a duplicate H1, style the view's
-   own header, and turn the exposed filters into a tidy filter bar. */
+/* ===================================== Listing pages (resources/events/coordinators) */
+/* Every filterable Views listing page shares this look: the view carries its
+   own header, so hide the generic page-title block to avoid a duplicate H1,
+   style the view's own header, and turn the exposed filters into a tidy
+   filter bar. Add a page's route--… body class here when a new filtered
+   listing is built, rather than duplicating the whole block. */
 .route--view-resources-page-resources #block-wiche-pagetitle,
 .route--view-events-page-events #block-wiche-pagetitle,
-.route--view-events-page-events-past #block-wiche-pagetitle { display: none; }
+.route--view-events-page-events-past #block-wiche-pagetitle,
+.route--view-coordinator-list-page-1 #block-wiche-pagetitle { display: none; }
 
 /* View header → page header */
 .route--view-resources-page-resources .header-wrapper,
 .route--view-events-page-events .header-wrapper,
-.route--view-events-page-events-past .header-wrapper { margin: 0 0 var(--sp-6); }
+.route--view-events-page-events-past .header-wrapper,
+.route--view-coordinator-list-page-1 .header-wrapper { margin: 0 0 var(--sp-6); }
 .route--view-resources-page-resources .header-wrapper h1,
 .route--view-events-page-events .header-wrapper h1,
-.route--view-events-page-events-past .header-wrapper h1 { color: var(--c-blue);
+.route--view-events-page-events-past .header-wrapper h1,
+.route--view-coordinator-list-page-1 .header-wrapper h1 { color: var(--c-blue);
   font-size: var(--fs-display); margin: 0; }
 
 /* Exposed filters → a tidy filter bar */
 .route--view-resources-page-resources .views-exposed-form,
 .route--view-events-page-events .views-exposed-form,
-.route--view-events-page-events-past .views-exposed-form { display: flex;
+.route--view-events-page-events-past .views-exposed-form,
+.route--view-coordinator-list-page-1 .views-exposed-form { display: flex;
   flex-wrap: wrap; align-items: flex-end; gap: var(--sp-4);
   margin: 0 0 var(--sp-7); padding: var(--sp-5) var(--sp-6);
   background: var(--c-blue-tint); border-radius: var(--radius); }
 .route--view-resources-page-resources .views-exposed-form .form-item,
 .route--view-events-page-events .views-exposed-form .form-item,
-.route--view-events-page-events-past .views-exposed-form .form-item { margin: 0;
+.route--view-events-page-events-past .views-exposed-form .form-item,
+.route--view-coordinator-list-page-1 .views-exposed-form .form-item { margin: 0;
   display: flex; flex-direction: column; gap: var(--sp-1); }
 .route--view-resources-page-resources .views-exposed-form label,
 .route--view-events-page-events .views-exposed-form label,
-.route--view-events-page-events-past .views-exposed-form label { margin: 0;
+.route--view-events-page-events-past .views-exposed-form label,
+.route--view-coordinator-list-page-1 .views-exposed-form label { margin: 0;
   font-weight: 600; font-size: var(--fs-sm); color: var(--c-heading); }
 .route--view-resources-page-resources .views-exposed-form select,
 .route--view-events-page-events .views-exposed-form select,
-.route--view-events-page-events-past .views-exposed-form select { font: inherit;
+.route--view-events-page-events-past .views-exposed-form select,
+.route--view-coordinator-list-page-1 .views-exposed-form select { font: inherit;
   padding: 0.55rem 0.8rem; min-width: 230px; background: #fff;
   border: 1px solid var(--border-strong); border-radius: var(--radius-sm); }
 .route--view-resources-page-resources .views-exposed-form .form-actions,
 .route--view-events-page-events .views-exposed-form .form-actions,
-.route--view-events-page-events-past .views-exposed-form .form-actions { margin: 0; }
+.route--view-events-page-events-past .views-exposed-form .form-actions,
+.route--view-coordinator-list-page-1 .views-exposed-form .form-actions { margin: 0; }
 .route--view-resources-page-resources .views-exposed-form .form-submit,
 .route--view-events-page-events .views-exposed-form .form-submit,
-.route--view-events-page-events-past .views-exposed-form .form-submit { margin: 0; }
+.route--view-events-page-events-past .views-exposed-form .form-submit,
+.route--view-coordinator-list-page-1 .views-exposed-form .form-submit { margin: 0; }
+
+/* The coordinator list is a data TABLE (not a card grid). The generic
+   .region-content table / th rules (below, "Table" section) already give it
+   the site's table look; add the td/row polish that generic rule doesn't
+   cover, and make the header row's own sort links legible. */
+.route--view-coordinator-list-page-1 .region-content td { padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border); }
+.route--view-coordinator-list-page-1 .region-content tr:hover td { background: var(--c-blue-tint); }
+.route--view-coordinator-list-page-1 .region-content th a { color: inherit; text-decoration: none; }
+.route--view-coordinator-list-page-1 .region-content th a:hover { text-decoration: underline; }
 
 /* Downloads & links panel — the resource's actual payload (single_link +
    single_file paragraphs) as a clean, scannable list. */

@@ -284,13 +284,14 @@ a.btn,
 }
 /* Branding logo (the SAN lockup, logo.jpg) — sized to nearly fill the bar. The
    trimmed vertical padding above keeps the header the same overall height as
-   the logo grows; width follows the aspect ratio. */
-.site-brand a { display: inline-flex; }
-.site-brand img { height: 84px; width: auto; max-width: 100%; }
-@media (max-width: 900px) { .site-brand img { height: 60px; } }
-@media (max-width: 800px) { .site-brand img { height: 52px; } }
+   the logo grows; width follows the aspect ratio. (A leftover duplicate rule
+   here used to cap this at max-height:72px regardless of the height set
+   below — removed; that's why "bigger" wasn't visibly taking effect.) */
 .site-brand { display: inline-flex; align-items: center; }
-.site-brand img { max-height: 72px; width: auto; }
+.site-brand a { display: inline-flex; }
+.site-brand img { height: 104px; width: auto; max-width: 100%; }
+@media (max-width: 900px) { .site-brand img { height: 72px; } }
+@media (max-width: 800px) { .site-brand img { height: 60px; } }
 
 /* Main navigation + mega menu.
  * The menu <ul> is wrapped by Drupal block markup (div.block > nav > ul.menu--main),
@@ -302,28 +303,45 @@ a.btn,
   list-style: none; margin: 0; padding: 0; align-items: center;
 }
 .main-nav ul.menu--main > li { margin: 0; position: relative; list-style: none; }
-.main-nav ul.menu--main > li > a {
+/* A top-level item with no real destination (content editors' Drupal <nolink>
+   for dropdown-only parents) renders as a <button>, not an <a> — reset the
+   browser's button chrome so it starts identical, then every rule below
+   matches both. */
+.main-nav ul.menu--main > li > button {
+  background: none; border: 0; font: inherit; text-align: left; cursor: pointer;
+}
+.main-nav ul.menu--main > li > a,
+.main-nav ul.menu--main > li > button {
   position: relative; display: inline-flex; align-items: center; gap: 0.35rem;
   padding: 1.1rem 0; font-size: var(--fs-body); font-weight: 500; color: var(--c-ink);
   white-space: nowrap;
 }
 /* Underline sits just below the title (not at the bar bottom). */
-.main-nav ul.menu--main > li > a::after {
+.main-nav ul.menu--main > li > a::after,
+.main-nav ul.menu--main > li > button::after {
   content: ""; position: absolute; left: 0; right: 0; top: calc(100% - 1.1rem + 7px);
   height: 3px; border-radius: 2px; background: transparent;
 }
 /* Active section + hover → SAN purple (a.is-active = current page; li in the
    active section carries .is-active-trail — highlight that too). */
 .main-nav ul.menu--main > li > a:hover,
+.main-nav ul.menu--main > li > button:hover,
 .main-nav ul.menu--main > li.is-open > a,
+.main-nav ul.menu--main > li.is-open > button,
 .main-nav ul.menu--main > li.has-dropdown:hover > a,
+.main-nav ul.menu--main > li.has-dropdown:hover > button,
 .main-nav ul.menu--main > li > a.is-active,
-.main-nav ul.menu--main > li.is-active-trail > a { color: var(--c-magenta); text-decoration: none; }
+.main-nav ul.menu--main > li.is-active-trail > a,
+.main-nav ul.menu--main > li.is-active-trail > button { color: var(--c-magenta); text-decoration: none; }
 .main-nav ul.menu--main > li > a:hover::after,
+.main-nav ul.menu--main > li > button:hover::after,
 .main-nav ul.menu--main > li.is-open > a::after,
+.main-nav ul.menu--main > li.is-open > button::after,
 .main-nav ul.menu--main > li.has-dropdown:hover > a::after,
+.main-nav ul.menu--main > li.has-dropdown:hover > button::after,
 .main-nav ul.menu--main > li > a.is-active::after,
-.main-nav ul.menu--main > li.is-active-trail > a::after { background: var(--c-magenta); }
+.main-nav ul.menu--main > li.is-active-trail > a::after,
+.main-nav ul.menu--main > li.is-active-trail > button::after { background: var(--c-magenta); }
 /* Dropdown / mega panel */
 .main-nav .menu-dropdown {
   position: absolute; top: 100%; left: 0;
@@ -356,11 +374,16 @@ a.btn,
 .main-nav .menu-dropdown__col { min-width: 200px; }
 .main-nav .menu-dropdown__list { list-style: none; margin: 0; padding: 0; }
 .main-nav .menu-dropdown__list li { margin: 0; }
-.main-nav .menu-dropdown__list a {
+.main-nav .menu-dropdown__list button {
+  background: none; border: 0; font: inherit; text-align: left; width: 100%; cursor: pointer;
+}
+.main-nav .menu-dropdown__list a,
+.main-nav .menu-dropdown__list button {
   display: block; color: var(--c-ink); font-size: var(--fs-body); white-space: nowrap;
   padding: 0.5rem 0.75rem; border-radius: var(--radius-sm);
 }
-.main-nav .menu-dropdown__list a:hover { background: var(--c-blue-tint); color: var(--c-blue); }
+.main-nav .menu-dropdown__list a:hover,
+.main-nav .menu-dropdown__list button:hover { background: var(--c-blue-tint); color: var(--c-blue); }
 .main-nav .menu-dropdown__list a.is-active { color: var(--c-magenta); font-weight: 600; }
 /* External-resources column: blue "External Resources*" heading + note.
    The links themselves stay dark like the topic column (Figma 26:323). */
@@ -413,16 +436,20 @@ a.btn,
     flex-direction: column; align-items: stretch; gap: 0; padding: 8px 24px 24px;
   }
   .main-nav ul.menu--main > li { position: static; border-bottom: 1px solid var(--border); }
-  .main-nav ul.menu--main > li > a {
-    display: flex; align-items: center; justify-content: space-between;
+  .main-nav ul.menu--main > li > a,
+  .main-nav ul.menu--main > li > button {
+    display: flex; align-items: center; justify-content: space-between; width: 100%;
     padding: 16px 0; font-size: 20px; line-height: 1.3; color: #414042; font-weight: 400;
   }
-  .main-nav ul.menu--main > li > a::after { display: none; }   /* not the desktop underline */
-  .main-nav ul.menu--main > li.has-dropdown > a::after {
+  .main-nav ul.menu--main > li > a::after,
+  .main-nav ul.menu--main > li > button::after { display: none; }   /* not the desktop underline */
+  .main-nav ul.menu--main > li.has-dropdown > a::after,
+  .main-nav ul.menu--main > li.has-dropdown > button::after {
     content: "\203A"; display: inline; position: static; inset: auto; height: auto; background: none;
     color: var(--c-blue); font-size: 1.7rem; line-height: 1; margin-left: var(--sp-4);
   }
-  .main-nav ul.menu--main > li > a:hover { color: var(--c-blue); }
+  .main-nav ul.menu--main > li > a:hover,
+  .main-nav ul.menu--main > li > button:hover { color: var(--c-blue); }
 
   /* Submenu = off-canvas panel that slides in over everything. */
   .main-nav .menu-dropdown {
@@ -446,10 +473,12 @@ a.btn,
   .main-nav .menu-dropdown__heading { padding: 20px 24px 4px; color: var(--c-blue); }
   .main-nav .menu-dropdown__list { padding: 0 24px; }
   .main-nav .menu-dropdown__list li { border-bottom: 1px solid var(--border); }
-  .main-nav .menu-dropdown__list a {
+  .main-nav .menu-dropdown__list a,
+  .main-nav .menu-dropdown__list button {
     display: block; white-space: normal; padding: 16px 0; font-size: 20px; color: #414042; border-radius: 0;
   }
-  .main-nav .menu-dropdown__list a:hover { background: none; color: var(--c-blue); }
+  .main-nav .menu-dropdown__list a:hover,
+  .main-nav .menu-dropdown__list button:hover { background: none; color: var(--c-blue); }
   .main-nav .menu-dropdown__group::after { display: none; }
 
   /* Bottom block: tertiary links (smaller, tinted) + the CTA button — sits at

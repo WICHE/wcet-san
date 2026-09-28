@@ -7,6 +7,13 @@
  * itself has children (e.g. "External Resources") becomes an extra column with a
  * heading — so Compliance Topics renders topics on the left and External
  * Resources on the right, per Figma 26:323.
+ *
+ * A menu item with no real destination (content editors use Drupal's <nolink>
+ * for parent items that only open a dropdown) renders as plain, unstyled text
+ * with no href — the `link()` Twig function silently falls back to a bare
+ * <span> for those. The trigger() macro below renders a real <button> instead,
+ * so it stays focusable/keyboard-usable and CSS can style it exactly like a
+ * link (see components.css — every ".main-nav … a" rule also matches button).
  */
 #}
 {% import _self as menus %}
@@ -15,13 +22,23 @@
   {% for item in items %}
     {% set classes = [item.below ? 'has-dropdown', item.in_active_trail ? 'is-active-trail']|filter(v => v) %}
     <li{{ item.attributes.addClass(classes) }}>
-      {{ link(item.title, item.url) }}
+      {{ menus.trigger(item.title, item.url) }}
       {% if item.below %}{{ menus.dropdown(item.below) }}{% endif %}
     </li>
   {% endfor %}
 </ul>
 
+{% macro trigger(title, url) %}
+  {% set route_name = url.isRouted ? url.routeName : null %}
+  {% if route_name in ['<nolink>', '<none>'] %}
+    <button type="button">{{ title }}</button>
+  {% else %}
+    {{ link(title, url) }}
+  {% endif %}
+{% endmacro %}
+
 {% macro dropdown(items) %}
+  {% import _self as menus %}
   {% set plain = items|filter(i => i.below is empty) %}
   {% set groups = items|filter(i => i.below is not empty) %}
   <ul class="menu-dropdown{{ groups is not empty ? ' menu-dropdown--mega' }}">
@@ -29,7 +46,7 @@
       <li class="menu-dropdown__col">
         <ul class="menu-dropdown__list">
           {% for item in plain %}
-            <li{{ item.attributes }}>{{ link(item.title, item.url) }}</li>
+            <li{{ item.attributes }}>{{ menus.trigger(item.title, item.url) }}</li>
           {% endfor %}
         </ul>
       </li>
@@ -39,7 +56,7 @@
         <span class="menu-dropdown__heading">{{ group.title }}</span>
         <ul class="menu-dropdown__list">
           {% for sub in group.below %}
-            <li{{ sub.attributes }}>{{ link(sub.title, sub.url) }}</li>
+            <li{{ sub.attributes }}>{{ menus.trigger(sub.title, sub.url) }}</li>
           {% endfor %}
         </ul>
       </li>

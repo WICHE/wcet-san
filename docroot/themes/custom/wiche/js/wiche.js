@@ -15,7 +15,7 @@
     // reset any drilled-in submenu so it reopens at the top level
     nav.querySelectorAll('li.is-open').forEach((li) => {
       li.classList.remove('is-open');
-      const t = li.querySelector(':scope > a');
+      const t = li.querySelector(':scope > a, :scope > button');
       if (t) t.setAttribute('aria-expanded', 'false');
     });
   };
@@ -98,7 +98,7 @@
         // A "Back" bar at the top of every submenu panel.
         nav.querySelectorAll('ul.menu--main > li.has-dropdown').forEach((li) => {
           const dd = li.querySelector(':scope > .menu-dropdown');
-          const trigger = li.querySelector(':scope > a');
+          const trigger = li.querySelector(':scope > a, :scope > button');
           if (!dd || !trigger) return;
           const back = document.createElement('button');
           back.type = 'button';
@@ -159,14 +159,14 @@
         items.forEach((li) => {
           if (li !== except) {
             li.classList.remove('is-open');
-            const t = li.querySelector(':scope > a');
+            const t = li.querySelector(':scope > a, :scope > button');
             if (t) t.setAttribute('aria-expanded', 'false');
           }
         });
       };
 
       items.forEach((li) => {
-        const trigger = li.querySelector(':scope > a');
+        const trigger = li.querySelector(':scope > a, :scope > button');
         if (!trigger) return;
         trigger.setAttribute('aria-haspopup', 'true');
         trigger.setAttribute('aria-expanded', 'false');

@@ -13,8 +13,9 @@
   padding-inline: var(--gutter);
 }
 .wrap--wide { max-width: 1560px; }
-/* Content column = 8 of 12 (Figma 154:1685): 8/12 of the 1320 content wrap. */
-.wrap--narrow { max-width: calc(var(--wrap-max) / 3 * 2); }
+/* Content column = 10 of 12: 8/12 (Figma 154:1685) read as too narrow / too
+   much side padding in practice — widened to 10/12 of the 1320 content wrap. */
+.wrap--narrow { max-width: calc(var(--wrap-max) / 6 * 5); }
 
 /* A page "section" band: vertical rhythm + optional ground colour */
 .section { padding-block: var(--section-y); }
@@ -74,11 +75,12 @@
 .flow-l > * + * { margin-top: var(--sp-5); }
 
 /* -- Main content region + optional sidebars -- */
-/* 12-column proportions (Figma 154:1685): the main content spans 8/12 with a
-   4/12 sidebar; two sidebars give 3 + 6 + 3. Collapses to one column ≤900px. */
+/* 12-column proportions: single-sidebar layouts match .wrap--narrow's 10/12
+   content measure, leaving 2/12 for the sidebar. Two-sidebar layouts keep the
+   original 3 + 6 + 3 split. Collapses to one column ≤900px. */
 .page-main__grid { display: grid; gap: var(--sp-8); padding-block: var(--section-y); }
-.page-main__grid.has-sidebar-first { grid-template-columns: 4fr 8fr; }
-.page-main__grid.has-sidebar-second { grid-template-columns: 8fr 4fr; }
+.page-main__grid.has-sidebar-first { grid-template-columns: 2fr 10fr; }
+.page-main__grid.has-sidebar-second { grid-template-columns: 10fr 2fr; }
 .page-main__grid.has-both { grid-template-columns: 3fr 6fr 3fr; }
 @media (max-width: 900px) {
   .page-main__grid.has-sidebar-first,

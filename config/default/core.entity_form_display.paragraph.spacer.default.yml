@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.spacer.field_divider_line
     - field.field.paragraph.spacer.field_spacer_size
     - paragraphs.paragraphs_type.spacer
 id: paragraph.spacer.default
@@ -10,6 +11,13 @@ targetEntityType: paragraph
 bundle: spacer
 mode: default
 content:
+  field_divider_line:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_spacer_size:
     type: options_buttons
     weight: 0

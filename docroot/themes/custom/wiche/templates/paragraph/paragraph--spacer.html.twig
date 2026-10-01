@@ -1,9 +1,14 @@
 {#
 /**
  * @file Spacer — adds author-controlled vertical space between components.
- * Field: field_spacer_size (small | medium | large). Renders nothing but the
- * gap itself; heights live in components.css (.spacer--*).
+ * Fields: field_spacer_size (small | medium | large); field_divider_line
+ * (bool) — a thin grey rule centered in the gap, for separating content
+ * sections on long content pages. Heights/rule live in components.css
+ * (.spacer--*, .spacer__rule).
  */
 #}
 {% set size = paragraph.field_spacer_size.value|default('medium') %}
-<div{{ attributes.addClass('spacer', 'spacer--' ~ size) }} aria-hidden="true"></div>
+{% set has_rule = paragraph.field_divider_line.value %}
+<div{{ attributes.addClass('spacer', 'spacer--' ~ size, has_rule ? 'spacer--rule') }} aria-hidden="true">
+  {% if has_rule %}<hr class="spacer__rule">{% endif %}
+</div>

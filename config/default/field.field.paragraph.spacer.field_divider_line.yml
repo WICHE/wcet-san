@@ -1,0 +1,23 @@
+uuid: db959769-89f1-4d1b-88a2-f91ca7a188ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_divider_line
+    - paragraphs.paragraphs_type.spacer
+id: paragraph.spacer.field_divider_line
+field_name: field_divider_line
+entity_type: paragraph
+bundle: spacer
+label: 'Show divider line'
+description: 'Draws a thin grey rule in the middle of this spacer, for separating content sections.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

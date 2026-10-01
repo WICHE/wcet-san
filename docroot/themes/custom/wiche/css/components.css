@@ -973,6 +973,12 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .spacer--small  { height: clamp(1rem, 0.5rem + 1.5vw, 1.75rem); }
 .spacer--medium { height: clamp(2rem, 1rem + 2.5vw, 3.5rem); }
 .spacer--large  { height: clamp(3.5rem, 2rem + 4vw, 6.5rem); }
+/* Optional divider rule (field_divider_line), centered in the spacer's gap. */
+.spacer--rule { display: flex; align-items: center; justify-content: center; }
+.spacer__rule {
+  width: 100%; max-width: 849px; height: 0.5px;
+  margin: 0; border: 0; background: #AFA9A0;
+}
 
 /* ============================================================ /sitemap === */
 /* The Sitemap module (contrib) renders plain nested <ul>s with no theme hooks

@@ -1,0 +1,27 @@
+uuid: b2d9aca1-61b0-4702-a325-e8fcb7ffcff7
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_hero_bg
+field_name: field_hero_bg
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: gradient
+      label: 'Blue gradient (default)'
+    -
+      value: white
+      label: 'White / Light'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

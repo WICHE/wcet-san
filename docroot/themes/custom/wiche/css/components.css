@@ -62,11 +62,14 @@ a.btn,
   font-size: var(--fs-body); font-weight: 400; letter-spacing: 0.05em;
   margin-bottom: var(--sp-5); opacity: 1;
 }
-/* Design "M - Desktop heading - Regular": Roboto 400, 32/40 (not bold/40px+). */
+/* Design "M - Desktop heading - Regular": Roboto 400, 32/40 (not bold/40px+)
+   — but when this renders as the page's actual <h1> (field_subheader_as_h1),
+   match the regular page h1 size (client request) via the same token. */
 .hero__title {
   color: #fff; font-weight: 400; margin: 0;
   font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); line-height: 1.25; max-width: none;
 }
+h1.hero__title { font-size: var(--fs-display); line-height: 1.15; }
 .hero__body { max-width: 52ch; margin-top: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3); align-items: flex-start; }
 .hero__actions { margin-top: var(--sp-6); display: flex; gap: var(--sp-4); flex-wrap: wrap; }
 /* Everything in the hero sits on the blue gradient → light text. */
@@ -96,6 +99,18 @@ a.btn,
 .hero .link-style--primary a:hover { background: transparent; color: #fff; }
 .hero .link-style--secondary a { border-color: #fff; color: #fff; background: transparent; }
 .hero .link-style--secondary a:hover { background: #fff; color: var(--c-blue); }
+/* White/light background option (field_hero_bg, no-image heroes only) —
+   flip the dark-on-light defaults back to normal (non-hero) light-on-dark
+   button/text styling, since the gradient's white-text/white-outline
+   treatment above would be invisible here. */
+.hero--bg-white { background: var(--c-white); }
+.hero--bg-white, .hero--bg-white a, .hero--bg-white p, .hero--bg-white h1, .hero--bg-white h2 { color: var(--c-ink); }
+.hero--bg-white .hero__title { color: var(--c-ink-strong); }
+.hero--bg-white .hero__eyebrow { color: var(--c-blue); }
+.hero--bg-white .link-style--primary a { background: var(--c-blue); color: #fff; border-color: var(--c-blue); }
+.hero--bg-white .link-style--primary a:hover { background: transparent; color: var(--c-blue); }
+.hero--bg-white .link-style--secondary a { border-color: var(--c-blue); color: var(--c-blue); background: transparent; }
+.hero--bg-white .link-style--secondary a:hover { background: var(--c-blue); color: #fff; }
 /* Half-image variant (Figma 154:1209 + client "max page width 1920"): the copy
    stays in the page content column on the LEFT, while the image fills the right
    half and BLEEDS to the hero's right edge (the hero/bands cap at 1920, so the

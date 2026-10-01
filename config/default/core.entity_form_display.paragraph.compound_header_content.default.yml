@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.image
     - field.field.paragraph.compound_header_content.field_header
+    - field.field.paragraph.compound_header_content.field_hero_bg
     - field.field.paragraph.compound_header_content.field_hero_full_bleed
     - field.field.paragraph.compound_header_content.field_media_image
     - field.field.paragraph.compound_header_content.field_p_secondary_content
@@ -26,6 +27,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_hero_bg:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_hero_full_bleed:
     type: boolean_checkbox

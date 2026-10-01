@@ -1,0 +1,23 @@
+uuid: b56a9ea4-027d-49b4-8503-ac9747d252ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hero_bg
+    - paragraphs.paragraphs_type.compound_header_content
+  module:
+    - options
+id: paragraph.compound_header_content.field_hero_bg
+field_name: field_hero_bg
+entity_type: paragraph
+bundle: compound_header_content
+label: Background
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: gradient
+default_value_callback: ''
+settings: {  }
+field_type: list_string

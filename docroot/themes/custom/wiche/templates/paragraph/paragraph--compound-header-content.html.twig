@@ -3,7 +3,9 @@
  * @file Hero / page-intro — compound_header_content (Figma 41:431).
  * Fields: field_subheader (eyebrow), field_header (title),
  * field_subheader_as_h1 (bool), field_media_image (hero image),
- * field_hero_full_bleed (bool), field_p_secondary_content (extra paragraphs).
+ * field_hero_full_bleed (bool), field_p_secondary_content (extra paragraphs),
+ * field_hero_bg (gradient | white — only meaningful without a hero image;
+ * an image-bearing hero keeps its own scrim/overlay regardless).
  *
  * Three variants, matching the design:
  *   • no image                       → solid colour + copy (blue→navy gradient)
@@ -15,7 +17,8 @@
 {% set is_full = has_image and paragraph.field_hero_full_bleed.value %}
 {% set is_h1 = paragraph.field_subheader_as_h1.value %}
 {% set variant = is_full ? 'hero--full' : (has_image ? 'hero--split' : '') %}
-<section{{ attributes.addClass('hero', variant) }}>
+{% set bg = paragraph.field_hero_bg.value %}
+<section{{ attributes.addClass('hero', variant, (not has_image and bg == 'white') ? 'hero--bg-white') }}>
   {% if is_full %}
     <div class="hero__bg">{{ content.field_media_image }}</div>
   {% endif %}

@@ -1,0 +1,23 @@
+uuid: 44ef61f1-90d6-482c-bf81-0e1274af4897
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link_alignment
+    - paragraphs.paragraphs_type.simple_content
+  module:
+    - options
+id: paragraph.simple_content.field_link_alignment
+field_name: field_link_alignment
+entity_type: paragraph
+bundle: simple_content
+label: 'Link alignment'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

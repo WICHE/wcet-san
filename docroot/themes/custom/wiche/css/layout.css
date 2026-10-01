@@ -68,8 +68,12 @@
 .section-head--left .section-head__intro { margin-inline: 0; }
 .lead { font-size: var(--fs-lead); color: var(--c-muted); font-weight: 400; }
 
-/* Section-level centered CTA below a grid */
-.section-cta { display: flex; justify-content: center; margin-top: var(--sp-8); }
+/* Section-level centered CTA below a grid. Up to 3 links (field_links) —
+ * unwrap the field's wrapper divs so each link becomes a direct flex child. */
+.section-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--sp-4); margin-top: var(--sp-8); }
+.section-cta > .field, .section-cta > .field > .field__items { display: contents; }
+.section-cta--start { justify-content: flex-start; }
+.section-cta--end { justify-content: flex-end; }
 
 /* Vertical flow utility */
 .flow-l > * + * { margin-top: var(--sp-5); }

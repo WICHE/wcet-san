@@ -273,7 +273,6 @@ h1.hero__title { font-size: var(--fs-display); line-height: 1.15; }
 }
 /* Solid -> outline on hover. */
 .section-cta a:hover { background: transparent; border-color: var(--c-blue); color: var(--c-blue); text-decoration: none; }
-.section-cta--start { justify-content: flex-start; }
 .section--dark .section-cta a { background: transparent; border-color: #fff; }
 .section--dark .section-cta a:hover { background: #fff; color: var(--c-blue); }
 
@@ -635,6 +634,13 @@ h1.hero__title { font-size: var(--fs-display); line-height: 1.15; }
   display: flex; align-items: center; justify-content: space-between; gap: var(--sp-6); flex-wrap: wrap;
 }
 .cta-banner h2, .cta-banner h3 { color: #fff; margin: 0; max-width: 20ch; font-weight: 400; }
+/* Up to 3 links (field_links) — unwrap the field's wrapper divs so each
+   link becomes a direct flex child, laid out per field_link_alignment. */
+.cta-banner__action { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+.cta-banner__action > .field, .cta-banner__action > .field > .field__items { display: contents; }
+.cta-banner__action--start { justify-content: flex-start; }
+.cta-banner__action--center { justify-content: center; }
+.cta-banner__action--end { justify-content: flex-end; }
 .cta-banner a { display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
   height: var(--btn-h); padding: 0 1.75rem; border: 2px solid #fff; border-radius: var(--radius-sm); color: #fff; white-space: nowrap; }
 .cta-banner a:hover { background: #fff; color: var(--c-blue); text-decoration: none; }

@@ -1,19 +1,22 @@
 {#
 /**
  * @file Generic content block — simple_content.
- * Fields: field_header, field_subheader, field_body, field_link.
+ * Fields: field_header, field_subheader, field_body, field_links (up to 3),
+ * field_link_alignment (left | center | right).
  * If there's a link and no body, render as a full-width CTA banner
  * (e.g. "Join SAN and Become a Member"); otherwise a readable content block.
  */
 #}
 {% set has_body = content.field_body|render|trim is not empty %}
-{% set has_link = content.field_link|render|trim is not empty %}
+{% set has_link = content.field_links|render|trim is not empty %}
+{% set align = paragraph.field_link_alignment.value|default('left') %}
+{% set align_modifier = {left: 'start', center: 'center', right: 'end'}[align] %}
 {% if has_link and not has_body %}
   <section{{ attributes.addClass('section', 'paragraph-cta') }}>
     <div class="wrap">
       <div class="cta-banner">
         <h2>{{ paragraph.field_header.value }}</h2>
-        <div class="cta-banner__action">{{ content.field_link }}</div>
+        <div class="cta-banner__action cta-banner__action--{{ align_modifier }}">{{ content.field_links }}</div>
       </div>
     </div>
   </section>
@@ -23,7 +26,7 @@
       {% if paragraph.field_header.value %}<h2>{{ paragraph.field_header.value }}</h2>{% endif %}
       {% if paragraph.field_subheader.value %}<p class="lead">{{ paragraph.field_subheader.value }}</p>{% endif %}
       {{ content.field_body }}
-      {% if has_link %}<div class="section-cta section-cta--start">{{ content.field_link }}</div>{% endif %}
+      {% if has_link %}<div class="section-cta section-cta--{{ align_modifier }}">{{ content.field_links }}</div>{% endif %}
     </div>
   </section>
 {% endif %}

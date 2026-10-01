@@ -5,6 +5,11 @@
  * term.field_image.entity is a media entity, not a file — the actual image
  * lives on ITS OWN field_image sub-field.
  *
+ * "Learn more" links to field_landing_page (the topic's curated landing
+ * page, same destination as the nav menu's Compliance Topics dropdown) when
+ * set, else falls back to the term's own canonical page — not every topic
+ * has a dedicated landing page.
+ *
  * Drupal/Twig gotcha: accessing `.entity` on an entity-reference field that
  * is EMPTY resolves to the field's own HOST entity (not null), so every
  * `.entity` access below is guarded by an explicit `is not empty` check on
@@ -14,7 +19,9 @@
 {% set media = term.field_image is not empty ? term.field_image.entity : null %}
 {% set img = media and media.field_image is not empty ? media.field_image.entity : null %}
 {% set has_image = img is not null %}
-<a href="{{ url }}"{{ attributes.addClass('topic-card', has_image ? 'card--overlay' : 'topic-card--plain') }}>
+{% set landing_page = term.field_landing_page is not empty ? term.field_landing_page.entity : null %}
+{% set href = landing_page and landing_page.isPublished ? path('entity.node.canonical', {'node': landing_page.id}) : url %}
+<a href="{{ href }}"{{ attributes.addClass('topic-card', has_image ? 'card--overlay' : 'topic-card--plain') }}>
   {% if has_image %}<img src="{{ file_url(img.uri.value) }}" alt="{{ media.field_image.alt|default(media.label()) }}" loading="lazy">{% endif %}
   <span class="topic-card__inner">
     <span class="topic-card__title">{{ name }}</span>

@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.image
     - field.field.taxonomy_term.topic.field_image
+    - field.field.taxonomy_term.topic.field_landing_page
     - taxonomy.vocabulary.topic
   module:
     - entity_browser
@@ -37,6 +38,16 @@ content:
       field_widget_display_settings:
         view_mode: form_preview
       selection_mode: selection_append
+    third_party_settings: {  }
+  field_landing_page:
+    type: entity_reference_autocomplete
+    weight: 11
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   langcode:
     type: language_select

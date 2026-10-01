@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.taxonomy_term.full
     - field.field.taxonomy_term.topic.field_image
+    - field.field.taxonomy_term.topic.field_landing_page
     - taxonomy.vocabulary.topic
   module:
     - text
@@ -33,5 +34,6 @@ hidden:
   entity_print_view_epub: true
   entity_print_view_pdf: true
   entity_print_view_word_docx: true
+  field_landing_page: true
   langcode: true
   search_api_excerpt: true

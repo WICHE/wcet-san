@@ -1,0 +1,27 @@
+uuid: bc4406a0-b3a6-405a-ad08-994623bd0b7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_landing_page
+    - node.type.landing_page
+    - taxonomy.vocabulary.topic
+id: taxonomy_term.topic.field_landing_page
+field_name: field_landing_page
+entity_type: taxonomy_term
+bundle: topic
+label: 'Landing page'
+description: 'The "Learn more" destination for this topic''s card (e.g. on the home page). Leave empty to link to this topic''s own resource-listing page instead.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      landing_page: landing_page
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

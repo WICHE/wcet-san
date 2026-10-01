@@ -552,6 +552,25 @@ h1.hero__title { font-size: var(--fs-display); line-height: 1.15; }
 }
 .site-header__utility a:hover { color: var(--c-blue); text-decoration: none; }
 
+/* Inline search (wiche.js wicheHeaderSearch): the Search link/icon swaps for
+   this on click, so a term can be typed before navigating to /search. */
+.header-search { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0 1rem; }
+.header-search__input {
+  border: 0; border-bottom: 1px solid var(--c-hair); background: none;
+  font: inherit; font-size: var(--fs-sm); color: var(--c-ink); width: 11rem; max-width: 40vw;
+  padding: 0.15rem 0; outline: none;
+}
+.header-search__input:focus { border-bottom-color: var(--c-blue); }
+.header-search__submit {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: 0; color: var(--c-ink); cursor: pointer; padding: 0; line-height: 1;
+}
+.header-search__submit:hover { color: var(--c-blue); }
+/* In the mobile top strip (icon-only slot) give the input more breathing
+   room — it's the only item in that row, not sharing space with other links. */
+.mobile-nav__top .header-search { flex: 1 1 auto; padding: 0; }
+.mobile-nav__top .header-search__input { width: auto; max-width: none; flex: 1 1 auto; }
+
 /* Footer light band: each placed block becomes a link column. */
 .site-footer__top .block { margin: 0; }
 .site-footer__top .footer-cols > .block,

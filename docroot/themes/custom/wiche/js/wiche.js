@@ -207,4 +207,63 @@
       });
     },
   };
+
+  // --- Inline search: clicking the Search link (utility nav / mobile nav)
+  // reveals a text input in its place instead of navigating straight to the
+  // (keyword-less) /search page, so people can type a term first. ---------
+  Drupal.behaviors.wicheHeaderSearch = {
+    attach(context) {
+      const icon =
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" ' +
+        'stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
+        '<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+
+      once(
+        'wiche-header-search',
+        '.site-header__utility a[href="/search"], .mobile-nav__search',
+        context,
+      ).forEach((trigger) => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          const holder = trigger.parentElement;
+          const form = document.createElement('form');
+          form.className = 'header-search';
+          form.setAttribute('action', '/search');
+          form.setAttribute('method', 'get');
+          form.setAttribute('role', 'search');
+          form.innerHTML =
+            '<label class="visually-hidden" for="header-search-input">' +
+            Drupal.t('Search') + '</label>' +
+            '<input id="header-search-input" class="header-search__input" type="search" ' +
+            'name="search" autocomplete="off" placeholder="' + Drupal.t('Search…') + '">' +
+            '<button type="submit" class="header-search__submit" aria-label="' +
+            Drupal.t('Search') + '">' + icon + '</button>';
+
+          holder.replaceChild(form, trigger);
+          form.querySelector('input').focus();
+
+          const collapse = () => {
+            if (form.isConnected) holder.replaceChild(trigger, form);
+            document.removeEventListener('click', onDocClick, true);
+            document.removeEventListener('keydown', onKeydown, true);
+          };
+          const onDocClick = (ev) => {
+            if (!form.contains(ev.target)) collapse();
+          };
+          const onKeydown = (ev) => {
+            if (ev.key === 'Escape') {
+              collapse();
+              trigger.focus();
+            }
+          };
+          // Defer so the click that opened the form doesn't also close it.
+          window.setTimeout(() => {
+            document.addEventListener('click', onDocClick, true);
+            document.addEventListener('keydown', onKeydown, true);
+          }, 0);
+        });
+      });
+    },
+  };
 })(Drupal, once);

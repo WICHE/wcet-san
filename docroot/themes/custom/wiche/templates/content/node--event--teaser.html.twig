@@ -4,17 +4,32 @@
  * Fields: field_event_date, field_topic, field_image (optional).
  *
  * A self-contained card: image on top, then title, date and a "Learn more"
- * button pinned to the bottom (so cards in a row match height). Most events
- * have no image yet, so the card always shows an image area — a themed
- * placeholder graphic until the real one is uploaded — so cards read as
- * complete and consistent while content is still being added.
+ * button pinned to the bottom (so cards in a row match height). Image
+ * fallback chain: the event's own image, else its Event Type's image (set
+ * once on the term, covers every event of that type), else a generic
+ * placeholder graphic — so cards always read as complete even while content
+ * is still being added. field_image (on both the event and the event_type
+ * term) is a media-reference field — the actual file lives on the
+ * referenced media entity's own field_image.
  */
 #}
-{% set has_image = node.field_image is not empty %}
+{#
+ * Drupal/Twig gotcha: accessing `.entity` on an entity-reference field that
+ * is EMPTY resolves to the field's own HOST entity (not null) — the list's
+ * auto-vivified blank item's computed "entity" property falls back that way.
+ * Every `.entity` access below is guarded by an explicit `is not empty`
+ * check on the field first, never relying on `.entity` being falsy.
+#}
+{% set event_type = node.field_event_type is not empty ? node.field_event_type.entity : null %}
+{% set event_media = node.field_image is not empty ? node.field_image.entity : null %}
+{% set type_media = event_type and event_type.field_image is not empty ? event_type.field_image.entity : null %}
+{% set media = event_media ?: type_media %}
+{% set img = media and media.field_image is not empty ? media.field_image.entity : null %}
+{% set has_image = img is not null %}
 <article{{ attributes.addClass('card', 'card--event') }}>
   <div class="card__media">
     {% if has_image %}
-      <img src="{{ file_url(node.field_image.entity.uri.value) }}" alt="{{ node.field_image.alt }}" loading="lazy">
+      <img src="{{ file_url(img.uri.value) }}" alt="{{ media.field_image.alt|default(media.label()) }}" loading="lazy">
     {% else %}
       {# base_path resolves empty when this teaser renders inside a Views row
          (no leading slash → a broken relative URL), so hardcode the theme's

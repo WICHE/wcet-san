@@ -4,10 +4,15 @@
  * field_image is a media-reference field (Media Library "image" picker), so
  * term.field_image.entity is a media entity, not a file — the actual image
  * lives on ITS OWN field_image sub-field.
+ *
+ * Drupal/Twig gotcha: accessing `.entity` on an entity-reference field that
+ * is EMPTY resolves to the field's own HOST entity (not null), so every
+ * `.entity` access below is guarded by an explicit `is not empty` check on
+ * the field first — never relying on `.entity` itself being falsy.
  */
 #}
-{% set media = term.field_image.entity %}
-{% set img = media ? media.field_image.entity : null %}
+{% set media = term.field_image is not empty ? term.field_image.entity : null %}
+{% set img = media and media.field_image is not empty ? media.field_image.entity : null %}
 {% set has_image = img is not null %}
 <a href="{{ url }}"{{ attributes.addClass('topic-card', has_image ? 'card--overlay' : 'topic-card--plain') }}>
   {% if has_image %}<img src="{{ file_url(img.uri.value) }}" alt="{{ media.field_image.alt|default(media.label()) }}" loading="lazy">{% endif %}

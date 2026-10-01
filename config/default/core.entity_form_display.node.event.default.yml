@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.image
     - field.field.node.event.body
     - field.field.node.event.field_content_access
     - field.field.node.event.field_event_date
@@ -12,11 +13,10 @@ dependencies:
     - field.field.node.event.field_meta_tags
     - field.field.node.event.field_p_resources
     - field.field.node.event.field_topic
-    - image.style.thumbnail
     - node.type.event
   module:
     - datetime
-    - image
+    - entity_browser
     - metatag
     - paragraphs
     - path
@@ -69,12 +69,19 @@ content:
       display_label: true
     third_party_settings: {  }
   field_image:
-    type: image_image
+    type: entity_browser_entity_reference
     weight: 10
     region: content
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      entity_browser: image
+      field_widget_display: rendered_entity
+      field_widget_edit: false
+      field_widget_remove: true
+      field_widget_replace: false
+      open: true
+      field_widget_display_settings:
+        view_mode: form_preview
+      selection_mode: selection_append
     third_party_settings: {  }
   field_meta_tags:
     type: metatag_firehose

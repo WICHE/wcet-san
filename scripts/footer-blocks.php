@@ -18,8 +18,8 @@
 use Drupal\block_content\Entity\BlockContent;
 
 $blocks = [
-  ['uuid' => '4c6674a7-5234-4cdb-9a9c-912237b4e280', 'info' => 'Wiche footer columns', 'file' => 'footer-cols.html'],
-  ['uuid' => '592ad313-085d-4141-898b-08935f191f01', 'info' => 'Wiche footer WCET band', 'file' => 'footer-wcet.html'],
+  ['uuid' => '4c6674a7-5234-4cdb-9a9c-912237b4e280', 'info' => 'Wiche footer intro', 'file' => 'footer-cols.html'],
+  ['uuid' => '592ad313-085d-4141-898b-08935f191f01', 'info' => 'Wiche footer WCET + legal band', 'file' => 'footer-wcet.html'],
 ];
 
 $storage = \Drupal::entityTypeManager()->getStorage('block_content');

@@ -512,30 +512,48 @@ h1.hero__title { font-size: var(--fs-display); line-height: 1.15; }
 }
 
 /* =========================================================== Footer ====== */
-.site-footer__top { background: var(--c-blue-tint); padding-block: var(--section-y); }
-.site-footer__brand img { max-height: 80px; margin-bottom: var(--sp-6); }
-.footer-cols { display: grid; grid-template-columns: repeat(4, 1fr) 1.2fr; gap: var(--sp-6); }
-@media (max-width: 900px) { .footer-cols { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .footer-cols { grid-template-columns: 1fr; } }
-.footer-col h2, .footer-col h3 { font-size: 1.125rem; font-weight: 600; color: var(--c-heading); margin: 0 0 var(--sp-4); }
-.footer-col ul { list-style: none; margin: 0; padding: 0; }
-.footer-col li { margin-bottom: var(--sp-3); }
-.footer-col a { color: var(--c-ink); font-size: var(--fs-body); }
-.footer-col a:hover { color: var(--c-blue); }
-.footer-contact address { font-style: normal; color: var(--c-ink); margin: var(--sp-3) 0 var(--sp-5); }
-.footer-contact a[href^="tel"] { text-decoration: underline; color: var(--c-ink); font-weight: 600; }
-.site-footer__disclaimer { color: var(--c-muted); font-size: var(--fs-sm); border-top: 1px solid var(--c-hair);
-  margin-top: var(--sp-7); padding-top: var(--sp-6); }
-
-.site-footer__wcet { background: var(--c-slate); color: #e9ecf1; padding-block: var(--section-y); }
-.site-footer__wcet a { color: #fff; text-decoration: underline; }
-.site-footer__wcet-logo img { max-height: 42px; margin-bottom: var(--sp-4); }
-.site-footer__bottom {
-  display: flex; flex-wrap: wrap; gap: var(--sp-5); justify-content: space-between; align-items: center;
-  border-top: 1px solid rgba(255,255,255,0.2); margin-top: var(--sp-6); padding-top: var(--sp-5);
-  font-size: var(--fs-sm);
+/* Figma "Wiche-Refresh" node 722:1045 (intro, light blue tint), 722:1065
+   (WCET band) + 722:1071 (legal strip), both on the dark slate band —
+   client-approved redesign. Content is raw HTML in two basic blocks
+   (scripts/content/footer-cols.html, footer-wcet.html via
+   scripts/footer-blocks.php), rendered inside the page.footer_top /
+   page.footer regions' existing .wrap (page.html.twig). */
+.site-footer__top { background: var(--c-blue-tint); padding-block: var(--sp-7); }
+.footer-intro { display: flex; align-items: center; gap: var(--sp-8); }
+.footer-intro__brand { flex: 0 0 auto; }
+.footer-intro__brand img { display: block; height: 71px; width: auto; }
+.footer-intro__divider { flex: 0 0 auto; align-self: stretch; width: 1px; background: var(--c-blue); opacity: 0.4; }
+.footer-intro__connect { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-2); width: 219px; }
+.footer-intro__heading { display: block; font-size: 1.125rem; font-weight: 600; color: var(--c-heading); margin-bottom: var(--sp-1); }
+.footer-intro__phone { color: var(--c-heading); font-weight: 500; text-decoration: underline; }
+.footer-intro__address { font-style: normal; color: var(--c-ink); line-height: 1.5; }
+.footer-intro__social { display: inline-flex; align-items: center; gap: var(--sp-2); color: var(--c-ink); text-decoration: underline; }
+.footer-intro__connect .button { margin-top: var(--sp-3); width: 100%; }
+.footer-intro__disclaimer { flex: 1 1 auto; color: var(--c-ink); font-size: var(--fs-sm); line-height: 1.7; margin: 0; }
+@media (max-width: 1100px) {
+  .footer-intro { flex-wrap: wrap; }
+  .footer-intro__divider { display: none; }
+  .footer-intro__disclaimer { flex-basis: 100%; }
 }
-.site-footer__bottom nav ul { display: flex; gap: var(--sp-6); list-style: none; margin: 0; padding: 0; }
+@media (max-width: 560px) {
+  .footer-intro { flex-direction: column; align-items: flex-start; gap: var(--sp-6); }
+  .footer-intro__connect { width: 100%; }
+}
+
+.site-footer__wcet { background: var(--c-slate); color: #e9ecf1; }
+.footer-wcet { display: flex; align-items: center; gap: var(--sp-6); padding-block: var(--sp-7); }
+.footer-wcet__logo { display: block; height: 45px; width: auto; flex: 0 0 auto; }
+.footer-wcet p { margin: 0; font-size: var(--fs-sm); line-height: 1.45; }
+.site-footer__wcet a { color: #fff; }
+@media (max-width: 560px) { .footer-wcet { flex-direction: column; align-items: flex-start; gap: var(--sp-4); } }
+
+.footer-legal {
+  display: flex; flex-wrap: wrap; gap: var(--sp-5); justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.2); padding-block: 13px; font-size: 0.75rem;
+}
+.footer-legal p { margin: 0; font-weight: 600; }
+.footer-legal nav ul { display: flex; gap: var(--sp-6); list-style: none; margin: 0; padding: 0; }
+.footer-legal a { text-decoration: underline; }
 
 /* --- Resilient region styling: make placed menu blocks look designed ----- */
 /* Utility bar: the menu block renders <nav><ul><li> (no .menu class on the ul). */
@@ -571,17 +589,7 @@ h1.hero__title { font-size: var(--fs-display); line-height: 1.15; }
 .mobile-nav__top .header-search { flex: 1 1 auto; padding: 0; }
 .mobile-nav__top .header-search__input { width: auto; max-width: none; flex: 1 1 auto; }
 
-/* Footer light band: each placed block becomes a link column. */
 .site-footer__top .block { margin: 0; }
-.site-footer__top .footer-cols > .block,
-.site-footer__top .block h2, .site-footer__top .block h3 {
-  font-size: 1.125rem; font-weight: 600; color: var(--c-heading);
-}
-.site-footer__top .block > h2, .site-footer__top .block > h3 { margin: 0 0 var(--sp-4); }
-.site-footer__top .menu { list-style: none; margin: 0; padding: 0; }
-.site-footer__top .menu li { margin-bottom: var(--sp-3); }
-.site-footer__top .menu a { color: var(--c-ink); font-size: var(--fs-body); }
-.site-footer__top .menu a:hover { color: var(--c-blue); }
 
 /* ============================================ Admin-UI guard ============= */
 /* Keep wiche's generic element styles out of Drupal's chrome (toolbar,
@@ -690,25 +698,8 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .region-content td { padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border); }
 .region-content tr:nth-child(even) td { background: var(--c-blue-tint-2); }
 
-/* =============================================== Footer columns ========== */
-/* A custom footer block renders 5 link columns + a contact column. */
-.footer-cols { display: grid; grid-template-columns: repeat(4, 1fr) 1.3fr; gap: var(--sp-7) var(--sp-6); }
-@media (max-width: 900px) { .footer-cols { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .footer-cols { grid-template-columns: 1fr; } }
-.footer-col h2, .footer-col h3, .footer-col strong.footer-col__title {
-  display: block; font-size: 1.125rem; font-weight: 600; color: var(--c-heading); margin: 0 0 var(--sp-4);
-}
-.footer-col ul { list-style: none; margin: 0; padding: 0; }
-.footer-col li { margin-bottom: var(--sp-3); }
-.footer-col a { color: var(--c-ink); font-size: var(--fs-body); }
-.footer-col a:hover { color: var(--c-blue); }
-.footer-contact address { font-style: normal; margin: var(--sp-3) 0 var(--sp-5); color: var(--c-ink); }
-.footer-contact a[href^="tel"] { text-decoration: underline; font-weight: 600; color: var(--c-ink); }
-
 /* ============================ Design-spec refinements (2026-09-06) ======== */
-/* Button text colour must win over container link-colour rules (e.g. the grey
- * .footer-col a colour was overriding the footer "Join SAN" button's white). */
-.footer-col a.button, .footer-col a.button:hover { color: #fff; }
+/* Button text colour must win over container link-colour rules. */
 .section a.button, .region-content a.button { color: #fff; }
 
 /* Accordion (spec 161:2043): default grey, rollover = blue text, selected =

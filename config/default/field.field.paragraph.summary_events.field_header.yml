@@ -1,0 +1,21 @@
+uuid: 02fa5e26-16a0-4032-b072-17e8bc435b21
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_header
+    - paragraphs.paragraphs_type.summary_events
+id: paragraph.summary_events.field_header
+field_name: field_header
+entity_type: paragraph
+bundle: summary_events
+label: Title
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: Events
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.summary_past_events.field_header
     - field.field.paragraph.summary_past_events.field_link
     - field.field.paragraph.summary_past_events.field_summary_topics
     - paragraphs.paragraphs_type.summary_past_events
@@ -38,4 +39,5 @@ hidden:
   entity_print_view_epub: true
   entity_print_view_pdf: true
   entity_print_view_word_docx: true
+  field_header: true
   search_api_excerpt: true

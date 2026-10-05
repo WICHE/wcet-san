@@ -1,7 +1,8 @@
 {#
 /**
  * @file Events summary section — summary_events (Figma 157:2644).
- * Fields: field_summary_topics (optional topic filter), field_link (View all).
+ * Fields: field_header (title, editable), field_summary_topics (optional
+ * topic filter), field_link (View all).
  * `events` (rendered .card--event teasers) is built in
  * wiche_preprocess_paragraph__summary_events() — this is the site's ONLY
  * event-card style; do not render topic tiles here.
@@ -10,7 +11,7 @@
 <section{{ attributes.addClass('section', 'section--tint', 'paragraph-summary', 'paragraph-summary--events') }}>
   <div class="wrap">
     <div class="section-head">
-      <h2 class="section-head__title">{{ 'Events'|t }}</h2>
+      <h2 class="section-head__title">{{ paragraph.field_header.value|default('Events'|t) }}</h2>
     </div>
     {% if events %}
       <div class="card-grid card-grid--resources">

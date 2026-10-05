@@ -664,7 +664,8 @@ h1.hero__title { font-size: var(--fs-display); line-height: 1.15; }
 /* Up to 3 links (field_links) — unwrap the field's wrapper divs so each
    link becomes a direct flex child, laid out per field_link_alignment. */
 .cta-banner__action { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
-.cta-banner__action > .field, .cta-banner__action > .field > .field__items { display: contents; }
+.cta-banner__action > .field, .cta-banner__action > .field > .field__items,
+.cta-banner__action > div:not([class]), .cta-banner__action > div:not([class]) > div:not([class]) { display: contents; }
 .cta-banner__action--start { justify-content: flex-start; }
 .cta-banner__action--center { justify-content: center; }
 .cta-banner__action--end { justify-content: flex-end; }

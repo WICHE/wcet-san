@@ -69,9 +69,13 @@
 .lead { font-size: var(--fs-lead); color: var(--c-muted); font-weight: 400; }
 
 /* Section-level centered CTA below a grid. Up to 3 links (field_links) —
- * unwrap the field's wrapper divs so each link becomes a direct flex child. */
+ * unwrap the field's wrapper divs so each link becomes a direct flex child.
+ * The base theme (stable9) renders the field/item wrappers with NO class at
+ * all (unlike classy-style themes' .field/.field__item) — div:not([class])
+ * is the fallback that actually matches them, same pattern as .card-grid. */
 .section-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--sp-4); margin-top: var(--sp-8); }
-.section-cta > .field, .section-cta > .field > .field__items { display: contents; }
+.section-cta > .field, .section-cta > .field > .field__items,
+.section-cta > div:not([class]), .section-cta > div:not([class]) > div:not([class]) { display: contents; }
 .section-cta--start { justify-content: flex-start; }
 .section-cta--end { justify-content: flex-end; }
 

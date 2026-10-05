@@ -81,4 +81,36 @@ foreach ($topic_landing_page_titles as $tid => $title) {
   }
 }
 
+// --- Backfill field_link_alignment (simple_content) and field_hero_bg
+//     (compound_header_content): both were briefly required:true, which
+//     blocked saving ANY page containing an existing paragraph of either
+//     bundle (pre-dating the field, so no stored value) with "This value
+//     should not be null." Now required:false, but existing paragraphs
+//     still have no stored value — backfill the same default the template
+//     already falls back to, so the data is explicit rather than relying on
+//     the Twig fallback forever. ------------------------------------------
+$paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+$ids = $paragraph_storage->getQuery()->condition('type', 'simple_content')->accessCheck(FALSE)->execute();
+$n = 0;
+foreach (\Drupal\paragraphs\Entity\Paragraph::loadMultiple($ids) as $p) {
+  if ($p->get('field_link_alignment')->isEmpty()) {
+    $p->set('field_link_alignment', 'left');
+    $p->save();
+    $n++;
+  }
+}
+echo "backfilled field_link_alignment (-> left) on $n simple_content paragraph(s)\n";
+
+$ids2 = $paragraph_storage->getQuery()->condition('type', 'compound_header_content')->accessCheck(FALSE)->execute();
+$n2 = 0;
+foreach (\Drupal\paragraphs\Entity\Paragraph::loadMultiple($ids2) as $p) {
+  if ($p->get('field_hero_bg')->isEmpty()) {
+    $p->set('field_hero_bg', 'gradient');
+    $p->save();
+    $n2++;
+  }
+}
+echo "backfilled field_hero_bg (-> gradient) on $n2 compound_header_content paragraph(s)\n";
+
 echo "DONE\n";

@@ -235,11 +235,9 @@ h1.hero__title { font-size: var(--fs-display); line-height: 1.15; }
 .card--link .card__title { color: var(--c-blue); font-size: 1.25rem; }
 .card--link .card__rule { border-color: var(--c-blue); margin-top: auto; margin-bottom: var(--sp-5); }
 
-/* Content/CTA card — don't stretch to the row's tallest card (that forced a
-   uniform tall box and pushed the button too far from the body copy); size to
-   its own content instead, with a fixed 30px gap above the button. */
-.card--cta { align-self: start; }
-.card--cta .card__cta { margin-top: 1.875rem; }
+/* Content/CTA card — client request: rows of these should stretch to equal
+   height (CSS Grid default) like .card--link above, with the button pinned
+   to the bottom via the base .card__cta { margin-top: auto }. */
 
 /* ---- CTA field-links rendered as buttons in card/section contexts ------- */
 /* Content card ("Visit website") → outline button. */

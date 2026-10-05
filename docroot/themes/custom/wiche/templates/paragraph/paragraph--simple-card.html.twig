@@ -34,8 +34,11 @@
       <hr class="card__rule">
     {% endif %}
     {% if has_body %}<div class="card__body">{{ content.field_subheader }}</div>{% endif %}
-    {% if content.field_link|render|trim is not empty %}
-      <div class="card__cta">{{ content.field_link }}</div>
+    {% if paragraph.field_link.0.url %}
+      {# same "Learn more" fallback as the image-overlay branch above — the
+         generic link formatter would otherwise print the raw URL when the
+         link has no title text, which is the common case for these cards. #}
+      <div class="card__cta"><a href="{{ paragraph.field_link.0.url }}">{{ paragraph.field_link.0.title ?: 'Learn more'|t }}</a></div>
     {% endif %}
   </article>
 {% endif %}

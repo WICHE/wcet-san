@@ -62,14 +62,13 @@ a.btn,
   font-size: var(--fs-body); font-weight: 400; letter-spacing: 0.05em;
   margin-bottom: var(--sp-5); opacity: 1;
 }
-/* Design "M - Desktop heading - Regular": Roboto 400, 32/40 (not bold/40px+)
-   — but when this renders as the page's actual <h1> (field_subheader_as_h1),
-   match the regular page h1 size (client request) via the same token. */
+/* Hero title: Roboto 400 at the page-h1 size (--fs-display, 48px) on EVERY hero,
+   whether the editor marked it as the page <h1> (field_subheader_as_h1) or
+   left it a decorative <p> — client request: same size across the site. */
 .hero__title {
   color: #fff; font-weight: 400; margin: 0;
-  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); line-height: 1.25; max-width: none;
+  font-size: var(--fs-display); line-height: 1.15; max-width: none;
 }
-h1.hero__title { font-size: var(--fs-display); line-height: 1.15; }
 .hero__body { max-width: 52ch; margin-top: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3); align-items: flex-start; }
 .hero__actions { margin-top: var(--sp-6); display: flex; gap: var(--sp-4); flex-wrap: wrap; }
 /* Everything in the hero sits on the blue gradient → light text. */
@@ -231,16 +230,9 @@ h1.hero__title { font-size: var(--fs-display); line-height: 1.15; }
 .card--overlay .card__title { color: #fff; font-size: 1.5rem; line-height: 1.33; margin: 0; font-weight: 500; }
 .card--overlay .card__body { color: #fff; font-size: var(--fs-sm); }
 
-/* Quick-links card — blue title, rule, "Read more" ghost link. Cards in a row
-   stretch to equal height (CSS Grid default) so a 2-line title doesn't throw
-   off its neighbours; extra bottom margin on the rule gives the title/CTA
-   breathing room instead of sitting right on top of each other. */
-.card--link .card__title { color: var(--c-blue); font-size: 1.25rem; }
-.card--link .card__rule { border-color: var(--c-blue); margin-top: auto; margin-bottom: var(--sp-5); }
-
-/* Content/CTA card — client request: rows of these should stretch to equal
-   height (CSS Grid default) like .card--link above, with the button pinned
-   to the bottom via the base .card__cta { margin-top: auto }. */
+/* Content/quick-link card — rows of these stretch to equal height (CSS Grid
+   default), with the button pinned to the bottom via the base
+   .card__cta { margin-top: auto }. */
 
 /* ---- CTA field-links rendered as buttons in card/section contexts ------- */
 /* Content card ("Visit website") → outline button. */
@@ -254,9 +246,6 @@ h1.hero__title { font-size: var(--fs-display); line-height: 1.15; }
 }
 .card--cta .card__cta a:hover,
 .card--media .card__cta a:hover { background: var(--c-blue); color: #fff; text-decoration: none; }
-/* Quick-link card → ghost "Read more". */
-.card--link .card__cta a { color: var(--c-blue); font-weight: 700; }
-.card--link .card__cta a:hover { color: var(--c-magenta); text-decoration: none; }
 /* Overlay tile → white outline "Learn more" button (matches .topic-card).
    Picture-card CTAs use the smaller 42px height. */
 .card--overlay .card__cta a {
@@ -699,6 +688,15 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .region-content th { text-align: left; background: var(--c-blue-tint); color: var(--c-heading); font-weight: 600; padding: var(--sp-3) var(--sp-4); border-bottom: 2px solid var(--c-blue); }
 .region-content td { padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border); }
 .region-content tr:nth-child(even) td { background: var(--c-blue-tint-2); }
+.paragraph-table-section tbody tr:nth-child(even) td { background: none; }
+.paragraph-table-section tbody tr.is-stripe td { background: var(--c-blue-tint-2); }
+/* Filter row added by wiche.js (wicheTableFilters) under the table header. */
+.region-content .table-filters th { background: var(--c-white); border-bottom: 1px solid var(--border); padding: var(--sp-2) var(--sp-4); }
+.table-filters input, .table-filters select {
+  width: 100%; font: inherit; font-size: var(--fs-sm); color: var(--c-ink);
+  padding: 0.5rem 0.6rem; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: #fff;
+}
+.table-filters input:focus, .table-filters select:focus { outline: 2px solid var(--c-blue); outline-offset: 1px; }
 
 /* ============================ Design-spec refinements (2026-09-06) ======== */
 /* Button text colour must win over container link-colour rules. */
@@ -889,6 +887,11 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .route--view-events-page-events-past .header-wrapper h1,
 .route--view-coordinator-list-page-1 .header-wrapper h1 { color: var(--c-blue);
   font-size: var(--fs-display); margin: 0; }
+
+/* Hero-less landing page (e.g. Institutions & Organizations): title as the
+   page H1, styled like the listing pages' header above. */
+.landing-title { padding-top: var(--sp-8); }
+.landing-title h1 { color: var(--c-blue); font-size: var(--fs-display); margin: 0; }
 
 /* Exposed filters → a tidy filter bar */
 .route--view-resources-page-resources .views-exposed-form,

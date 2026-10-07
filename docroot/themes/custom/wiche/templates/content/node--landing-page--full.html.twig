@@ -13,7 +13,13 @@
   {{ title_prefix }}
   {{ title_suffix }}
 
-  {{ content.field_p_header }}
+  {# No hero (e.g. the data-table pages, matching the Coordinator List): the
+     page-title block is hidden on landing pages, so print the title as the H1. #}
+  {% if content.field_p_header|render|trim is empty %}
+    <div class="landing-title"><div class="wrap wrap--narrow"><h1>{{ label }}</h1></div></div>
+  {% else %}
+    {{ content.field_p_header }}
+  {% endif %}
 
   {% if post_hero_breadcrumb %}
     <div class="region-breadcrumb region-breadcrumb--post-hero">

@@ -208,6 +208,72 @@
     },
   };
 
+  // --- Filterable data table (table_with_filters paragraph) ---------------
+  // Adds a filter row under the header: a text search on the first column,
+  // a dropdown of that column's distinct values for every other column, and
+  // sorts rows by the first column. Ported from the legacy themekit jQuery
+  // script (which keyed off classy's .paragraph--type--* class this theme's
+  // markup doesn't have).
+  Drupal.behaviors.wicheTableFilters = {
+    attach(context) {
+      once('wiche-table-filters', '.paragraph-table-section .paragraph-table table', context).forEach((table) => {
+        const head = table.tHead && table.tHead.rows[0];
+        const body = table.tBodies[0];
+        if (!head || !body) return;
+
+        const text = (cell) => (cell ? cell.textContent.trim() : '');
+        const rows = Array.from(body.rows);
+        rows.sort((a, b) => text(a.cells[0]).localeCompare(text(b.cells[0]), undefined, { sensitivity: 'base' }));
+        rows.forEach((row) => body.appendChild(row));
+
+        const filterRow = table.tHead.insertRow();
+        filterRow.className = 'table-filters';
+        const controls = [];
+        Array.from(head.cells).forEach((th, i) => {
+          const cell = document.createElement('th');
+          const label = th.textContent.trim() || `Column ${i + 1}`;
+          let control;
+          if (i === 0) {
+            control = document.createElement('input');
+            control.type = 'search';
+            control.placeholder = Drupal.t('Search');
+            control.setAttribute('aria-label', Drupal.t('Search @column', { '@column': label }));
+          }
+          else {
+            control = document.createElement('select');
+            control.setAttribute('aria-label', Drupal.t('Filter by @column', { '@column': label }));
+            const values = Array.from(new Set(rows.map((r) => text(r.cells[i])).filter(Boolean)))
+              .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+            control.add(new Option(Drupal.t('All'), ''));
+            values.forEach((v) => control.add(new Option(v, v)));
+          }
+          control.dataset.column = String(i);
+          controls.push(control);
+          cell.appendChild(control);
+          filterRow.appendChild(cell);
+        });
+
+        const apply = () => {
+          rows.forEach((row) => {
+            const show = controls.every((control) => {
+              const value = control.value.trim();
+              if (!value) return true;
+              const cell = text(row.cells[Number(control.dataset.column)]);
+              return control.tagName === 'SELECT'
+                ? cell === value
+                : cell.toLowerCase().includes(value.toLowerCase());
+            });
+            row.hidden = !show;
+          });
+          // :nth-child striping counts hidden rows, so stripe the visible ones.
+          rows.filter((row) => !row.hidden).forEach((row, i) => row.classList.toggle('is-stripe', i % 2 === 1));
+        };
+        apply();
+        controls.forEach((control) => control.addEventListener(control.tagName === 'SELECT' ? 'change' : 'input', apply));
+      });
+    },
+  };
+
   // --- Inline search: clicking the Search link (utility nav / mobile nav)
   // reveals a text input in its place instead of navigating straight to the
   // (keyword-less) /search page, so people can type a term first. ---------

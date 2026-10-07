@@ -6,8 +6,10 @@
  *   • with image  → portrait image-overlay TILE (photo + gradient + white title
  *     + "Learn more" button), matching Figma 170:2329 / 26:32. Same look as the
  *     topic tiles, so "Topic Areas" rows are consistent.
- *   • no image + body → content/CTA card (Federal Policy).
- *   • no image, no body → quick-link card (Quick Links).
+ *   • no image → content/quick-link card: title, rule, optional body, outline
+ *     "Learn more" button. One style whether or not there's body copy, so a
+ *     Quick Links row looks the same on every page (it used to switch to a
+ *     ghost "Read more" link when the body was empty).
  */
 #}
 {% set has_image = paragraph.field_media_image is not empty %}
@@ -28,7 +30,7 @@
     </div>
   </article>
 {% else %}
-  <article{{ attributes.addClass('card', has_body ? 'card--cta' : 'card--link') }}>
+  <article{{ attributes.addClass('card', 'card--cta') }}>
     {% if paragraph.field_header.value %}
       <h3 class="card__title">{{ paragraph.field_header.value }}</h3>
       <hr class="card__rule">

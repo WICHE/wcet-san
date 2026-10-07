@@ -113,4 +113,39 @@ foreach (\Drupal\paragraphs\Entity\Paragraph::loadMultiple($ids2) as $p) {
 }
 echo "backfilled field_hero_bg (-> gradient) on $n2 compound_header_content paragraph(s)\n";
 
+// --- Card CTAs: the same card showed "Read more" on one page and "Learn
+//     more" on another (the link's own Link text was typed in as "Read
+//     more"). Client wants one consistent label — blank the typed
+//     "Read more" so the card's "Learn more" default applies. ------------
+$card_ids = \Drupal::entityTypeManager()->getStorage('paragraph')->getQuery()
+  ->condition('type', 'simple_card')->accessCheck(FALSE)->execute();
+$n = 0;
+foreach (\Drupal\paragraphs\Entity\Paragraph::loadMultiple($card_ids) as $card) {
+  if (!$card->get('field_link')->isEmpty() && strcasecmp(trim((string) $card->get('field_link')->title), 'Read more') === 0) {
+    $link = $card->get('field_link')->first()->getValue();
+    $link['title'] = '';
+    $card->set('field_link', [$link]);
+    $card->save();
+    $n++;
+  }
+}
+echo "cleared \"Read more\" link text on $n simple_card paragraph(s)\n";
+
+// --- Institutions & Organizations: client wants the plain, hero-less layout
+//     (like the Coordinator List) — just the intro + the filterable table.
+//     Detach the hero paragraph from the node (the paragraph stays in its
+//     revisions, so it's recoverable from the revision history). ----------
+foreach (['Institutions & Organizations', 'Member Institutions & Organizations'] as $title) {
+  foreach (\Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['type' => 'landing_page', 'title' => $title]) as $node) {
+    if (!$node->get('field_p_header')->isEmpty()) {
+      $node->set('field_p_header', []);
+      $node->save();
+      echo "node {$node->id()} ($title): hero removed\n";
+    }
+    else {
+      echo "node {$node->id()} ($title): already hero-less, skipped\n";
+    }
+  }
+}
+
 echo "DONE\n";

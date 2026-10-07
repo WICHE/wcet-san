@@ -188,6 +188,18 @@ display:
           expose:
             label: ''
           exposed: false
+        created:
+          id: created
+          table: search_api_index_index
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: ''
+          exposed: false
       arguments: {  }
       filters:
         search_api_fulltext:

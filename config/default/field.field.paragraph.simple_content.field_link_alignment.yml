@@ -11,8 +11,8 @@ id: paragraph.simple_content.field_link_alignment
 field_name: field_link_alignment
 entity_type: paragraph
 bundle: simple_content
-label: 'Link alignment'
-description: ''
+label: 'Button alignment'
+description: 'Aligns the button(s) under this block: left, center or right. It does not move the block itself — to put a block on the right-hand side of the page, add it to the Right column of a Two Column layout.'
 required: false
 translatable: false
 default_value:

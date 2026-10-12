@@ -1,16 +1,32 @@
 {#
 /**
- * @file Resources summary section — summary_resources (dark band).
- * Fields: field_header (title, editable), field_summary_topics
- * (image-overlay cards), field_link (View all).
+ * @file Resources summary section — summary_resources.
+ * Fields: field_header (title, editable), field_summary_topics, field_link
+ * (See more / View all), field_summary_display (tiles | latest).
+ *   • tiles  → an image-overlay tile per selected topic (home page).
+ *   • latest → the 4 most recent resources tagged with the selected topic(s),
+ *     as article cards (topic pages); built in
+ *     wiche_preprocess_paragraph__summary_resources().
  */
 #}
+{% set latest_mode = display_mode == 'latest' %}
 <section{{ attributes.addClass('section', 'section--tint', 'paragraph-summary', 'paragraph-summary--resources') }}>
   <div class="wrap">
+    {% if latest_mode %}{{ list_cache }}{% endif %}
     <div class="section-head">
-      <h2 class="section-head__title">{{ paragraph.field_header.value|default('Resources'|t) }}</h2>
+      <h2 class="section-head__title">{{ paragraph.field_header.value|default(latest_mode ? 'Latest Resources'|t : 'Resources'|t) }}</h2>
     </div>
-    <div class="card-grid card-grid--4 summary-grid summary-grid--overlay">{{ content.field_summary_topics }}</div>
+    {% if latest_mode %}
+      {% if latest %}
+        <div class="card-grid card-grid--4 card-grid--resources">
+          {% for item in latest %}
+            <div class="views-row">{{ item }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="card-grid card-grid--4 summary-grid summary-grid--overlay">{{ content.field_summary_topics }}</div>
+    {% endif %}
     {% if content.field_link|render|trim %}
       <div class="section-cta">{{ content.field_link }}</div>
     {% endif %}

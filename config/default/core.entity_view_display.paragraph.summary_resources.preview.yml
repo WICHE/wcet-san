@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.summary_resources.field_header
     - field.field.paragraph.summary_resources.field_link
+    - field.field.paragraph.summary_resources.field_summary_display
     - field.field.paragraph.summary_resources.field_summary_topics
     - paragraphs.paragraphs_type.summary_resources
 id: paragraph.summary_resources.preview
@@ -27,4 +28,5 @@ hidden:
   entity_print_view_word_docx: true
   field_header: true
   field_link: true
+  field_summary_display: true
   search_api_excerpt: true

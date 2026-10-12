@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.summary_resources.field_header
     - field.field.paragraph.summary_resources.field_link
+    - field.field.paragraph.summary_resources.field_summary_display
     - field.field.paragraph.summary_resources.field_summary_topics
     - paragraphs.paragraphs_type.summary_resources
   module:
@@ -40,4 +41,5 @@ hidden:
   entity_print_view_pdf: true
   entity_print_view_word_docx: true
   field_header: true
+  field_summary_display: true
   search_api_excerpt: true

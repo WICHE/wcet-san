@@ -143,8 +143,12 @@ function _wiche_query_summary_events(\Drupal\paragraphs\ParagraphInterface $para
   if ($paragraph->hasField('field_summary_topics') && !$paragraph->get('field_summary_topics')->isEmpty()) {
     $tids = array_column($paragraph->get('field_summary_topics')->getValue(), 'target_id');
   }
+  $type_ids = [];
+  if ($paragraph->hasField('field_summary_event_types') && !$paragraph->get('field_summary_event_types')->isEmpty()) {
+    $type_ids = array_column($paragraph->get('field_summary_event_types')->getValue(), 'target_id');
+  }
 
-  $build_query = function () use ($today, $upcoming, $limit, $tids) {
+  $build_query = function () use ($today, $upcoming, $limit, $tids, $type_ids) {
     $query = \Drupal::entityQuery('node')
       ->accessCheck(TRUE)
       ->condition('type', 'event')
@@ -159,11 +163,16 @@ function _wiche_query_summary_events(\Drupal\paragraphs\ParagraphInterface $para
     if ($tids) {
       $query->condition('field_topic', $tids, 'IN');
     }
+    if ($type_ids) {
+      $query->condition('field_event_type', $type_ids, 'IN');
+    }
     return $query->execute();
   };
 
   $ids = $build_query();
-  if (!$ids && $tids) {
+  // The topic filter falls back to unfiltered when nothing matches, but an
+  // explicit event-type choice (e.g. "Open Forum only") must never be widened.
+  if (!$ids && $tids && !$type_ids) {
     // No events matched the selected topics — fall back to unfiltered.
     $tids = [];
     $ids = $build_query();
@@ -190,6 +199,7 @@ function _wiche_query_summary_events(\Drupal\paragraphs\ParagraphInterface $para
  */
 function wiche_preprocess_paragraph__summary_events(array &$variables): void {
   $variables['events'] = _wiche_query_summary_events($variables['paragraph'], TRUE);
+  $variables['list_cache'] = ['#cache' => ['tags' => ['node_list:event']]];
 }
 
 /**
@@ -199,6 +209,7 @@ function wiche_preprocess_paragraph__summary_events(array &$variables): void {
  */
 function wiche_preprocess_paragraph__summary_past_events(array &$variables): void {
   $variables['events'] = _wiche_query_summary_events($variables['paragraph'], FALSE);
+  $variables['list_cache'] = ['#cache' => ['tags' => ['node_list:event']]];
 }
 
 /**
@@ -213,4 +224,38 @@ function wiche_theme_suggestions_paragraph_alter(array &$suggestions, array $var
     $view_mode = $variables['elements']['#view_mode'] ?? 'default';
     $suggestions[] = 'paragraph__' . $paragraph->bundle() . '__' . $view_mode;
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--summary-resources.html.twig.
+ *
+ * field_summary_display = "latest": instead of one image tile per selected
+ * topic, list the 4 most recent published resources (resources + resource
+ * tables) tagged with those topics — what the old site's "Latest Resources"
+ * block did on each topic page. With no topics chosen, the 4 most recent
+ * overall. Rendered through each node's teaser (the article card).
+ */
+function wiche_preprocess_paragraph__summary_resources(array &$variables): void {
+  $paragraph = $variables['paragraph'];
+  $variables['display_mode'] = $paragraph->hasField('field_summary_display') && $paragraph->get('field_summary_display')->value === 'latest'
+    ? 'latest' : 'tiles';
+  if ($variables['display_mode'] !== 'latest') {
+    return;
+  }
+
+  $query = \Drupal::entityQuery('node')
+    ->accessCheck(TRUE)
+    ->condition('type', ['resource', 'resource_table'], 'IN')
+    ->condition('status', 1)
+    ->sort('created', 'DESC')
+    ->range(0, 4);
+  if (!$paragraph->get('field_summary_topics')->isEmpty()) {
+    $query->condition('field_topic', array_column($paragraph->get('field_summary_topics')->getValue(), 'target_id'), 'IN');
+  }
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+  $variables['latest'] = [];
+  foreach (\Drupal\node\Entity\Node::loadMultiple($query->execute()) as $node) {
+    $variables['latest'][] = $view_builder->view($node, 'teaser');
+  }
+  $variables['list_cache'] = ['#cache' => ['tags' => ['node_list:resource', 'node_list:resource_table']]];
 }

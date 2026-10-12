@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.summary_resources.field_header
     - field.field.paragraph.summary_resources.field_link
+    - field.field.paragraph.summary_resources.field_summary_display
     - field.field.paragraph.summary_resources.field_summary_topics
     - paragraphs.paragraphs_type.summary_resources
   module:
@@ -29,6 +30,12 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_summary_display:
+    type: options_select
+    weight: -5
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_summary_topics:
     type: options_select

@@ -10,6 +10,7 @@
 #}
 <section{{ attributes.addClass('section', 'section--tint', 'paragraph-summary', 'paragraph-summary--events') }}>
   <div class="wrap">
+    {{ list_cache }}
     <div class="section-head">
       <h2 class="section-head__title">{{ paragraph.field_header.value|default('Events'|t) }}</h2>
     </div>

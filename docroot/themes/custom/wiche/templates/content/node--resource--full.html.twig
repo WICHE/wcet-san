@@ -6,10 +6,12 @@
  * sidebar (right, top-aligned with the title) — then a "More {topic} Resources"
  * related-cards row spanning full width.
  *
- * Content-model reality: most resources (275/290) are link/file collections
- * (field_p_resources = single_link + single_file) with no prose body; only a
- * few use field_p_content. So the template adapts:
- *   • has prose  → two columns: field_p_content (left) + Quick links (right)
+ * Content-model reality: resources carry their text in the node body (the
+ * migrated/legacy content — 560+ of 600 on feature-refresh) and/or in
+ * field_p_content paragraphs (newer, layout-built pages), plus a list of
+ * links/files in field_p_resources. So the template adapts:
+ *   • has prose  → two columns: body + field_p_content (left) and the links
+ *                   as a Quick links sidebar (right)
  *   • no prose   → single column: the links/files as the main "Downloads &
  *                   links" panel (older link-only resources still read well)
  * The page-title block is hidden on these pages (wiche.theme + components.css).
@@ -17,7 +19,7 @@
 #}
 {# striptags so an empty layout paragraph (wrapper divs, no text) doesn't
    falsely trigger the two-column prose layout — most resources have no prose. #}
-{% set has_body = content.field_p_content|render|striptags|trim is not empty %}
+{% set has_body = content.body|render|striptags|trim is not empty or content.field_p_content|render|striptags|trim is not empty %}
 {% set has_links = content.field_p_resources|render|trim is not empty %}
 
 <article{{ attributes.addClass('resource-article', has_body ? 'resource-article--split') }}>
@@ -36,6 +38,7 @@
 
   {% if has_body %}
     <div class="resource-article__main flow-l">
+      {{ content.body }}
       {{ content.field_p_content }}
     </div>
     {% if has_links %}

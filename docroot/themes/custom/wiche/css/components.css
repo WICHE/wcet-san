@@ -688,6 +688,9 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .region-content th { text-align: left; background: var(--c-blue-tint); color: var(--c-heading); font-weight: 600; padding: var(--sp-3) var(--sp-4); border-bottom: 2px solid var(--c-blue); }
 .region-content td { padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border); }
 .region-content tr:nth-child(even) td { background: var(--c-blue-tint-2); }
+/* A data table follows an intro block that already carries a full section's
+   bottom padding — don't stack a second one on top (was ~160px of white). */
+.paragraph-table-section { padding-top: 0; margin-top: calc(var(--section-y) / -2); }
 .paragraph-table-section tbody tr:nth-child(even) td { background: none; }
 .paragraph-table-section tbody tr.is-stripe td { background: var(--c-blue-tint-2); }
 /* Filter row added by wiche.js (wicheTableFilters) under the table header. */
@@ -949,6 +952,16 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .resource-downloads .paragraph--single_file .wrap { max-width: none; padding: 0; }
 .resource-downloads a { color: var(--c-blue); font-weight: 500; text-decoration: none; }
 .resource-downloads a:hover { text-decoration: underline; color: var(--c-magenta); }
+/* single_link paragraphs default to the "primary" button style, but in the
+   resource link lists they should read as plain link rows — otherwise the
+   blue text above lands on the primary button's blue fill (text invisible). */
+.resource-downloads .paragraph-link a,
+.quick-links__list .paragraph-link a {
+  display: inline; height: auto; padding: 0; border: 0; border-radius: 0;
+  background: none; color: var(--c-blue); font-weight: 500; text-decoration: none;
+}
+.resource-downloads .paragraph-link a:hover,
+.quick-links__list .paragraph-link a:hover { background: none; color: var(--c-magenta); text-decoration: underline; }
 /* file rows: show a small download affordance before the link */
 .resource-downloads .paragraph--single_file .file a::before { content: "↓ "; color: var(--c-muted); }
 .resource-downloads .file { background: none; padding: 0; }
@@ -1073,3 +1086,22 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 @media (max-width: 620px) {
   .route--sitemap-page .sitemap-item--menu-main > div > ul { grid-template-columns: 1fr; }
 }
+
+/* ============================================== Infographic (Figma 782:1088) == */
+/* Icy-blue band of big figures. Items sit in an auto-fit grid so 3–6 figures
+   share the width evenly; the field's classless wrapper divs are unwrapped
+   (div:not([class]) — see .card-grid) so each .stat is a direct grid item. */
+.paragraph-infographic { background: var(--c-ice); }
+.infographic__title { margin: 0 0 var(--sp-7); text-align: center; color: var(--c-heading);
+  font-size: 2rem; font-weight: 400; line-height: 1.25; }
+.infographic__stats { display: grid; gap: var(--sp-7) var(--sp-6);
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.infographic__stats > div:not([class]),
+.infographic__stats > div:not([class]) > div:not([class]) { display: contents; }
+.paragraph-infographic--narrow .infographic__stats { max-width: 848px; margin-inline: auto; }
+.stat { text-align: center; }
+.stat__value { margin: 0; color: var(--c-purple); font-size: clamp(2.75rem, 2rem + 2.2vw, 3.75rem);
+  font-weight: 600; line-height: 1.1; }
+.stat__rule { width: 33px; height: 0; margin: var(--sp-4) auto; border: 0; border-top: 1px solid var(--c-purple); }
+.stat__label { margin: 0; color: var(--c-ink); font-size: 1.25rem; font-weight: 600; line-height: 1.25; }
+.paragraph-infographic--narrow .stat__label { color: var(--c-purple); }

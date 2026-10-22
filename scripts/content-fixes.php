@@ -113,6 +113,37 @@ foreach (\Drupal\paragraphs\Entity\Paragraph::loadMultiple($ids2) as $p) {
 }
 echo "backfilled field_hero_bg (-> gradient) on $n2 compound_header_content paragraph(s)\n";
 
+// --- The retired "Compliance Requirements (Non-SARA)" topic: its topic page
+//     (/compliance-requirements-nonsara) should land on the new Beyond
+//     Reciprocity page, since the old address is cited in a lot of printed/
+//     linked material. (The page-style address /compliance-requirements-non-sara
+//     already has a redirect.) The source must be the term's SYSTEM path
+//     (taxonomy/term/N): the redirect module matches after alias resolution,
+//     so a redirect keyed to an address that's still a live alias never fires.
+//     Redirect entities are content, so this lives here. -------------------
+$target = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['type' => 'landing_page', 'title' => 'Beyond Reciprocity']);
+$old_term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['vid' => 'topic', 'name' => 'Compliance Requirements (NonSARA)']);
+if ($target && $old_term) {
+  $target = reset($target);
+  $source = 'taxonomy/term/' . reset($old_term)->id();
+  $redirects = \Drupal::entityTypeManager()->getStorage('redirect');
+  if (!$redirects->getQuery()->condition('redirect_source.path', $source)->accessCheck(FALSE)->execute()) {
+    $redirects->create([
+      'redirect_source' => ['path' => $source, 'query' => []],
+      'redirect_redirect' => ['uri' => 'internal:/node/' . $target->id()],
+      'language' => 'und',
+      'status_code' => 301,
+    ])->save();
+    echo "redirect /$source (the old Non-SARA topic page) -> Beyond Reciprocity (node {$target->id()})\n";
+  }
+  else {
+    echo "redirect /$source: already exists, skipped\n";
+  }
+}
+else {
+  echo "old Non-SARA topic or Beyond Reciprocity landing page not found, redirect skipped\n";
+}
+
 // --- Card CTAs: the same card showed "Read more" on one page and "Learn
 //     more" on another (the link's own Link text was typed in as "Read
 //     more"). Client wants one consistent label — blank the typed

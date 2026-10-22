@@ -92,8 +92,7 @@
         "drupal/rdf": "^2.0",
         "mglaman/composer-drupal-lenient": "^1.0",
         "drupal/classy": "^1.0",
-        "drupal/gin_toolbar": "^1.0@rc",
-        "drupal/gin": "^3.0@rc",
+        "drupal/gin": "^4.1",
         "drupal/linkit": "^6.1",
         "drupal/symfony_mailer": "^1.4",
         "drupal/captcha": "^2.0"
@@ -194,7 +193,8 @@
             "mglaman/composer-drupal-lenient": true,
             "phpstan/extension-installer": true,
             "php-http/discovery": true,
-            "tbachert/spi": true
+            "tbachert/spi": true,
+            "symfony/runtime": true
         }
     }
 }

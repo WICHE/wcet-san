@@ -1,0 +1,19 @@
+{#
+/**
+ * @file Infographic section — compound_infographic (Figma 782:1088).
+ * Fields: field_header (optional title), field_infographic_layout
+ * (full | narrow "8 column"), field_p_stats (simple_stat × 3–6).
+ * An icy-blue band of big figures; "narrow" keeps them in a centered 8/12
+ * block with purple labels, "full" spreads them across the page width with
+ * grey labels.
+ */
+#}
+{% set layout = paragraph.field_infographic_layout.value|default('full') %}
+<section{{ attributes.addClass('section', 'paragraph-infographic', 'paragraph-infographic--' ~ layout) }}>
+  <div class="wrap">
+    {% if paragraph.field_header.value %}
+      <h2 class="infographic__title">{{ paragraph.field_header.value }}</h2>
+    {% endif %}
+    <div class="infographic__stats">{{ content.field_p_stats }}</div>
+  </div>
+</section>

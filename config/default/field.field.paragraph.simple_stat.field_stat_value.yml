@@ -1,0 +1,19 @@
+uuid: 17a428f0-7402-46bb-a22a-5622f4b48fb6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_stat_value
+    - paragraphs.paragraphs_type.simple_stat
+id: paragraph.simple_stat.field_stat_value
+field_name: field_stat_value
+entity_type: paragraph
+bundle: simple_stat
+label: Number
+description: 'The big figure, exactly as it should appear — e.g. 15, 1,200, 50+ or 1M.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

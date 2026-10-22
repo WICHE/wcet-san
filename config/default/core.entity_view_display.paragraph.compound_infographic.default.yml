@@ -1,0 +1,32 @@
+uuid: 009258c6-58a0-489b-be8f-c4c476919541
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.compound_infographic.field_header
+    - field.field.paragraph.compound_infographic.field_infographic_layout
+    - field.field.paragraph.compound_infographic.field_p_stats
+    - paragraphs.paragraphs_type.compound_infographic
+  module:
+    - entity_reference_revisions
+id: paragraph.compound_infographic.default
+targetEntityType: paragraph
+bundle: compound_infographic
+mode: default
+content:
+  field_p_stats:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_header: true
+  field_infographic_layout: true
+  search_api_excerpt: true

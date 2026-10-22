@@ -1,0 +1,10 @@
+uuid: f1cfb011-7534-4244-8d67-70ab30339112
+langcode: en
+status: true
+dependencies: {  }
+id: compound_infographic
+label: 'Compound - Infographic'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

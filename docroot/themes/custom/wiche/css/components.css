@@ -861,7 +861,12 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .quick-links__list .paragraph--single_file .file { background: none; padding: 0; display: block; }
 .quick-links__list .paragraph--single_file .file a { display: block; text-align: center;
   font-weight: 600; padding: 0.7rem 1rem; border: 2px solid var(--c-blue);
-  border-radius: var(--radius-sm); color: var(--c-blue); text-decoration: none; }
+  border-radius: var(--radius-sm); color: var(--c-blue); text-decoration: none;
+  /* Always an outline button, whatever style the editor picked (the primary
+     style's blue fill put blue text on blue), and let long file names wrap
+     inside the box instead of overflowing it past the fixed button height. */
+  background: transparent; height: auto; line-height: 1.3;
+  white-space: normal; overflow-wrap: anywhere; }
 .quick-links__list .paragraph--single_file .file a:hover { background: var(--c-blue); color: #fff; }
 .quick-links__list .paragraph--single_file > .wrap > div { font-size: var(--fs-sm); color: var(--c-muted); }
 
@@ -963,6 +968,8 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .resource-downloads .paragraph-link a:hover,
 .quick-links__list .paragraph-link a:hover { background: none; color: var(--c-magenta); text-decoration: underline; }
 /* file rows: show a small download affordance before the link */
+.resource-downloads .paragraph--single_file .file a { display: inline; height: auto; padding: 0; border: 0;
+  border-radius: 0; background: none; color: var(--c-blue); font-weight: 500; overflow-wrap: anywhere; }
 .resource-downloads .paragraph--single_file .file a::before { content: "↓ "; color: var(--c-muted); }
 .resource-downloads .file { background: none; padding: 0; }
 
@@ -1091,7 +1098,9 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 /* Icy-blue band of big figures. Items sit in an auto-fit grid so 3–6 figures
    share the width evenly; the field's classless wrapper divs are unwrapped
    (div:not([class]) — see .card-grid) so each .stat is a direct grid item. */
-.paragraph-infographic { background: var(--c-ice); }
+/* Same ground as every other tinted band (.section--tint), not the Figma
+   frame's slightly different Icy Blue — the client wants them to match. */
+.paragraph-infographic { background: var(--bg-tint); }
 .infographic__title { margin: 0 0 var(--sp-7); text-align: center; color: var(--c-heading);
   font-size: 2rem; font-weight: 400; line-height: 1.25; }
 .infographic__stats { display: grid; gap: var(--sp-7) var(--sp-6);
@@ -1105,3 +1114,14 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .stat__rule { width: 33px; height: 0; margin: var(--sp-4) auto; border: 0; border-top: 1px solid var(--c-purple); }
 .stat__label { margin: 0; color: var(--c-ink); font-size: 1.25rem; font-weight: 600; line-height: 1.25; }
 .paragraph-infographic--narrow .stat__label { color: var(--c-purple); }
+
+/* Chart / article tables pasted from the legacy editor carry fixed inline
+   widths on their cells (e.g. width:185px on the contact-information column),
+   which squeezed the longest-text columns to a sliver. Let the browser size
+   the columns by content instead. */
+.page-node-type-resource_table .region-content table th,
+.page-node-type-resource_table .region-content table td,
+.page-node-type-resource .region-content table th,
+.page-node-type-resource .region-content table td {
+  width: auto !important; word-break: normal !important; overflow-wrap: break-word;
+}

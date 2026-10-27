@@ -7,7 +7,6 @@ dependencies:
     - taxonomy.vocabulary.institution
     - taxonomy.vocabulary.membership
     - taxonomy.vocabulary.resource_type
-    - taxonomy.vocabulary.topic
   module:
     - taxonomy
 id: taxonomy_term
@@ -17,15 +16,14 @@ pattern: '/[term:name]'
 selection_criteria:
   4a850fa2-9bd8-49db-888e-bd613847d61f:
     id: 'entity_bundle:taxonomy_term'
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
     bundles:
       event_type: event_type
       institution: institution
       membership: membership
       resource_type: resource_type
-      topic: topic
-    negate: false
-    context_mapping:
-      taxonomy_term: taxonomy_term
 selection_logic: and
 weight: -5
 relationships: {  }

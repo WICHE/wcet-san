@@ -64,6 +64,27 @@
 /* Two-column paragraph */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-8); }
 @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Photo + text (staff / profile rows): the page's 8-column grid — photo 2, text 6.
+ * The photo is cropped to one standard portrait shape whatever its source size
+ * (editor-set width/height attributes and left-align floats are overridden). */
+.two-col--profile { grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: var(--sp-5); }
+.two-col--profile .two-col__col--left { grid-column: span 2; }
+.two-col--profile .two-col__col--right { grid-column: span 6; }
+/* The blocks nested in each column are full "sections" (own padding + gutter) —
+ * flatten them so the photo fills its 2 columns and the text starts at the top. */
+.two-col--profile .two-col__col .section { padding-block: 0; }
+.two-col--profile .two-col__col .wrap { padding-inline: 0; max-width: none; }
+.two-col--profile .two-col__col--left img {
+  display: block; float: none; margin: 0; width: 100%; height: auto; max-width: none;
+  aspect-ratio: 3 / 4; object-fit: cover; object-position: center top;
+}
+@media (max-width: 800px) {
+  .two-col--profile { grid-template-columns: 1fr; }
+  .two-col--profile .two-col__col--left,
+  .two-col--profile .two-col__col--right { grid-column: auto; }
+  .two-col--profile .two-col__col--left img { max-width: 12rem; }
+}
 .section-head--left { text-align: left; }
 .section-head--left .section-head__intro { margin-inline: 0; }
 .lead { font-size: var(--fs-lead); color: var(--c-muted); font-weight: 400; }

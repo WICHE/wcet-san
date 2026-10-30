@@ -179,4 +179,20 @@ foreach (['Institutions & Organizations', 'Member Institutions & Organizations']
   }
 }
 
+// --- Contact Us: the staff rows are photo-left / bio-right two-column layouts.
+//     Switch them to the "Photo + text" style (photo 2 of 8 columns, text 6)
+//     so every photo shows at one standard size. Matched by title (node IDs
+//     differ between environments). ----------------------------------------
+foreach (\Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['type' => 'landing_page', 'title' => 'Contact Us']) as $node) {
+  $n = 0;
+  foreach ($node->get('field_p_content')->referencedEntities() as $row) {
+    if ($row->bundle() === 'layout_two_column' && $row->get('field_column_layout')->value !== 'profile') {
+      $row->set('field_column_layout', 'profile');
+      $row->save();
+      $n++;
+    }
+  }
+  echo "node {$node->id()} (Contact Us): $n two-column row(s) -> photo + text\n";
+}
+
 echo "DONE\n";

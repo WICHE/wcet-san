@@ -1,3 +1,2 @@
 logo:
-  use_default: false
-  path: themes/custom/wiche/logo.jpg
+  use_default: true

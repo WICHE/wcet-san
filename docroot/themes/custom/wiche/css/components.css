@@ -286,16 +286,16 @@ a.btn,
   display: flex; align-items: center; justify-content: space-between; gap: var(--sp-6);
   padding-block: 0.25rem;
 }
-/* Branding logo (the SAN lockup, logo.jpg) — sized to nearly fill the bar. The
+/* Branding logo (the SAN lockup, the theme's logo.svg) — sized to nearly fill the bar. The
    trimmed vertical padding above keeps the header the same overall height as
    the logo grows; width follows the aspect ratio. (A leftover duplicate rule
    here used to cap this at max-height:72px regardless of the height set
    below — removed; that's why "bigger" wasn't visibly taking effect.) */
 .site-brand { display: inline-flex; align-items: center; }
 .site-brand a { display: inline-flex; }
-.site-brand img { height: 104px; width: auto; max-width: 100%; }
-@media (max-width: 900px) { .site-brand img { height: 72px; } }
-@media (max-width: 800px) { .site-brand img { height: 60px; } }
+.site-brand img { height: 68px; width: auto; max-width: 100%; }
+@media (max-width: 900px) { .site-brand img { height: 52px; } }
+@media (max-width: 800px) { .site-brand img { height: 44px; } }
 
 /* Main navigation + mega menu.
  * The menu <ul> is wrapped by Drupal block markup (div.block > nav > ul.menu--main),
@@ -511,7 +511,7 @@ a.btn,
 .site-footer__top { background: var(--c-blue-tint); padding-block: var(--sp-7); }
 .footer-intro { display: flex; align-items: center; gap: var(--sp-8); }
 .footer-intro__brand { flex: 0 0 auto; }
-.footer-intro__brand img { display: block; height: 71px; width: auto; }
+.footer-intro__brand img { display: block; height: 56px; width: auto; }
 .footer-intro__divider { flex: 0 0 auto; align-self: stretch; width: 1px; background: var(--c-blue); opacity: 0.4; }
 .footer-intro__connect { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-2); width: 219px; }
 .footer-intro__heading { display: block; font-size: 1.125rem; font-weight: 600; color: var(--c-heading); margin-bottom: var(--sp-1); }

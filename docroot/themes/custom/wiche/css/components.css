@@ -284,7 +284,7 @@ a.btn,
 .site-header__main { box-shadow: var(--shadow-header); background: #fff; }
 .site-header__main .wrap {
   display: flex; align-items: center; justify-content: space-between; gap: var(--sp-6);
-  padding-block: 0.25rem;
+  padding-block: 0.5rem;
 }
 /* Branding logo (the SAN lockup, the theme's logo.svg) — sized to nearly fill the bar. The
    trimmed vertical padding above keeps the header the same overall height as
@@ -293,9 +293,9 @@ a.btn,
    below — removed; that's why "bigger" wasn't visibly taking effect.) */
 .site-brand { display: inline-flex; align-items: center; }
 .site-brand a { display: inline-flex; }
-.site-brand img { height: 68px; width: auto; max-width: 100%; }
-@media (max-width: 900px) { .site-brand img { height: 52px; } }
-@media (max-width: 800px) { .site-brand img { height: 44px; } }
+.site-brand img { height: 55px; width: auto; max-width: 100%; }
+@media (max-width: 900px) { .site-brand img { height: 46px; } }
+@media (max-width: 800px) { .site-brand img { height: 40px; } }
 
 /* Main navigation + mega menu.
  * The menu <ul> is wrapped by Drupal block markup (div.block > nav > ul.menu--main),

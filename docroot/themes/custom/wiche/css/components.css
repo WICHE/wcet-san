@@ -292,7 +292,7 @@ a.btn,
    here used to cap this at max-height:72px regardless of the height set
    below — removed; that's why "bigger" wasn't visibly taking effect.) */
 .site-brand { display: inline-flex; align-items: center; }
-.site-brand a { display: inline-flex; }
+.site-brand a { display: flex; } /* block-level: no line-box gap under the logo */
 .site-brand img { height: 55px; width: auto; max-width: 100%; }
 @media (max-width: 900px) { .site-brand img { height: 46px; } }
 @media (max-width: 800px) { .site-brand img { height: 40px; } }

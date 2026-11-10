@@ -821,7 +821,7 @@ display:
             format: full_html
           tokenize: false
       display_extenders: {  }
-      path: membership/coordinator-list
+      path: coordinator-list
       menu:
         type: none
         title: 'Coordinator List'

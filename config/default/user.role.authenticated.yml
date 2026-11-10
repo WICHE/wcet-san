@@ -13,6 +13,7 @@ dependencies:
     - graphql
     - media
     - shortcut
+    - sitemap
     - system
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
@@ -24,6 +25,7 @@ permissions:
   - 'access content'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'access sitemap'
   - 'bypass graphql field security'
   - 'delete own files'
   - 'entity print access bundle resource_table'

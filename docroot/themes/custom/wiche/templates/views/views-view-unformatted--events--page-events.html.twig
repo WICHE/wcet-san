@@ -1,0 +1,20 @@
+{#
+/**
+ * @file Upcoming events listing rows → responsive card grid (Figma 157:2644).
+ *
+ * The events view outputs unformatted rows; each row is an event rendered in
+ * its teaser view mode (node--event--teaser → .card--event). Wrapping the rows
+ * in .card-grid lays the cards out 3-up (responsive) instead of stacked —
+ * same pattern as the resources listing.
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+<div class="card-grid card-grid--resources">
+  {% for row in rows %}
+    <div{{ row.attributes.addClass('views-row') }}>
+      {{- row.content -}}
+    </div>
+  {% endfor %}
+</div>

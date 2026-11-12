@@ -1,0 +1,16 @@
+{#
+/**
+ * @file FAQ / accordion section — compound_faq_section.
+ * Fields: field_header (title), field_p_faq (simple_faq items).
+ */
+#}
+<section{{ attributes.addClass('section', 'paragraph-faq') }}>
+  <div class="wrap wrap--narrow">
+    {% if paragraph.field_header.value %}
+      <div class="section-head section-head--left">
+        <h2 class="section-head__title">{{ paragraph.field_header.value }}</h2>
+      </div>
+    {% endif %}
+    <div class="accordion">{{ content.field_p_faq }}</div>
+  </div>
+</section>

@@ -5,7 +5,8 @@ dependencies:
   config:
     - field.field.paragraph.simple_content.field_body
     - field.field.paragraph.simple_content.field_header
-    - field.field.paragraph.simple_content.field_link
+    - field.field.paragraph.simple_content.field_link_alignment
+    - field.field.paragraph.simple_content.field_links
     - field.field.paragraph.simple_content.field_subheader
     - paragraphs.paragraphs_type.simple_content
   module:
@@ -17,37 +18,43 @@ bundle: simple_content
 mode: default
 content:
   field_body:
+    type: text_textarea
     weight: 2
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_header:
+    type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+  field_link_alignment:
+    type: options_select
+    weight: 4
     region: content
-  field_link:
+    settings: {  }
+    third_party_settings: {  }
+  field_links:
+    type: link_default
     weight: 3
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   field_subheader:
+    type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
 hidden:
   created: true
   status: true

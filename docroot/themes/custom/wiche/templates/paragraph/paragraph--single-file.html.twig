@@ -1,0 +1,8 @@
+{#
+/**
+ * @file single_file — download link. Fields: field_media_file, field_link_style.
+ */
+#}
+<div{{ attributes.addClass('paragraph', 'paragraph--single_file', 'link-style--' ~ (paragraph.field_link_style.value|default('link'))|clean_class) }}>
+  <div class="wrap wrap--narrow">{{ content.field_media_file }}</div>
+</div>

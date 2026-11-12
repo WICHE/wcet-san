@@ -1,0 +1,1166 @@
+/**
+ * wiche · components.css — buttons, hero, cards, header/mega-menu, footer.
+ */
+
+/* ============================================================= Buttons === */
+/* Button height system: 48px standard, 42px on picture cards (image-topped
+   tiles — see --btn-h-picture usages below). box-sizing:border-box (base.css)
+   means height already includes border/padding, so zero the vertical padding
+   and let align-items:center do the vertical centering. */
+:root { --btn-h: 48px; --btn-h-picture: 42px; }
+.button,
+.btn,
+a.btn,
+.field--type-link a.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-body);
+  line-height: 1;
+  height: var(--btn-h);
+  padding: 0 1.75rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--c-blue);
+  background: var(--c-blue);
+  color: #fff;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  text-align: center;
+}
+/* Solid button hover -> outline (client feedback): the filled button becomes a
+   blue outline on hover, rather than just darkening. */
+.button:hover, .btn:hover {
+  background: transparent; border-color: var(--c-blue);
+  color: var(--c-blue); text-decoration: none;
+}
+.btn--outline, .button--outline, a.btn--outline {
+  background: transparent; color: var(--c-blue); border-color: var(--c-blue);
+}
+.btn--outline:hover, .button--outline:hover {
+  background: var(--c-blue); color: #fff;
+}
+.btn--on-dark { background: #fff; color: var(--c-blue); border-color: #fff; }
+.btn--on-dark:hover { background: var(--c-blue); color: #fff; border-color: #fff; }
+.btn--ghost {
+  background: transparent; border-color: transparent; color: var(--c-blue);
+  padding-inline: 0; font-weight: 700;
+}
+.btn--ghost:hover { color: var(--c-magenta); background: transparent; }
+
+/* ================================================================ Hero === */
+.hero { position: relative; background: var(--hero-gradient); color: #fff; overflow: hidden; }
+.hero__inner {
+  display: grid; align-items: center;
+  min-height: 404px; padding-block: clamp(2rem, 1rem + 2.5vw, 4rem);
+}
+.hero__copy { max-width: 640px; }
+.hero__eyebrow {
+  font-size: var(--fs-body); font-weight: 400; letter-spacing: 0.05em;
+  margin-bottom: var(--sp-5); opacity: 1;
+}
+/* Hero title: Roboto 400 at the page-h1 size (--fs-display, 48px) on EVERY hero,
+   whether the editor marked it as the page <h1> (field_subheader_as_h1) or
+   left it a decorative <p> — client request: same size across the site. */
+.hero__title {
+  color: #fff; font-weight: 400; margin: 0;
+  font-size: var(--fs-display); line-height: 1.15; max-width: none;
+}
+.hero__body { max-width: 52ch; margin-top: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3); align-items: flex-start; }
+.hero__actions { margin-top: var(--sp-6); display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+/* Everything in the hero sits on the blue gradient → light text. */
+.hero, .hero a, .hero p, .hero h1, .hero h2 { color: #fff; }
+.hero .field, .hero .field__item, .hero .paragraph, .hero .paragraph-link { margin: 0; }
+/* field_p_secondary_content children render as full-blown <section> blocks
+   (section padding + narrow wrap). Inside the hero that reads as broken stacked
+   sections, so strip the page-section chrome and let them flow as hero copy. */
+.hero__body .section { padding: 0; margin: 0; background: none; }
+.hero__body .section .wrap,
+.hero__body .wrap, .hero__body .wrap--narrow { max-width: none; width: auto; margin: 0; padding: 0; }
+.hero__body .section-head { text-align: left; margin: 0 0 var(--sp-2); }
+.hero__body .section-head__title { font-size: var(--fs-h4); }
+
+/* ---- single_link paragraph styles (primary/secondary/plain) ------------ */
+.link-style--primary a, .link-style--secondary a {
+  display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
+  height: var(--btn-h); padding: 0 1.5rem; border-radius: var(--radius-sm); border: 2px solid var(--c-blue); text-decoration: none;
+}
+.link-style--primary a { background: var(--c-blue); color: #fff; }
+/* Solid -> outline on hover (same rule as the base button system). */
+.link-style--primary a:hover { background: transparent; color: var(--c-blue); }
+.link-style--secondary a { background: transparent; color: var(--c-blue); }
+.link-style--secondary a:hover { background: var(--c-blue); color: #fff; }
+/* On the hero's dark gradient, invert the button colours. */
+.hero .link-style--primary a { background: #fff; color: var(--c-blue); border-color: #fff; }
+.hero .link-style--primary a:hover { background: transparent; color: #fff; }
+.hero .link-style--secondary a { border-color: #fff; color: #fff; background: transparent; }
+.hero .link-style--secondary a:hover { background: #fff; color: var(--c-blue); }
+/* White/light background option (field_hero_bg, no-image heroes only) —
+   flip the dark-on-light defaults back to normal (non-hero) light-on-dark
+   button/text styling, since the gradient's white-text/white-outline
+   treatment above would be invisible here. */
+.hero--bg-white { background: var(--c-white); }
+.hero--bg-white, .hero--bg-white a, .hero--bg-white p, .hero--bg-white h1, .hero--bg-white h2 { color: var(--c-ink); }
+.hero--bg-white .hero__title { color: var(--c-ink-strong); }
+.hero--bg-white .hero__eyebrow { color: var(--c-blue); }
+.hero--bg-white .link-style--primary a { background: var(--c-blue); color: #fff; border-color: var(--c-blue); }
+.hero--bg-white .link-style--primary a:hover { background: transparent; color: var(--c-blue); }
+.hero--bg-white .link-style--secondary a { border-color: var(--c-blue); color: var(--c-blue); background: transparent; }
+.hero--bg-white .link-style--secondary a:hover { background: var(--c-blue); color: #fff; }
+/* Half-image variant (Figma 154:1209 + client "max page width 1920"): the copy
+   stays in the page content column on the LEFT, while the image fills the right
+   half and BLEEDS to the hero's right edge (the hero/bands cap at 1920, so the
+   image runs to the page edge up to 1920). The image fills the full hero height.
+   Below 800px it stacks under the copy instead of hiding. */
+.hero--split .hero__inner { grid-template-columns: 1fr; padding-block: 0; }
+.hero--split .hero__copy {
+  max-width: 50%; padding-right: var(--sp-6);
+  padding-block: clamp(2.5rem, 1.5rem + 3vw, 5rem);
+}
+.hero--split .hero__media {
+  position: absolute; top: 0; right: 0; bottom: 0; width: min(50vw, 960px);
+}
+.hero--split .hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* Full-image variant (Figma 41:431 "Full page image"): image full-bleed behind
+   the copy with a left→right dark scrim. Same absolute-fill technique. */
+.hero--full .hero__bg { position: absolute; inset: 0; z-index: 0; }
+.hero--full .hero__bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero--full::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, rgba(7,38,58,0.92) 0%, rgba(7,38,58,0.55) 60%, rgba(7,38,58,0.25) 100%);
+}
+.hero--full .hero__inner,
+.hero--full .hero__copy { position: relative; z-index: 2; }
+@media (max-width: 800px) {
+  /* Stack: copy first, then a full-width image band under it (not hidden). */
+  .hero--split .hero__copy { max-width: none; padding-right: 0; }
+  .hero--split .hero__media {
+    position: relative; inset: auto; width: auto; min-height: 220px;
+    margin-inline: calc(-1 * var(--gutter));
+  }
+}
+
+/* =============================================================== Cards === */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-6);
+  display: flex; flex-direction: column;
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.card:hover { box-shadow: var(--shadow-card-hover); }
+.card__title { font-size: var(--fs-h4); font-weight: 600; color: var(--c-heading); margin: 0 0 var(--sp-4); }
+.card__rule { border: 0; border-top: 1px solid var(--border-strong); margin: 0 0 var(--sp-4); }
+.card__body { color: var(--c-ink); margin-bottom: var(--sp-4); }
+.card__label { color: var(--c-magenta); font-weight: 600; font-size: var(--fs-sm); margin-bottom: var(--sp-5); }
+.card__cta { margin-top: auto; }
+
+/* Media card (Events) — image, blue title, meta, outline CTA */
+.card--media { padding: 0; box-shadow: none; background: transparent; }
+.card--media .card__media { border-radius: var(--radius); overflow: hidden; margin-bottom: var(--sp-4); aspect-ratio: 16 / 10; }
+.card--media .card__media img { width: 100%; height: 100%; object-fit: cover; }
+.card--media .card__title { font-size: 1.25rem; color: var(--c-blue); }
+.card--media .card__title a { color: var(--c-blue); }
+.card--media .card__meta { color: var(--c-ink); margin-bottom: var(--sp-4); }
+.card--media .card__meta strong { color: var(--c-blue); }
+
+/* Event card (Figma 157:2644, verified via node inspection) — image-led,
+   borderless: a square-corner image on top (410:326 ≈ 1.26:1), then a blue
+   20px title, "Dates:"/"Time:" line(s) with blue bold labels, and a "Learn
+   more" outline button pinned to the bottom so cards in a row line up. Sits
+   directly on the section background (no card box, no radius, no shadow). */
+.card--event { background: transparent; box-shadow: none; border: 0; padding: 0; }
+/* No hover shadow on the block itself — the card has no visible box (no bg,
+   no border), so the base .card:hover shadow just looked like a stray glitch
+   floating around nothing. The title/button still get their own hover state. */
+.card--event:hover { box-shadow: none; }
+/* Client feedback: the 410:326 Figma ratio (near-square) read as oversized,
+   especially with the placeholder graphic — match .card--media's existing
+   16:10 ratio instead, same as other "image on top" cards on the site. */
+.card--event .card__media { aspect-ratio: 16 / 10; overflow: hidden; margin: 0 0 var(--sp-4);
+  background: var(--c-blue-tint); }
+.card--event .card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card--event .card__title { font-size: 1.25rem; font-weight: 600; color: var(--c-blue);
+  line-height: 1.4; margin: 0 0 var(--sp-3); }
+.card--event .card__title a { color: var(--c-blue); }
+.card--event .card__title a:hover { color: var(--c-blue-600); }
+.card--event .card__meta { color: var(--c-ink); font-size: var(--fs-body); line-height: 1.5; margin-bottom: var(--sp-2); }
+.card--event .card__meta strong { color: var(--c-blue); font-weight: 600; }
+.card--event .card__cta { margin-top: auto; padding-top: var(--sp-4); }
+.card--event .card__cta a {
+  display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
+  height: var(--btn-h-picture); padding: 0 1.5rem; border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  color: var(--c-blue); background: transparent;
+}
+.card--event .card__cta a:hover { background: var(--c-blue); color: #fff; text-decoration: none; }
+
+/* Portrait image-overlay tile (Figma 170:2329) — image bg + bottom gradient +
+   white title + "Learn more" button. Shared look with .topic-card so image
+   simple_cards ("Topic Areas") and topic tiles are identical. */
+.card--overlay {
+  /* Sharp corners on image cards (rounded is reserved for non-image cards). */
+  position: relative; padding: 0; overflow: hidden; border-radius: 0;
+  min-height: 380px; box-shadow: var(--shadow-card); color: #fff;
+  /* column flex (inherited from .card) → push content to the BOTTOM with
+     justify-content; align-items:stretch keeps the title/CTA left + full-width.
+     (align-items:flex-end here would right-align, not bottom.) */
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch;
+  background: var(--c-blue-navy); /* fallback if the image is slow/missing */
+}
+.card--overlay .field, .card--overlay .field__item { display: contents; }
+.card--overlay img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+/* For logged-in editors, Drupal wraps rendered media in a position:relative
+   .contextual-region (contextual links). That would become the containing block
+   for our absolutely-positioned fill images and collapse them to zero height —
+   so keep it out of the positioning chain inside every image tile/hero. */
+.hero__media .contextual-region,
+.hero__bg .contextual-region,
+.card--overlay .contextual-region,
+.topic-card .contextual-region { position: static; }
+.card--overlay::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.78) 100%);
+}
+.card--overlay .card__inner { position: relative; z-index: 2; display: flex; flex-direction: column;
+  align-items: flex-start; gap: var(--sp-4); padding: var(--sp-6); width: 100%; }
+.card--overlay .card__title { color: #fff; font-size: 1.5rem; line-height: 1.33; margin: 0; font-weight: 500; }
+.card--overlay .card__body { color: #fff; font-size: var(--fs-sm); }
+
+/* Content/quick-link card — rows of these stretch to equal height (CSS Grid
+   default), with the button pinned to the bottom via the base
+   .card__cta { margin-top: auto }. */
+
+/* ---- CTA field-links rendered as buttons in card/section contexts ------- */
+/* Content card ("Visit website") → outline button. */
+.card--cta .card__cta a,
+.card--media .card__cta a {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; padding: 0.75rem 1.5rem;
+  border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  color: var(--c-blue); background: transparent;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.card--cta .card__cta a:hover,
+.card--media .card__cta a:hover { background: var(--c-blue); color: #fff; text-decoration: none; }
+/* Overlay tile → white outline "Learn more" button (matches .topic-card).
+   Picture-card CTAs use the smaller 42px height. */
+.card--overlay .card__cta a {
+  display: inline-flex; align-items: center; font-weight: 600; font-size: var(--fs-sm);
+  height: var(--btn-h-picture); padding: 0 1.4rem;
+  border: 2px solid #fff; border-radius: var(--radius-sm); color: #fff; background: transparent;
+}
+.card--overlay .card__cta a:hover { background: #fff; color: var(--c-blue); text-decoration: none; }
+/* Section-level CTA ("View all updates") → filled blue button. */
+.section-cta a {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; height: var(--btn-h); padding: 0 1.75rem;
+  border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  background: var(--c-blue); color: #fff;
+}
+/* Solid -> outline on hover. */
+.section-cta a:hover { background: transparent; border-color: var(--c-blue); color: var(--c-blue); text-decoration: none; }
+.section--dark .section-cta a { background: transparent; border-color: #fff; }
+.section--dark .section-cta a:hover { background: #fff; color: var(--c-blue); }
+
+/* =========================================================== Header ====== */
+/* Utility (tertiary) bar */
+.site-header__utility { background: var(--c-blue-tint); }
+.site-header__utility .wrap { display: flex; justify-content: flex-end; padding-block: 0.5rem; }
+.utility-nav { display: flex; gap: 0; align-items: center; list-style: none; margin: 0; padding: 0; }
+.utility-nav li { margin: 0; }
+.utility-nav li + li { border-left: 1px solid var(--c-hair); }
+.utility-nav a {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0 1rem; font-size: var(--fs-sm); color: var(--c-ink); font-weight: 400;
+}
+.utility-nav a:hover { color: var(--c-blue); text-decoration: none; }
+.utility-nav .is-strong a { font-weight: 700; }
+
+/* Main bar: logo + nav */
+.site-header__main { box-shadow: var(--shadow-header); background: #fff; }
+.site-header__main .wrap {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-6);
+  padding-block: 0.5rem;
+}
+/* Branding logo (the SAN lockup, the theme's logo.svg) — sized to nearly fill the bar. The
+   trimmed vertical padding above keeps the header the same overall height as
+   the logo grows; width follows the aspect ratio. (A leftover duplicate rule
+   here used to cap this at max-height:72px regardless of the height set
+   below — removed; that's why "bigger" wasn't visibly taking effect.) */
+.site-brand { display: inline-flex; align-items: center; }
+.site-brand a { display: flex; } /* block-level: no line-box gap under the logo */
+.site-brand img { height: 55px; width: auto; max-width: 100%; }
+@media (max-width: 900px) { .site-brand img { height: 46px; } }
+@media (max-width: 800px) { .site-brand img { height: 40px; } }
+
+/* Main navigation + mega menu.
+ * The menu <ul> is wrapped by Drupal block markup (div.block > nav > ul.menu--main),
+ * so selectors are descendant-based, not direct-child. */
+.main-nav, .main-nav > div, .main-nav nav, .main-nav .block { margin: 0; }
+.main-nav h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.main-nav ul.menu--main {
+  display: flex; gap: clamp(1rem, 0.5rem + 2vw, 3.2rem);
+  list-style: none; margin: 0; padding: 0; align-items: center;
+}
+.main-nav ul.menu--main > li { margin: 0; position: relative; list-style: none; }
+/* A top-level item with no real destination (content editors' Drupal <nolink>
+   for dropdown-only parents) renders as a <button>, not an <a> — reset the
+   browser's button chrome so it starts identical, then every rule below
+   matches both. */
+.main-nav ul.menu--main > li > button {
+  background: none; border: 0; font: inherit; text-align: left; cursor: pointer;
+}
+.main-nav ul.menu--main > li > a,
+.main-nav ul.menu--main > li > button {
+  position: relative; display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 1.1rem 0; font-size: var(--fs-body); font-weight: 500; color: var(--c-ink);
+  white-space: nowrap;
+}
+/* Underline sits just below the title (not at the bar bottom). */
+.main-nav ul.menu--main > li > a::after,
+.main-nav ul.menu--main > li > button::after {
+  content: ""; position: absolute; left: 0; right: 0; top: calc(100% - 1.1rem + 7px);
+  height: 3px; border-radius: 2px; background: transparent;
+}
+/* Active section + hover → SAN purple (a.is-active = current page; li in the
+   active section carries .is-active-trail — highlight that too). */
+.main-nav ul.menu--main > li > a:hover,
+.main-nav ul.menu--main > li > button:hover,
+.main-nav ul.menu--main > li.is-open > a,
+.main-nav ul.menu--main > li.is-open > button,
+.main-nav ul.menu--main > li.has-dropdown:hover > a,
+.main-nav ul.menu--main > li.has-dropdown:hover > button,
+.main-nav ul.menu--main > li > a.is-active,
+.main-nav ul.menu--main > li.is-active-trail > a,
+.main-nav ul.menu--main > li.is-active-trail > button { color: var(--c-magenta); text-decoration: none; }
+.main-nav ul.menu--main > li > a:hover::after,
+.main-nav ul.menu--main > li > button:hover::after,
+.main-nav ul.menu--main > li.is-open > a::after,
+.main-nav ul.menu--main > li.is-open > button::after,
+.main-nav ul.menu--main > li.has-dropdown:hover > a::after,
+.main-nav ul.menu--main > li.has-dropdown:hover > button::after,
+.main-nav ul.menu--main > li > a.is-active::after,
+.main-nav ul.menu--main > li.is-active-trail > a::after,
+.main-nav ul.menu--main > li.is-active-trail > button::after { background: var(--c-magenta); }
+/* Dropdown / mega panel */
+.main-nav .menu-dropdown {
+  position: absolute; top: 100%; left: 0;
+  background: #fff; box-shadow: var(--shadow-card); border-radius: 0 0 var(--radius) var(--radius);
+  padding: var(--sp-4); margin: 0; list-style: none;
+  display: flex; gap: var(--sp-8);
+  opacity: 0; visibility: hidden; transform: translateY(6px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), visibility var(--dur);
+  z-index: 50;
+}
+/* Desktop dropdown anchoring (only above the mobile breakpoint — the mobile
+   overlay below repositions these as full-screen panels). */
+@media (min-width: 1081px) {
+  /* Mega dropdown is wide; anchor it to the trigger's right edge so the second
+     (External Resources) column never runs off-screen — matches Figma 26:323. */
+  .main-nav .menu-dropdown--mega { min-width: 560px; left: auto; right: 0; }
+  /* The two right-most items open past the viewport edge on laptop widths (and,
+     because the panels exist even while hidden, they force horizontal page
+     scroll). Anchor them to the right so they open leftward and stay on-screen.
+     NB: the mobile-nav JS clones the utility links into this same <ul>, so count
+     only the real menu items (":not(.mobile-nav__util)") — otherwise the hidden
+     Login/Contact clones become the "last 2" and Events/Join SAN overflow. */
+  .main-nav ul.menu--main > li:nth-last-child(-n+2 of :not(.mobile-nav__util)) > .menu-dropdown { left: auto; right: 0; }
+}
+.main-nav li.is-open > .menu-dropdown,
+.main-nav li:hover > .menu-dropdown,
+.main-nav li:focus-within > .menu-dropdown {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.main-nav .menu-dropdown__col { min-width: 200px; }
+.main-nav .menu-dropdown__list { list-style: none; margin: 0; padding: 0; }
+.main-nav .menu-dropdown__list li { margin: 0; }
+.main-nav .menu-dropdown__list button {
+  background: none; border: 0; font: inherit; text-align: left; width: 100%; cursor: pointer;
+}
+.main-nav .menu-dropdown__list a,
+.main-nav .menu-dropdown__list button {
+  display: block; color: var(--c-ink); font-size: var(--fs-body); white-space: nowrap;
+  padding: 0.5rem 0.75rem; border-radius: var(--radius-sm);
+}
+.main-nav .menu-dropdown__list a:hover,
+.main-nav .menu-dropdown__list button:hover { background: var(--c-blue-tint); color: var(--c-blue); }
+.main-nav .menu-dropdown__list a.is-active { color: var(--c-magenta); font-weight: 600; }
+/* External-resources column: blue "External Resources*" heading + note.
+   The links themselves stay dark like the topic column (Figma 26:323). */
+.main-nav .menu-dropdown__heading {
+  display: block; color: var(--c-blue); font-weight: 700; font-size: var(--fs-body);
+  padding: 0.5rem 0.75rem;
+}
+.main-nav .menu-dropdown__heading::after { content: "*"; }
+.main-nav .menu-dropdown__group::after {
+  content: "* Opens external links"; display: block;
+  color: var(--c-blue); font-style: italic; font-size: var(--fs-sm); padding: var(--sp-3) 0.75rem 0;
+}
+
+/* Mobile nav toggle (hidden on desktop) */
+.nav-toggle { display: none; background: none; border: 0; font-size: 1.6rem; color: var(--c-blue); cursor: pointer; }
+
+/* Mobile-menu chrome injected by wiche.js (top strip, submenu back bars, and the
+   bottom block that holds the tertiary links + CTA). In the DOM at all widths
+   but only shown inside the mobile overlay below. */
+.mobile-nav__top, .mobile-nav__bottom, .menu-dropdown__back { display: none; }
+
+/* ---- Mobile full-screen drill-down menu (Figma 28:1954) ----------------- */
+@media (max-width: 1080px) {
+  .nav-toggle { display: inline-flex; }
+  body.is-nav-open { overflow: hidden; }
+  /* The tertiary bar moves into the hamburger menu on mobile — hide the
+     duplicate that otherwise sits at the top of the header. */
+  .site-header__utility { display: none; }
+
+  /* Full-screen overlay as a column: top strip · scrolling list · bottom block
+     (tertiary links + CTA). */
+  .main-nav { position: fixed; inset: 0; z-index: 1000; background: #fff; display: none; padding: 0; }
+  .main-nav.is-open { display: flex; flex-direction: column; }
+  .main-nav > div:not([class]) { flex: 1 1 auto; overflow-y: auto; min-height: 0; }
+
+  /* Top strip: search + close. */
+  .mobile-nav__top {
+    display: flex; align-items: center; justify-content: flex-end; gap: var(--sp-5);
+    flex: 0 0 auto; height: 60px; padding: 0 20px;
+    background: #fff; border-bottom: 1px solid var(--c-blue);
+  }
+  .mobile-nav__search, .mobile-nav__close {
+    background: none; border: 0; color: var(--c-ink); cursor: pointer;
+    display: inline-flex; align-items: center; padding: 6px; line-height: 1; font-size: 1.4rem;
+  }
+  .mobile-nav__top .divider { width: 1px; height: 24px; background: rgba(0,0,0,.35); }
+
+  /* Top-level list. */
+  .main-nav ul.menu--main {
+    flex-direction: column; align-items: stretch; gap: 0; padding: 8px 24px 24px;
+  }
+  .main-nav ul.menu--main > li { position: static; border-bottom: 1px solid var(--border); }
+  .main-nav ul.menu--main > li > a,
+  .main-nav ul.menu--main > li > button {
+    display: flex; align-items: center; justify-content: space-between; width: 100%;
+    padding: 16px 0; font-size: 20px; line-height: 1.3; color: #414042; font-weight: 400;
+  }
+  .main-nav ul.menu--main > li > a::after,
+  .main-nav ul.menu--main > li > button::after { display: none; }   /* not the desktop underline */
+  .main-nav ul.menu--main > li.has-dropdown > a::after,
+  .main-nav ul.menu--main > li.has-dropdown > button::after {
+    content: "\203A"; display: inline; position: static; inset: auto; height: auto; background: none;
+    color: var(--c-blue); font-size: 1.7rem; line-height: 1; margin-left: var(--sp-4);
+  }
+  .main-nav ul.menu--main > li > a:hover,
+  .main-nav ul.menu--main > li > button:hover { color: var(--c-blue); }
+
+  /* Submenu = off-canvas panel that slides in over everything. */
+  .main-nav .menu-dropdown {
+    position: fixed; top: 60px; left: 0; right: 0; bottom: 0; z-index: 1010;
+    background: #fff; display: block; opacity: 1; visibility: hidden;
+    transform: translateX(100%); transition: transform .28s var(--ease), visibility .28s;
+    overflow-y: auto; padding: 0 0 24px; margin: 0; box-shadow: none; min-width: 0; gap: 0;
+  }
+  .main-nav li.is-open > .menu-dropdown { visibility: visible; transform: translateX(0); }
+
+  /* Blue "‹ Back" bar at the top of each submenu. */
+  .menu-dropdown__back {
+    display: flex; align-items: center; gap: 12px; width: 100%;
+    background: var(--c-blue); color: #fff; border: 0; cursor: pointer; text-align: left;
+    padding: 16px 24px; font-family: var(--font-body); font-size: 20px; font-weight: 500;
+  }
+  .menu-dropdown__back::before { content: "\2039"; font-size: 1.7rem; line-height: 1; }
+
+  /* Submenu items (flatten the desktop columns). */
+  .main-nav .menu-dropdown__col { min-width: 0; padding: 0; display: block; }
+  .main-nav .menu-dropdown__heading { padding: 20px 24px 4px; color: var(--c-blue); }
+  .main-nav .menu-dropdown__list { padding: 0 24px; }
+  .main-nav .menu-dropdown__list li { border-bottom: 1px solid var(--border); }
+  .main-nav .menu-dropdown__list a,
+  .main-nav .menu-dropdown__list button {
+    display: block; white-space: normal; padding: 16px 0; font-size: 20px; color: #414042; border-radius: 0;
+  }
+  .main-nav .menu-dropdown__list a:hover,
+  .main-nav .menu-dropdown__list button:hover { background: none; color: var(--c-blue); }
+  .main-nav .menu-dropdown__group::after { display: none; }
+
+  /* Bottom block: tertiary links (smaller, tinted) + the CTA button — sits at
+     the foot of the overlay on a light-blue band (Figma). */
+  .mobile-nav__bottom { display: block; flex: 0 0 auto; background: var(--c-blue-tint); }
+  .mobile-nav__tertiary { list-style: none; margin: 0; padding: 10px 24px; }
+  .mobile-nav__tertiary li { margin: 0; }
+  .mobile-nav__tertiary a { display: block; padding: 8px 0; font-size: 15px; color: #414042; text-decoration: none; }
+  .mobile-nav__tertiary a:hover { color: var(--c-blue); }
+  .mobile-nav__cta { display: flex; justify-content: center; align-items: center; padding: 8px 20px 22px; }
+  .mobile-nav__cta a {
+    display: inline-flex; align-items: center; justify-content: center; min-width: 213px;
+    background: var(--c-blue); color: #fff; font-weight: 600; font-size: 12px;
+    text-transform: uppercase; letter-spacing: .02em; padding: 11px 20px; border-radius: 6px; text-decoration: none;
+  }
+  .mobile-nav__cta a:hover { background: var(--c-blue-600); }
+}
+
+/* =========================================================== Footer ====== */
+/* Figma "Wiche-Refresh" node 722:1045 (intro, light blue tint), 722:1065
+   (WCET band) + 722:1071 (legal strip), both on the dark slate band —
+   client-approved redesign. Content is raw HTML in two basic blocks
+   (scripts/content/footer-cols.html, footer-wcet.html via
+   scripts/footer-blocks.php), rendered inside the page.footer_top /
+   page.footer regions' existing .wrap (page.html.twig). */
+.site-footer__top { background: var(--c-blue-tint); padding-block: var(--sp-7); }
+.footer-intro { display: flex; align-items: center; gap: var(--sp-8); }
+.footer-intro__brand { flex: 0 0 auto; }
+.footer-intro__brand img { display: block; height: 56px; width: auto; }
+.footer-intro__divider { flex: 0 0 auto; align-self: stretch; width: 1px; background: var(--c-blue); opacity: 0.4; }
+.footer-intro__connect { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-2); width: 219px; }
+.footer-intro__heading { display: block; font-size: 1.125rem; font-weight: 600; color: var(--c-heading); margin-bottom: var(--sp-1); }
+.footer-intro__phone { color: var(--c-heading); font-weight: 500; text-decoration: underline; }
+.footer-intro__address { font-style: normal; color: var(--c-ink); line-height: 1.5; }
+.footer-intro__social { display: inline-flex; align-items: center; gap: var(--sp-2); color: var(--c-ink); text-decoration: underline; }
+.footer-intro__connect .button { margin-top: var(--sp-3); width: 100%; }
+.footer-intro__disclaimer { flex: 1 1 auto; color: var(--c-ink); font-size: var(--fs-sm); line-height: 1.7; margin: 0; }
+@media (max-width: 1100px) {
+  .footer-intro { flex-wrap: wrap; }
+  .footer-intro__divider { display: none; }
+  .footer-intro__disclaimer { flex-basis: 100%; }
+}
+@media (max-width: 560px) {
+  .footer-intro { flex-direction: column; align-items: flex-start; gap: var(--sp-6); }
+  .footer-intro__connect { width: 100%; }
+}
+
+.site-footer__wcet { background: var(--c-slate); color: #e9ecf1; }
+.footer-wcet { display: flex; align-items: center; gap: var(--sp-6); padding-block: var(--sp-7); }
+.footer-wcet__logo { display: block; height: 45px; width: auto; flex: 0 0 auto; }
+.footer-wcet p { margin: 0; font-size: var(--fs-sm); line-height: 1.45; }
+.site-footer__wcet a { color: #fff; }
+@media (max-width: 560px) { .footer-wcet { flex-direction: column; align-items: flex-start; gap: var(--sp-4); } }
+
+.footer-legal {
+  display: flex; flex-wrap: wrap; gap: var(--sp-5); justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.2); padding-block: 13px; font-size: 0.75rem;
+}
+.footer-legal p { margin: 0; font-weight: 600; }
+.footer-legal nav ul { display: flex; gap: var(--sp-6); list-style: none; margin: 0; padding: 0; }
+.footer-legal a { text-decoration: underline; }
+
+/* --- Resilient region styling: make placed menu blocks look designed ----- */
+/* Utility bar: the menu block renders <nav><ul><li> (no .menu class on the ul). */
+.site-header__utility .block, .site-header__utility nav { margin: 0; }
+.site-header__utility h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.site-header__utility ul {
+  display: flex; align-items: center; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; justify-content: flex-end;
+}
+.site-header__utility li { margin: 0; }
+.site-header__utility li + li { border-left: 1px solid var(--c-hair); }
+.site-header__utility a {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0 1rem; font-size: var(--fs-sm); color: var(--c-ink); font-weight: 400;
+}
+.site-header__utility a:hover { color: var(--c-blue); text-decoration: none; }
+
+/* Inline search (wiche.js wicheHeaderSearch): the Search link/icon swaps for
+   this on click, so a term can be typed before navigating to /search. */
+.header-search { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0 1rem; }
+.header-search__input {
+  border: 0; border-bottom: 1px solid var(--c-hair); background: none;
+  font: inherit; font-size: var(--fs-sm); color: var(--c-ink); width: 11rem; max-width: 40vw;
+  padding: 0.15rem 0; outline: none;
+}
+.header-search__input:focus { border-bottom-color: var(--c-blue); }
+.header-search__submit {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: 0; color: var(--c-ink); cursor: pointer; padding: 0; line-height: 1;
+}
+.header-search__submit:hover { color: var(--c-blue); }
+/* In the mobile top strip (icon-only slot) give the input more breathing
+   room — it's the only item in that row, not sharing space with other links. */
+.mobile-nav__top .header-search { flex: 1 1 auto; padding: 0; }
+.mobile-nav__top .header-search__input { width: auto; max-width: none; flex: 1 1 auto; }
+
+.site-footer__top .block { margin: 0; }
+
+/* ============================================ Admin-UI guard ============= */
+/* Keep wiche's generic element styles out of Drupal's chrome (toolbar,
+ * contextual links, off-canvas). :where() keeps these at zero added
+ * specificity so they only override wiche's own bare-element rules, never
+ * Drupal's higher-specificity admin CSS. */
+:where(#toolbar-administration, .contextual, .contextual-links, #drupal-off-canvas) a { text-decoration: none; }
+:where(#toolbar-administration, .contextual, .contextual-links, #drupal-off-canvas) a:hover { text-decoration: none; color: inherit; }
+:where(#toolbar-administration, .contextual, .contextual-links, #drupal-off-canvas) :is(ul, ol, li) { margin: 0; padding: 0; list-style: none; }
+:where(#toolbar-administration, .contextual, .contextual-links, #drupal-off-canvas, .ui-dialog) :is(strong, b) { color: inherit; }
+/* Contextual "pencil" region must not be clipped by our overflow/rounding. */
+.contextual-region { position: relative; }
+.hero, .card--overlay { } /* overflow set locally; contextual sits inside */
+/* Keep contextual-link dropdowns collapsed until their trigger opens them.
+ * Re-asserted at theme level (specificity 0,3,0 + theme load order) so the
+ * collapse holds even where core's base `.contextual-links{display:none}` is
+ * overridden — otherwise the whole link list sits open on the page. */
+.contextual-region .contextual .contextual-links { display: none; }
+.contextual-region .contextual.open .contextual-links { display: block; }
+
+/* ================================================= Drupal chrome ========= */
+.region-breadcrumb { padding-block: var(--sp-4); }
+.breadcrumb, .region-breadcrumb ol, .region-breadcrumb ul { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; margin: 0; padding: 0; font-size: var(--fs-sm); color: var(--c-muted); }
+.breadcrumb li + li::before, .region-breadcrumb li + li::before { content: "/"; margin-right: var(--sp-2); color: var(--c-hair); }
+/* Landing pages (Figma 35:1632): breadcrumbs sit below the hero, not above the
+   whole page — hide the normal top-of-page block there;
+   node--landing-page--full.html.twig renders the same block again right after
+   the hero (.region-breadcrumb--post-hero). */
+.page-node-type-landing_page .region-breadcrumb:not(.region-breadcrumb--post-hero) { display: none; }
+.region-breadcrumb--post-hero { padding-block: var(--sp-5) var(--sp-2); }
+.region-highlighted .messages { margin-block: var(--sp-4); }
+
+/* Local task tabs (View / Edit / Delete / Revisions) — editors only.
+ * stable9 outputs a classless <ul> here, so style it off the block id. Renders
+ * as a neat row of pill options rather than a bare bullet list. */
+#block-wiche-tabs { margin: 0 0 var(--sp-6); }
+#block-wiche-tabs > ul { display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  list-style: none; margin: 0; padding: 0; }
+#block-wiche-tabs li { margin: 0; }
+#block-wiche-tabs a { display: inline-block; padding: 0.4rem 0.95rem; line-height: 1.4;
+  border: 1px solid var(--border-strong); border-radius: 999px; background: #fff;
+  color: var(--c-blue); font-weight: 600; font-size: var(--fs-sm); text-decoration: none; }
+#block-wiche-tabs a:hover { background: var(--c-blue-tint); text-decoration: none; }
+#block-wiche-tabs a.is-active,
+#block-wiche-tabs li.is-active > a { background: var(--c-blue); border-color: var(--c-blue); color: #fff; }
+/* secondary tabs (if any) sit just under the primary row */
+#block-wiche-tabs > ul + h2 { margin-top: var(--sp-4); }
+
+/* =============================================== FAQ / accordion ========= */
+.paragraph-faq .accordion { border-top: 1px solid var(--border); }
+.faq-item { border-bottom: 1px solid var(--border); background: #fff; }
+.faq-item > summary, .faq-item__q {
+  cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;
+  gap: var(--sp-4); padding: var(--sp-4) var(--sp-5); font-weight: 600; color: var(--c-heading); font-size: 1.125rem;
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary::after { content: "+"; font-size: 1.6rem; line-height: 1; color: var(--c-blue); font-weight: 400; }
+.faq-item[open] > summary { background: var(--c-blue); color: #fff; }
+.faq-item[open] > summary::after { content: "\2212"; color: #fff; }
+.faq-item__a { padding: var(--sp-5); }
+.faq-item__a a { color: var(--c-blue); text-decoration: underline; }
+
+/* =============================================== CTA banner ============== */
+.cta-banner {
+  /* Client feedback: square corners on the banner itself (buttons keep their
+     own small radius below). */
+  background: var(--hero-gradient); color: #fff; border-radius: 0;
+  padding: clamp(2rem, 1rem + 3vw, 3.5rem);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-6); flex-wrap: wrap;
+}
+.cta-banner h2, .cta-banner h3 { color: #fff; margin: 0; max-width: 20ch; font-weight: 400; }
+/* Up to 3 links (field_links) — unwrap the field's wrapper divs so each
+   link becomes a direct flex child, laid out per field_link_alignment. */
+.cta-banner__action { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+.cta-banner__action > .field, .cta-banner__action > .field > .field__items,
+.cta-banner__action > div:not([class]), .cta-banner__action > div:not([class]) > div:not([class]) { display: contents; }
+.cta-banner__action--start { justify-content: flex-start; }
+.cta-banner__action--center { justify-content: center; }
+.cta-banner__action--end { justify-content: flex-end; }
+.cta-banner a { display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
+  height: var(--btn-h); padding: 0 1.75rem; border: 2px solid #fff; border-radius: var(--radius-sm); color: #fff; white-space: nowrap; }
+.cta-banner a:hover { background: #fff; color: var(--c-blue); text-decoration: none; }
+
+/* =============================================== Media / figure ========== */
+.paragraph--single_image img, .paragraph--single_video iframe, .media img { border-radius: var(--radius); }
+.paragraph--single_video .field { position: relative; }
+.paragraph--single_video iframe, .paragraph--single_video video { width: 100%; aspect-ratio: 16/9; height: auto; }
+figure { margin: 0; }
+figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--sp-2); }
+/* Logo card (SAN Essentials etc.): small logo + title inline */
+.card--media .card__media--logo { aspect-ratio: auto; margin-bottom: var(--sp-4); }
+.card--media .card__media--logo img { width: auto; max-height: 44px; }
+
+/* File download link */
+.paragraph--single_file a, .field--type-file a { display: inline-flex; align-items: center; gap: var(--sp-2); color: var(--c-blue); font-weight: 600; }
+/* Core's file-size text ("(6.22 KB)") is a plain sibling right after the
+   filename/button with no spacing of its own — give it breathing room,
+   especially now the link renders as a button (background/border/height). */
+.paragraph--single_file .file + span, .field--type-file .file + span {
+  margin-left: var(--sp-3); color: var(--c-muted); font-size: var(--fs-sm);
+}
+
+/* =============================================== Table ==================== */
+.paragraph-table { overflow-x: auto; }
+.paragraph-table table, table.responsive-enabled, .region-content table { width: 100%; border-collapse: collapse; font-size: var(--fs-body); }
+.region-content th { text-align: left; background: var(--c-blue-tint); color: var(--c-heading); font-weight: 600; padding: var(--sp-3) var(--sp-4); border-bottom: 2px solid var(--c-blue); }
+.region-content td { padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border); }
+.region-content tr:nth-child(even) td { background: var(--c-blue-tint-2); }
+/* A data table follows an intro block that already carries a full section's
+   bottom padding — don't stack a second one on top (was ~160px of white). */
+.paragraph-table-section { padding-top: 0; margin-top: calc(var(--section-y) / -2); }
+.paragraph-table-section tbody tr:nth-child(even) td { background: none; }
+.paragraph-table-section tbody tr.is-stripe td { background: var(--c-blue-tint-2); }
+/* Filter row added by wiche.js (wicheTableFilters) under the table header. */
+.region-content .table-filters th { background: var(--c-white); border-bottom: 1px solid var(--border); padding: var(--sp-2) var(--sp-4); }
+.table-filters input, .table-filters select {
+  width: 100%; font: inherit; font-size: var(--fs-sm); color: var(--c-ink);
+  padding: 0.5rem 0.6rem; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: #fff;
+}
+.table-filters input:focus, .table-filters select:focus { outline: 2px solid var(--c-blue); outline-offset: 1px; }
+
+/* ============================ Design-spec refinements (2026-09-06) ======== */
+/* Button text colour must win over container link-colour rules. */
+.section a.button, .region-content a.button { color: #fff; }
+
+/* Accordion (spec 161:2043): default grey, rollover = blue text, selected =
+ * blue filled bar + white text + left blue accent on the open content. */
+.faq-item > summary:hover { color: var(--c-blue); }
+.faq-item[open] > summary,
+.faq-item[open] > summary:hover { color: #fff; }
+.faq-item[open] .faq-item__a { border-left: 3px solid var(--c-blue); }
+
+/* Hero split (Figma 41:431 "Half page image"): the SAME blue→navy gradient as
+ * the solid variant runs full-width; the image covers the right (dark) half, so
+ * the copy half reads as the gradient's light end (#136196). Inherit the base
+ * .hero gradient — no solid-colour override. */
+
+/* ===================================== Topic summary cards (item 1) ======= */
+/* Portrait image-overlay tiles (Figma 170:2329): the photo fills the tile and a
+   dark gradient anchors a white title + "Learn more" button at the bottom. */
+/* Sharp corners on image cards; a fixed portrait aspect-ratio (not min-height)
+   keeps the same rectangle shape at every column width — a fixed height alone
+   let the tile go square once mobile's 1-column layout widened the card. */
+.topic-card { position: relative; display: flex; align-items: flex-end;
+  aspect-ratio: 299 / 409; min-height: 260px; border-radius: 0; overflow: hidden;
+  text-decoration: none; box-shadow: var(--shadow-card); }
+.topic-card:hover { text-decoration: none; box-shadow: var(--shadow-card-hover); }
+.topic-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.topic-card::after { content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.78) 100%); }
+.topic-card__inner { position: relative; z-index: 2; display: flex; flex-direction: column;
+  align-items: flex-start; gap: 1.25rem; padding: var(--sp-6); width: 100%; }
+.topic-card__title { color: #fff; font-weight: 600; font-size: 1.375rem; line-height: 1.25; }
+.topic-card__cta { display: inline-flex; align-items: center; color: #fff; font-weight: 600; font-size: var(--fs-sm);
+  height: var(--btn-h-picture); padding: 0 1.4rem; border: 2px solid #fff; border-radius: var(--radius-sm); }
+.topic-card:hover .topic-card__cta { background: #fff; color: var(--c-blue); }
+/* Plain fallback until a topic image is uploaded: tinted portrait tile. */
+.topic-card--plain { background: var(--c-blue-tint); }
+.topic-card--plain::after { display: none; }
+.topic-card--plain .topic-card__title { color: var(--c-blue); }
+.topic-card--plain .topic-card__cta { color: var(--c-blue); border-color: var(--c-blue); }
+.topic-card--plain:hover .topic-card__cta { background: var(--c-blue); color: #fff; }
+/* Summary section: centered blue title, 30px tile gap (Figma 170:2329). */
+.paragraph-summary .section-head__title { color: var(--c-blue); }
+.summary-grid--overlay { gap: var(--sp-6); }
+
+/* ===================================== Article teaser card (170:3555) ===== */
+/* For article/resource node teasers in "Latest Resources" grids. */
+.card--article { position: relative; background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow-card); padding: var(--sp-6);
+  display: flex; flex-direction: column; }
+.card--article .card--article__label { color: var(--c-magenta); font-weight: 600; font-size: var(--fs-sm); }
+.card--article .card--article__date { color: var(--c-muted); font-size: var(--fs-sm); margin-bottom: var(--sp-3); }
+.card--article .card--article__lock { position: absolute; top: var(--sp-5); right: var(--sp-5); color: var(--c-ink); }
+.card--article .card--article__rule { border: 0; border-top: 1px solid var(--border-strong); margin: 0 0 var(--sp-4); }
+/* Client feedback: headings black (#4A4A4A) and Regular weight, not bold. */
+.card--article .card--article__title { font-size: 1.125rem; font-weight: 400; color: var(--c-ink); margin: 0 0 var(--sp-4); }
+.card--article .card--article__tags { color: var(--c-ink); font-size: var(--fs-sm); margin-bottom: var(--sp-5); }
+.card--article .card__cta { margin-top: auto; text-align: center; }
+.card--article .card__cta a { display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; height: var(--btn-h); padding: 0 2rem; border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  color: var(--c-blue); background: transparent; }
+.card--article .card__cta a:hover { background: var(--c-blue); color: #fff; text-decoration: none; }
+
+/* article card: strip field wrappers so label/date/tags read inline */
+.card--article__label .field, .card--article__tags .field { margin: 0; }
+.card--article__label, .card--article__label * { display: inline; }
+.card--article__label a { color: inherit; text-decoration: none; font-weight: 600; }
+.card--article__tags .field__item { color: var(--c-ink); font-size: var(--fs-sm); }
+.card--article__tags a { color: var(--c-ink); text-decoration: none; }
+
+/* Equal-height cards in view-based grids (e.g. /resources/all): the grid
+   stretches each .views-row to the tallest in the row — make the card fill that
+   height so every card matches and the "Read more" buttons line up. */
+.card-grid .views-row { display: flex; }
+.card-grid .views-row > * { flex: 1 1 auto; }
+
+/* ============================================================== Pager ===== */
+/* Neat centred row of page buttons; current page is a filled button. */
+.pager { margin-top: var(--sp-8); }
+.pager__items { display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: var(--sp-2); list-style: none; margin: 0; padding: 0; }
+.pager__item { margin: 0; }
+.pager__item a {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 2.5rem; height: 2.5rem; padding: 0 0.85rem;
+  border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+  background: #fff; color: var(--c-blue); font-weight: 600; text-decoration: none;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.pager__item a:hover { background: var(--c-blue-tint); border-color: var(--c-blue); color: var(--c-blue); text-decoration: none; }
+.pager__item.is-active a,
+.pager__item a[aria-current="page"] { background: var(--c-blue); border-color: var(--c-blue); color: #fff; }
+.pager__item--previous a, .pager__item--next a,
+.pager__item--first a, .pager__item--last a { font-weight: 700; }
+.pager__item.is-active { pointer-events: none; }
+
+/* Topic cards on the dark Resources band: readable without images (white title
+ * on a subtle translucent card). Upgrades to image-overlay when topics get an
+ * image field. */
+.section--dark .topic-card--plain { background: rgba(255,255,255,0.07); }
+.section--dark .topic-card--plain .topic-card__title { color: #fff; }
+.section--dark .topic-card--plain .topic-card__cta { color: #cfe0ee; }
+.section--dark .topic-card--plain:hover .topic-card__cta { color: #fff; }
+
+/* ===================================== Resource / article page (53:499) ==== */
+/* The full-page template renders its own H1, so hide the page-title block.
+   stable9 outputs the page-title block as a bare <div id="block-wiche-pagetitle">
+   (no class), so target it by id, scoped to resource/event node pages. */
+.page-node-type-resource #block-wiche-pagetitle,
+.page-node-type-event #block-wiche-pagetitle,
+/* landing pages lead with a hero (field_p_header) that carries the H1 */
+.page-node-type-landing_page #block-wiche-pagetitle { display: none; }
+
+/* single-column widths (link-only resources) */
+.resource-article:not(.resource-article--split) .resource-article__head,
+.resource-article:not(.resource-article--split) .resource-downloads { max-width: 820px; }
+
+.article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-sm); margin-bottom: var(--sp-3); }
+.article-meta__cat { color: var(--c-magenta); font-weight: 600; }
+.article-meta__date, .article-meta__topic { color: var(--c-muted); }
+/* field wrappers render inline inside the meta line */
+.article-meta .field, .article-meta .field__item { display: inline; margin: 0; }
+.article-meta__cat a { color: inherit; text-decoration: none; }
+.article-meta__topic a { color: var(--c-muted); text-decoration: none; }
+.article-meta__topic .field__item + .field__item::before { content: ", "; }
+
+.article-title { color: var(--c-blue); font-size: var(--fs-display); line-height: 1.15;
+  margin: 0 0 var(--sp-6); }
+
+/* prose body: first paragraph reads as a lead */
+.resource-article__main { color: var(--c-ink); }
+.resource-article__main > p:first-of-type { font-size: var(--fs-lead); color: var(--c-slate); }
+
+/* Two-column article: prose (left) + Quick links sidebar (right, top-aligned) */
+.resource-article--split { display: grid; grid-template-columns: minmax(0, 1fr) 320px;
+  column-gap: var(--sp-9); row-gap: var(--sp-6); align-items: start; }
+.resource-article--split .resource-article__head { grid-column: 1; grid-row: 1; margin: 0; }
+.resource-article--split .resource-article__main { grid-column: 1; grid-row: 2; }
+.resource-article--split .resource-article__aside { grid-column: 2; grid-row: 1 / span 2; }
+.resource-article--split .resource-article__related { grid-column: 1 / -1; }
+@media (max-width: 880px) {
+  .resource-article--split { display: block; }
+  .resource-article--split .resource-article__aside { margin-top: var(--sp-7); }
+}
+
+/* Quick links sidebar box */
+.quick-links { border-top: 2px solid var(--border-strong); padding-top: var(--sp-4); }
+.quick-links__title { color: var(--c-heading); font-size: var(--fs-h4); margin: 0 0 var(--sp-4); }
+.quick-links__list .paragraph-link { position: relative; padding: var(--sp-2) 0 var(--sp-2) var(--sp-4); }
+.quick-links__list .paragraph-link::before { content: "›"; position: absolute; left: 0;
+  color: var(--c-blue); font-weight: 700; }
+.quick-links__list a { color: var(--c-blue); text-decoration: none; font-weight: 500; }
+.quick-links__list a:hover { text-decoration: underline; }
+/* a downloadable file in the sidebar renders as an outline button */
+.quick-links__list .paragraph--single_file { margin-top: var(--sp-5); padding: 0; }
+.quick-links__list .paragraph--single_file .wrap { max-width: none; padding: 0; }
+.quick-links__list .paragraph--single_file .file { background: none; padding: 0; display: block; }
+.quick-links__list .paragraph--single_file .file a { display: block; text-align: center;
+  font-weight: 600; padding: 0.7rem 1rem; border: 2px solid var(--c-blue);
+  border-radius: var(--radius-sm); color: var(--c-blue); text-decoration: none;
+  /* Always an outline button, whatever style the editor picked (the primary
+     style's blue fill put blue text on blue), and let long file names wrap
+     inside the box instead of overflowing it past the fixed button height. */
+  background: transparent; height: auto; line-height: 1.3;
+  white-space: normal; overflow-wrap: anywhere; }
+.quick-links__list .paragraph--single_file .file a:hover { background: var(--c-blue); color: #fff; }
+.quick-links__list .paragraph--single_file > .wrap > div { font-size: var(--fs-sm); color: var(--c-muted); }
+
+/* Event page: title + body (left), "Event details" card with the date and the
+   register / file buttons (right on desktop; straight after the title on mobile
+   — the aside comes before the body in the markup). */
+.event-article--split { display: grid; grid-template-columns: minmax(0, 1fr) 340px;
+  column-gap: var(--sp-9); row-gap: var(--sp-6); align-items: start; }
+.event-article--split .event-article__head { grid-column: 1; grid-row: 1; margin: 0; }
+.event-article--split .event-article__main { grid-column: 1; grid-row: 2; }
+.event-article--split .event-article__aside { grid-column: 2; grid-row: 1 / span 2; }
+.event-article:not(.event-article--split) .event-article__head,
+.event-article:not(.event-article--split) .event-article__main { max-width: 820px; }
+@media (max-width: 880px) {
+  .event-article--split { display: block; }
+  .event-article--split .event-article__aside { margin-block: var(--sp-5) var(--sp-6); }
+}
+.event-article__main { color: var(--c-ink); }
+.event-article .article-meta .field, .event-article .article-meta .field__item { display: inline; margin: 0; }
+.event-details { background: var(--bg-tint); border-radius: var(--radius); padding: var(--sp-5); }
+.event-details__title { color: var(--c-heading); font-size: var(--fs-h4); margin: 0 0 var(--sp-4); }
+.event-details__date { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--sp-5);
+  font-size: var(--fs-lead); color: var(--c-ink-strong); font-weight: 500; line-height: 1.3; }
+.event-details__label { font-size: var(--fs-sm); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.04em; color: var(--c-muted); }
+.event-details__actions { display: flex; flex-direction: column; gap: var(--sp-3); }
+.event-details__actions .field, .event-details__actions div:not([class]) { display: contents; }
+/* every register / link button is a full-width, wrapping button in the card */
+.event-details__actions .paragraph-link a {
+  display: flex; width: 100%; height: auto; min-height: var(--btn-h); padding: 0.75rem 1.25rem;
+  text-align: center; line-height: 1.3; white-space: normal; overflow-wrap: anywhere;
+}
+.event-details__actions .paragraph--single_file { padding: 0; }
+.event-details__actions .paragraph--single_file .wrap { max-width: none; padding: 0; }
+.event-details__actions .paragraph--single_file .file { background: none; padding: 0; display: block; }
+.event-details__actions .paragraph--single_file .file a { display: block; text-align: center;
+  font-weight: 600; padding: 0.75rem 1.25rem; border: 2px solid var(--c-blue);
+  border-radius: var(--radius-sm); color: var(--c-blue); text-decoration: none; background: #fff;
+  height: auto; line-height: 1.3; white-space: normal; overflow-wrap: anywhere; }
+.event-details__actions .paragraph--single_file .file a:hover { background: var(--c-blue); color: #fff; }
+.event-details__actions .paragraph--single_file > .wrap > div { font-size: var(--fs-sm); color: var(--c-muted); }
+
+/* Related "More {topic} Resources" section */
+.resource-article__related { margin-top: var(--sp-9); }
+.resource-article__related-title { color: var(--c-blue); font-size: var(--fs-h2); margin: 0 0 var(--sp-6); }
+
+/* ===================================== Listing pages (resources/events/coordinators) */
+/* Every filterable Views listing page shares this look: the view carries its
+   own header, so hide the generic page-title block to avoid a duplicate H1,
+   style the view's own header, and turn the exposed filters into a tidy
+   filter bar. Add a page's route--… body class here when a new filtered
+   listing is built, rather than duplicating the whole block. */
+.route--view-resources-page-resources #block-wiche-pagetitle,
+.route--view-events-page-events #block-wiche-pagetitle,
+.route--view-events-page-events-past #block-wiche-pagetitle,
+.route--view-coordinator-list-page-1 #block-wiche-pagetitle { display: none; }
+
+/* View header → page header */
+.route--view-resources-page-resources .header-wrapper,
+.route--view-events-page-events .header-wrapper,
+.route--view-events-page-events-past .header-wrapper,
+.route--view-coordinator-list-page-1 .header-wrapper { margin: 0 0 var(--sp-6); }
+.route--view-resources-page-resources .header-wrapper h1,
+.route--view-events-page-events .header-wrapper h1,
+.route--view-events-page-events-past .header-wrapper h1,
+.route--view-coordinator-list-page-1 .header-wrapper h1 { color: var(--c-blue);
+  font-size: var(--fs-display); margin: 0; }
+
+/* Hero-less landing page (e.g. Institutions & Organizations): title as the
+   page H1, styled like the listing pages' header above. */
+.landing-title { padding-top: var(--sp-8); }
+.landing-title h1 { color: var(--c-blue); font-size: var(--fs-display); margin: 0; }
+
+/* Exposed filters → a tidy filter bar */
+.route--view-resources-page-resources .views-exposed-form,
+.route--view-events-page-events .views-exposed-form,
+.route--view-events-page-events-past .views-exposed-form,
+.route--view-coordinator-list-page-1 .views-exposed-form { display: flex;
+  flex-wrap: wrap; align-items: flex-end; gap: var(--sp-4);
+  margin: 0 0 var(--sp-7); padding: var(--sp-5) var(--sp-6);
+  background: var(--c-blue-tint); border-radius: var(--radius); }
+.route--view-resources-page-resources .views-exposed-form .form-item,
+.route--view-events-page-events .views-exposed-form .form-item,
+.route--view-events-page-events-past .views-exposed-form .form-item,
+.route--view-coordinator-list-page-1 .views-exposed-form .form-item { margin: 0;
+  display: flex; flex-direction: column; gap: var(--sp-1); }
+.route--view-resources-page-resources .views-exposed-form label,
+.route--view-events-page-events .views-exposed-form label,
+.route--view-events-page-events-past .views-exposed-form label,
+.route--view-coordinator-list-page-1 .views-exposed-form label { margin: 0;
+  font-weight: 600; font-size: var(--fs-sm); color: var(--c-heading); }
+.route--view-resources-page-resources .views-exposed-form select,
+.route--view-events-page-events .views-exposed-form select,
+.route--view-events-page-events-past .views-exposed-form select,
+.route--view-coordinator-list-page-1 .views-exposed-form select { font: inherit;
+  padding: 0.55rem 0.8rem; min-width: 230px; background: #fff;
+  border: 1px solid var(--border-strong); border-radius: var(--radius-sm); }
+.route--view-resources-page-resources .views-exposed-form .form-actions,
+.route--view-events-page-events .views-exposed-form .form-actions,
+.route--view-events-page-events-past .views-exposed-form .form-actions,
+.route--view-coordinator-list-page-1 .views-exposed-form .form-actions { margin: 0; }
+.route--view-resources-page-resources .views-exposed-form .form-submit,
+.route--view-events-page-events .views-exposed-form .form-submit,
+.route--view-events-page-events-past .views-exposed-form .form-submit,
+.route--view-coordinator-list-page-1 .views-exposed-form .form-submit { margin: 0; }
+
+/* The coordinator list is a data TABLE (not a card grid). The generic
+   .region-content table / th rules (below, "Table" section) already give it
+   the site's table look; add the td/row polish that generic rule doesn't
+   cover, and make the header row's own sort links legible. */
+.route--view-coordinator-list-page-1 .region-content td { padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border); }
+.route--view-coordinator-list-page-1 .region-content tr:hover td { background: var(--c-blue-tint); }
+.route--view-coordinator-list-page-1 .region-content th a { color: inherit; text-decoration: none; }
+.route--view-coordinator-list-page-1 .region-content th a:hover { text-decoration: underline; }
+
+/* Downloads & links panel — the resource's actual payload (single_link +
+   single_file paragraphs) as a clean, scannable list. */
+.resource-downloads { margin-top: var(--sp-8); background: var(--c-blue-tint);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: var(--sp-6) var(--sp-7); }
+.resource-downloads__title { color: var(--c-blue); font-size: var(--fs-h3);
+  margin: 0 0 var(--sp-4); }
+.resource-downloads__list > * + * { border-top: 1px solid var(--border); }
+/* each link/file paragraph = one row */
+.resource-downloads .paragraph-link,
+.resource-downloads .paragraph--single_file { padding: var(--sp-3) 0; }
+.resource-downloads .paragraph--single_file .wrap { max-width: none; padding: 0; }
+.resource-downloads a { color: var(--c-blue); font-weight: 500; text-decoration: none; }
+.resource-downloads a:hover { text-decoration: underline; color: var(--c-magenta); }
+/* single_link paragraphs default to the "primary" button style, but in the
+   resource link lists they should read as plain link rows — otherwise the
+   blue text above lands on the primary button's blue fill (text invisible). */
+.resource-downloads .paragraph-link a,
+.quick-links__list .paragraph-link a {
+  display: inline; height: auto; padding: 0; border: 0; border-radius: 0;
+  background: none; color: var(--c-blue); font-weight: 500; text-decoration: none;
+}
+.resource-downloads .paragraph-link a:hover,
+.quick-links__list .paragraph-link a:hover { background: none; color: var(--c-magenta); text-decoration: underline; }
+/* file rows: show a small download affordance before the link */
+.resource-downloads .paragraph--single_file .file a { display: inline; height: auto; padding: 0; border: 0;
+  border-radius: 0; background: none; color: var(--c-blue); font-weight: 500; overflow-wrap: anywhere; }
+.resource-downloads .paragraph--single_file .file a::before { content: "↓ "; color: var(--c-muted); }
+.resource-downloads .file { background: none; padding: 0; }
+
+/* ===================================== Search page (view.search) ========== */
+.route--view-search-page-1 .region-content { padding-block: var(--sp-6) var(--sp-9); }
+/* the "Search" page title */
+.route--view-search-page-1 #block-wiche-pagetitle h1 { color: var(--c-blue); font-size: var(--fs-display); margin: 0 0 var(--sp-5); }
+/* exposed keyword form → a prominent search bar */
+.route--view-search-page-1 .views-exposed-form { display: flex; gap: var(--sp-3);
+  align-items: stretch; max-width: 680px; margin: 0 0 var(--sp-7); }
+.route--view-search-page-1 .views-exposed-form .form-item { flex: 1 1 auto; margin: 0; }
+.route--view-search-page-1 .views-exposed-form label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.route--view-search-page-1 .views-exposed-form input.form-text,
+.route--view-search-page-1 .views-exposed-form input[type="search"] { width: 100%; font: inherit;
+  padding: 0.7rem 1rem; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: #fff; }
+.route--view-search-page-1 .views-exposed-form .form-actions { margin: 0; }
+.route--view-search-page-1 .views-exposed-form .form-submit { font: inherit; font-weight: 600;
+  padding: 0.7rem 1.6rem; border: 0; border-radius: var(--radius-sm); background: var(--c-blue);
+  color: #fff; cursor: pointer; }
+.route--view-search-page-1 .views-exposed-form .form-submit:hover { background: var(--c-blue-600); }
+/* result list */
+.route--view-search-page-1 .views-view { max-width: 820px; }
+.search-result { padding: var(--sp-5) 0; border-bottom: 1px solid var(--border); }
+.search-result:first-child { padding-top: 0; }
+.search-result__title { margin: 0 0 var(--sp-2); font-size: var(--fs-h4); line-height: 1.3; }
+.search-result__title a { color: var(--c-blue); text-decoration: none; }
+.search-result__title a:hover { text-decoration: underline; color: var(--c-magenta); }
+.search-result__snippet { color: var(--c-slate); font-size: var(--fs-body); line-height: 1.55; }
+.route--view-search-page-1 .views-field-processed a { color: inherit; text-decoration: none; }
+/* result count + pager spacing */
+.route--view-search-page-1 .view-header { color: var(--c-muted); font-size: var(--fs-sm); margin-bottom: var(--sp-4); }
+.route--view-search-page-1 .pager { margin-top: var(--sp-7); }
+
+/* ============================================ Rich-text authoring helpers === */
+/* "Blue text" style from the CKEditor Style dropdown. Mirror in css/editor.css
+   so it previews in the editor. */
+.text-blue { color: var(--c-blue); }
+
+/* ==================================================== Spacer paragraph === */
+/* Author-droppable vertical gap between components (field_spacer_size). */
+.spacer { width: 100%; }
+.spacer--small  { height: clamp(1rem, 0.5rem + 1.5vw, 1.75rem); }
+.spacer--medium { height: clamp(2rem, 1rem + 2.5vw, 3.5rem); }
+.spacer--large  { height: clamp(3.5rem, 2rem + 4vw, 6.5rem); }
+/* Optional divider rule (field_divider_line), centered in the spacer's gap. */
+.spacer--rule { display: flex; align-items: center; justify-content: center; }
+.spacer__rule {
+  width: 100%; max-width: 849px; height: 0.5px;
+  margin: 0; border: 0; background: #AFA9A0;
+}
+
+/* ============================================================ /sitemap === */
+/* The Sitemap module (contrib) renders plain nested <ul>s with no theme hooks
+ * of our own — styled entirely by structure, per the client's reference
+ * (nc-sara.org/sitemap/): one card per top-level menu section, card header =
+ * the section link, card body = its flat link list. Markup (sitemap.module):
+ *   .sitemap
+ *     .sitemap-item.sitemap-item--frontpage > h2 + div > a, a (RSS)
+ *     .sitemap-item.sitemap-item--menu-main > h2 + div > ul > li[.leaf|.expanded]
+ *       > a|span (title) + ul > li > a|span ... (repeats per nesting depth)
+ * A menu item content editors set to Drupal's <nolink> renders as a bare
+ * <span> instead of <a> (see menu--main.html.twig) — every selector below
+ * matches both so a dropdown-only section still gets a styled card heading. */
+.route--sitemap-page .sitemap-item--frontpage {
+  display: flex; align-items: center; gap: var(--sp-4);
+  margin-bottom: var(--sp-6); padding-bottom: var(--sp-5); border-bottom: 1px solid var(--border);
+}
+.route--sitemap-page .sitemap-item--frontpage > h2 {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.route--sitemap-page .sitemap-item--frontpage > div { display: flex; align-items: center; gap: var(--sp-3); }
+.route--sitemap-page .sitemap-item--frontpage a { color: var(--c-blue); font-weight: 600; text-decoration: none; }
+.route--sitemap-page .sitemap-item--frontpage a:hover { text-decoration: underline; }
+.route--sitemap-page .sitemap-item--frontpage img { display: block; }
+
+.route--sitemap-page .sitemap-item--menu-main > h2 {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+/* Card grid: one cell per top-level menu item. */
+.route--sitemap-page .sitemap-item--menu-main > div > ul {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-6) var(--sp-5);
+  list-style: none; margin: 0; padding: 0;
+}
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li {
+  background: var(--bg-tint); border: 1px solid var(--border); border-radius: var(--radius);
+  list-style: none; overflow: hidden;
+}
+/* Card header = the section's own link (or a <span> when it's <nolink>). */
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li > a,
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li > span {
+  display: block; padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border);
+  font-family: var(--font-head); font-size: var(--fs-h4); font-weight: 600;
+  color: var(--c-blue); text-decoration: none;
+}
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li > a:hover { color: var(--c-blue-600); text-decoration: underline; }
+/* A leaf item (no children, e.g. Home) has no card body — drop the header's
+   divider so it doesn't look like an empty card. */
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li.leaf > a,
+.route--sitemap-page .sitemap-item--menu-main > div > ul > li.leaf > span { border-bottom: 0; }
+/* Card body: the section's own links, flattened. */
+.route--sitemap-page .sitemap-item--menu-main ul ul {
+  list-style: none; margin: 0; padding: var(--sp-3) var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-2);
+}
+.route--sitemap-page .sitemap-item--menu-main ul ul li { margin: 0; }
+.route--sitemap-page .sitemap-item--menu-main ul ul a,
+.route--sitemap-page .sitemap-item--menu-main ul ul span {
+  display: inline-block; color: var(--c-ink); font-size: var(--fs-sm); text-decoration: underline; text-decoration-color: var(--border-strong);
+}
+.route--sitemap-page .sitemap-item--menu-main ul ul a:hover { color: var(--c-magenta); text-decoration-color: currentColor; }
+/* A third nesting level (e.g. Compliance Topics → External Resources → links)
+   reads as a sub-group within the card: its own heading + a further indent. */
+.route--sitemap-page .sitemap-item--menu-main ul ul span:has(+ ul),
+.route--sitemap-page .sitemap-item--menu-main ul ul > li > a:has(+ ul) {
+  color: var(--c-ink-strong); font-weight: 600; text-decoration: none;
+}
+.route--sitemap-page .sitemap-item--menu-main ul ul ul { padding: var(--sp-2) 0 0 var(--sp-4); }
+
+@media (max-width: 1100px) {
+  .route--sitemap-page .sitemap-item--menu-main > div > ul { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .route--sitemap-page .sitemap-item--menu-main > div > ul { grid-template-columns: 1fr; }
+}
+
+/* ============================================== Infographic (Figma 782:1088) == */
+/* Icy-blue band of big figures. Items sit in an auto-fit grid so 3–6 figures
+   share the width evenly; the field's classless wrapper divs are unwrapped
+   (div:not([class]) — see .card-grid) so each .stat is a direct grid item. */
+/* Same ground as every other tinted band (.section--tint), not the Figma
+   frame's slightly different Icy Blue — the client wants them to match. */
+.paragraph-infographic { background: var(--bg-tint); }
+.infographic__title { margin: 0 0 var(--sp-7); text-align: center; color: var(--c-heading);
+  font-size: 2rem; font-weight: 400; line-height: 1.25; }
+.infographic__stats { display: grid; gap: var(--sp-7) var(--sp-6);
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.infographic__stats > div:not([class]),
+.infographic__stats > div:not([class]) > div:not([class]) { display: contents; }
+.paragraph-infographic--narrow .infographic__stats { max-width: 848px; margin-inline: auto; }
+.stat { text-align: center; }
+.stat__value { margin: 0; color: var(--c-purple); font-size: clamp(2.75rem, 2rem + 2.2vw, 3.75rem);
+  font-weight: 600; line-height: 1.1; }
+.stat__rule { width: 33px; height: 0; margin: var(--sp-4) auto; border: 0; border-top: 1px solid var(--c-purple); }
+.stat__label { margin: 0; color: var(--c-ink); font-size: 1.25rem; font-weight: 600; line-height: 1.25; }
+.paragraph-infographic--narrow .stat__label { color: var(--c-purple); }
+
+/* Chart / article tables pasted from the legacy editor carry fixed inline
+   widths on their cells (e.g. width:185px on the contact-information column),
+   which squeezed the longest-text columns to a sliver. Let the browser size
+   the columns by content instead. */
+.page-node-type-resource_table .region-content table th,
+.page-node-type-resource_table .region-content table td,
+.page-node-type-resource .region-content table th,
+.page-node-type-resource .region-content table td {
+  width: auto !important; word-break: normal !important; overflow-wrap: break-word;
+}

@@ -2,17 +2,18 @@ uuid: c69983a9-f88a-4689-bbbe-73a4037ac040
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.event
   module:
     - node
 id: node_events
 label: 'Node - Events'
 type: 'canonical_entities:node'
-pattern: 'events/[node:title]'
+pattern: '/events/[node:title]'
 selection_criteria:
   9096318a-9390-4bb2-9115-0a9cff5da636:
     id: 'entity_bundle:node'
     negate: false
-    uuid: 9096318a-9390-4bb2-9115-0a9cff5da636
     context_mapping:
       node: node
     bundles:

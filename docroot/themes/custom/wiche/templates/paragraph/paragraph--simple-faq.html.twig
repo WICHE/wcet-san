@@ -1,0 +1,10 @@
+{#
+/**
+ * @file FAQ item — simple_faq. Native <details> accordion (accessible, no JS).
+ * Fields: field_header (question), field_body (answer).
+ */
+#}
+<details{{ attributes.addClass('faq-item') }}>
+  <summary>{{ paragraph.field_header.value }}</summary>
+  <div class="faq-item__a">{{ content.field_body }}</div>
+</details>

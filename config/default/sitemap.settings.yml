@@ -21,6 +21,7 @@ plugins:
     settings:
       title: 'Main navigation'
       show_disabled: false
+      menu_depth: 9
   'menu:account':
     base_plugin: menu
     enabled: false
@@ -28,6 +29,7 @@ plugins:
     settings:
       title: 'User account menu'
       show_disabled: false
+      menu_depth: 9
   'menu:admin':
     base_plugin: menu
     enabled: false
@@ -35,6 +37,7 @@ plugins:
     settings:
       title: Administration
       show_disabled: false
+      menu_depth: 9
   'menu:devel':
     enabled: false
     weight: -50
@@ -48,6 +51,7 @@ plugins:
     settings:
       title: Footer
       show_disabled: false
+      menu_depth: 9
   'menu:tools':
     base_plugin: menu
     enabled: false
@@ -55,6 +59,7 @@ plugins:
     settings:
       title: Tools
       show_disabled: false
+      menu_depth: 9
   'vocabulary:tags':
     base_plugin: vocabulary
     enabled: false

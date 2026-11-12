@@ -19,6 +19,9 @@ settings:
       - '|'
       - link
       - '|'
+      - image_embed
+      - file_embed
+      - '|'
       - bulletedList
       - numberedList
       - '|'
@@ -27,6 +30,8 @@ settings:
       - '|'
       - heading
       - insertTable
+      - '|'
+      - style
       - '|'
       - sourceEditing
       - '|'
@@ -51,6 +56,7 @@ settings:
       properties:
         reversed: false
         startIndex: true
+        styles: true
       multiBlock: true
     ckeditor5_sourceEditing:
       allowed_tags:
@@ -62,22 +68,19 @@ settings:
         - '<img src alt height width data-entity-type data-entity-uuid data-entity-substitution data-align data-caption>'
         - '<drupal-entity data-* alt title>'
         - '<blockquote cite>'
-        - '<ul type>'
-        - '<ol type>'
         - '<h2 id>'
         - '<h3 id>'
         - '<h4 id>'
         - '<h5 id>'
         - '<h6 id>'
         - '<a hreflang accesskey id rel target title>'
+    ckeditor5_style:
+      styles:
+        -
+          label: 'Blue text'
+          element: '<span class="text-blue">'
     linkit_extension:
       linkit_enabled: true
       linkit_profile: default
 image_upload:
-  status: true
-  scheme: public
-  directory: inline-images
-  max_size: null
-  max_dimensions:
-    width: null
-    height: null
+  status: false

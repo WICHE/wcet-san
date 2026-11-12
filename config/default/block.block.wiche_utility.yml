@@ -1,0 +1,25 @@
+uuid: 485ef6cd-1a7c-4379-b126-f92e4c7c3b7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.util-navigation
+  module:
+    - system
+  theme:
+    - wiche
+id: wiche_utility
+theme: wiche
+region: utility
+weight: 0
+provider: null
+plugin: 'system_menu_block:util-navigation'
+settings:
+  id: 'system_menu_block:util-navigation'
+  label: Utility
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

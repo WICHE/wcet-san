@@ -7,6 +7,7 @@ dependencies:
     - node.type.resource
     - paragraphs.paragraphs_type.layout_two_column
     - paragraphs.paragraphs_type.simple_content
+    - paragraphs.paragraphs_type.spacer
   module:
     - entity_reference_revisions
 id: node.resource.field_p_content
@@ -22,10 +23,11 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       layout_two_column: layout_two_column
       simple_content: simple_content
+      spacer: spacer
+    negate: 0
     target_bundles_drag_drop:
       compound_card_row:
         weight: 15
@@ -37,8 +39,8 @@ settings:
         weight: 17
         enabled: false
       layout_two_column:
-        enabled: true
         weight: 18
+        enabled: true
       reference_block:
         weight: 19
         enabled: false
@@ -46,8 +48,8 @@ settings:
         weight: 20
         enabled: false
       simple_content:
-        enabled: true
         weight: 21
+        enabled: true
       simple_faq:
         weight: 22
         enabled: false
@@ -69,4 +71,7 @@ settings:
       single_video:
         weight: 28
         enabled: false
+      spacer:
+        weight: 29
+        enabled: true
 field_type: entity_reference_revisions

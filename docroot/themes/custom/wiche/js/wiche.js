@@ -1,0 +1,335 @@
+/**
+ * @file wiche · behaviours — mobile nav toggle + accessible mega-menu.
+ * Build-less vanilla JS on Drupal.behaviors + core/once.
+ */
+((Drupal, once) => {
+  'use strict';
+
+  const MOBILE = '(hover: none), (max-width: 1080px)';
+
+  const closeOverlay = (nav) => {
+    nav.classList.remove('is-open');
+    const toggle = document.querySelector('[data-nav-toggle]');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('is-nav-open');
+    // reset any drilled-in submenu so it reopens at the top level
+    nav.querySelectorAll('li.is-open').forEach((li) => {
+      li.classList.remove('is-open');
+      const t = li.querySelector(':scope > a, :scope > button');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    });
+  };
+
+  // --- Sticky header: hide on scroll-down, show on scroll-up -------------
+  Drupal.behaviors.wicheStickyHeader = {
+    attach(context) {
+      once('wiche-sticky-header', 'body', context).forEach(() => {
+        const header = document.querySelector('.site-header');
+        if (!header) return;
+        let lastY = window.scrollY;
+        let ticking = false;
+        const REVEAL_THRESHOLD = header.offsetHeight; // don't hide until scrolled past the header itself
+
+        const onScroll = () => {
+          const y = window.scrollY;
+          // Never hide while the mobile drill-down overlay is open, or before
+          // the user has scrolled past the header's own height.
+          if (!document.body.classList.contains('is-nav-open')) {
+            if (y > lastY && y > REVEAL_THRESHOLD) {
+              header.classList.add('site-header--hidden');
+            } else if (y < lastY) {
+              header.classList.remove('site-header--hidden');
+            }
+          }
+          lastY = y;
+          ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+          }
+        }, { passive: true });
+      });
+    },
+  };
+
+  // --- Mobile nav open/close --------------------------------------------
+  Drupal.behaviors.wicheNavToggle = {
+    attach(context) {
+      once('wiche-nav-toggle', '[data-nav-toggle]', context).forEach((btn) => {
+        const nav = document.getElementById(btn.getAttribute('aria-controls'));
+        if (!nav) return;
+        btn.addEventListener('click', () => {
+          const open = nav.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', String(open));
+          document.body.classList.toggle('is-nav-open', open);
+          if (!open) closeOverlay(nav);
+        });
+      });
+    },
+  };
+
+  // --- Mobile drill-down chrome (Figma 28:1954) -------------------------
+  // Injects the overlay top strip (search + close), a sticky footer CTA, a
+  // "Back" bar per submenu, and clones the utility links into the list foot.
+  Drupal.behaviors.wicheMobileNav = {
+    attach(context) {
+      once('wiche-mobile-nav', '.main-nav', context).forEach((nav) => {
+        const searchIcon =
+          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" ' +
+          'stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
+          '<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+
+        // Top strip: search + close.
+        const top = document.createElement('div');
+        top.className = 'mobile-nav__top';
+        top.innerHTML =
+          '<a class="mobile-nav__search" href="/search" aria-label="' +
+          Drupal.t('Search') + '">' + searchIcon + '</a>' +
+          '<span class="divider" aria-hidden="true"></span>' +
+          '<button type="button" class="mobile-nav__close" aria-label="' +
+          Drupal.t('Close menu') + '">✕</button>';
+        nav.insertBefore(top, nav.firstChild);
+        top.querySelector('.mobile-nav__close')
+          .addEventListener('click', () => closeOverlay(nav));
+
+        // A "Back" bar at the top of every submenu panel.
+        nav.querySelectorAll('ul.menu--main > li.has-dropdown').forEach((li) => {
+          const dd = li.querySelector(':scope > .menu-dropdown');
+          const trigger = li.querySelector(':scope > a, :scope > button');
+          if (!dd || !trigger) return;
+          const back = document.createElement('button');
+          back.type = 'button';
+          back.className = 'menu-dropdown__back';
+          back.textContent = trigger.textContent.trim();
+          back.addEventListener('click', () => {
+            li.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+          });
+          dd.insertBefore(back, dd.firstChild);
+        });
+
+        // Bottom block (light-blue): the tertiary links + the "Join SAN / Login"
+        // CTA. The utility bar is hidden on mobile, so its links (except Search,
+        // which is in the top strip) live here as a smaller, tinted list.
+        const bottom = document.createElement('div');
+        bottom.className = 'mobile-nav__bottom';
+        const util = document.querySelector(
+          '.site-header__utility .utility-nav ul, .site-header__utility ul',
+        );
+        if (util) {
+          const list = document.createElement('ul');
+          list.className = 'mobile-nav__tertiary';
+          util.querySelectorAll(':scope > li').forEach((li) => {
+            const link = li.querySelector('a');
+            if (!link || /\/search(\b|$)/.test(link.getAttribute('href') || '')) return;
+            const item = document.createElement('li');
+            item.appendChild(link.cloneNode(true));
+            list.appendChild(item);
+          });
+          if (list.children.length) bottom.appendChild(list);
+        }
+        const cta = document.createElement('div');
+        cta.className = 'mobile-nav__cta';
+        cta.innerHTML =
+          '<a href="/membership">' + Drupal.t('Join SAN / Login') + '</a>';
+        bottom.appendChild(cta);
+        nav.appendChild(bottom);
+
+        // Escape closes the overlay.
+        nav.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeOverlay(nav);
+        });
+      });
+    },
+  };
+
+  // --- Mega-menu: hover on desktop (CSS), click/keyboard everywhere ------
+  Drupal.behaviors.wicheMegaMenu = {
+    attach(context) {
+      const items = once(
+        'wiche-mega',
+        '.main-nav ul.menu--main > li.has-dropdown',
+        context,
+      );
+
+      const closeAll = (except) => {
+        items.forEach((li) => {
+          if (li !== except) {
+            li.classList.remove('is-open');
+            const t = li.querySelector(':scope > a, :scope > button');
+            if (t) t.setAttribute('aria-expanded', 'false');
+          }
+        });
+      };
+
+      items.forEach((li) => {
+        const trigger = li.querySelector(':scope > a, :scope > button');
+        if (!trigger) return;
+        trigger.setAttribute('aria-haspopup', 'true');
+        trigger.setAttribute('aria-expanded', 'false');
+
+        // On touch / mobile, the parent link drills into its submenu instead
+        // of navigating; on desktop it stays a normal link (CSS hover opens).
+        trigger.addEventListener('click', (e) => {
+          if (window.matchMedia(MOBILE).matches) {
+            e.preventDefault();
+            const open = !li.classList.contains('is-open');
+            closeAll(li);
+            li.classList.toggle('is-open', open);
+            trigger.setAttribute('aria-expanded', String(open));
+          }
+        });
+
+        // Desktop: hovering an item closes any other panel left open (e.g. a
+        // stray is-open from a touch tap) so two dropdowns never overlap.
+        li.addEventListener('mouseenter', () => {
+          if (window.matchMedia('(hover: hover) and (min-width: 1081px)').matches) closeAll(li);
+        });
+
+        // Escape closes and returns focus to the trigger.
+        li.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            li.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.focus();
+          }
+        });
+      });
+
+      // Click outside closes any open panel (desktop).
+      once('wiche-mega-doc', 'body', context).forEach((body) => {
+        body.addEventListener('click', (e) => {
+          if (!e.target.closest('.main-nav')) closeAll(null);
+        });
+      });
+    },
+  };
+
+  // --- Filterable data table (table_with_filters paragraph) ---------------
+  // Adds a filter row under the header: a text search on the first column,
+  // a dropdown of that column's distinct values for every other column, and
+  // sorts rows by the first column. Ported from the legacy themekit jQuery
+  // script (which keyed off classy's .paragraph--type--* class this theme's
+  // markup doesn't have).
+  Drupal.behaviors.wicheTableFilters = {
+    attach(context) {
+      once('wiche-table-filters', '.paragraph-table-section .paragraph-table table', context).forEach((table) => {
+        const head = table.tHead && table.tHead.rows[0];
+        const body = table.tBodies[0];
+        if (!head || !body) return;
+
+        const text = (cell) => (cell ? cell.textContent.trim() : '');
+        const rows = Array.from(body.rows);
+        rows.sort((a, b) => text(a.cells[0]).localeCompare(text(b.cells[0]), undefined, { sensitivity: 'base' }));
+        rows.forEach((row) => body.appendChild(row));
+
+        const filterRow = table.tHead.insertRow();
+        filterRow.className = 'table-filters';
+        const controls = [];
+        Array.from(head.cells).forEach((th, i) => {
+          const cell = document.createElement('th');
+          const label = th.textContent.trim() || `Column ${i + 1}`;
+          let control;
+          if (i === 0) {
+            control = document.createElement('input');
+            control.type = 'search';
+            control.placeholder = Drupal.t('Search');
+            control.setAttribute('aria-label', Drupal.t('Search @column', { '@column': label }));
+          }
+          else {
+            control = document.createElement('select');
+            control.setAttribute('aria-label', Drupal.t('Filter by @column', { '@column': label }));
+            const values = Array.from(new Set(rows.map((r) => text(r.cells[i])).filter(Boolean)))
+              .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+            control.add(new Option(Drupal.t('All'), ''));
+            values.forEach((v) => control.add(new Option(v, v)));
+          }
+          control.dataset.column = String(i);
+          controls.push(control);
+          cell.appendChild(control);
+          filterRow.appendChild(cell);
+        });
+
+        const apply = () => {
+          rows.forEach((row) => {
+            const show = controls.every((control) => {
+              const value = control.value.trim();
+              if (!value) return true;
+              const cell = text(row.cells[Number(control.dataset.column)]);
+              return control.tagName === 'SELECT'
+                ? cell === value
+                : cell.toLowerCase().includes(value.toLowerCase());
+            });
+            row.hidden = !show;
+          });
+          // :nth-child striping counts hidden rows, so stripe the visible ones.
+          rows.filter((row) => !row.hidden).forEach((row, i) => row.classList.toggle('is-stripe', i % 2 === 1));
+        };
+        apply();
+        controls.forEach((control) => control.addEventListener(control.tagName === 'SELECT' ? 'change' : 'input', apply));
+      });
+    },
+  };
+
+  // --- Inline search: clicking the Search link (utility nav / mobile nav)
+  // reveals a text input in its place instead of navigating straight to the
+  // (keyword-less) /search page, so people can type a term first. ---------
+  Drupal.behaviors.wicheHeaderSearch = {
+    attach(context) {
+      const icon =
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" ' +
+        'stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
+        '<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+
+      once(
+        'wiche-header-search',
+        '.site-header__utility a[href="/search"], .mobile-nav__search',
+        context,
+      ).forEach((trigger) => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          const holder = trigger.parentElement;
+          const form = document.createElement('form');
+          form.className = 'header-search';
+          form.setAttribute('action', '/search');
+          form.setAttribute('method', 'get');
+          form.setAttribute('role', 'search');
+          form.innerHTML =
+            '<label class="visually-hidden" for="header-search-input">' +
+            Drupal.t('Search') + '</label>' +
+            '<input id="header-search-input" class="header-search__input" type="search" ' +
+            'name="search" autocomplete="off" placeholder="' + Drupal.t('Search…') + '">' +
+            '<button type="submit" class="header-search__submit" aria-label="' +
+            Drupal.t('Search') + '">' + icon + '</button>';
+
+          holder.replaceChild(form, trigger);
+          form.querySelector('input').focus();
+
+          const collapse = () => {
+            if (form.isConnected) holder.replaceChild(trigger, form);
+            document.removeEventListener('click', onDocClick, true);
+            document.removeEventListener('keydown', onKeydown, true);
+          };
+          const onDocClick = (ev) => {
+            if (!form.contains(ev.target)) collapse();
+          };
+          const onKeydown = (ev) => {
+            if (ev.key === 'Escape') {
+              collapse();
+              trigger.focus();
+            }
+          };
+          // Defer so the click that opened the form doesn't also close it.
+          window.setTimeout(() => {
+            document.addEventListener('click', onDocClick, true);
+            document.addEventListener('keydown', onKeydown, true);
+          }, 0);
+        });
+      });
+    },
+  };
+})(Drupal, once);

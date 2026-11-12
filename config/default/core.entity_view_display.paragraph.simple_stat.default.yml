@@ -1,0 +1,34 @@
+uuid: fb9fe003-c606-4258-a62d-10f59c4bd613
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.simple_stat.field_stat_label
+    - field.field.paragraph.simple_stat.field_stat_value
+    - paragraphs.paragraphs_type.simple_stat
+id: paragraph.simple_stat.default
+targetEntityType: paragraph
+bundle: simple_stat
+mode: default
+content:
+  field_stat_label:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_stat_value:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  search_api_excerpt: true

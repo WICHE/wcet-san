@@ -15,28 +15,29 @@ display_configuration:
   height: '600'
   link_text: 'Select File'
   auto_open: true
+  use_admin_theme: true
 selection_display: no_display
 selection_display_configuration: {  }
 widget_selector: tabs
 widget_selector_configuration: {  }
 widgets:
   680747bb-fc06-481f-a79f-281778ebe891:
+    id: view
+    uuid: 680747bb-fc06-481f-a79f-281778ebe891
+    label: 'Existing Files'
+    weight: -10
     settings:
-      view: entity_browser_file
-      view_display: entity_browser_1
       submit_text: 'Select File'
       auto_select: false
-    uuid: 680747bb-fc06-481f-a79f-281778ebe891
-    weight: -10
-    label: 'Existing Files'
-    id: view
+      view: entity_browser_file
+      view_display: entity_browser_1
   a7e5ece2-6a90-45f8-a81d-f627577ab924:
+    id: entity_form
+    uuid: a7e5ece2-6a90-45f8-a81d-f627577ab924
+    label: 'New File'
+    weight: -9
     settings:
+      submit_text: 'Save File'
       entity_type: media
       bundle: file
       form_mode: media_browser
-      submit_text: 'Save File'
-    uuid: a7e5ece2-6a90-45f8-a81d-f627577ab924
-    weight: -9
-    label: 'New File'
-    id: entity_form

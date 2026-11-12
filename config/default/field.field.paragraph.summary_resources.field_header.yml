@@ -1,0 +1,21 @@
+uuid: 2bf262cb-edba-435d-9f4e-b8744404efc2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_header
+    - paragraphs.paragraphs_type.summary_resources
+id: paragraph.summary_resources.field_header
+field_name: field_header
+entity_type: paragraph
+bundle: summary_resources
+label: Title
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: Resources
+default_value_callback: ''
+settings: {  }
+field_type: string

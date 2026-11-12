@@ -1,0 +1,9 @@
+uuid: 2bb8e43f-8a98-49a5-9e30-5cad2ca6b3bd
+langcode: en
+status: true
+dependencies: {  }
+name: 'Southeastern University'
+vid: southeastern_university
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,23 @@
+uuid: f90db6ec-4c4a-4f47-97bc-78e8e5786844
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_infographic_layout
+    - paragraphs.paragraphs_type.compound_infographic
+  module:
+    - options
+id: paragraph.compound_infographic.field_infographic_layout
+field_name: field_infographic_layout
+entity_type: paragraph
+bundle: compound_infographic
+label: Layout
+description: 'Full width spreads the figures across the whole page width with grey labels. 8 column keeps them in a narrower centered block with purple labels.'
+required: false
+translatable: false
+default_value:
+  -
+    value: full
+default_value_callback: ''
+settings: {  }
+field_type: list_string

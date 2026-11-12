@@ -1,0 +1,48 @@
+{#
+/**
+ * @file Event full page.
+ *
+ * Until now events had no full template, so Drupal printed every field in
+ * display order — plain ISO date, event type and topic labels, the "Content
+ * access" value — with the registration button(s) (field_p_resources) at the
+ * very bottom. Here the page reads: event type + title, the body, and an
+ * "Event details" card with the date and the register/file buttons at the top
+ * of the page (next to the title on desktop, straight after it on mobile).
+ * Internal-only fields (content access, topic, featured) are not shown.
+ * The page-title block is hidden on event pages (components.css), so the H1
+ * is rendered here.
+ */
+#}
+{% set has_links = content.field_p_resources|render|trim is not empty %}
+{% set event_date = node.field_event_date.value %}
+{% set has_details = event_date or has_links %}
+
+<article{{ attributes.addClass('event-article', has_details ? 'event-article--split') }}>
+  <header class="event-article__head">
+    {% if content.field_event_type|render|trim is not empty %}
+      <div class="article-meta"><span class="article-meta__cat">{{ content.field_event_type }}</span></div>
+    {% endif %}
+    <h1 class="article-title">{{ label }}</h1>
+  </header>
+
+  {% if has_details %}
+    <aside class="event-article__aside">
+      <div class="event-details">
+        <h2 class="event-details__title">{{ 'Event details'|t }}</h2>
+        {% if event_date %}
+          <div class="event-details__date">
+            <span class="event-details__label">{{ 'Date'|t }}</span>
+            <time datetime="{{ event_date }}">{{ event_date|date('F j, Y') }}</time>
+          </div>
+        {% endif %}
+        {% if has_links %}
+          <div class="event-details__actions">{{ content.field_p_resources }}</div>
+        {% endif %}
+      </div>
+    </aside>
+  {% endif %}
+
+  <div class="event-article__main flow-l">
+    {{ content.body }}
+  </div>
+</article>

@@ -1,0 +1,28 @@
+uuid: e5124394-4a37-4b2c-9309-702ebf99801d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_summary_event_types
+    - paragraphs.paragraphs_type.summary_past_events
+    - taxonomy.vocabulary.event_type
+id: paragraph.summary_past_events.field_summary_event_types
+field_name: field_summary_event_types
+entity_type: paragraph
+bundle: summary_past_events
+label: 'Event type(s)'
+description: 'Optional. Only show events of these types (e.g. Open Forum). Leave empty to show every type.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      event_type: event_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+field_type: entity_reference

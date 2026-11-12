@@ -10,6 +10,7 @@ dependencies:
     - filter
     - graphql
     - media
+    - sitemap
     - system
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
@@ -20,6 +21,7 @@ is_admin: false
 permissions:
   - 'access content'
   - 'access site-wide contact form'
+  - 'access sitemap'
   - 'bypass graphql field security'
   - 'entity print access bundle resource_table'
   - 'execute graphql requests'

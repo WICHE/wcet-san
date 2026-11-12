@@ -1,0 +1,23 @@
+uuid: 41883950-fb85-4ebd-a84d-30720575c1a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_summary_display
+    - paragraphs.paragraphs_type.summary_resources
+  module:
+    - options
+id: paragraph.summary_resources.field_summary_display
+field_name: field_summary_display
+entity_type: paragraph
+bundle: summary_resources
+label: Display
+description: 'Topic tiles: an image tile for each selected topic (e.g. on the home page). Latest resources: the 4 most recent resources tagged with the selected topic(s) — use this on a topic page. The link below shows under either.'
+required: false
+translatable: false
+default_value:
+  -
+    value: tiles
+default_value_callback: ''
+settings: {  }
+field_type: list_string

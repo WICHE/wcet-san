@@ -7,7 +7,6 @@ dependencies:
     - field.storage.user.field_last_name
     - field.storage.user.field_phone_number
     - field.storage.user.field_user_membership
-    - system.menu.main
     - taxonomy.vocabulary.membership
     - user.role.administrator
     - user.role.coordinator
@@ -415,6 +414,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 25
           total_pages: null
           id: 0
@@ -432,7 +432,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -523,11 +522,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              member_user: '0'
-              san_admin: '0'
-              coordinator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -633,6 +627,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 25
           total_pages: null
           id: 0
@@ -650,7 +645,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       style:
         type: table
         options:
@@ -714,6 +708,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
       defaults:
@@ -803,6 +798,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
         options: {  }
@@ -825,9 +821,9 @@ display:
             format: full_html
           tokenize: false
       display_extenders: {  }
-      path: membership/coordinator-list
+      path: coordinator-list
       menu:
-        type: normal
+        type: none
         title: 'Coordinator List'
         description: 'Coordinator List'
         weight: -49

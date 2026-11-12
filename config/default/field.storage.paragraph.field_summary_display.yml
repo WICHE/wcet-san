@@ -1,0 +1,27 @@
+uuid: d843f944-9b6a-4bd8-a09d-fe24768735b5
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_summary_display
+field_name: field_summary_display
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: tiles
+      label: 'Topic tiles'
+    -
+      value: latest
+      label: 'Latest resources'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

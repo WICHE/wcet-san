@@ -1,0 +1,21 @@
+# Global library, attached on every page (see wiche.info.yml `libraries`).
+# Build-less: plain CSS with custom properties + a little vanilla JS. No webpack.
+global:
+  version: VERSION
+  css:
+    # Roboto (headings + body) and Inter (UI) — the two Figma typefaces.
+    theme:
+      'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap': { type: external, minified: true }
+    # SMACSS-ish ordering: base loads before layout before component/theme.
+    base:
+      css/tokens.css: {}
+      css/base.css: {}
+    layout:
+      css/layout.css: {}
+    component:
+      css/components.css: {}
+  js:
+    js/wiche.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

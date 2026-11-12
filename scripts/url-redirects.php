@@ -22,9 +22,10 @@
  *    aliases are removed and the term's system path (taxonomy/term/N) is
  *    redirected to its landing page instead.
  *  - The redirect module matches AFTER alias resolution and never fires for an
- *    address that is still a live page. So an old address is only redirected
- *    once it is no longer live, and is otherwise REPORTED, not forced — most
- *    importantly /form/join-san, which is the live enrollment application form.
+ *    address that is still a live alias. So a live old page is RETIRED: its
+ *    alias is removed (content stays published and untouched) and the address
+ *    plus its system path are redirected to the replacement. Anything live that
+ *    isn't an alias is only REPORTED.
  *  - Aliases are changed on the node's own path alias, not by retyping links,
  *    so internal references that point at the node (menu links, link fields,
  *    "Learn more" cards) follow automatically; links hard-coded in body text
@@ -170,25 +171,61 @@ $old_site = [
   ['form/join-san', '/enroll'],
   ['about-san', '/our-network'],
   ['membership', '/enroll'],
+  // The coordinator list view's path is /coordinator-list on the live site; the
+  // document keeps /membership/coordinator-list working.
+  ['membership/coordinator-list', '/coordinator-list'],
 ];
 foreach ($old_site as [$source, $target]) {
   $target_path = $resolve($target);
-  if (!$target_path) {
+  $target_uri = $target_path ? 'internal:' . $target_path : NULL;
+  if (!$target_path && \Drupal::service('path.validator')->getUrlIfValidWithoutAccessCheck($target)) {
+    $target_uri = 'internal:' . $target;   // a routed path (e.g. a view), not an alias
+  }
+  if (!$target_uri) {
     $say("old /$source: target $target doesn't exist here, skipped");
     continue;
   }
   $live = (bool) \Drupal::service('path.validator')->getUrlIfValidWithoutAccessCheck($source);
   if ($live) {
     $existing = $redirect_storage->loadByProperties(['redirect_source__path' => $source]);
-    $say($existing
-      ? "old /$source: already redirected, skipped"
-      : "old /$source: !! still a LIVE page — NOT redirected (it would take the page away); needs a human decision");
-    if (!$existing) {
+    if ($existing) {
+      $say("old /$source: already redirected, skipped");
+      continue;
+    }
+    // Retire the old page: the client's document replaces it with $target.
+    // Only an aliased page can be retired safely — its alias is removed (the
+    // redirect module never fires for an address that is still a live alias),
+    // the content itself is NOT unpublished or changed, and the system path
+    // (node/N, webform/x) is redirected too so search results and any internal
+    // links to it land on the replacement. Undo = delete the redirects, re-add
+    // the alias.
+    $system = $resolve('/' . $source);
+    if (!$system) {
+      $say("old /$source: !! live but not an alias — NOT redirected, needs a human decision");
       $notes[] = "/$source is still a live page (wanted: -> $target)";
+      continue;
+    }
+    foreach ($alias_storage->loadByProperties(['alias' => '/' . $source]) as $a) {
+      if (!$dry) {
+        $a->delete();
+      }
+    }
+    if (!$dry && preg_match('#^/node/(\d+)$#', $system, $m)) {
+      $node_pathauto->set($m[1], 0);
+    }
+    $say("old /$source ($system): RETIRED — alias removed, content untouched");
+    $redirect($source, $target_uri, 'retired old page');
+    $redirect(ltrim($system, '/'), $target_uri, 'retired old page (system path)');
+    // Redirects that pointed at the retired page (e.g. a topic term's) go to the replacement.
+    foreach ($redirect_storage->loadByProperties(['redirect_redirect__uri' => 'internal:' . $system]) as $r) {
+      if (!$dry) {
+        $r->set('redirect_redirect', ['uri' => $target_uri])->save();
+      }
+      $say("redirect {$r->getSourceUrl()}: re-pointed from $system to $target");
     }
     continue;
   }
-  $redirect($source, 'internal:' . $target_path, 'old site');
+  $redirect($source, $target_uri, 'old site');
 }
 
 if ($notes) {

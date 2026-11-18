@@ -1,0 +1,20 @@
+uuid: ae3a9e1d-92b1-445f-b20e-db006d0d89fb
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - wiche
+id: wiche_help
+theme: wiche
+region: content
+weight: -15
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

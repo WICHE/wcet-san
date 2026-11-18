@@ -1,0 +1,31 @@
+uuid: 36a33145-c59e-42c0-89e8-ebc4bbc9362c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_stats
+    - paragraphs.paragraphs_type.compound_infographic
+    - paragraphs.paragraphs_type.simple_stat
+  module:
+    - entity_reference_revisions
+id: paragraph.compound_infographic.field_p_stats
+field_name: field_p_stats
+entity_type: paragraph
+bundle: compound_infographic
+label: Statistics
+description: 'Add 3–6 figures.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      simple_stat: simple_stat
+    negate: 0
+    target_bundles_drag_drop:
+      simple_stat:
+        weight: 0
+        enabled: true
+field_type: entity_reference_revisions

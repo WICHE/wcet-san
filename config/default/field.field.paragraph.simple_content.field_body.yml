@@ -19,7 +19,7 @@ field_name: field_body
 entity_type: paragraph
 bundle: simple_content
 label: Body
-description: ''
+description: 'Leave this empty and add a link to show this block as the blue call-to-action banner (title + button), e.g. "Join SAN and Become a Member".'
 required: false
 translatable: false
 default_value: {  }

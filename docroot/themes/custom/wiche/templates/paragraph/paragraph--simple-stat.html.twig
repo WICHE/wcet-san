@@ -1,0 +1,11 @@
+{#
+/**
+ * @file One figure in an infographic — simple_stat.
+ * Fields: field_stat_value (the big number), field_stat_label.
+ */
+#}
+<div{{ attributes.addClass('stat') }}>
+  <p class="stat__value">{{ paragraph.field_stat_value.value }}</p>
+  <hr class="stat__rule">
+  <p class="stat__label">{{ paragraph.field_stat_label.value }}</p>
+</div>

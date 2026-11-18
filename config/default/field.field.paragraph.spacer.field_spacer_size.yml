@@ -1,0 +1,23 @@
+uuid: bb7eb9cd-df59-4f23-8a33-4d6839873e07
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_spacer_size
+    - paragraphs.paragraphs_type.spacer
+  module:
+    - options
+id: paragraph.spacer.field_spacer_size
+field_name: field_spacer_size
+entity_type: paragraph
+bundle: spacer
+label: Height
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: medium
+default_value_callback: ''
+settings: {  }
+field_type: list_string

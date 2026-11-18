@@ -1,0 +1,45 @@
+uuid: a8c7e58b-452a-4bc2-8198-d539715062a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.compound_infographic.field_header
+    - field.field.paragraph.compound_infographic.field_infographic_layout
+    - field.field.paragraph.compound_infographic.field_p_stats
+    - paragraphs.paragraphs_type.compound_infographic
+  module:
+    - paragraphs
+id: paragraph.compound_infographic.default
+targetEntityType: paragraph
+bundle: compound_infographic
+mode: default
+content:
+  field_header:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_infographic_layout:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_p_stats:
+    type: entity_reference_paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Statistic
+      title_plural: Statistics
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: simple_stat
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

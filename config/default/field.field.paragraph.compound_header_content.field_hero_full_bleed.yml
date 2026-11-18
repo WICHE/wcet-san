@@ -1,0 +1,21 @@
+uuid: 8f119522-7c21-4fca-9c15-3623db668e98
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hero_full_bleed
+    - paragraphs.paragraphs_type.compound_header_content
+id: paragraph.compound_header_content.field_hero_full_bleed
+field_name: field_hero_full_bleed
+entity_type: paragraph
+bundle: compound_header_content
+label: 'Use full-width background image'
+description: 'Only applies when an image is set. On: the image fills the whole header behind the text (full-bleed). Off: the image sits in the right half next to the text.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

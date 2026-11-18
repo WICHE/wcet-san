@@ -1,0 +1,150 @@
+/**
+ * wiche · layout.css — page shell, containers, sections, header/footer scaffolding.
+ */
+
+.page-wrap { display: flex; flex-direction: column; min-height: 100vh; }
+.page-main { flex: 1 0 auto; }
+
+/* Centered content container (matches the design's 1320 content / 136 gutter) */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.wrap--wide { max-width: 1560px; }
+/* Content column = 10 of 12: 8/12 (Figma 154:1685) read as too narrow / too
+   much side padding in practice — widened to 10/12 of the 1320 content wrap. */
+.wrap--narrow { max-width: calc(var(--wrap-max) / 6 * 5); }
+
+/* A page "section" band: vertical rhythm + optional ground colour */
+.section { padding-block: var(--section-y); }
+.section--tint { background: var(--bg-tint); }
+.section--dark { background: var(--bg-dark); color: #e8eef4; }
+.section--dark h2, .section--dark h3 { color: #fff; }
+
+/* Centered section header (title + optional intro), used across home sections */
+.section-head { text-align: center; margin-bottom: var(--sp-8); }
+.section-head__title { margin: 0; }
+.section-head--rule .section-head__title {
+  display: inline-block;
+  padding-bottom: var(--sp-3);
+  border-bottom: 2px solid currentColor;
+}
+.section-head__intro {
+  max-width: 60ch; margin: var(--sp-3) auto 0; color: var(--c-muted);
+}
+
+/* Card grids. These wrap a Drupal field, so we "unwrap" the .field / .field__items
+ * containers with display:contents to let each .field__item become a grid cell. */
+.card-grid, .summary-grid { display: grid; gap: var(--sp-5); grid-template-columns: repeat(3, 1fr); }
+.card-grid--4, .summary-grid--overlay { grid-template-columns: repeat(4, 1fr); }
+.card-grid--2 { grid-template-columns: repeat(2, 1fr); }
+/* The paragraph reference field renders through wrapper divs (classed .field /
+ * .field__items OR classless <div>s depending on formatter). Unwrap them all so
+ * each card/item becomes a direct grid child. */
+.card-grid > .field,
+.card-grid > .field > .field__items,
+.card-grid > div:not([class]),
+.card-grid > div:not([class]) > div:not([class]),
+.summary-grid > .field,
+.summary-grid > .field > .field__items,
+.summary-grid > div:not([class]),
+.summary-grid > div:not([class]) > div:not([class]) { display: contents; }
+.card-grid .field__item,
+.summary-grid .field__item { display: flex; min-width: 0; }
+.card-grid .field__item > * ,
+.summary-grid .field__item > * { flex: 1 1 auto; }
+@media (max-width: 960px) { .card-grid, .card-grid--4, .summary-grid, .summary-grid--overlay { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .card-grid, .card-grid--4, .card-grid--2, .summary-grid, .summary-grid--overlay { grid-template-columns: 1fr; } }
+
+/* Front page: stack paragraph sections with no gaps (each owns its padding). */
+.path-frontpage .region-content > .field > .field__items > .field__item + .field__item { margin-top: 0; }
+
+/* Two-column paragraph */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-8); }
+@media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Photo + text (staff / profile rows): the page's 8-column grid — photo 2, text 6.
+ * The photo is cropped to one standard portrait shape whatever its source size
+ * (editor-set width/height attributes and left-align floats are overridden). */
+.two-col--profile { grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: var(--sp-5); }
+.two-col--profile .two-col__col--left { grid-column: span 2; }
+.two-col--profile .two-col__col--right { grid-column: span 6; }
+/* The blocks nested in each column are full "sections" (own padding + gutter) —
+ * flatten them so the photo fills its 2 columns and the text starts at the top. */
+.two-col--profile .two-col__col .section { padding-block: 0; }
+.two-col--profile .two-col__col .wrap { padding-inline: 0; max-width: none; }
+.two-col--profile .two-col__col--left img {
+  display: block; float: none; margin: 0; width: 100%; height: auto; max-width: none;
+  aspect-ratio: 3 / 4; object-fit: cover; object-position: center top;
+}
+@media (max-width: 800px) {
+  .two-col--profile { grid-template-columns: 1fr; }
+  .two-col--profile .two-col__col--left,
+  .two-col--profile .two-col__col--right { grid-column: auto; }
+  .two-col--profile .two-col__col--left img { max-width: 12rem; }
+}
+.section-head--left { text-align: left; }
+.section-head--left .section-head__intro { margin-inline: 0; }
+.lead { font-size: var(--fs-lead); color: var(--c-muted); font-weight: 400; }
+
+/* Section-level centered CTA below a grid. Up to 3 links (field_links) —
+ * unwrap the field's wrapper divs so each link becomes a direct flex child.
+ * The base theme (stable9) renders the field/item wrappers with NO class at
+ * all (unlike classy-style themes' .field/.field__item) — div:not([class])
+ * is the fallback that actually matches them, same pattern as .card-grid. */
+.section-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--sp-4); margin-top: var(--sp-8); }
+.section-cta > .field, .section-cta > .field > .field__items,
+.section-cta > div:not([class]), .section-cta > div:not([class]) > div:not([class]) { display: contents; }
+.section-cta--start { justify-content: flex-start; }
+.section-cta--end { justify-content: flex-end; }
+
+/* Vertical flow utility */
+.flow-l > * + * { margin-top: var(--sp-5); }
+
+/* -- Main content region + optional sidebars -- */
+/* 12-column proportions: single-sidebar layouts match .wrap--narrow's 10/12
+   content measure, leaving 2/12 for the sidebar. Two-sidebar layouts keep the
+   original 3 + 6 + 3 split. Collapses to one column ≤900px. */
+.page-main__grid { display: grid; gap: var(--sp-8); padding-block: var(--section-y); }
+.page-main__grid.has-sidebar-first { grid-template-columns: 2fr 10fr; }
+.page-main__grid.has-sidebar-second { grid-template-columns: 10fr 2fr; }
+.page-main__grid.has-both { grid-template-columns: 3fr 6fr 3fr; }
+@media (max-width: 900px) {
+  .page-main__grid.has-sidebar-first,
+  .page-main__grid.has-sidebar-second,
+  .page-main__grid.has-both { grid-template-columns: 1fr; }
+}
+
+/* Section-based pages (front page + landing pages) drop the content padding box
+   so their sections sit flush; sections themselves run full-bleed (below). */
+.path-frontpage .page-main__grid,
+.page-node-type-landing_page .page-main__grid { display: block; padding-block: 0; }
+
+/* Full-bleed component backgrounds: the hero + every section band stretch to the
+   full viewport width (capped at a 1920 max page width) while their inner .wrap
+   keeps the CONTENT within the 1320 container. Below 1920 this is identical to a
+   plain full-bleed; above it, bands stay 1920 centered. */
+.hero,
+.section { margin-inline: calc(50% - min(50vw, 960px)); }
+/* …but only top-level bands: sections nested inside the hero (secondary content),
+   a two-column layout, an article, etc. stay in normal flow. */
+.hero .section,
+.section .section,
+.resource-article .section,
+.quick-links .section { margin-inline: 0; }
+/* absorb the scrollbar-width the 50vw math adds, so no horizontal scroll */
+.page-main { overflow-x: clip; }
+
+/* -- Site header shell -- */
+/* Sticky header: stays pinned to the top; wiche.js toggles .site-header--hidden
+   to slide it away on scroll-down and bring it back on scroll-up (a class on
+   <html> disables the slide while the mobile menu is open or before JS boots,
+   so the header never gets stuck off-screen). */
+.site-header { position: sticky; top: 0; z-index: 40; background: var(--c-white);
+  transition: transform var(--dur) var(--ease); }
+.site-header--hidden { transform: translateY(-100%); }
+
+/* -- Footer shell -- */
+.site-footer { flex-shrink: 0; }

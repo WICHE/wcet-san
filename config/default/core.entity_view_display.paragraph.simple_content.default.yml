@@ -5,7 +5,8 @@ dependencies:
   config:
     - field.field.paragraph.simple_content.field_body
     - field.field.paragraph.simple_content.field_header
-    - field.field.paragraph.simple_content.field_link
+    - field.field.paragraph.simple_content.field_link_alignment
+    - field.field.paragraph.simple_content.field_links
     - field.field.paragraph.simple_content.field_subheader
     - paragraphs.paragraphs_type.simple_content
   module:
@@ -31,7 +32,7 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_link:
+  field_links:
     type: link
     label: hidden
     settings:
@@ -52,4 +53,8 @@ content:
     weight: 1
     region: content
 hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_link_alignment: true
   search_api_excerpt: true

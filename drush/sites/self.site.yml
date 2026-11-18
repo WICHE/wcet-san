@@ -1,0 +1,47 @@
+# Lagoon environment aliases for the current site, so the shorthand `@master`,
+# `@feature-refresh` etc. resolve (Drush treats `self.site.yml` specially:
+# `@self.master` can also be written `@master`). The Lagoon UI's "Drush
+# sql-sync" tasks call `drush sql-sync @<environment-name> @self`, and fail with
+# "Site alias @master not found" without this file.
+#
+# Names match the LAGOON environment names. They are only meaningful from
+# inside a Lagoon pod, where LAGOON_CONFIG_SSH_HOST / _PORT are injected (the
+# reachable SSH endpoint there differs from the public portal's). Keep
+# amazee.site.yml for the older `@amazee.*` names.
+#
+# Direction matters: run a sync ON the environment you want to overwrite.
+#   drush sql-sync @feature-refresh @self   # run on master: refresh -> master
+#   drush rsync @feature-refresh:%files @self:%files
+master:
+  host: ${env.LAGOON_CONFIG_SSH_HOST}
+  options:
+    backup-dir: /tmp
+    command-specific:
+      sql-sync:
+        no-ordered-dump: true
+  root: /app/docroot
+  user: wcetsan-wiche-edu-master
+  ssh:
+    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${env.LAGOON_CONFIG_SSH_PORT}'
+develop:
+  host: ${env.LAGOON_CONFIG_SSH_HOST}
+  options:
+    backup-dir: /tmp
+    command-specific:
+      sql-sync:
+        no-ordered-dump: true
+  root: /app/docroot
+  user: wcetsan-wiche-edu-develop
+  ssh:
+    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${env.LAGOON_CONFIG_SSH_PORT}'
+feature-refresh:
+  host: ${env.LAGOON_CONFIG_SSH_HOST}
+  options:
+    backup-dir: /tmp
+    command-specific:
+      sql-sync:
+        no-ordered-dump: true
+  root: /app/docroot
+  user: wcetsan-wiche-edu-feature-refresh
+  ssh:
+    options: '-o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${env.LAGOON_CONFIG_SSH_PORT}'

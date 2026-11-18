@@ -1,0 +1,10 @@
+uuid: f4f9c5e8-6db3-459f-ba57-6c4b11cef28f
+langcode: en
+status: true
+dependencies: {  }
+id: simple_stat
+label: 'Simple - Statistic'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

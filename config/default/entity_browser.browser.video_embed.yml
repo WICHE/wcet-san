@@ -15,28 +15,29 @@ display_configuration:
   height: '600'
   link_text: 'Select Video'
   auto_open: true
+  use_admin_theme: true
 selection_display: no_display
 selection_display_configuration: {  }
 widget_selector: tabs
 widget_selector_configuration: {  }
 widgets:
   0d260601-967c-4bb8-bd44-abaff739a5ab:
+    id: view
+    uuid: 0d260601-967c-4bb8-bd44-abaff739a5ab
+    label: 'Existing Videos'
+    weight: 1
     settings:
-      view: duplicate_of_entity_browser_video
-      view_display: entity_browser_1
       submit_text: 'Select Video'
       auto_select: false
-    uuid: 0d260601-967c-4bb8-bd44-abaff739a5ab
-    weight: 1
-    label: 'Existing Videos'
-    id: view
+      view: duplicate_of_entity_browser_video
+      view_display: entity_browser_1
   a10004f4-24ab-4975-b31b-212dc309802e:
+    id: entity_form
+    uuid: a10004f4-24ab-4975-b31b-212dc309802e
+    label: 'New Video'
+    weight: 2
     settings:
+      submit_text: 'Save Video'
       entity_type: media
       bundle: video
       form_mode: media_browser
-      submit_text: 'Save Video'
-    uuid: a10004f4-24ab-4975-b31b-212dc309802e
-    weight: 2
-    label: 'New Video'
-    id: entity_form

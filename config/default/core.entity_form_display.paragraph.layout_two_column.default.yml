@@ -3,18 +3,26 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.layout_two_column.field_column_layout
     - field.field.paragraph.layout_two_column.field_header
     - field.field.paragraph.layout_two_column.field_p_left_column
     - field.field.paragraph.layout_two_column.field_p_right_column
     - field.field.paragraph.layout_two_column.field_subheader
     - paragraphs.paragraphs_type.layout_two_column
   module:
+    - options
     - paragraphs
 id: paragraph.layout_two_column.default
 targetEntityType: paragraph
 bundle: layout_two_column
 mode: default
 content:
+  field_column_layout:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_header:
     type: string_textfield
     weight: 0

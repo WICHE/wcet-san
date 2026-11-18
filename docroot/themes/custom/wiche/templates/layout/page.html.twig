@@ -1,0 +1,91 @@
+{#
+/**
+ * @file wiche · page.html.twig — region layout for the WCET SAN site.
+ *
+ * Header: utility bar + logo + mega-menu (main navigation).
+ * Footer: light link-columns band + dark WCET band.
+ * Place blocks/menus into these regions at /admin/structure/block.
+ */
+#}
+<div class="page-wrap">
+
+  <a href="#main-content" class="visually-hidden focusable">{{ 'Skip to main content'|t }}</a>
+
+  <header class="site-header" role="banner">
+
+    {% if page.utility %}
+      <div class="site-header__utility">
+        <div class="wrap">{{ page.utility }}</div>
+      </div>
+    {% endif %}
+
+    <div class="site-header__main">
+      <div class="wrap">
+        <div class="site-brand">{{ page.header }}</div>
+
+        {% if page.primary_menu %}
+          <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" data-nav-toggle>
+            <span class="visually-hidden">{{ 'Menu'|t }}</span>☰
+          </button>
+          <nav class="main-nav" id="primary-nav" aria-label="{{ 'Main navigation'|t }}">
+            {{ page.primary_menu }}
+          </nav>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  {% if page.breadcrumb %}
+    <div class="region-breadcrumb"><div class="wrap">{{ page.breadcrumb }}</div></div>
+  {% endif %}
+
+  {% if page.highlighted %}
+    <div class="region-highlighted">{{ page.highlighted }}</div>
+  {% endif %}
+
+  {% if page.featured %}
+    <div class="region-featured">{{ page.featured }}</div>
+  {% endif %}
+
+  <main class="page-main" role="main">
+    <a id="main-content" tabindex="-1"></a>
+    <div class="wrap">
+      {% set sidebar_first = page.sidebar_first %}
+      {% set sidebar_second = page.sidebar_second %}
+      {%
+        set grid_classes = [
+          'page-main__grid',
+          sidebar_first and sidebar_second ? 'has-both',
+          sidebar_first and not sidebar_second ? 'has-sidebar-first',
+          sidebar_second and not sidebar_first ? 'has-sidebar-second',
+        ]|filter(v => v)|join(' ')
+      %}
+      <div class="{{ grid_classes }}">
+        {% if sidebar_first %}
+          <aside class="region-sidebar region-sidebar-first" role="complementary">{{ sidebar_first }}</aside>
+        {% endif %}
+        <div class="region-content">
+          {{ page.help }}
+          {{ page.content }}
+        </div>
+        {% if sidebar_second %}
+          <aside class="region-sidebar region-sidebar-second" role="complementary">{{ sidebar_second }}</aside>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    {% if page.footer_top %}
+      <div class="site-footer__top">
+        <div class="wrap">{{ page.footer_top }}</div>
+      </div>
+    {% endif %}
+    {% if page.footer %}
+      <div class="site-footer__wcet">
+        <div class="wrap">{{ page.footer }}</div>
+      </div>
+    {% endif %}
+  </footer>
+
+</div>

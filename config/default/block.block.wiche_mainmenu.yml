@@ -1,0 +1,25 @@
+uuid: 2c9d6940-1e77-4cbe-b699-ef15005eb1a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - wiche
+id: wiche_mainmenu
+theme: wiche
+region: primary_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: Mainmenu
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }

@@ -1,0 +1,23 @@
+uuid: 8e45bee7-cc33-4c4e-82b9-9ddabc3291d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_column_layout
+    - paragraphs.paragraphs_type.layout_two_column
+  module:
+    - options
+id: paragraph.layout_two_column.field_column_layout
+field_name: field_column_layout
+entity_type: paragraph
+bundle: layout_two_column
+label: 'Column layout'
+description: 'Two equal columns is the default. "Photo + text" is for staff / profile rows: put the photo (a block containing just an image) in the Left column and the name, title and bio in the Right column. The photo takes 2 of the 8 page columns and is cropped to one standard size; the text takes the other 6.'
+required: false
+translatable: false
+default_value:
+  -
+    value: equal
+default_value_callback: ''
+settings: {  }
+field_type: list_string

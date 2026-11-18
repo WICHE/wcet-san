@@ -1,0 +1,11 @@
+{#
+/**
+ * @file single_link — render the link as a styled button/link.
+ * field_link (link), field_link_style (primary|secondary|…). We render only the
+ * link and use the style as a class, so the style value never prints as text.
+ */
+#}
+{% set style = paragraph.field_link_style.value|default('link') %}
+<div{{ attributes.addClass('paragraph-link', 'link-style--' ~ style|clean_class) }}>
+  {{ content.field_link }}
+</div>

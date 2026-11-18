@@ -1,0 +1,23 @@
+uuid: 493c80a9-b4af-4491-9016-324e75003fc2
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:592ad313-085d-4141-898b-08935f191f01'
+  module:
+    - block_content
+  theme:
+    - wiche
+id: wiche_footer_wcet
+theme: wiche
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:592ad313-085d-4141-898b-08935f191f01'
+settings:
+  id: 'block_content:592ad313-085d-4141-898b-08935f191f01'
+  label: wiche_footer_wcet
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

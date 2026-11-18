@@ -1,0 +1,72 @@
+{#
+/**
+ * @file Resource full page → article page (Figma 53:499).
+ *
+ * Design layout: two columns — a prose article (left) and a "Quick links"
+ * sidebar (right, top-aligned with the title) — then a "More {topic} Resources"
+ * related-cards row spanning full width.
+ *
+ * Content-model reality: resources carry their text in the node body (the
+ * migrated/legacy content — 560+ of 600 on feature-refresh) and/or in
+ * field_p_content paragraphs (newer, layout-built pages), plus a list of
+ * links/files in field_p_resources. So the template adapts:
+ *   • has prose  → two columns: body + field_p_content (left) and the links
+ *                   as a Quick links sidebar (right)
+ *   • no prose   → single column: the links/files as the main "Downloads &
+ *                   links" panel (older link-only resources still read well)
+ * The page-title block is hidden on these pages (wiche.theme + components.css).
+ */
+#}
+{# striptags so an empty layout paragraph (wrapper divs, no text) doesn't
+   falsely trigger the two-column prose layout — most resources have no prose. #}
+{% set has_body = content.body|render|striptags|trim is not empty or content.field_p_content|render|striptags|trim is not empty %}
+{% set has_links = content.field_p_resources|render|trim is not empty %}
+
+<article{{ attributes.addClass('resource-article', has_body ? 'resource-article--split') }}>
+  <header class="resource-article__head">
+    <div class="article-meta">
+      {% if content.field_resource_type|render|trim is not empty %}
+        <span class="article-meta__cat">{{ content.field_resource_type }}</span>
+      {% endif %}
+      <span class="article-meta__date">{{ node.getCreatedTime|date('n/j/Y') }}</span>
+      {% if content.field_topic|render|trim is not empty %}
+        <span class="article-meta__topic">{{ content.field_topic }}</span>
+      {% endif %}
+    </div>
+    <h1 class="article-title">{{ label }}</h1>
+  </header>
+
+  {% if has_body %}
+    <div class="resource-article__main flow-l">
+      {{ content.body }}
+      {{ content.field_p_content }}
+    </div>
+    {% if has_links %}
+      <aside class="resource-article__aside">
+        <div class="quick-links">
+          <h2 class="quick-links__title">{{ 'Quick links'|t }}</h2>
+          <div class="quick-links__list">{{ content.field_p_resources }}</div>
+        </div>
+      </aside>
+    {% endif %}
+  {% elseif has_links %}
+    <section class="resource-downloads">
+      <h2 class="resource-downloads__title">{{ 'Downloads & links'|t }}</h2>
+      <div class="resource-downloads__list">{{ content.field_p_resources }}</div>
+    </section>
+  {% endif %}
+
+  {% if related_resources is not empty %}
+    <section class="resource-article__related">
+      <h2 class="resource-article__related-title">
+        {{ related_topic ? 'More @topic Resources'|t({'@topic': related_topic}) : 'More Resources'|t }}
+      </h2>
+      <div class="card-grid card-grid--2">
+        {% for item in related_resources %}{{ item }}{% endfor %}
+      </div>
+      <div class="section-cta section-cta--start">
+        <a href="/resources/all" class="button">{{ 'See all resources'|t }}</a>
+      </div>
+    </section>
+  {% endif %}
+</article>

@@ -1,0 +1,18 @@
+uuid: 0d7b9322-119b-4486-b021-e79822ee9670
+langcode: en
+status: true
+dependencies:
+  theme:
+    - wiche
+id: wiche_actions
+theme: wiche
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: Actions
+  label_display: '0'
+  provider: core
+visibility: {  }

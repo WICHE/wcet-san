@@ -1,0 +1,16 @@
+{#
+/**
+ * @file Past events listing rows → responsive card grid (Figma 157:2644).
+ * Same pattern as the upcoming-events listing.
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+<div class="card-grid card-grid--resources">
+  {% for row in rows %}
+    <div{{ row.attributes.addClass('views-row') }}>
+      {{- row.content -}}
+    </div>
+  {% endfor %}
+</div>

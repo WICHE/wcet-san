@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: dqouFqVseNJNvEjsoYKxbinFOITuCxYhi4y2OTNQP_8
 all:
   - language_interface
   - language_content
@@ -16,5 +18,3 @@ negotiation:
     enabled:
       language-graphql: -999
       language-url: 0
-_core:
-  default_config_hash: dqouFqVseNJNvEjsoYKxbinFOITuCxYhi4y2OTNQP_8

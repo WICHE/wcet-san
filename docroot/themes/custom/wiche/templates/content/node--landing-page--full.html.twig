@@ -1,0 +1,34 @@
+{#
+/**
+ * @file Landing page (full view) — hero first, then the breadcrumb trail,
+ * then the rest of the page content (Figma 35:1632: breadcrumbs sit directly
+ * below the hero, not above the whole page). `post_hero_breadcrumb` is the
+ * same breadcrumb block, rendered here by
+ * wiche_preprocess_node__landing_page() — its normal top-of-page placement is
+ * hidden on landing pages via CSS so it never appears twice.
+ */
+#}
+<article{{ attributes }}>
+
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {# No hero (e.g. the data-table pages, matching the Coordinator List): the
+     page-title block is hidden on landing pages, so print the title as the H1. #}
+  {% if content.field_p_header|render|trim is empty %}
+    <div class="landing-title"><div class="wrap wrap--narrow"><h1>{{ label }}</h1></div></div>
+  {% else %}
+    {{ content.field_p_header }}
+  {% endif %}
+
+  {% if post_hero_breadcrumb %}
+    <div class="region-breadcrumb region-breadcrumb--post-hero">
+      <div class="wrap">{{ post_hero_breadcrumb }}</div>
+    </div>
+  {% endif %}
+
+  <div{{ content_attributes }}>
+    {{ content|without('field_p_header') }}
+  </div>
+
+</article>

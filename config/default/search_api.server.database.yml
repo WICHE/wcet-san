@@ -1,0 +1,15 @@
+uuid: e80732d6-56f2-4b75-99c0-a566f7b33703
+langcode: en
+status: true
+dependencies: {  }
+id: database
+name: Database
+description: 'Database search server (no Solr config-set to maintain).'
+backend: search_api_db
+backend_config:
+  database: 'default:default'
+  min_chars: 3
+  matching: words
+  autocomplete:
+    suggest_suffix: true
+    suggest_words: true

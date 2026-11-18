@@ -1,0 +1,27 @@
+uuid: b7fc79e7-2704-475a-a8d9-d611174c1623
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_infographic_layout
+field_name: field_infographic_layout
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: full
+      label: 'Full width'
+    -
+      value: narrow
+      label: '8 column (narrower)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

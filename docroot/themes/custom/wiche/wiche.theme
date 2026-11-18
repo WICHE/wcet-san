@@ -1,0 +1,261 @@
+<?php
+
+/**
+ * @file
+ * Theme hooks and preprocess for the wiche (WCET SAN) theme.
+ *
+ * Intentionally minimal — add body classes, template suggestions, and
+ * paragraph/component preprocessing here as the build grows.
+ */
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_preprocess_HOOK() for html.html.twig.
+ *
+ * Adds a hook for future body-level classes (theme variants, etc.).
+ */
+function wiche_preprocess_html(array &$variables): void {
+  // Tag the <body> with the node bundle on canonical node pages so component
+  // CSS can adapt (e.g. the resource/event full templates render their own H1,
+  // so the page-title block is hidden on those pages — see components.css).
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    $variables['attributes']['class'][] = 'page-node';
+    $variables['attributes']['class'][] = 'page-node-type-' . $node->bundle();
+  }
+
+  // A stable, route-based body class so listing pages (e.g. the resources view)
+  // can be styled without depending on the view's dynamic dom-id class.
+  $route = \Drupal::routeMatch()->getRouteName();
+  if ($route !== NULL) {
+    // Normalise separators (dots + underscores) to hyphens so the class is
+    // predictable, e.g. view.resources.page_resources → view-resources-page-resources.
+    $slug = \Drupal\Component\Utility\Html::cleanCssIdentifier(str_replace(['.', '_'], '-', $route));
+    $variables['attributes']['class'][] = 'route--' . $slug;
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_node_alter().
+ *
+ * Resource Table nodes (the data charts) are listed alongside Resources on
+ * /resources/all, but only `resource` had a teaser template — the charts fell
+ * back to Drupal's generic node markup and rendered as a differently-styled
+ * block in the same grid. Their teaser carries the same fields (resource
+ * type, topics, access flag), so reuse the resource article-card template.
+ */
+function wiche_theme_suggestions_node_alter(array &$suggestions, array $variables): void {
+  $node = $variables['elements']['#node'] ?? NULL;
+  if ($node instanceof \Drupal\node\NodeInterface
+    && $node->bundle() === 'resource_table'
+    && ($variables['elements']['#view_mode'] ?? '') === 'teaser') {
+    $suggestions[] = 'node__resource__teaser';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ *
+ * On a full resource page (the article page, Figma 53:499) build a small
+ * "More {topic} Resources" related list — other published resources that share
+ * this resource's primary topic — so the template can render the related-cards
+ * section beneath the article. Also exposes the primary topic label for the
+ * section heading.
+ */
+function wiche_preprocess_node(array &$variables): void {
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof \Drupal\node\NodeInterface) {
+    return;
+  }
+  if ($node->bundle() !== 'resource' || ($variables['view_mode'] ?? '') !== 'full') {
+    return;
+  }
+
+  $variables['related_resources'] = [];
+  $variables['related_topic'] = NULL;
+
+  if (!$node->hasField('field_topic') || $node->get('field_topic')->isEmpty()) {
+    return;
+  }
+  $tids = array_column($node->get('field_topic')->getValue(), 'target_id');
+
+  // Primary topic label for the heading.
+  $term = \Drupal\taxonomy\Entity\Term::load(reset($tids));
+  if ($term !== NULL) {
+    $variables['related_topic'] = $term->label();
+  }
+
+  $ids = \Drupal::entityQuery('node')
+    ->accessCheck(TRUE)
+    ->condition('type', 'resource')
+    ->condition('status', 1)
+    ->condition('field_topic', $tids, 'IN')
+    ->condition('nid', $node->id(), '<>')
+    ->sort('created', 'DESC')
+    ->range(0, 2)
+    ->execute();
+  if (!$ids) {
+    return;
+  }
+
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+  foreach (\Drupal\node\Entity\Node::loadMultiple($ids) as $related) {
+    $variables['related_resources'][] = $view_builder->view($related, 'teaser');
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig (landing pages).
+ *
+ * Landing pages carry a hero (compound_header_content) as their first
+ * paragraph. The design (Figma 35:1632) puts the breadcrumb trail directly
+ * BELOW the hero rather than above the whole page like every other content
+ * type. Render the same breadcrumb block here so
+ * node--landing-page--full.html.twig can place it right after the hero; the
+ * block's normal top-of-page position is hidden on landing pages via CSS
+ * (.page-node-type-landing-page .region-breadcrumb) so it never shows twice.
+ */
+function wiche_preprocess_node__landing_page(array &$variables): void {
+  if (($variables['view_mode'] ?? '') !== 'full') {
+    return;
+  }
+  $block = \Drupal::entityTypeManager()->getStorage('block')->load('wiche_breadcrumb');
+  if ($block) {
+    $variables['post_hero_breadcrumb'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+}
+
+/**
+ * Query event nodes for a summary_events / summary_past_events paragraph.
+ *
+ * These bundles carry field_summary_topics (optional filter) — if set, only
+ * events sharing one of those topics are shown; otherwise (or if the filter
+ * matches nothing) the N most relevant events by date are shown unfiltered,
+ * so the section is never left empty. $upcoming selects field_event_date >=
+ * today (ascending) vs. < today (descending, most recent first).
+ */
+function _wiche_query_summary_events(\Drupal\paragraphs\ParagraphInterface $paragraph, bool $upcoming, int $limit = 3): array {
+  $today = date('Y-m-d');
+  $tids = [];
+  if ($paragraph->hasField('field_summary_topics') && !$paragraph->get('field_summary_topics')->isEmpty()) {
+    $tids = array_column($paragraph->get('field_summary_topics')->getValue(), 'target_id');
+  }
+  $type_ids = [];
+  if ($paragraph->hasField('field_summary_event_types') && !$paragraph->get('field_summary_event_types')->isEmpty()) {
+    $type_ids = array_column($paragraph->get('field_summary_event_types')->getValue(), 'target_id');
+  }
+
+  $build_query = function () use ($today, $upcoming, $limit, $tids, $type_ids) {
+    $query = \Drupal::entityQuery('node')
+      ->accessCheck(TRUE)
+      ->condition('type', 'event')
+      ->condition('status', 1)
+      ->range(0, $limit);
+    if ($upcoming) {
+      $query->condition('field_event_date', $today, '>=')->sort('field_event_date', 'ASC');
+    }
+    else {
+      $query->condition('field_event_date', $today, '<')->sort('field_event_date', 'DESC');
+    }
+    if ($tids) {
+      $query->condition('field_topic', $tids, 'IN');
+    }
+    if ($type_ids) {
+      $query->condition('field_event_type', $type_ids, 'IN');
+    }
+    return $query->execute();
+  };
+
+  $ids = $build_query();
+  // The topic filter falls back to unfiltered when nothing matches, but an
+  // explicit event-type choice (e.g. "Open Forum only") must never be widened.
+  if (!$ids && $tids && !$type_ids) {
+    // No events matched the selected topics — fall back to unfiltered.
+    $tids = [];
+    $ids = $build_query();
+  }
+  if (!$ids) {
+    return [];
+  }
+
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+  $teasers = [];
+  foreach (\Drupal\node\Entity\Node::loadMultiple($ids) as $event) {
+    $teasers[] = $view_builder->view($event, 'teaser');
+  }
+  return $teasers;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--summary-events.html.twig.
+ *
+ * Figma 157:2644 — the site's ONLY event-card style is .card--event (see
+ * node--event--teaser.html.twig). This bundle used to render topic tiles
+ * under an "Events" heading, which looked like a second, incorrect event
+ * style; it now queries real upcoming events instead.
+ */
+function wiche_preprocess_paragraph__summary_events(array &$variables): void {
+  $variables['events'] = _wiche_query_summary_events($variables['paragraph'], TRUE);
+  $variables['list_cache'] = ['#cache' => ['tags' => ['node_list:event']]];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--summary-past-events.html.twig.
+ *
+ * Same fix as summary_events, querying past events (date < today, DESC).
+ */
+function wiche_preprocess_paragraph__summary_past_events(array &$variables): void {
+  $variables['events'] = _wiche_query_summary_events($variables['paragraph'], FALSE);
+  $variables['list_cache'] = ['#cache' => ['tags' => ['node_list:event']]];
+}
+
+/**
+ * Implements hook_theme_suggestions_paragraph_alter().
+ *
+ * Lets each paragraph type have a template like
+ * paragraph--{type}.html.twig and, optionally, per-view-mode variants.
+ */
+function wiche_theme_suggestions_paragraph_alter(array &$suggestions, array $variables): void {
+  $paragraph = $variables['elements']['#paragraph'] ?? NULL;
+  if ($paragraph !== NULL) {
+    $view_mode = $variables['elements']['#view_mode'] ?? 'default';
+    $suggestions[] = 'paragraph__' . $paragraph->bundle() . '__' . $view_mode;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--summary-resources.html.twig.
+ *
+ * field_summary_display = "latest": instead of one image tile per selected
+ * topic, list the 4 most recent published resources (resources + resource
+ * tables) tagged with those topics — what the old site's "Latest Resources"
+ * block did on each topic page. With no topics chosen, the 4 most recent
+ * overall. Rendered through each node's teaser (the article card).
+ */
+function wiche_preprocess_paragraph__summary_resources(array &$variables): void {
+  $paragraph = $variables['paragraph'];
+  $variables['display_mode'] = $paragraph->hasField('field_summary_display') && $paragraph->get('field_summary_display')->value === 'latest'
+    ? 'latest' : 'tiles';
+  if ($variables['display_mode'] !== 'latest') {
+    return;
+  }
+
+  $query = \Drupal::entityQuery('node')
+    ->accessCheck(TRUE)
+    ->condition('type', ['resource', 'resource_table'], 'IN')
+    ->condition('status', 1)
+    ->sort('created', 'DESC')
+    ->range(0, 4);
+  if (!$paragraph->get('field_summary_topics')->isEmpty()) {
+    $query->condition('field_topic', array_column($paragraph->get('field_summary_topics')->getValue(), 'target_id'), 'IN');
+  }
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+  $variables['latest'] = [];
+  foreach (\Drupal\node\Entity\Node::loadMultiple($query->execute()) as $node) {
+    $variables['latest'][] = $view_builder->view($node, 'teaser');
+  }
+  $variables['list_cache'] = ['#cache' => ['tags' => ['node_list:resource', 'node_list:resource_table']]];
+}

@@ -75,3 +75,5 @@ cloneable_entities:
   - mailer_transport
   - mailer_policy
   - captcha_point
+  - workflow
+  - content_moderation_state

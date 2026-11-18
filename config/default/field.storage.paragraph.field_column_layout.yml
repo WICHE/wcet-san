@@ -1,0 +1,27 @@
+uuid: b7d82168-a7b4-46d0-801c-0eea3a391755
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_column_layout
+field_name: field_column_layout
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: equal
+      label: 'Two equal columns'
+    -
+      value: profile
+      label: 'Photo + text (photo 2/8, text 6/8)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

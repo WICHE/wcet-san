@@ -5,6 +5,6 @@ dependencies: {  }
 machine: local
 description: null
 name: Local
-url: 'http://paragon.drupalvm/'
+url: 'http://paragon.drupalvm'
 fg_color: '#fefdff'
 bg_color: '#005093'

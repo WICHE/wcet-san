@@ -1,0 +1,20 @@
+uuid: 3fed23ea-8279-4420-b15b-cd06448a6897
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - wiche
+id: wiche_messages
+theme: wiche
+region: highlighted
+weight: -10
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  label_display: '0'
+  provider: system
+visibility: {  }

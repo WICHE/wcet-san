@@ -1,0 +1,20 @@
+uuid: e5047399-eb69-448f-8b11-ecd30c84ccaa
+langcode: en
+status: true
+dependencies:
+  theme:
+    - wiche
+id: wiche_tabs
+theme: wiche
+region: content
+weight: -20
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

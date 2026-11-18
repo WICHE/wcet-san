@@ -3,7 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.summary_resources.field_header
     - field.field.paragraph.summary_resources.field_link
+    - field.field.paragraph.summary_resources.field_summary_display
     - field.field.paragraph.summary_resources.field_summary_topics
     - paragraphs.paragraphs_type.summary_resources
   module:
@@ -25,6 +27,19 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_summary_topics:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
 hidden:
-  field_summary_topics: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_header: true
+  field_summary_display: true
   search_api_excerpt: true

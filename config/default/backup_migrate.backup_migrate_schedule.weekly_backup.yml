@@ -6,6 +6,8 @@ id: weekly_backup
 label: 'Weekly backup'
 enabled: true
 keep: 6
+encrypt: null
+encrypt_password: null
 period: 604800
 cron: null
 source_id: default_db

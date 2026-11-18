@@ -1,0 +1,93 @@
+/**
+ * wiche · tokens.css — the single source of art-direction.
+ *
+ * Derived from the Figma "Wiche-Refresh" design. Change the look of the whole
+ * site from here: colours, type, spacing, radius, shadows, buttons.
+ */
+
+:root {
+  /* ---- Brand palette (from Figma GLOBAL_VARS) ---------------------------- */
+  --c-blue: #1468A0;          /* primary brand blue */
+  --c-blue-600: #12608f;      /* hover / pressed */
+  --c-blue-navy: #07263A;     /* gradient end / deep navy */
+  --c-blue-tint: rgba(20, 104, 160, 0.10); /* section / utility / footer wash */
+  --c-blue-tint-2: rgba(20, 104, 160, 0.06);
+  --c-red: #DF1D20;           /* accent (alerts / emphasis) */
+  --c-magenta: #7C2A8E;       /* SAN mark + "external link" + link hover */
+
+  --c-ink: #4A4A4A;           /* body copy */
+  --c-ink-strong: #2f2f31;    /* strong headings */
+  --c-heading: #414042;       /* section headings */
+  --c-muted: #6b6b6b;         /* secondary text */
+  --c-hair: #AFA9A0;          /* hairlines on tinted grounds */
+  --c-slate: #575d70;         /* dark footer band (client-approved footer redesign) */
+  --c-white: #ffffff;
+  --c-purple: #57068C;        /* infographic figures */
+
+  /* ---- Semantic surfaces ------------------------------------------------ */
+  --bg: #ffffff;
+  --bg-tint: #e8eff5;         /* solid equivalent of the blue wash */
+  --bg-dark: #0e2233;         /* dark "Resources" band */
+  --surface: #ffffff;         /* cards */
+  --border: #e2e6ea;
+  --border-strong: #ccd4dc;
+  --text: var(--c-ink);
+  --heading: var(--c-heading);
+  --link: var(--c-blue);
+  --link-hover: var(--c-magenta);
+
+  /* Hero gradient (left brand-blue → deep navy) */
+  --hero-gradient: linear-gradient(90deg, #136196 49%, #061F30 100%);
+
+  /* ---- Typography ------------------------------------------------------- */
+  --font-body: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-head: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-ui:   "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --fs-display: clamp(2rem, 1.2rem + 2.5vw, 3rem);   /* 32→48 h1 / section titles (client-specified 48px) */
+  --fs-h2:      clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem);
+  --fs-h3:      clamp(1.5rem, 1.25rem + 0.8vw, 1.75rem); /* 24→28 */
+  --fs-h4:      1.5rem;    /* 24 card titles */
+  --fs-lead:    clamp(1.25rem, 1.05rem + 0.6vw, 2rem);  /* 20→32 */
+  --fs-body:    1rem;     /* 16 */
+  --fs-sm:      0.875rem; /* 14 labels / utility */
+
+  --lh-tight: 1.2;
+  --lh-head: 1.25;
+  --lh-body: 1.6;
+
+  /* ---- Spacing scale ---------------------------------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 2.5rem;
+  --sp-8: 3rem;
+  --sp-9: 4rem;
+  --sp-10: 5rem;
+
+  /* Section vertical rhythm + horizontal gutter */
+  --section-y: clamp(2.5rem, 1.5rem + 3vw, 5rem); /* up to 80px like the design */
+  --gutter: clamp(1rem, 0.3rem + 3vw, 8.5rem); /* up to 136px like the design */
+  --wrap-max: 1320px;
+
+  /* ---- Radius & shadows ------------------------------------------------- */
+  --radius: 6px;
+  --radius-sm: 4px;
+  --radius-lg: 10px;
+  --shadow-header: 0 4px 4px rgba(0, 0, 0, 0.10);
+  --shadow-card: 0 0 6px 6px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 6px 18px -6px rgba(20, 104, 160, 0.35);
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --dur: 180ms;
+}
+
+/*
+ * The Figma design is a single, committed light look, so wiche is single-theme.
+ * Colours are all defined explicitly above (never only inside a media/theme
+ * block), so the page holds up on any host ground.
+ */

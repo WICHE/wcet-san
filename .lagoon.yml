@@ -3,25 +3,25 @@ docker-compose-yaml: docker-compose.yml
 tasks:
   post-rollout:
 
-    - run:
-        name: first cache clear
-        command: drush cr
-        service: cli
+    # - run:
+    #     name: first cache clear
+    #     command: drush cr
+    #     service: cli
 
-    - run:
-        name: database update
-        command: cd docroot; drush -y updb --cache-clear=0
-        service: cli
+    # - run:
+    #     name: database update
+    #     command: cd docroot; drush -y updb --cache-clear=0
+    #     service: cli
 
     # - run:
     #     name: configuration import
     #     command: cd docroot; drush cim -y
     #     service: cli
     
-    - run:
-        name: second cache clear
-        command: drush cr
-        service: cli
+    # - run:
+    #     name: second cache clear
+    #     command: drush cr
+    #     service: cli
 
 environments:
   master:

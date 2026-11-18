@@ -1,0 +1,19 @@
+uuid: 0ad79004-d7a4-4c1a-9c6c-581a8e49821a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_stat_label
+    - paragraphs.paragraphs_type.simple_stat
+id: paragraph.simple_stat.field_stat_label
+field_name: field_stat_label
+entity_type: paragraph
+bundle: simple_stat
+label: Label
+description: 'The short caption under the number — e.g. "Years of SAN".'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -3,6 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.file
+    - entity_browser.browser.file_embed
+    - entity_browser.browser.image
+    - entity_browser.browser.image_embed
     - filter.format.basic_html
     - node.type.event
     - node.type.landing_page
@@ -93,6 +97,7 @@ permissions:
   - 'edit terms in membership'
   - 'edit terms in resource_type'
   - 'edit terms in topic'
+  - 'rebuild node access permissions'
   - 'revert all revisions'
   - 'revert event revisions'
   - 'revert landing_page revisions'

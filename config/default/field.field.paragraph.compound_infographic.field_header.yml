@@ -1,0 +1,19 @@
+uuid: a5784fe4-7fb8-4d7d-9de4-82ab9e0a315e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_header
+    - paragraphs.paragraphs_type.compound_infographic
+id: paragraph.compound_infographic.field_header
+field_name: field_header
+entity_type: paragraph
+bundle: compound_infographic
+label: Title
+description: 'Optional heading shown above the figures.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

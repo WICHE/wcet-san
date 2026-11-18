@@ -1,0 +1,29 @@
+{#
+/**
+ * @file Resource teaser → article card (Figma 170:3555).
+ * resource node: field_resource_type (category label), created (date),
+ * field_content_access (public|private → lock), field_topic (tags).
+ */
+#}
+{% set locked = node.field_content_access.value == 'private' %}
+<article{{ attributes.addClass('card--article') }}>
+  {% if locked %}
+    <span class="card--article__lock" title="{{ 'Members only'|t }}" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+      </svg>
+    </span>
+  {% endif %}
+  {% if content.field_resource_type|render|trim is not empty %}
+    <div class="card--article__label">{{ content.field_resource_type }}</div>
+  {% endif %}
+  <div class="card--article__date">{{ node.getCreatedTime|date('n/j/Y') }}</div>
+  <hr class="card--article__rule">
+  <h3 class="card--article__title">
+    <a href="{{ url }}">{{ label }}</a>
+  </h3>
+  {% if content.field_topic|render|trim is not empty %}
+    <div class="card--article__tags">{{ content.field_topic }}</div>
+  {% endif %}
+  <div class="card__cta"><a href="{{ url }}">{{ 'Read more'|t }}</a></div>
+</article>

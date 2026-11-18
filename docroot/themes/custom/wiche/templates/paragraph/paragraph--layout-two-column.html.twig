@@ -1,0 +1,23 @@
+{#
+/**
+ * @file Two-column layout — layout_two_column.
+ * Fields: field_header, field_subheader, field_p_left_column, field_p_right_column,
+ * field_column_layout (equal | profile — profile = photo 2/8 + text 6/8).
+ */
+#}
+<section{{ attributes.addClass('section', 'paragraph-two-col') }}>
+  <div class="wrap{{ paragraph.field_column_layout.value == 'profile' ? ' wrap--narrow' }}">
+    {% if paragraph.field_header.value %}
+      <div class="section-head section-head--left">
+        <h2 class="section-head__title">{{ paragraph.field_header.value }}</h2>
+        {% if paragraph.field_subheader.value %}
+          <p class="section-head__intro">{{ paragraph.field_subheader.value }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="two-col{{ paragraph.field_column_layout.value == 'profile' ? ' two-col--profile' }}">
+      <div class="two-col__col two-col__col--left flow-l">{{ content.field_p_left_column }}</div>
+      <div class="two-col__col two-col__col--right flow-l">{{ content.field_p_right_column }}</div>
+    </div>
+  </div>
+</section>

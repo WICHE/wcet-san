@@ -3,19 +3,46 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.summary_past_events.field_header
+    - field.field.paragraph.summary_past_events.field_link
+    - field.field.paragraph.summary_past_events.field_summary_event_types
     - field.field.paragraph.summary_past_events.field_summary_topics
     - paragraphs.paragraphs_type.summary_past_events
+  module:
+    - link
 id: paragraph.summary_past_events.default
 targetEntityType: paragraph
 bundle: summary_past_events
 mode: default
 content:
-  field_summary_topics:
-    weight: 0
+  field_header:
+    type: string_textfield
+    weight: -10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 10
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_summary_event_types:
+    type: options_buttons
+    weight: 1
+    region: content
     settings: {  }
     third_party_settings: {  }
+  field_summary_topics:
     type: options_select
+    weight: 0
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   created: true
   status: true

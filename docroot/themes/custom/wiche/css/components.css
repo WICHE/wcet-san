@@ -704,6 +704,10 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 /* ============================ Design-spec refinements (2026-09-06) ======== */
 /* Button text colour must win over container link-colour rules. */
 .section a.button, .region-content a.button { color: #fff; }
+/* ...but the solid button turns into an outline on hover (transparent background,
+   blue border), so its text must turn blue too — the rule above is more specific
+   than .button:hover and kept it white on white ("See all resources"). */
+.section a.button:hover, .region-content a.button:hover { color: var(--c-blue); }
 
 /* Accordion (spec 161:2043): default grey, rollover = blue text, selected =
  * blue filled bar + white text + left blue accent on the open content. */

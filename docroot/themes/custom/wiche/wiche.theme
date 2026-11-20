@@ -259,3 +259,47 @@ function wiche_preprocess_paragraph__summary_resources(array &$variables): void 
   }
   $variables['list_cache'] = ['#cache' => ['tags' => ['node_list:resource', 'node_list:resource_table']]];
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the user login form.
+ *
+ * The Log in / Reset your password tabs are hidden on these pages (see the
+ * "Login & password pages" block in components.css); the same two
+ * destinations are offered as plain links under the form, plus a one-line
+ * intro so the page doesn't open on a bare username field.
+ */
+function wiche_form_user_login_form_alter(array &$form, \Drupal\Core\Form\FormStateInterface $form_state): void {
+  $form['intro'] = [
+    '#markup' => '<p class="auth-intro">' . t('Log in to access member resources and manage your account.') . '</p>',
+    '#weight' => -100,
+  ];
+  $form['auth_links'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['auth-links']],
+    '#weight' => 100,
+    'forgot' => [
+      '#type' => 'link',
+      '#title' => t('Forgot your password?'),
+      '#url' => \Drupal\Core\Url::fromRoute('user.pass'),
+    ],
+    'enroll' => [
+      '#markup' => '<span>' . t('Not a member yet?') . ' <a href="/enroll">' . t('Enroll in SAN') . '</a></span>',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the password reset request form.
+ */
+function wiche_form_user_pass_alter(array &$form, \Drupal\Core\Form\FormStateInterface $form_state): void {
+  $form['auth_links'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['auth-links']],
+    '#weight' => 100,
+    'back' => [
+      '#type' => 'link',
+      '#title' => t('Back to log in'),
+      '#url' => \Drupal\Core\Url::fromRoute('user.login'),
+    ],
+  ];
+}

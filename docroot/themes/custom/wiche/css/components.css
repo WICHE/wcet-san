@@ -704,6 +704,10 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 /* ============================ Design-spec refinements (2026-09-06) ======== */
 /* Button text colour must win over container link-colour rules. */
 .section a.button, .region-content a.button { color: #fff; }
+/* ...but the solid button turns into an outline on hover (transparent background,
+   blue border), so its text must turn blue too — the rule above is more specific
+   than .button:hover and kept it white on white ("See all resources"). */
+.section a.button:hover, .region-content a.button:hover { color: var(--c-blue); }
 
 /* Accordion (spec 161:2043): default grey, rollover = blue text, selected =
  * blue filled bar + white text + left blue accent on the open content. */
@@ -1163,4 +1167,53 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .page-node-type-resource .region-content table th,
 .page-node-type-resource .region-content table td {
   width: auto !important; word-break: normal !important; overflow-wrap: break-word;
+}
+
+/* ---- Login & password pages ---------------------------------------------
+   A centred card on the tint instead of a bare form. The Log in / Reset your
+   password tabs are replaced by links under the form (wiche.theme). */
+.route--user-login .page-main,
+.route--user-pass .page-main { background: var(--bg-tint); }
+.route--user-login .page-main__grid,
+.route--user-pass .page-main__grid { padding-block: var(--sp-9); }
+.route--user-login #block-wiche-tabs,
+.route--user-pass #block-wiche-tabs { display: none; }
+.route--user-login .region-content,
+.route--user-pass .region-content { width: 100%; max-width: 30rem; margin-inline: auto;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card); padding: var(--sp-7); }
+.route--user-login #block-wiche-pagetitle h1,
+.route--user-pass #block-wiche-pagetitle h1 { color: var(--c-blue); font-size: var(--fs-h2);
+  line-height: var(--lh-tight); margin: 0 0 var(--sp-3); }
+.route--user-login .auth-intro { margin: 0 0 var(--sp-5); color: var(--c-muted); }
+.route--user-login .form-item,
+.route--user-pass .form-item { margin: 0 0 var(--sp-5); }
+.route--user-login .form-item label,
+.route--user-pass .form-item label { display: block; margin-bottom: var(--sp-2);
+  font-weight: 600; font-size: var(--fs-sm); color: var(--c-heading); }
+.route--user-login input.form-text,
+.route--user-login input.form-email,
+.route--user-login input.form-password,
+.route--user-pass input.form-text,
+.route--user-pass input.form-email { display: block; width: 100%; box-sizing: border-box;
+  padding: 0.75rem 1rem; font: inherit; color: var(--text); background: #fff;
+  border: 1px solid var(--border-strong); border-radius: var(--radius-sm); }
+.route--user-login input.form-text:focus,
+.route--user-login input.form-password:focus,
+.route--user-pass input.form-text:focus,
+.route--user-pass input.form-email:focus { outline: 2px solid var(--c-blue); outline-offset: 1px;
+  border-color: var(--c-blue); }
+.route--user-login .form-actions,
+.route--user-pass .form-actions { margin: var(--sp-6) 0 0; }
+.route--user-login .form-actions .button,
+.route--user-pass .form-actions .button { width: 100%; }
+.route--user-login .description,
+.route--user-pass .description { margin-top: var(--sp-2); font-size: var(--fs-sm); color: var(--c-muted); }
+.auth-links { display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);
+  margin-top: var(--sp-6); padding-top: var(--sp-5); border-top: 1px solid var(--border);
+  font-size: var(--fs-sm); color: var(--c-muted); }
+.auth-links a { color: var(--c-blue); font-weight: 500; }
+@media (max-width: 560px) {
+  .route--user-login .page-main__grid, .route--user-pass .page-main__grid { padding-block: var(--sp-6); }
+  .route--user-login .region-content, .route--user-pass .region-content { padding: var(--sp-5); }
 }

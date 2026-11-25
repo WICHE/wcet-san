@@ -1,8 +1,9 @@
 {#
 /**
- * @file single_file — download link. Fields: field_media_file, field_link_style.
+ * @file single_file — download link. Fields: field_media_file, field_link_style
+ * (primary | secondary | tertiary; a file with no style is a Secondary / outline button).
  */
 #}
-<div{{ attributes.addClass('paragraph', 'paragraph--single_file', 'link-style--' ~ (paragraph.field_link_style.value|default('link'))|clean_class) }}>
+<div{{ attributes.addClass('paragraph', 'paragraph--single_file', 'link-style--' ~ (paragraph.field_link_style.value|default('secondary'))|clean_class) }}>
   <div class="wrap wrap--narrow">{{ content.field_media_file }}</div>
 </div>

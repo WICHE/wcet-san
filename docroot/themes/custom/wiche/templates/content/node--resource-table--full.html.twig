@@ -1,0 +1,33 @@
+{#
+/**
+ * @file Resource Table (chart) full page.
+ *
+ * Charts had no full template, so Drupal printed the author ("Submitted by
+ * …") and the type / topic labels as stacked plain text above the content.
+ * Here they read like a Resource page: one meta line — type, date, topics —
+ * above the title, then the intro copy and the table content. The page-title
+ * block is hidden on these pages (components.css), so the H1 is rendered here.
+ * Author / "Submitted by" and content access are deliberately not shown.
+ * Tables inside the body are wrapped for horizontal scrolling by wiche.js
+ * (wicheTableScroll).
+ */
+#}
+<article{{ attributes.addClass('resource-article', 'resource-article--table') }}>
+  <header class="resource-article__head">
+    <div class="article-meta">
+      {% if content.field_resource_type|render|trim is not empty %}
+        <span class="article-meta__cat">{{ content.field_resource_type }}</span>
+      {% endif %}
+      <span class="article-meta__date">{{ node.getCreatedTime|date('n/j/Y') }}</span>
+      {% if content.field_topic|render|trim is not empty %}
+        <span class="article-meta__topic">{{ content.field_topic }}</span>
+      {% endif %}
+    </div>
+    <h1 class="article-title">{{ label }}</h1>
+  </header>
+
+  <div class="resource-article__main flow-l">
+    {{ content.field_intro_copy }}
+    {{ content.body }}
+  </div>
+</article>

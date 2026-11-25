@@ -274,6 +274,69 @@
     },
   };
 
+  // --- Scrolling tables ------------------------------------------------------
+  // Wraps every content table in a focusable, horizontally scrolling region with
+  // previous/next buttons, an edge shadow and a hint, so wide charts scroll
+  // instead of being cut off (phones included). The CSS pins the first column.
+  Drupal.behaviors.wicheTableScroll = {
+    attach(context) {
+      once('wiche-table-scroll', '.page-main .region-content table', context).forEach((table) => {
+        // Only outer tables: skip ones already wrapped or nested inside another table's cell.
+        if (table.closest('.table-scroll') || table.parentElement.closest('table')) return;
+
+        const wrap = document.createElement('div');
+        wrap.className = 'table-scroll';
+        if (table.closest('.paragraph-table-section')) wrap.classList.add('table-scroll--filtered');
+        const viewport = document.createElement('div');
+        viewport.className = 'table-scroll__viewport';
+        viewport.tabIndex = 0;
+        viewport.setAttribute('role', 'region');
+        const caption = table.caption && table.caption.textContent.trim();
+        viewport.setAttribute('aria-label', caption
+          ? Drupal.t('@caption (scrollable table)', { '@caption': caption })
+          : Drupal.t('Scrollable table'));
+
+        const button = (dir, label, glyph) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = `table-scroll__btn table-scroll__btn--${dir}`;
+          b.setAttribute('aria-label', label);
+          b.textContent = glyph;
+          b.hidden = true;
+          return b;
+        };
+        const prev = button('prev', Drupal.t('Scroll table left'), '‹');
+        const next = button('next', Drupal.t('Scroll table right'), '›');
+        const hint = document.createElement('p');
+        hint.className = 'table-scroll__hint';
+        hint.textContent = Drupal.t('Scroll or swipe sideways to see more columns.');
+        hint.hidden = true;
+
+        table.parentNode.insertBefore(wrap, table);
+        viewport.appendChild(table);
+        wrap.append(viewport, prev, next, hint);
+
+        const update = () => {
+          const max = viewport.scrollWidth - viewport.clientWidth;
+          const overflowing = max > 2;
+          const first = table.querySelector('tr > :first-child');
+          if (first) wrap.style.setProperty('--first-col-w', `${first.offsetWidth}px`);
+          wrap.classList.toggle('is-scrolled', viewport.scrollLeft > 2);
+          prev.hidden = !overflowing || viewport.scrollLeft <= 2;
+          next.hidden = !overflowing || viewport.scrollLeft >= max - 2;
+          hint.hidden = !overflowing;
+        };
+        const step = (dir) => viewport.scrollBy({ left: dir * Math.max(viewport.clientWidth * 0.8, 200) });
+        prev.addEventListener('click', () => step(-1));
+        next.addEventListener('click', () => step(1));
+        viewport.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        if ('ResizeObserver' in window) new ResizeObserver(update).observe(table);
+        update();
+      });
+    },
+  };
+
   // --- Inline search: clicking the Search link (utility nav / mobile nav)
   // reveals a text input in its place instead of navigating straight to the
   // (keyword-less) /search page, so people can type a term first. ---------

@@ -814,6 +814,7 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
    stable9 outputs the page-title block as a bare <div id="block-wiche-pagetitle">
    (no class), so target it by id, scoped to resource/event node pages. */
 .page-node-type-resource #block-wiche-pagetitle,
+.page-node-type-resource_table #block-wiche-pagetitle,
 .page-node-type-event #block-wiche-pagetitle,
 /* landing pages lead with a hero (field_p_header) that carries the H1 */
 .page-node-type-landing_page #block-wiche-pagetitle { display: none; }
@@ -851,28 +852,10 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
   .resource-article--split .resource-article__aside { margin-top: var(--sp-7); }
 }
 
-/* Quick links sidebar box */
+/* Quick links sidebar box. The links/files inside follow the editor's button
+   style (see "Resource link & file buttons" below). */
 .quick-links { border-top: 2px solid var(--border-strong); padding-top: var(--sp-4); }
 .quick-links__title { color: var(--c-heading); font-size: var(--fs-h4); margin: 0 0 var(--sp-4); }
-.quick-links__list .paragraph-link { position: relative; padding: var(--sp-2) 0 var(--sp-2) var(--sp-4); }
-.quick-links__list .paragraph-link::before { content: "›"; position: absolute; left: 0;
-  color: var(--c-blue); font-weight: 700; }
-.quick-links__list a { color: var(--c-blue); text-decoration: none; font-weight: 500; }
-.quick-links__list a:hover { text-decoration: underline; }
-/* a downloadable file in the sidebar renders as an outline button */
-.quick-links__list .paragraph--single_file { margin-top: var(--sp-5); padding: 0; }
-.quick-links__list .paragraph--single_file .wrap { max-width: none; padding: 0; }
-.quick-links__list .paragraph--single_file .file { background: none; padding: 0; display: block; }
-.quick-links__list .paragraph--single_file .file a { display: block; text-align: center;
-  font-weight: 600; padding: 0.7rem 1rem; border: 2px solid var(--c-blue);
-  border-radius: var(--radius-sm); color: var(--c-blue); text-decoration: none;
-  /* Always an outline button, whatever style the editor picked (the primary
-     style's blue fill put blue text on blue), and let long file names wrap
-     inside the box instead of overflowing it past the fixed button height. */
-  background: transparent; height: auto; line-height: 1.3;
-  white-space: normal; overflow-wrap: anywhere; }
-.quick-links__list .paragraph--single_file .file a:hover { background: var(--c-blue); color: #fff; }
-.quick-links__list .paragraph--single_file > .wrap > div { font-size: var(--fs-sm); color: var(--c-muted); }
 
 /* Event page: title + body (left), "Event details" card with the date and the
    register / file buttons (right on desktop; straight after the title on mobile
@@ -898,20 +881,7 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
   letter-spacing: 0.04em; color: var(--c-muted); }
 .event-details__actions { display: flex; flex-direction: column; gap: var(--sp-3); }
 .event-details__actions .field, .event-details__actions div:not([class]) { display: contents; }
-/* every register / link button is a full-width, wrapping button in the card */
-.event-details__actions .paragraph-link a {
-  display: flex; width: 100%; height: auto; min-height: var(--btn-h); padding: 0.75rem 1.25rem;
-  text-align: center; line-height: 1.3; white-space: normal; overflow-wrap: anywhere;
-}
-.event-details__actions .paragraph--single_file { padding: 0; }
-.event-details__actions .paragraph--single_file .wrap { max-width: none; padding: 0; }
-.event-details__actions .paragraph--single_file .file { background: none; padding: 0; display: block; }
-.event-details__actions .paragraph--single_file .file a { display: block; text-align: center;
-  font-weight: 600; padding: 0.75rem 1.25rem; border: 2px solid var(--c-blue);
-  border-radius: var(--radius-sm); color: var(--c-blue); text-decoration: none; background: #fff;
-  height: auto; line-height: 1.3; white-space: normal; overflow-wrap: anywhere; }
-.event-details__actions .paragraph--single_file .file a:hover { background: var(--c-blue); color: #fff; }
-.event-details__actions .paragraph--single_file > .wrap > div { font-size: var(--fs-sm); color: var(--c-muted); }
+
 
 /* Related "More {topic} Resources" section */
 .resource-article__related { margin-top: var(--sp-9); }
@@ -987,34 +957,55 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .route--view-coordinator-list-page-1 .region-content th a:hover { text-decoration: underline; }
 
 /* Downloads & links panel — the resource's actual payload (single_link +
-   single_file paragraphs) as a clean, scannable list. */
+   single_file paragraphs). Link/file rows follow the editor's button style. */
 .resource-downloads { margin-top: var(--sp-8); background: var(--c-blue-tint);
   border: 1px solid var(--border); border-radius: var(--radius);
   padding: var(--sp-6) var(--sp-7); }
 .resource-downloads__title { color: var(--c-blue); font-size: var(--fs-h3);
   margin: 0 0 var(--sp-4); }
-.resource-downloads__list > * + * { border-top: 1px solid var(--border); }
-/* each link/file paragraph = one row */
-.resource-downloads .paragraph-link,
-.resource-downloads .paragraph--single_file { padding: var(--sp-3) 0; }
-.resource-downloads .paragraph--single_file .wrap { max-width: none; padding: 0; }
-.resource-downloads a { color: var(--c-blue); font-weight: 500; text-decoration: none; }
-.resource-downloads a:hover { text-decoration: underline; color: var(--c-magenta); }
-/* single_link paragraphs default to the "primary" button style, but in the
-   resource link lists they should read as plain link rows — otherwise the
-   blue text above lands on the primary button's blue fill (text invisible). */
-.resource-downloads .paragraph-link a,
-.quick-links__list .paragraph-link a {
-  display: inline; height: auto; padding: 0; border: 0; border-radius: 0;
-  background: none; color: var(--c-blue); font-weight: 500; text-decoration: none;
-}
-.resource-downloads .paragraph-link a:hover,
-.quick-links__list .paragraph-link a:hover { background: none; color: var(--c-magenta); text-decoration: underline; }
-/* file rows: show a small download affordance before the link */
-.resource-downloads .paragraph--single_file .file a { display: inline; height: auto; padding: 0; border: 0;
-  border-radius: 0; background: none; color: var(--c-blue); font-weight: 500; overflow-wrap: anywhere; }
-.resource-downloads .paragraph--single_file .file a::before { content: "↓ "; color: var(--c-muted); }
-.resource-downloads .file { background: none; padding: 0; }
+.resource-downloads__list { max-width: 32rem; }
+
+/* ---- Resource link & file buttons ---------------------------------------
+   The editor picks a style per link/file, as on the old site:
+     Primary   = solid blue button      (used for videos / main actions)
+     Secondary = white box, blue outline (used for documents / PDFs)
+     Tertiary  = plain text link         (also "Link" / no style on a link)
+   Applies to the Quick links sidebar, the Downloads & links panel and the
+   event details card. A file with no style set counts as Secondary. */
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) :is(.paragraph-link, .paragraph--single_file) {
+  margin: 0 0 var(--sp-3); padding: 0; background: none; }
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) .paragraph--single_file .wrap { max-width: none; padding: 0; }
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) .file { background: none; padding: 0; display: block; }
+
+/* buttons: primary + secondary */
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) :is(.link-style--primary, .link-style--secondary) a {
+  display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 100%;
+  height: auto; min-height: var(--btn-h); padding: 0.65rem 1.25rem;
+  border: 2px solid var(--c-blue); border-radius: var(--radius-sm);
+  font-weight: 600; line-height: 1.3; text-align: center; text-decoration: none;
+  white-space: normal; overflow-wrap: anywhere; }
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) .link-style--primary a { background: var(--c-blue); color: #fff; }
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) .link-style--primary a:hover { background: #fff; color: var(--c-blue); }
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) .link-style--secondary a { background: #fff; color: var(--c-blue); }
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) .link-style--secondary a:hover { background: var(--c-blue); color: #fff; }
+/* the file size sits under its button */
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) .paragraph--single_file:is(.link-style--primary, .link-style--secondary) .file + span {
+  display: block; margin-top: var(--sp-1); font-size: var(--fs-sm); color: var(--c-muted); }
+
+/* text links: tertiary, "link", or a link with no style */
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) :is(.link-style--tertiary, .link-style--link) a {
+  display: inline; height: auto; min-height: 0; padding: 0; border: 0; border-radius: 0; background: none;
+  color: var(--c-blue); font-weight: 500; text-decoration: none; overflow-wrap: anywhere; }
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) :is(.link-style--tertiary, .link-style--link) a:hover {
+  color: var(--c-magenta); text-decoration: underline; }
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) .paragraph-link:is(.link-style--tertiary, .link-style--link) {
+  position: relative; padding-left: var(--sp-4); }
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) .paragraph-link:is(.link-style--tertiary, .link-style--link)::before {
+  content: "›"; position: absolute; left: 0; color: var(--c-blue); font-weight: 700; }
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) .paragraph--single_file:is(.link-style--tertiary, .link-style--link) .file a::before {
+  content: "↓ "; color: var(--c-muted); }
+:is(.quick-links__list, .resource-downloads__list, .event-details__actions) .paragraph--single_file:is(.link-style--tertiary, .link-style--link) .file + span {
+  font-size: var(--fs-sm); color: var(--c-muted); }
 
 /* ===================================== Search page (view.search) ========== */
 .route--view-search-page-1 .region-content { padding-block: var(--sp-6) var(--sp-9); }
@@ -1166,8 +1157,56 @@ figcaption { font-size: var(--fs-sm); color: var(--c-muted); margin-top: var(--s
 .page-node-type-resource_table .region-content table td,
 .page-node-type-resource .region-content table th,
 .page-node-type-resource .region-content table td {
-  width: auto !important; word-break: normal !important; overflow-wrap: break-word;
+  word-break: normal !important; overflow-wrap: break-word;
 }
+/* (Cell/column widths set in the editor — Table → Cell properties → Width, or a
+   <col> width in source — are now honoured. They used to be forced to auto
+   because the legacy fixed widths squeezed columns; the scrolling wrapper
+   below plus a minimum column width keep that from happening again.) */
+
+/* Grid children default to min-width:auto, so a wide table would stretch the whole
+   page column instead of scrolling inside its wrapper. */
+.page-main__grid > *, .resource-article { min-width: 0; }
+/* Chart pages: prose keeps a readable line length; tables use the full width. */
+.resource-article--table .resource-article__main > * { min-width: 0; }
+.resource-article--table .resource-article__main p,
+.resource-article--table .resource-article__main ul,
+.resource-article--table .resource-article__main ol { max-width: 820px; }
+
+/* ---- Scrolling tables ------------------------------------------------------
+   wiche.js (wicheTableScroll) wraps each content table in .table-scroll:
+   a focusable, horizontally scrolling region with left/right buttons and an
+   edge shadow, so wide charts scroll instead of being cut off — on phones too.
+   The first column stays pinned (sticky) so the state / row name is always in
+   view while scrolling across. Columns never shrink below a readable width. */
+.table-scroll { position: relative; margin-block: var(--sp-5); }
+.table-scroll__viewport { overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+.table-scroll__viewport:focus-visible { outline: 2px solid var(--c-blue); outline-offset: 2px; }
+.table-scroll table { margin: 0; }
+/* (outer table only — tables nested inside cells are left alone) */
+.table-scroll__viewport > table > :is(thead, tbody, tfoot) > tr > :is(th, td) { min-width: 8rem; vertical-align: top; }
+.table-scroll__viewport > table > :is(thead, tbody, tfoot) > tr > :first-child { position: sticky; left: 0; z-index: 1; min-width: 7rem; }
+.table-scroll__viewport > table > thead > tr > :first-child { z-index: 2; }
+/* sticky cells must be opaque, or scrolled content shows through them */
+.table-scroll__viewport > table > tbody > tr > td:first-child { background: #fff; }
+.table-scroll:not(.table-scroll--filtered) .table-scroll__viewport > table > tbody > tr:nth-child(even) > td:first-child { background: #f1f6f9; }
+.table-scroll .table-scroll__viewport > table > tbody > tr.is-stripe > td:first-child { background: #f1f6f9; }
+.table-scroll__viewport > table > thead > tr > th:first-child { background: var(--bg-tint); }
+.table-scroll__viewport > table > thead > tr.table-filters > th:first-child { background: #fff; }
+.table-scroll.is-scrolled .table-scroll__viewport > table > :is(thead, tbody, tfoot) > tr > :first-child { box-shadow: 4px 0 6px -4px rgba(0, 0, 0, 0.35); }
+/* scroll buttons — only while there is more to see in that direction */
+.table-scroll__btn { position: absolute; top: 50%; z-index: 3; width: 2.5rem; height: 2.5rem; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center; margin-top: -1.25rem;
+  border: 2px solid var(--c-blue); border-radius: 50%; background: #fff; color: var(--c-blue);
+  font-size: 1.25rem; line-height: 1; cursor: pointer; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }
+.table-scroll__btn:hover, .table-scroll__btn:focus-visible { background: var(--c-blue); color: #fff; }
+.table-scroll__btn--prev { left: 0.5rem; }
+.table-scroll__btn--next { right: 0.5rem; }
+.table-scroll__btn[hidden] { display: none; }
+.table-scroll__btn--prev { left: calc(var(--first-col-w, 7rem) + 0.5rem); }
+.table-scroll__hint { margin: var(--sp-2) 0 0; font-size: var(--fs-sm); color: var(--c-muted); }
+.table-scroll__hint[hidden] { display: none; }
+@media (prefers-reduced-motion: no-preference) { .table-scroll__viewport { scroll-behavior: smooth; } }
 
 /* ---- Login & password pages ---------------------------------------------
    A centred card on the tint instead of a bare form. The Log in / Reset your
